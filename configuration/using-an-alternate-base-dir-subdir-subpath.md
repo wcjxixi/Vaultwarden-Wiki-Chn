@@ -4,7 +4,7 @@
 对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Using-an-alternate-base-dir)
 {% endhint %}
 
-通常，Bitwarden 被限制驻留在子域的根目录中，比如`https://bitwarden.example.com`。
+通常，Vaultwarden 被限制驻留在子域的根目录中，比如`https://vaultwarden.example.com`。
 
 此限制源自后端和网页密码库，他们尚未被设计为容纳备用基本目录（请参阅 [bitwarden/server#277](https://github.com/bitwarden/server/issues/277)）。实际上，移动端/桌面端应用程序和浏览器扩展都可以使用带路径的基本 URL。
 
