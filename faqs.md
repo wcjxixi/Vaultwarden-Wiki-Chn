@@ -52,7 +52,7 @@ Bitwarden 客户端需要一个安全的连接，才能正常工作且没有任�
 
 这也可能是 Vaultwarden 服务器无法访问互联网或未解决 DNS 查询。你可以检查 `/admin/diagnostics` 页面，看看你是否能解决 DNS 查询以及是否有连接到互联网。如果都没问题，也有可能是防火墙或外发互联网代理阻止了这些请求。
 
-## Websocket 连接显示错误的 IP 地址 <a href="websocket-connections-show-wrong-ip-address" id="websocket-connections-show-wrong-ip-address"></a>
+## Websocket 连接显示错误的 IP 地址。 <a href="websocket-connections-show-wrong-ip-address" id="websocket-connections-show-wrong-ip-address"></a>
 
 这不是我们可以解决的问题。我们使用的库不支持任何形式的 `X-Forwarded-For` 或 `Forward` 标头。
 

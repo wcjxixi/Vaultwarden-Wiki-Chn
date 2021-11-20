@@ -29,7 +29,7 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 * [主密码重新提示](https://help.bitwarden.in/your-vault/vault-items#protect-individual-items)
 * [电子邮件](https://help.bitwarden.in/two-step-login/two-step-login-via-email)、[Duo](https://help.bitwarden.in/two-step-login/two-step-login-via-duo)、[Yubikey](https://help.bitwarden.in/two-step-login/two-step-login-via-yubikey) 和 [FIDO2 WebAuthn](https://help.bitwarden.in/two-step-login/two-step-login-via-fido2-webauthn) 方式的两步登录
 * [目录连接器](https://help.bitwarden.in/directory-connector/about-directory-connector)支持（基本实现，但不支持群组）\
-  仅支持 v2.9.2 及更低版本，v2.9.3 及更高版本使用尚不支持的其他登录方式。
+  仅支持 [v2.9.2](https://github.com/bitwarden/directory-connector/releases/tag/v2.9.2) 及更低版本，v2.9.3 及更高版本使用不同的登录方式，因此尚不被支持。
 * 某些企业策略：
   * [两步登录](https://help.bitwarden.in/organizations/enterprise-policies#two-step-login)
   * [主密码](https://help.bitwarden.in/organizations/enterprise-policies#master-password)
