@@ -30,7 +30,7 @@ RPM 库由 @MrMEEE 打包在这里：[https://copr.fedorainfracloud.org/coprs/mr
 
 ## Nix (OS)
 
-在 Nix 中，Bitwarden\_rs 被打包为 4 个包（一个用于 mysql、sqlite 以及 postgresql，一个用于 vault）。对于 NixOS 来说，由于有一个 services.bitwarden\_rs 模块，因此 bitwarden\_rs 也可以用 NixOS 的声明方式来配置。
+Vaultwarden 被同时打包用于 mysql、sqlite、postgresql，以及用于 Vault。还有一个用于声明式配置的 NixOS 模块（请参阅 `services.vaultwarden`）
 
 ## Cloudron
 
@@ -38,11 +38,11 @@ RPM 库由 @MrMEEE 打包在这里：[https://copr.fedorainfracloud.org/coprs/mr
 
 软件包代码和话题跟踪器可以在这里找到：[https://git.cloudron.io/cloudron/bitwardenrs-app](https://git.cloudron.io/cloudron/bitwardenrs-app)。
 
-## Home Assistant <a href="home-assistant" id="home-assistant"></a>
+## Home Assistant <a href="#home-assistant" id="home-assistant"></a>
 
 [Home Assistant](https://www.home-assistant.io) 是一个开源的家庭自动化平台。在这里可找到 bitwarden\_rs 社区插件：[https://github.com/hassio-addons/addon-bitwarden](https://github.com/hassio-addons/addon-bitwarden)。
 
-## 用于 Ubuntu 20.04 的编译脚本 <a href="build-script-for-ubuntu-20-04" id="build-script-for-ubuntu-20-04"></a>
+## 用于 Ubuntu 20.04 的编译脚本 <a href="#build-script-for-ubuntu-20-04" id="build-script-for-ubuntu-20-04"></a>
 
 Dinger1986 创建了一个在 Ubuntu 20.04 上从源代码安装 bitwarden\_rs 的脚本，参见：[https://github.com/dinger1986/bitwardenrs\_install\_script](https://github.com/dinger1986/bitwardenrs\_install\_script)
 
@@ -50,7 +50,7 @@ Dinger1986 创建了一个在 Ubuntu 20.04 上从源代码安装 bitwarden\_rs �
 
 在 [FreeBSD 端口树](https://www.freshports.org/security/vaultwarden/)中可用，并在 FreeBSD pkg 存储库中作为二进制包提供：`pkg install vaultwarden`
 
-## 多个 RPM 和 DEB 发行版 <a href="multiple-rpm-and-deb-distributions" id="multiple-rpm-and-deb-distributions"></a>
+## 多个 RPM 和 DEB 发行版 <a href="#multiple-rpm-and-deb-distributions" id="multiple-rpm-and-deb-distributions"></a>
 
 openSUSE 构建服务项目，支持 CentOS、Debian、Fedora、RHEL、SUSE、Ubuntu。
 

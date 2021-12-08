@@ -14,7 +14,7 @@
 
 Web 服务器的安全 TLS 协议和密码配置可以使用 Mozilla 的 [SSL Configuration Generator](https://ssl-config.mozilla.org) 来生成。所有支持的浏览器和移动应用程序都可以使用这个「流行的」配置方式。
 
-## 目录 <a href="table-of-contents" id="table-of-contents"></a>
+## 目录 <a href="#table-of-contents" id="table-of-contents"></a>
 
 * [Caddy 2.x](proxy-examples.md#caddy-2-x)
 * [lighttpd](proxy-examples.md#lighttpd-by-forkbomb-9) (by forkbomb9)
@@ -441,9 +441,9 @@ labels:
     - traefik.hub.protocol=ws
 ```
 
-## Traefik v2 (docker-compose 示例 by hwwilliams) <a href="traefik-v-2-docker-compose-example-by-hwwilliams" id="traefik-v-2-docker-compose-example-by-hwwilliams"></a>
+## Traefik v2 (docker-compose 示例 by hwwilliams) <a href="#traefik-v-2-docker-compose-example-by-hwwilliams" id="traefik-v-2-docker-compose-example-by-hwwilliams"></a>
 
-### 将 Traefik v1 标签迁移到 Traefik v2 <a href="traefik-v-1-labels-migrated-to-traefik-v2" id="traefik-v-1-labels-migrated-to-traefik-v2"></a>
+### 将 Traefik v1 标签迁移到 Traefik v2 <a href="#traefik-v-1-labels-migrated-to-traefik-v2" id="traefik-v-1-labels-migrated-to-traefik-v2"></a>
 
 ```python
 labels:
@@ -457,7 +457,7 @@ labels:
   - traefik.http.services.vaultwarden-websocket.loadbalancer.server.port=3012
 ```
 
-### 迁移的标签加上 HTTP 到 HTTPS 重定向 <a href="migrated-labels-plus-http-to-https-redirect" id="migrated-labels-plus-http-to-https-redirect"></a>
+### 迁移的标签加上 HTTP 到 HTTPS 重定向 <a href="#migrated-labels-plus-http-to-https-redirect" id="migrated-labels-plus-http-to-https-redirect"></a>
 
 这些标签假定 Traefik 中为端口 80 和 443 定义的入口点分别是「web」和「websecure」。
 
@@ -569,7 +569,7 @@ Mode	  Name	                     Forwardto	    Address	      Port	 Encrypt(SSL)	
 active 	Vaultwarden-Notifications  Address+Port:  IPADDRESSHERE 3012   no            no
 ```
 
-### 前端创建-1-域名 <a href="frontend-creation-1-domain" id="frontend-creation-1-domain"></a>
+### 前端创建-1-域名 <a href="#frontend-creation-1-domain" id="frontend-creation-1-domain"></a>
 
 **ACCESS CONTROL LIST**
 
@@ -617,7 +617,7 @@ See below
 ACL00
 ```
 
-### 前端创建-2-VaultWarden <a href="frontend-creation-2-vaultwarden" id="frontend-creation-2-vaultwarden"></a>
+### 前端创建-2-VaultWarden <a href="#frontend-creation-2-vaultwarden" id="frontend-creation-2-vaultwarden"></a>
 
 **ACCESS CONTROL LIST**
 
@@ -681,14 +681,14 @@ See below
 ACL5
 ```
 
-#### **更新记录** <a href="updates" id="updates"></a>
+#### **更新记录** <a href="#updates" id="updates"></a>
 
 ```
 Updated above 30/07 - 我在第一次配置后意识到，因为 ACL1-4 有 'Not'，他们正在将任何内容与他们的动作相匹配。所以 BlahBlahMcGee.FQDN.com 通过了。这不是故意的，所以上面添加了 ACL5 来解决这个问题，它还移除了对默认后端的需要。
 Updated again 30/07 - ^ 是的，没用。这一切都源于 HaProxy 不允许在 ACL 中使用 'AND'。唉。现在有了上面的内容，您可以为根域配置一个前端。这有一个否认本身，以及任何未指定的内容。因此，如果您要通过多个其他子域，则需要将它们全部添加到 ACL01 下。现在一切正常了！
 ```
 
-#### 重要提示 <a href="important-notes" id="important-notes"></a>
+#### 重要提示 <a href="#important-notes" id="important-notes"></a>
 
 ```
 1) 您必须使域名前端与允许列表中的任何其他子域名保持同步
@@ -696,7 +696,7 @@ Updated again 30/07 - ^ 是的，没用。这一切都源于 HaProxy 不允许�
 3) ACL 名称的重复使用是故意的。是的，我没有打错它们。ACL00、ACL01 等等
 ```
 
-#### 可选 <a href="optional" id="optional"></a>
+#### 可选 <a href="#optional" id="optional"></a>
 
 ```
 上面的 ACL5 拒绝访问 /admin 门户。我不是特别喜欢没有任何形式的 2FA 且只有密码的管理门户。因此，当我不使用它时，我只是拒绝访问。如果我需要它，请取消阻止，完成所需的工作并重新阻止。
@@ -728,3 +728,62 @@ use_backend VaultWarden-Notifications_ipvANY  if  !ACL4
 ```
 
 为了进行测试，如果您在浏览器中导航到 /notifications/hub，那么您应该会看到一个页面，上面写着「WebSocket Protocol Error: Unable to parse WebSocket key.」（WebSocket 协议错误：无法解析 WebSocket 密钥。） ……这意味着它可以正常工作！ - 所有其他子页面都应该出现 Rocket 错误。
+
+## Istio k8s (by [@dpoke](https://github.com/dpoke))
+
+```
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: vaultwarden-gateway
+  namespace: vaultwarden
+spec:
+  selector:
+    istio: ingressgateway-internal # use Istio default gateway implementation
+  servers:
+  - hosts:
+    - vw.k8s.prod
+    port:
+      number: 80
+      name: http
+      protocol: HTTP
+    tls:
+      httpsRedirect: true
+  - hosts:
+    - vw.k8s.prod
+    port:
+      name: https-443
+      number: 443
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: vw-k8s-prod-tls
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: vaultwarden-vs
+  namespace: vaultwarden
+spec:
+  hosts:
+  - vw.k8s.prod
+  gateways:
+  - vaultwarden-gateway
+  http:
+  - match:
+    - uri:
+        exact: /notifications/hub
+    route:
+    - destination:
+        port:
+          number: 3012
+        host: vaultwarden-ws
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        port:
+          number: 80
+        host: vaultwarden
+```
