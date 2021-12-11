@@ -19,7 +19,7 @@
 
 当然也可以使用其他的网络服务器、[ACME 客户端](https://letsencrypt.org/docs/client-options/)和 DNS 提供商的组合来创建类似的设置，但你必须解决细节上的差异。
 
-## 获取自定义 Caddy 构建 <a href="getting-a-custom-caddy-build" id="getting-a-custom-caddy-build"></a>
+## 获取自定义 Caddy 构建 <a href="#getting-a-custom-caddy-build" id="getting-a-custom-caddy-build"></a>
 
 由于大多数人不使用 DNS 验证方式，为每个 DNS 提供商自定义实现，因此 Caddy 默认没有内置此验证方式的支持。
 
@@ -33,7 +33,7 @@ xcaddy build --with github.com/caddy-dns/cloudflare --with github.com/caddy-dns/
 
 将 `caddy` 二进制 移动到 `/usr/local/bin/caddy` 或其他合适的目录中。（可选）运行语句 `sudo setcap cap_net_bind_service=+ep /usr/local/bin/caddy` 以允许 `caddy` 而在特权端口（< 1024）上监听，而无须以 root 身份运行。
 
-## Duck DNS 设置 <a href="duck-dns-setup" id="duck-dns-setup"></a>
+## Duck DNS 设置 <a href="#duck-dns-setup" id="duck-dns-setup"></a>
 
 如果您还没有账户，请在 [https://www.duckdns.org/](https://www.duckdns.org) 创建一个。给您的 bitwarden\_rs 实例创建一个子域名（例如，`my-vw.duckdns.org`），将其 IP 地址设置为你的 bitwarden\_rs 主机的私有 IP（例如，192.168.1.100）。记下你的账户的 token 值（[UUID](https://en.wikipedia.org/wiki/UUID) 格式的字符串）。Caddy 将需要此 token 来完成 DNS 验证。
 
@@ -73,7 +73,9 @@ export WEBSOCKET_ENABLED=true
 
 您现在应该可以通过 `https://my-vw.duckdns.org` 访问到您的 Vaultwarden 实例了。
 
-## Cloudflare 设置 <a href="cloudflare-setup" id="cloudflare-setup"></a>
+**重要提示：**如有必要，在某些路由器（例如 FritzBox）中，由于 DNS 重新绑定保护，必须为域名（例如 `my-vw.example.com`）设置例外。
+
+## Cloudflare 设置 <a href="#cloudflare-setup" id="cloudflare-setup"></a>
 
 如果您还没有账户，请在 [https://www.cloudflare.com/](https://www.cloudflare.com) 创建一个；您还需要到您的域名注册商那里将名称服务器设置为 Cloudflare 分配给您的值。为您的 Vaultwarden 实例创建一个子域名（例如，`vw.example.com`），将其 IP 地址设置为您的 Vaultwarden 主机的私有 IP（例如，`192.168.1.100`）。例如：
 
@@ -129,7 +131,9 @@ export WEBSOCKET_ENABLED=true
 
 您现在应该可以通过 `https://vw.example.com` 访问到您的实例了。
 
-## 使用 `lego` CLI 获取证书 <a href="getting-certs-using-the-lego-cli" id="getting-certs-using-the-lego-cli"></a>
+**重要提示：**如有必要，在某些路由器（例如 FritzBox）中，由于 DNS 重新绑定保护，必须为域名（例如 `vw.example.com`）设置例外。
+
+## 使用 `lego` CLI 获取证书 <a href="#getting-certs-using-the-lego-cli" id="getting-certs-using-the-lego-cli"></a>
 
 在上面的 DuckDNS 例子中，Caddy 使用 `lego` 库通过 DNS 验证获取证书。`lego` 也有一个 CLI，你可以直接使用它来获取证书，例如，如果你想使用 Caddy 以外的反向代理。 (注意：这个例子使用 `lego`，但也有其他独立的 ACME 客户端支持 DNS 验证方式（参见 [DNS 验证](running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md#dns-challenge)部分）。
 
@@ -148,9 +152,9 @@ export WEBSOCKET_ENABLED=true
 * `/usr/local/lego/.lego/certificates/my-vw.duckdns.org.crt` （证书）
 * `/usr/local/lego/.lego/certificates/my-vw.duckdns.org.key` （私钥）
 
-## 故障排除 <a href="troubleshooting" id="troubleshooting"></a>
+## 故障排除 <a href="#troubleshooting" id="troubleshooting"></a>
 
-### DNS 问题 <a href="dns-issues" id="dns-issues"></a>
+### DNS 问题 <a href="#dns-issues" id="dns-issues"></a>
 
 如果你的子域出现 DNS 解析错误（例如，`DNS_PROBE_FINISHED_NXDOMAIN` 或 `ERR_NAME_NOT_RESOLVED`），可能是你的 DNS 解析器阻止了解析，有以下原因：
 
@@ -159,18 +163,18 @@ export WEBSOCKET_ENABLED=true
 
 无论哪种情况，您都可以尝试使用其他 DNS 解析器，例如 Google 的 `8.8.8.8` 或 Cloudflare 的 `1.1.1.1`。对于第二种情况，如果您在 dnsmasq 或 Unbound 等本地 DNS 服务器后面运行，则可以将其配置为完全禁用 DNS 重新绑定保护，或允许某些域名返回私有地址。
 
-## 参考 <a href="references" id="references"></a>
+## 参考 <a href="#references" id="references"></a>
 
-### DNS 验证 <a href="dns-challenge" id="dns-challenge"></a>
+### DNS 验证 <a href="#dns-challenge" id="dns-challenge"></a>
 
 * [https://caddy.community/t/how-to-use-dns-provider-modules-in-caddy-2/8148](https://caddy.community/t/how-to-use-dns-provider-modules-in-caddy-2/8148)
 * [https://community.letsencrypt.org/t/dns-providers-who-easily-integrate-with-lets-encrypt-dns-validation/86438](https://community.letsencrypt.org/t/dns-providers-who-easily-integrate-with-lets-encrypt-dns-validation/86438)
 
-### Caddy Cloudflare 组件 <a href="caddy-cloudflare-module" id="caddy-cloudflare-module"></a>
+### Caddy Cloudflare 组件 <a href="#caddy-cloudflare-module" id="caddy-cloudflare-module"></a>
 
 * [https://github.com/caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare)
 
-### Caddy Duck DNS 组件 <a href="caddy-duck-dns-module" id="caddy-duck-dns-module"></a>
+### Caddy Duck DNS 组件 <a href="#caddy-duck-dns-module" id="caddy-duck-dns-module"></a>
 
 * [https://github.com/caddy-dns/duckdns](https://github.com/caddy-dns/duckdns)
 * [https://go-acme.github.io/lego/dns/duckdns/](https://go-acme.github.io/lego/dns/duckdns/)
