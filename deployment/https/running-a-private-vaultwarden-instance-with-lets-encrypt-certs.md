@@ -8,8 +8,8 @@
 
 本文将演示如何使用 [Caddy](https://caddyserver.com) Web 服务器创建这样的设置，Caddy 内置了对诸多 DNS 提供商的 ACME 支持。我们将通过 ACME [DNS 验证方式](https://letsencrypt.org/docs/challenge-types/#dns-01-challenge)获取 Let's Encrypt 证书来配置 Caddy -- 在这里使用通常的 HTTP 验证方式的话会有问题，因为它依赖于 Let's Encrypt 服务器能够访问到你的内部 Web 服务器。
 
-{% hint style="info" %}
-请注意，本文涵盖了更通用的 DNS 验证设置，但许多用户可能会发现使用 Docker Compose 来集成 Caddy 和 Vaultwarden 是最简单的。具体的例子请参见[使用 Docker Compose](../../container-image-usage/using-docker-compose.md#caddy-with-dns-challenge)。
+{% hint style="warning" %}
+本文涵盖了更通用的 DNS 验证设置，但许多用户可能会发现使用 Docker Compose 来集成 Caddy 和 Vaultwarden 是最简单的。具体的例子请参见[使用 Docker Compose](../../container-image-usage/using-docker-compose.md#caddy-with-dns-challenge)。
 {% endhint %}
 
 涵盖了两个 DNS 提供商：
