@@ -28,7 +28,7 @@
 
 raspberry pi 上 Vaultwarden 的 Ansible 部署。要从以前的配置迁移，请遵循本指南 [https://martient.medium.com/migrate-from-bitwarden-rs-to-vaultwarden-199aeb6927a3](https://martient.medium.com/migrate-from-bitwarden-rs-to-vaultwarden-199aeb6927a3)
 
-## 共享主机 <a href="shared-hosting" id="shared-hosting"></a>
+## 共享主机 <a href="#shared-hosting" id="shared-hosting"></a>
 
 * [https://github.com/jjlin/vaultwarden-shared-hosting](https://github.com/jjlin/vaultwarden-shared-hosting)
 
@@ -45,18 +45,16 @@ raspberry pi 上 Vaultwarden 的 Ansible 部署。要从以前的配置迁移，
 配置示例：
 
 ```python
-{pkgs,...}:
+{ pkgs, ... }:
 {
   services.bitwarden_rs = {
-  enable = true;
-  backupDir = "/mnt/bitwarden";
-  
-
-  config = {
+    enable = true;
+    backupDir = "/mnt/bitwarden";
+    config = {
       WEB_VAULT_FOLDER = "${pkgs.bitwarden_rs-vault}/share/bitwarden_rs/vault";
       WEB_VAULT_ENABLED = true;
       LOG_FILE = "/var/log/bitwarden";
-      WEBSOCKET_ENABLED= true;
+      WEBSOCKET_ENABLED = true;
       WEBSOCKET_ADDRESS = "0.0.0.0";
       WEBSOCKET_PORT = 3012;
       SIGNUPS_VERIFY = true;
@@ -70,23 +68,18 @@ raspberry pi 上 Vaultwarden 的 Ansible 部署。要从以前的配置迁移，
       SMTP_FROM_NAME = "Bitwarden_RS";
       SMTP_PORT = 587;
       SMTP_SSL = true;
-      SMTP_USERNAME= (import /etc/nixos/secret/bitwarden.nix).SMTP_USERNAME;
+      SMTP_USERNAME = (import /etc/nixos/secret/bitwarden.nix).SMTP_USERNAME;
       SMTP_PASSWORD = (import /etc/nixos/secret/bitwarden.nix).SMTP_PASSWORD;
       SMTP_TIMEOUT = 15;
       ROCKET_PORT = 8812;
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    bitwarden_rs-vault
-  ];
-
 }
 ```
 
 如果你有任何关于这部分的问题，请随时联系我。我在 matrix 的 @litschi:litschi.xyz 、以及 IRC（hackint 和 freenode）的 litschi，或简单地在 matrix.org 的 Vaultwarden 频道中询咨询我。
 
-## QNAP NAS (ARM 和 x86) <a href="qnap-nas-arm-and-x-86" id="qnap-nas-arm-and-x-86"></a>
+## QNAP NAS (ARM 和 x86) <a href="#qnap-nas-arm-and-x-86" id="qnap-nas-arm-and-x-86"></a>
 
 * [https://github.com/umireon/vaultwarden-qnap](https://github.com/umireon/vaultwarden-qnap)
 
