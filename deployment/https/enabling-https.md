@@ -155,7 +155,7 @@ OCSP Response Status: successful (0x0)
 
 ### 通过 Cloudflare <a href="#via-cloudflare" id="via-cloudflare"></a>
 
-[Cloudflare](https://www.cloudflare.com) 为个人提供免费服务。如果你信任他们代理你的流量，并作为你的 DNS 供应商，你也可以让他们处理你的 SSL/TLS 证书的发放。
+[Cloudflare](https://www.cloudflare.com) 为个人提供免费服务。如果你信任他们代理你的流量，并作为你的 DNS 提供商，你也可以让他们处理你的 SSL/TLS 证书的发放。
 
 注册您的域名并为您的 Vaultwarden 实例添加了 DNS 记录后，登录 Cloudflare 仪表板并选择 `SSL/TLS`，然后选择 `Origin Server`。生成一个原始证书（你可以选择最长 15 年的有效期），并配置 Vaultwarden 来使用它。如果你选择了 15 年有效期，那么在可预见的未来，无需续签此原始证书。
 
