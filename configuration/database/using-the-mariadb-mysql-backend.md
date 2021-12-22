@@ -30,7 +30,7 @@ DATABASE_URL=mysql://[[user]:[password]@]host[:port][/database]
 
 完整的代码列表可以在 [Wikipedia 的百分号编码页面](https://zh.wikipedia.org/wiki/%E7%99%BE%E5%88%86%E5%8F%B7%E7%BC%96%E7%A0%81)上找到。
 
-## 使用 Docker 的示例 <a href="example-using-docker" id="example-using-docker"></a>
+## 使用 Docker 的示例 <a href="#example-using-docker" id="example-using-docker"></a>
 
 ```python
 # 启动 mysql 容器
@@ -49,14 +49,14 @@ docker run -d --name vaultwarden --net <some-docker-network>\
  -e ENABLE_DB_WAL='false' <you vaultwarden image name>
 ```
 
-### 使用非 Docker MySQL 服务器的示例 <a href="example-using-non-docker-mysql-server" id="example-using-non-docker-mysql-server"></a>
+### 使用非 Docker MySQL 服务器的示例 <a href="#example-using-non-docker-mysql-server" id="example-using-non-docker-mysql-server"></a>
 
 ```python
 Server IP/Port 192.168.1.10:3306 UN: dbuser / PW: yourpassword / DB: vaultwarden
 mysql://dbuser:yourpassword@192.168.1.10:3306/vaultwarden
 ```
 
-### 使用 docker-compose 的示例 <a href="example-using-docker-compose" id="example-using-docker-compose"></a>
+### 使用 docker-compose 的示例 <a href="#example-using-docker-compose" id="example-using-docker-compose"></a>
 
 ```python
 version: "3.7"
@@ -99,7 +99,7 @@ volumes:
  mariadb_vol:
 ```
 
-### 创建数据库和用户 <a href="create-database-and-user" id="create-database-and-user"></a>
+### 创建数据库和用户 <a href="#create-database-and-user" id="create-database-and-user"></a>
 
 1、为 Vaultwarden 创建一个新的（空）数据库（确保字符集和排序规则正确！）：
 
@@ -138,7 +138,7 @@ GRANT ALTER, CREATE, DELETE, DROP, INDEX, INSERT, SELECT, UPDATE ON `vaultwarden
 FLUSH PRIVILEGES;
 ```
 
-### 从 SQLite 迁移到 MySQL <a href="migrating-from-sqlite-to-mysql" id="migrating-from-sqlite-to-mysql"></a>
+### 从 SQLite 迁移到 MySQL <a href="#migrating-from-sqlite-to-mysql" id="migrating-from-sqlite-to-mysql"></a>
 
 此[话题评论](https://github.com/dani-garcia/vaultwarden/issues/497#issuecomment-511827057)中描述了一种从 SQLite 迁移到 MySQL 的简单方法。下面重复这些步骤。请注意，使用此方法风险自负，强烈建议备份您的安装和数据！
 
@@ -209,3 +209,95 @@ ERROR 1136 (21S01) at line ###: Column count doesn't match value count at row 1
 ```
 
 由于版本跳转，可能添加了新的数据库列。首先使用 SQLite 后端升级 Vaultwarden 以在 SQLite 数据库上运行迁移，切换到 MariaDB 后端，然后重复上述迁移步骤。或者，查找自您安装的版本以来添加迁移的提交并使用 `sqlite3` 手动运行迁移。
+
+## 外键错误、排列规则和字符集 <a href="#foreign-key-errors-collation-and-charset" id="foreign-key-errors-collation-and-charset"></a>
+
+由于密码库中存储的某些数据是二进制或纯文本（如邮件地址、用户名或组织名称），其中可能包含 Unicode 字符，因此您需要确保正确设置数据库和表的排序规则和字符集。如果不是这种情况，则可能会在更新期间导致问题，然后生成诸如 `Cannot add or update a child row: a foreign key constraint fails ...`（无法添加或更新子行：外键约束失败...）之类的消息。
+
+要解决此问题，您需要更新/更改整个数据库及其包含的表的排序规则和字符集。您可以通过您喜欢的 SQL 工具或使用 CLI 跟踪和执行以下设置来完成此操作。
+
+在下面的示例中，我将使用数据库名称 `vaultwarden`，如果您使用不同的名称，请更改它。
+
+首先更改数据库本身的排序规则和字符集：
+
+```
+ALTER DATABASE `vaultwarden` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+然后转换所有表格（包括文本字段）。执行以下命令，并复制输出：
+
+```
+SELECT CONCAT('ALTER TABLE `', TABLE_NAME,'` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;') AS CharSetConvert
+FROM INFORMATION_SCHEMA.TABLES
+WHERE TABLE_SCHEMA="vaultwarden"
+AND TABLE_TYPE="BASE TABLE";
+```
+
+这将生成几个查询，您需要执行这些查询来转换这些表的排序规则和字符集。为了使这些更改生效，我们需要暂时禁用外键检查。将上面查询生成的输出的复制/粘贴到以下行的中间：
+
+```
+SET foreign_key_checks = 0;
+-- 复制/粘贴上面的输出内容到这里
+SET foreign_key_checks = 1;
+```
+
+最后，它看起来应该类似于以下内容（但根据数据库结构的更新或更改，可能会有所不同）：
+
+```
+SET foreign_key_checks = 0;
+ALTER TABLE `__diesel_schema_migrations` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE `attachments` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE `ciphers_collections` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE `ciphers` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE `collections` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE `devices` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE `emergency_access` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE `favorites` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE `folders_ciphers` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE `folders` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE `invitations` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE `org_policies` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE `organizations` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE `sends` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE `twofactor_incomplete` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE `twofactor` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE `users_collections` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE `users_organizations` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE `users` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+SET foreign_key_checks = 1;
+```
+
+您需要运行这些查询以将它们转换为正确的排序规则和字符集。您可以通过对至少一张表运行以下查询来验证它是否有效：
+
+```
+SHOW CREATE TABLE `users`; 
+```
+
+它应该输出如下，注意最后的 `CHARSET=utf8mb4`：
+
+```
+CREATE TABLE `users` (
+  `uuid` char(36) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `name` text NOT NULL,
+  --- CUT ---
+  `enabled` tinyint(1) NOT NULL DEFAULT 1,
+  `stamp_exception` text DEFAULT NULL,
+  PRIMARY KEY (`uuid`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+```
+
+您可以对数据库执行相同的操作：
+
+```
+SHOW CREATE DATABASE `vaultwarden`;
+```
+
+它应该看起来像这样，注意 `DEFAULT CHARACTER SET utf8mb4`：
+
+```
+CREATE DATABASE `vaultwarden` /*!40100 DEFAULT CHARACTER SET utf8mb4 */
+```
