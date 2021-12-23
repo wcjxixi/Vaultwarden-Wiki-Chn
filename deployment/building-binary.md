@@ -8,7 +8,7 @@
 
 普通用户应该使用从基于 Alpine 的 Docker 镜像中[提取的预构建二进制](pre-built-binaries.md)文件，[通过 Docker 部署](../container-image-usage/which-container-image-to-use.md)，或者[寻找第三方软件包](third-party-packages.md)。
 
-## 依赖 <a href="dependencies" id="dependencies"></a>
+## 依赖 <a href="#dependencies" id="dependencies"></a>
 
 * `Rust nightly`（强烈建议使用 [rustup](https://rustup.rs)）
 * 在基于 Debian 的发行版上，请安装以下软件包：`build-essential`、`git`，这些通用软件包可确保构建能正常进行。
@@ -18,9 +18,9 @@
 * 对于基于 Debian 发行版上的 PostgreSQL 后端，需要安装 `libpq-dev` 和 `pkg-config`
 * `NodeJS`（仅当编译网页密码库时使用。使用[预构建的二进制](https://nodejs.org/en/download/)，通过系统的包管理器安装）或 [nodesource 二进制发行版](https://github.com/nodesource/distributions)。_备注：web-vault 当前使用的基本程序包（例如，node-sass < v4.12），要求 NodeJS v11_
 
-## 运行/编译 <a href="run-compile" id="run-compile"></a>
+## 运行/编译 <a href="#run-compile" id="run-compile"></a>
 
-### 所有后端 <a href="all-backends" id="all-backends"></a>
+### 所有后端 <a href="#all-backends" id="all-backends"></a>
 
 ```python
 # 使用所有后端编译并运行
@@ -29,7 +29,7 @@ cargo run --features sqlite,mysql,postgresql --release
 cargo build --features sqlite,mysql,postgresql --release
 ```
 
-### SQLite 后端 <a href="sqlite-backend" id="sqlite-backend"></a>
+### SQLite 后端 <a href="#sqlite-backend" id="sqlite-backend"></a>
 
 ```python
 # 使用 sqlite 后端编译并运行
@@ -38,7 +38,7 @@ cargo run --features sqlite --release
 cargo build --features sqlite --release
 ```
 
-### MySQL 后端 <a href="mysql-backend" id="mysql-backend"></a>
+### MySQL 后端 <a href="#mysql-backend" id="mysql-backend"></a>
 
 ```python
 # 使用 mysql 后端编译并运行
@@ -47,7 +47,7 @@ cargo run --features mysql --release
 cargo build --features mysql --release
 ```
 
-### PostgreSQL 后端 <a href="postgresql-backend" id="postgresql-backend"></a>
+### PostgreSQL 后端 <a href="#postgresql-backend" id="postgresql-backend"></a>
 
 ```python
 # 使用 postgresql 后端编译并运行
@@ -60,7 +60,7 @@ cargo build --features postgresql --release
 
 ~~_**注意**__：一个先前的_~~[~~_话题_~~](https://github.com/rust-lang/rust/issues/62896)~~_表明由于Rust编译器和LLVM之间存在不兼容，导致编译可能会因段错误而失败。作为解决方法，可以使用较旧版本的编译器，例如_~~ \_\_~~_`cargo +nightly-2019-08-27 build --features yourbackend --release`_~~
 
-### 安装网页密码库 <a href="install-the-web-vault" id="install-the-web-vault"></a>
+### 安装网页密码库 <a href="#install-the-web-vault" id="install-the-web-vault"></a>
 
 可以从 [dani-garcia/bw\_web\_builds](https://github.com/dani-garcia/bw\_web\_builds/releases) 下载网页密码库的编译版本。
 
@@ -110,18 +110,18 @@ _**备注**：可能会要求您运行 `npm audit fix` 以修复漏洞。这将�
 * 如果与 `cargo run --release` 一起运行，则目标文件夹为 `vaultwarden/web-vault`。
 * 如果直接运行已编译的二进制，则它位于二进制旁，为 `vaultwarden/target/release/web-vault`。
 
-## 配置 <a href="configuration" id="configuration"></a>
+## 配置 <a href="#configuration" id="configuration"></a>
 
 可用的配置选项记录在默认的 `.env` 文件中，可以通过在该文件中取消注释所需的选项或设置它们各自的环境变量来对其进行修改。有关可用的主要配置选项，请参见本 wiki 的[配置](../configuration/)章节。
 
 注意：环境变量将覆盖 `.env` 文件中设置的值。
 
-## 有关部署的更多信息 <a href="more-information-for-deployment" id="more-information-for-deployment"></a>
+## 有关部署的更多信息 <a href="#more-information-for-deployment" id="more-information-for-deployment"></a>
 
 * [配置反向代理](proxy-examples.md)
 * [通过 systemd 设置自动启动](../configuration/creating-a-systemd-service.md)
 
-## 如何为 SQLite 后端重建数据库模式（面向开发人员） <a href="how-to-recreate-database-schemas-for-the-sqlite-backend-for-developers" id="how-to-recreate-database-schemas-for-the-sqlite-backend-for-developers"></a>
+## 如何为 SQLite 后端重建数据库模式（面向开发人员） <a href="#how-to-recreate-database-schemas-for-the-sqlite-backend-for-developers" id="how-to-recreate-database-schemas-for-the-sqlite-backend-for-developers"></a>
 
 使用 cargo 安装 diesel\_cli：
 
@@ -148,10 +148,10 @@ diesel migration redo
 # diesel print-schema > src/db/sqlite/schema.rs
 ```
 
-## 如何从 SQLite 后端迁移到 MySQL 后端（面向开发人员） <a href="how-to-migrate-from-sqlite-backend-to-mysql-backend-for-developers" id="how-to-migrate-from-sqlite-backend-to-mysql-backend-for-developers"></a>
+## 如何从 SQLite 后端迁移到 MySQL 后端（面向开发人员） <a href="#how-to-migrate-from-sqlite-backend-to-mysql-backend-for-developers" id="how-to-migrate-from-sqlite-backend-to-mysql-backend-for-developers"></a>
 
-如果要从 SQLite 迁移，请参考[使用 MySQL 后端](../configuration/database/using-the-mariadb-mysql-backend.md)。
+如果要从 SQLite 迁移，请参考[使用 MariaDB（MySQL）后端](../configuration/database/using-the-mariadb-mysql-backend.md)。
 
-## 如何从 SQLite 后端迁移到 PostgreSQL 后端（面向开发人员） <a href="how-to-migrate-from-sqlite-backend-to-postgresql-backend-for-developers" id="how-to-migrate-from-sqlite-backend-to-postgresql-backend-for-developers"></a>
+## 如何从 SQLite 后端迁移到 PostgreSQL 后端（面向开发人员） <a href="#how-to-migrate-from-sqlite-backend-to-postgresql-backend-for-developers" id="how-to-migrate-from-sqlite-backend-to-postgresql-backend-for-developers"></a>
 
 如果要从 SQLite 迁移，请参考[使用 PostgreSQL 后端](../configuration/database/using-the-postgresql-backend.md)。
