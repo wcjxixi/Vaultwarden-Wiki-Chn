@@ -4,7 +4,7 @@
 对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/General-\(not-docker\))
 {% endhint %}
 
-## 备份 <a href="backup" id="backup"></a>
+## 备份 <a href="#backup" id="backup"></a>
 
 需要包含在备份中的内容：
 
@@ -16,22 +16,22 @@
 
 确保您记录了备份存储的过程和位置！
 
-## 还原 <a href="restore" id="restore"></a>
+## 还原 <a href="#restore" id="restore"></a>
 
 * 安装 Vaultwarden
 * （不适用于 SQLite）从备份中恢复数据库
 * 恢复环境文件
 * 将您的 `data` 目录还原到正确的位置
 
-## 特定平台 <a href="platform-specific" id="platform-specific"></a>
+## 特定平台 <a href="#platform-specific" id="platform-specific"></a>
 
-### FreeBSD 端口 <a href="freebsd-port" id="freebsd-port"></a>
+### FreeBSD 端口 <a href="#freebsd-port" id="freebsd-port"></a>
 
-| **项目**      | **位置**                                 |
+| 项目          | 位置                                     |
 | ----------- | -------------------------------------- |
 | Environment | `/usr/local/etc/rc.conf.d/vaultwarden` |
 | Data        | `/usr/local/www/vaultwarden/data`      |
 
-### MariaDB / MySQL <a href="mariadb-mysql" id="mariadb-mysql"></a>
+### MariaDB / MySQL <a href="#mariadb-mysql" id="mariadb-mysql"></a>
 
 参考诸如 [MariaDB - 备份和还原概述](https://mariadb.com/kb/en/backup-and-restore-overview/)
