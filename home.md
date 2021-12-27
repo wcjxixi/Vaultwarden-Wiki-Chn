@@ -10,7 +10,7 @@ Vaultwarden 面向个人、家庭和小型组织。尽管开发主要对大型�
 
 ## 支持的特性 <a href="#supported-features" id="supported-features"></a>
 
-Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
+Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 
 * 网页界面（等效于 [https://vault.bitwarden.com/](https://vault.bitwarden.com/\))）
 * 个人密码库支持
