@@ -21,7 +21,7 @@ sudo podman run -d --name vaultwarden -v /vw-data:/data/:Z -p 80:80 vaultwarden/
 
 所有持久性数据将保存在 `/vw-data/` 路径下，您可以根据自己的需要调整此路径。
 
-该服务将暴露在主机的 80 或 8080 端口上。默认情况下，非 root 容器不允许使用特权端口（<1024），因此需要通过传递 `ROCKET_PORT` 环境变量和端口映射来更改 Vaultwarden 的监听端口。
+该服务将暴露在主机的 80 或 8080 端口上。默认情况下，非 root 容器不允许使用特权端口（<1024），因此需要通过端口映射来传递 `ROCKET_PORT` 环境变量以更改 Vaultwarden 的监听端口。
 
 对于非 x86 硬件或要运行特定版本，可以[选择其他镜像](which-container-image-to-use.md)。
 
