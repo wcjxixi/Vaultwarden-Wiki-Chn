@@ -19,7 +19,7 @@ docker run -d --name vaultwarden \
   vaultwarden/server:latest
 ```
 
-当 `SMTP_SSL` 设置为 `true` 时（这是默认值），将仅接受 TLSv1.1 和 TLSv1.2 协议，并且 `SMTP_PORT` 默认为`587`。如果设置为 `false`，`SMTP_PORT` 则默认设置为 `25` 并将尝试加密（2020 年 3 月 12 日之前的代码不会尝试加密）。这是非常不安全的，仅在您知道您在做什么时才使用此设置。要以显式模式运行 SMTP，请将 `SMTP_EXPLICIT_TLS` 设置为 `true`。想要不登录也可以发送电子邮件，简单地将 `SMTP_USERNAME` 和 `SMTP_PASSWORD` 设置为空即可。
+当 `SMTP_SSL` 设置为 `true` 时（这是默认值），将仅接受 TLSv1.1 和 TLSv1.2 协议，并且 `SMTP_PORT` 默认为`587`。如果设置为 `false`，`SMTP_PORT` 则默认设置为 `25` 并将尝试加密（2020 年 3 月 12 日之前的代码不会尝试加密）。这是非常不安全的，仅在您知道您在做什么时才使用此设置。要以隐式模式（强制 TLS）运行 SMTP，请将 `SMTP_EXPLICIT_TLS` 设置为 `true`（提示：环境变量错误标记，请参阅[错误 #851](https://github.com/dani-garcia/vaultwarden/issues/851)）。想要不登录也可以发送电子邮件，简单地将 `SMTP_USERNAME` 和 `SMTP_PASSWORD` 设置为空即可。
 
 请注意，如果启用了 SMTP 和邀请，邀请将通过电子邮件发送给新用户。您必须使用 Vaultwarden 实例的基础 URL 来设置 `DOMAIN` 配置项，以生成正确的邀请链接：
 
@@ -32,7 +32,7 @@ docker run -d --name vaultwarden \
 
 用户邀请链接有效期为 5 天，过期后需要重新发送邀请。
 
-## SMTP 服务器 <a href="smtp-servers" id="smtp-servers"></a>
+## SMTP 服务器 <a href="#smtp-servers" id="smtp-servers"></a>
 
 正确配置 SMTP 服务器/中继并不是一件小事。Vaultwarden 使用的邮件库也不是最容易排除故障的。所以，除非你对自己设置这个特别感兴趣，否则使用外部服务可能更容易。
 
@@ -41,9 +41,9 @@ docker run -d --name vaultwarden \
 * [SendGrid](https://sendgrid.com)
 * [MailJet](https://www.mailjet.com)
 
-## 一些知名服务的默认设置 <a href="here-some-sane-defaults-for-well-known-services" id="here-some-sane-defaults-for-well-known-services"></a>
+## 一些知名服务的默认设置 <a href="#here-some-sane-defaults-for-well-known-services" id="here-some-sane-defaults-for-well-known-services"></a>
 
-### 通用 <a href="general" id="general"></a>
+### 通用 <a href="#general" id="general"></a>
 
 邮件服务器侦听端口 25 主要只是为了接受来自其他邮件服务器的邮件，并且仅用于它们是最终位置的邮件。此外，许多互联网提供商会阻止传出端口 25 以防止垃圾邮件。大多数需要登录的邮件服务器使用端口 587 或端口 465 。端口 587 称为提交端口，大多数时候只能在使用用户名和密码时使用。在客户端和服务器之间的通信期间，端口 587 开始时未加密然后升级为 TLS 加密连接。端口 465 从一开始就是 SSL 加密的，该端口根本没有纯文本通信。
 
@@ -144,7 +144,7 @@ StartTLS：
   SMTP_AUTH_MECHANISM="Login"
 ```
 
-## 带特殊字符的密码 <a href="passwords-with-special-characters" id="passwords-with-special-characters"></a>
+## 带特殊字符的密码 <a href="#passwords-with-special-characters" id="passwords-with-special-characters"></a>
 
 如果您想在密码中使用一些特殊字符，可能需要对其中的一些字符进行转义，以免混淆环境变量解析器。
 
