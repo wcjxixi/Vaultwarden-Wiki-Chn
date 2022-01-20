@@ -40,7 +40,7 @@ raspberry pi 上 Vaultwarden 的 Ansible 部署。要从以前的配置迁移，
 
 ## NixOS (by tklitschi)
 
-这里是一个针对 NixOS 上的 bitwarden 配置的示例。它不是很复杂，有您想使用的数据库类型的后端选项、用于系统服务专用备份的备份目录、启用它的选项以及配置选项。对于配置选项，你只需[从 .env 模板](https://github.com/dani-garcia/bitwarden\_rs/blob/1.13.1/.env.template)传递 .env 变量到 nix 语法中即可。请参阅[代理示例](proxy-examples.md)以了解 nixos-nginx 的配置示例。
+这里是一个针对 NixOS 上的 bitwarden 配置的示例。它不是很复杂，有您想使用的数据库类型的后端选项、用于系统服务专用备份的备份目录、启用它的选项以及配置选项。对于配置选项，你只需[从 .env 模板](https://github.com/dani-garcia/bitwarden\_rs/blob/1.13.1/.env.template)传递 .env 变量到 nix 语法中即可。密码（SMTP\_PASSWORD,... ）存储在 /nix/store 之外的另一个 .env 文件中，并被 [services.vaultwarden.environmentFile](https://search.nixos.org/options?channel=21.11\&show=services.vaultwarden.environmentFile\&from=0\&size=50\&sort=relevance\&type=packages\&query=vaultw) 包含。请参阅[代理示例](proxy-examples.md)以了解 nixos-nginx 的配置示例。
 
 配置示例：
 
@@ -58,21 +58,22 @@ raspberry pi 上 Vaultwarden 的 Ansible 部署。要从以前的配置迁移，
       WEBSOCKET_ADDRESS = "0.0.0.0";
       WEBSOCKET_PORT = 3012;
       SIGNUPS_VERIFY = true;
-      ADMIN_TOKEN = (import /etc/nixos/secret/bitwarden.nix).ADMIN_TOKEN;
+#     ADMIN_TOKEN = (import /etc/nixos/secret/bitwarden.nix).ADMIN_TOKEN;
       DOMAIN = "https://exmaple.com";
-      YUBICO_CLIENT_ID = (import /etc/nixos/secret/bitwarden.nix).YUBICO_CLIENT_ID;
-      YUBICO_SECRET_KEY = (import /etc/nixos/secret/bitwarden.nix).YUBICO_SECRET_KEY;
+#     YUBICO_CLIENT_ID = (import /etc/nixos/secret/bitwarden.nix).YUBICO_CLIENT_ID;
+#     YUBICO_SECRET_KEY = (import /etc/nixos/secret/bitwarden.nix).YUBICO_SECRET_KEY;
       YUBICO_SERVER = "https://api.yubico.com/wsapi/2.0/verify";
       SMTP_HOST = "mx.example.com";
       SMTP_FROM = "bitwarden@example.com";
       SMTP_FROM_NAME = "Bitwarden_RS";
       SMTP_PORT = 587;
       SMTP_SSL = true;
-      SMTP_USERNAME = (import /etc/nixos/secret/bitwarden.nix).SMTP_USERNAME;
-      SMTP_PASSWORD = (import /etc/nixos/secret/bitwarden.nix).SMTP_PASSWORD;
+#     SMTP_USERNAME = (import /etc/nixos/secret/bitwarden.nix).SMTP_USERNAME;
+#     SMTP_PASSWORD = (import /etc/nixos/secret/bitwarden.nix).SMTP_PASSWORD;
       SMTP_TIMEOUT = 15;
       ROCKET_PORT = 8812;
     };
+    environmentFile = "/etc/nixos/secret/bitwarden.env";
   };
 }
 ```

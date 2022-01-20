@@ -100,7 +100,7 @@ git apply vX.Y.Z.patch
 npm install
 # 阅读下方的备注（我们将其用于我们的 docker 构建）
 # npm 审计修复
-npm run dist
+npm run dist:oss:selfhost
 ```
 
 _**备注**：可能会要求您运行 `npm audit fix` 以修复漏洞。这将自动尝试将软件包升级到较新的版本，该版本可能不兼容并破坏网页密码库功能。如果知道自己在做什么，请自行承担风险。顺便一提，我们会在自己的发行版中使用它！_
