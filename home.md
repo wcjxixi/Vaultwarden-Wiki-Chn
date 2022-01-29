@@ -60,7 +60,7 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 * [单点登录（SSO）](https://help.bitwarden.ltd/login-with-sso/about-login-with-sso)
 * [群组](https://help.bitwarden.ltd/organizations/groups)
 * [自定义角色](https://help.bitwarden.ltd/organizations/user-types-and-access-control#custom-role)
-* 某些企业策略（UI 不是开源的，可能需要通过管理页面进行配置）：
+* 某些企业策略（[UI 不是开源的](https://github.com/bitwarden/web/tree/master/bitwarden\_license/src/app/policies)，可能需要通过管理页面进行配置）：
   * [密码库超时](https://help.bitwarden.ltd/organizations/enterprise-policies#vault-timeout)
   * [禁用个人密码库导出](https://help.bitwarden.ltd/organizations/enterprise-policies#disable-personal-vault-export)
 
