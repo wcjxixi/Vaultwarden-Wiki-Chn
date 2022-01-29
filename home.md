@@ -27,6 +27,7 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 * 用于桌面端/浏览器客户端/扩展的[实时同步](https://bitwarden.com/blog/post/live-sync/)（仅 WebSocket）
 * [回收站](https://help.bitwarden.ltd/your-vault/vault-items#items-in-the-trash)（软删除）
 * [主密码重新提示](https://help.bitwarden.ltd/your-vault/vault-items#protect-individual-items)
+* [个人 API 密钥](https://help.bitwarden.ltd/miscellaneous/personal-api-key-for-cli-authentication)
 * [电子邮件](https://help.bitwarden.ltd/two-step-login/two-step-login-via-email)、[Duo](https://help.bitwarden.ltd/two-step-login/two-step-login-via-duo)、[Yubikey](https://help.bitwarden.ltd/two-step-login/two-step-login-via-yubikey) 和 [FIDO2 WebAuthn](https://help.bitwarden.ltd/two-step-login/two-step-login-via-fido2-webauthn) 方式的两步登录
 * [目录连接器支持](https://help.bitwarden.ltd/directory-connector/about-directory-connector)（基本实现，但不支持群组）\
   仅支持 [v2.9.2](https://github.com/bitwarden/directory-connector/releases/tag/v2.9.2) 及更低版本，v2.9.3 及更高版本使用不同的登录方式，因此尚不被支持。
@@ -59,6 +60,9 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 * [单点登录（SSO）](https://help.bitwarden.ltd/login-with-sso/about-login-with-sso)
 * [群组](https://help.bitwarden.ltd/organizations/groups)
 * [自定义角色](https://help.bitwarden.ltd/organizations/user-types-and-access-control#custom-role)
+* 某些企业策略（UI 不是开源的，可能需要通过管理页面进行配置）：
+  * [密码库超时](https://help.bitwarden.ltd/organizations/enterprise-policies#vault-timeout)
+  * [禁用个人密码库导出](https://help.bitwarden.ltd/organizations/enterprise-policies#disable-personal-vault-export)
 
 ## 保持联系 <a href="#get-in-touch" id="get-in-touch"></a>
 
