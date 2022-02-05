@@ -8,10 +8,6 @@
 我们的构建基于 MariaDB 客户端库，因为 Debian 和 Alpine 都提供这个库。我们不支持最新的 Oracle MySQLv8 版本。如果您想使用 MySQLv8 而不是 MariaDB，那么请使用旧的密码散列方式来创建用户，而不要使用默认的方式。
 {% endhint %}
 
-{% hint style="warning" %}
-Alpine 目前**不支持** MariaDB（MySQL）。在 amd64 上，Alpine 支持 SQLite 和 PostgreSQL，在 arm32v7 上它仅支持 SQLite。
-{% endhint %}
-
 要使用 MySQL 后端，你可以使用[官方 Docker 镜像](https://hub.docker.com/r/bitwardenrs/server-mysql)，也可以构建你自己的启用了 [MySQL](../../deployment/building-binary.md#mysql-backend) 的二进制。
 
 要运行二进制或容器，请确保已设置 `DATABASE_URL` 环境变量（即 `DATABASE_URL='mysql://<user>:<password>@mysql/vaultwarden'`）。
