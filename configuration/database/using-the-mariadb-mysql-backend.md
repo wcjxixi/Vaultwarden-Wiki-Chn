@@ -5,7 +5,11 @@
 {% endhint %}
 
 {% hint style="warning" %}
-我们的构建基于 MariaDB 客户端库，因为 Debian 和 Alpine 都提供这个库。我们不支持最新的 Oracle MySQLv8 版本。如果您想使用 MySQLv8 而不是 MariaDB，那么请使用旧的密码散列方式来创建用户，而不要使用默认的方式。
+我们的构建基于 MariaDB 客户端库，因为这是 Debian 提供的。
+
+对最新 Oracle MySQLv8 版本的支持需要额外注意。
+
+如果您坚持使用 MySQLv8 而不是 MariaDB，请使用旧的密码散列方法而不是默认方法创建用户！
 {% endhint %}
 
 要使用 MySQL 后端，你可以使用[官方 Docker 镜像](https://hub.docker.com/r/bitwardenrs/server-mysql)，也可以构建你自己的启用了 [MySQL](../../deployment/building-binary.md#mysql-backend) 的二进制。
@@ -95,7 +99,17 @@ volumes:
  mariadb_vol:
 ```
 
-### 创建数据库和用户 <a href="#create-database-and-user" id="create-database-and-user"></a>
+### 手动创建数据库（例如，使用现有的数据库服务器） <a href="#manually-create-a-database-for-example-using-an-existing-database-server" id="manually-create-a-database-for-example-using-an-existing-database-server"></a>
+
+{% hint style="warning" %}
+要执行这些查询，您需要有一个可以创建新数据库和用户的用户。大多数情况下，这将是 `root` 用户，但根据您的数据库可能会有所不同。
+{% endhint %}
+
+{% hint style="info" %}
+使用上面的 docker-compose 示例使这些步骤变得不必要。数据库、排序规则和字符集在启动时将被自动创建。
+{% endhint %}
+
+#### 创建数据库和用户 <a href="#create-database-and-user" id="create-database-and-user"></a>
 
 1、为 Vaultwarden 创建一个新的（空）数据库（确保字符集和排序规则正确！）：
 
