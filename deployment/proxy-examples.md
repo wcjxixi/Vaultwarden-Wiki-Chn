@@ -211,6 +211,7 @@ server {
 
     ## 使用子路径配置
     # 您的安装的 root 路径
+    # 一定要添加 / 后缀，否则你可能会遇到问题
     location /vault/ {
       proxy_set_header Host $host;
       proxy_set_header X-Real-IP $remote_addr;

@@ -119,6 +119,6 @@ _**可选备份。**_
 * [https://github.com/ttionya/vaultwarden-backup](https://github.com/ttionya/vaultwarden-backup)
 * [https://github.com/shivpatel/bitwarden\_rs-local-backup](https://github.com/shivpatel/bitwarden\_rs-local-backup)
 * [https://github.com/shivpatel/bitwarden\_rs\_dropbox\_backup](https://github.com/shivpatel/bitwarden\_rs\_dropbox\_backup)
-* [https://gitlab.com/1O/bitwarden\_rs-backup](https://gitlab.com/1O/bitwarden\_rs-backup)
+* [https://gitlab.com/1O/vaultwarden-backup](https://gitlab.com/1O/vaultwarden-backup)
 * [https://github.com/jjlin/vaultwarden-backup](https://github.com/jjlin/vaultwarden-backup)
 * [https://github.com/jmqm/vaultwarden\_backup](https://github.com/jmqm/vaultwarden\_backup)
