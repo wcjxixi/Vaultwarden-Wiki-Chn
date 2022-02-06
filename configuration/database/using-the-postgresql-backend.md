@@ -10,7 +10,7 @@
 
 **字符串连接语法：**
 
-```python
+```sql
 DATABASE_URL=postgresql://[[user]:[password]@]host[:port][/database]
 ```
 

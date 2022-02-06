@@ -18,7 +18,7 @@
 
 **连接字符串语法：**
 
-```python
+```sql
 DATABASE_URL=mysql://[[user]:[password]@]host[:port][/database]
 ```
 
@@ -230,22 +230,22 @@ ERROR 1136 (21S01) at line ###: Column count doesn't match value count at row 1
 
 首先更改数据库本身的排序规则和字符集：
 
-```
+```sql
 ALTER DATABASE `vaultwarden` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-然后转换所有表格（包括文本字段）。执行以下命令，并复制输出：
+然后转换所有表（包括文本字段）。执行以下命令，并复制输出：
 
-```
+```sql
 SELECT CONCAT('ALTER TABLE `', TABLE_NAME,'` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;') AS CharSetConvert
 FROM INFORMATION_SCHEMA.TABLES
 WHERE TABLE_SCHEMA="vaultwarden"
 AND TABLE_TYPE="BASE TABLE";
 ```
 
-这将生成几个查询，您需要执行这些查询来转换这些表的排序规则和字符集。为了使这些更改生效，我们需要暂时禁用外键检查。将上面查询生成的输出的复制/粘贴到以下行的中间：
+这将生成几个查询，您需要执行这些查询来转换这些表的排序规则和字符集。为了使这些更改生效，我们需要暂时禁用外键检查。将上面查询生成的输出复制/粘贴到以下行的中间：
 
-```
+```sql
 SET foreign_key_checks = 0;
 -- 复制/粘贴上面的输出内容到这里
 SET foreign_key_checks = 1;
@@ -253,7 +253,7 @@ SET foreign_key_checks = 1;
 
 最后，它看起来应该类似于以下内容（但根据数据库结构的更新或更改，可能会有所不同）：
 
-```
+```sql
 SET foreign_key_checks = 0;
 ALTER TABLE `__diesel_schema_migrations` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE `attachments` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -279,13 +279,13 @@ SET foreign_key_checks = 1;
 
 您需要运行这些查询以将它们转换为正确的排序规则和字符集。您可以通过对至少一张表运行以下查询来验证它是否有效：
 
-```
+```sql
 SHOW CREATE TABLE `users`; 
 ```
 
 它应该输出如下，注意最后的 `CHARSET=utf8mb4`：
 
-```
+```sql
 CREATE TABLE `users` (
   `uuid` char(36) NOT NULL,
   `created_at` datetime NOT NULL,
@@ -302,12 +302,12 @@ CREATE TABLE `users` (
 
 您可以对数据库执行相同的操作：
 
-```
+```sql
 SHOW CREATE DATABASE `vaultwarden`;
 ```
 
 它应该看起来像这样，注意 `DEFAULT CHARACTER SET utf8mb4`：
 
-```
+```sql
 CREATE DATABASE `vaultwarden` /*!40100 DEFAULT CHARACTER SET utf8mb4 */
 ```

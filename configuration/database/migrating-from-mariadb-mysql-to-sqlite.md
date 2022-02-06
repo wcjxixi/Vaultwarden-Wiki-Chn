@@ -10,13 +10,13 @@
 在做任何可能破坏整个密码库的事情之前，请务必创建备份！
 {% endhint %}
 
-## 常规 <a href="general" id="general"></a>
+## 常规 <a href="#general" id="general"></a>
 
 Vaultwarden 最初设计时仅使用 SQLite，但当时 MariaDB (MySQL) 和 PostgreSQL 也被同时添加到了组合中。对于 SQLite，您不必运行单独的服务器或容器，而对于其他两个，您确实需要运行一些额外的东西。
 
 如果您一开始使用的是 MariaDB 并想回到 SQLite，现在该怎么办？嗯，这是可能的，但是使用以下步骤可能会出现一些我们不知道的奇怪故障。如果您遇到任何奇怪的问题然后需要帮助，或者您解决了这些问题，请在此处开启一个新的讨论：[https://github.com/dani-garcia/vaultwarden/discussions](https://github.com/dani-garcia/vaultwarden/discussions)，以帮助您和其他人。
 
-## 如何从 MariaDB 迁移到 SQLite <a href="how-to-migrate-from-mariadb-to-sqlite" id="how-to-migrate-from-mariadb-to-sqlite"></a>
+## 如何从 MariaDB 迁移到 SQLite <a href="#how-to-migrate-from-mariadb-to-sqlite" id="how-to-migrate-from-mariadb-to-sqlite"></a>
 
 确保您对 SQLite 和 MariaDB 使用的是相同版本的 Vaultwarden（Docker 或自定义构建），不要在这些步骤之间更新 Docker 镜像。要迁移到 SQLite，我们首先需要有一个 SQLite 数据库文件，我们可以用它来传输数据。要创建此文件，您需要停止当前的 Vaultwarden 实例，并将其配置为使用 SQLite。例如，您可以通过将 `DATABASE_URL` 从 `DATABASE_URL=mysql://<vaultwarden_user>:<vaultwarden_pw>@mariadb/vaultwarden` 更改为 `DATABASE_URL=/data/db.sqlite3` 来实现。 （ `/data` 是您使用的 `-v` 值的 Docker 容器内的内部路径）。
 
@@ -26,7 +26,7 @@ Vaultwarden 最初设计时仅使用 SQLite，但当时 MariaDB (MySQL) 和 Post
 
 现在运行以下单行程序并将 `<dbhost>`、`<dbuser>` 以及 `<database>` 调整为您用于 MariaDB 连接的实际内容：
 
-```
+```sql
 mysqldump \
   --host=<dbhost> \
   --user=<dbuser> --password \
@@ -49,7 +49,7 @@ mysqldump \
 
 这一步将生成一个用于保存你的数据库的 `mysql-to-sqlite.sql` 文件。现在查找上一步中在您第一次使用 SQLite 作为数据库启动 Vaultwarden 时由 Vaultwarden 创建的 db.sqlite3 文件。复制或移动 `mysql-to-sqlite.sql`，让 db.sqlite3 和导出位于同一目录中。现在您可以执行以下命令：
 
-```
+```sql
 sqlite3 db_new.sqlite3 < mysql-to-sqlite.sql
 ```
 
