@@ -222,7 +222,7 @@ ERROR 1136 (21S01) at line ###: Column count doesn't match value count at row 1
 
 ## 外键错误、排列规则和字符集 <a href="#foreign-key-errors-collation-and-charset" id="foreign-key-errors-collation-and-charset"></a>
 
-由于密码库中存储的某些数据是二进制或纯文本（如邮件地址、用户名或组织名称），其中可能包含 Unicode 字符，因此您需要确保正确设置数据库和表的排序规则和字符集。如果不是这种情况，则可能会在更新期间导致问题，然后生成诸如 `Cannot add or update a child row: a foreign key constraint fails ...`（无法添加或更新子行：外键约束失败...）或 `Row size too large. The maximum row size for the used table type, not counting BLOBs, is 8126.` 之类的消息。
+由于密码库中存储的某些数据是二进制或纯文本（如邮件地址、用户名或组织名称），其中可能包含 Unicode 字符，因此您需要确保正确设置数据库和表的排序规则和字符集。如果不是这种情况，则可能会在更新期间导致问题，然后生成诸如 `Cannot add or update a child row: a foreign key constraint fails ...`（无法添加或更新子行：外键约束失败...）或 `Row size too large. The maximum row size for the used table type, not counting BLOBs, is 8126.`（行大小太大。所用表类型的最大行大小（不包括 BLOB）为 8126。）之类的消息。
 
 要解决此问题，您需要更新/更改整个数据库及其包含的表的排序规则和字符集。您可以通过您喜欢的 SQL 工具或使用 CLI 跟踪和执行以下设置来完成此操作。
 
