@@ -44,15 +44,15 @@ docker rm vaultwarden_data
 
 你也可以使用 [Watchtower](https://containrrr.dev/watchtower/) 这样的工具来自动化更新过程。Watchtower 可以定期检查 Docker 镜像的更新，拉取更新后的镜像，并使用更新后的镜像重新创建容器。
 
-## 使用 docker-compose 时的更新 <a href="updating-when-using-docker-compose" id="updating-when-using-docker-compose"></a>
+## 使用 docker-compose 时的更新 <a href="#updating-when-using-docker-compose" id="updating-when-using-docker-compose"></a>
 
 ```python
 docker-compose stop
 docker-compose pull
-docker-compose start
+docker-compose up -d
 ```
 
-## 使用 systemd 服务时的更新（在本例中为 Debian/Raspbian） <a href="updating-when-using-systemd-service-in-this-case-debian-raspbian" id="updating-when-using-systemd-service-in-this-case-debian-raspbian"></a>
+## 使用 systemd 服务时的更新（在本例中为 Debian/Raspbian） <a href="#updating-when-using-systemd-service-in-this-case-debian-raspbian" id="updating-when-using-systemd-service-in-this-case-debian-raspbian"></a>
 
 ```python
 sudo systemctl restart vaultwarden.service
