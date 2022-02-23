@@ -32,12 +32,12 @@ Web 服务器的安全 TLS 协议和密码配置可以使用 Mozilla 的 [SSL Co
 
 ## Caddy 2.x
 
-Caddy 2 在某些情况下也可以自动启用 HTTPS，参考[此文档](https://caddyserver.com/docs/automatic-https)。
+在大多数情况下 Caddy 2 会自动启用 HTTPS，参考[此文档](https://caddyserver.com/docs/automatic-https#activation)。
 
 在 Caddyfile 语法中，`{$VAR}` 表示环境变量 `VAR` 的值。如果你喜欢，你也可以直接指定一个值，而不是用一个环境变量的值来代替。
 
 ```python
-{$DOMAIN}:443 {
+{$DOMAIN} {
   log {
     level INFO
     output file {$LOG_FILE} {

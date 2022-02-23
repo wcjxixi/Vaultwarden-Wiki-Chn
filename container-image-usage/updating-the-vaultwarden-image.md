@@ -47,7 +47,7 @@ docker rm vaultwarden_data
 ## 使用 docker-compose 时的更新 <a href="#updating-when-using-docker-compose" id="updating-when-using-docker-compose"></a>
 
 ```python
-docker-compose stop
+docker-compose down
 docker-compose pull
 docker-compose up -d
 ```

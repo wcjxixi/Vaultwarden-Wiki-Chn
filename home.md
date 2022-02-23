@@ -48,7 +48,7 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 
 在时间允许的情况下，可能会添加的功能（欢迎贡献）：
 
-* [Bitwarden 公共 API](https://help.bitwarden.ltd/organizations/bitwarden-public-api)
+* [Bitwarden 公共 API](https://help.bitwarden.ltd/organizations/bitwarden-public-api) / [组织 API 密钥](https://help.bitwarden.ltd/organizations/bitwarden-public-api#authentication)
 * [事件日志](https://help.bitwarden.ltd/organizations/event-logs)
 * 用于移动客户端（Android/iOS）的[实时同步](https://bitwarden.com/blog/post/live-sync/)（推送通知）
 * [管理员密码重置](https://help.bitwarden.ltd/organizations/admin-password-reset)
