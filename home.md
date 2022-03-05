@@ -28,7 +28,7 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 * [回收站](https://help.bitwarden.ltd/your-vault/vault-items#items-in-the-trash)（软删除）
 * [主密码重新提示](https://help.bitwarden.ltd/your-vault/vault-items#protect-individual-items)
 * [个人 API 密钥](https://help.bitwarden.ltd/miscellaneous/personal-api-key-for-cli-authentication)
-* [电子邮件](https://help.bitwarden.ltd/two-step-login/two-step-login-via-email)、[Duo](https://help.bitwarden.ltd/two-step-login/two-step-login-via-duo)、[Yubikey](https://help.bitwarden.ltd/two-step-login/two-step-login-via-yubikey) 和 [FIDO2 WebAuthn](https://help.bitwarden.ltd/two-step-login/two-step-login-via-fido2-webauthn) 方式的两步登录
+* [电子邮件](https://help.bitwarden.ltd/two-step-login/two-step-login-via-email)、[Duo](https://help.bitwarden.ltd/two-step-login/two-step-login-via-duo)、[Yubikey](https://help.bitwarden.ltd/two-step-login/two-step-login-via-yubikey) 和 [FIDO2 WebAuthn](https://help.bitwarden.ltd/two-step-login/two-step-login-via-fido2-webauthn)（包括 Nitrokeys 和 Solokeys）方式的两步登录
 * [目录连接器支持](https://help.bitwarden.ltd/directory-connector/about-directory-connector)（基本实现，但不支持群组）\
   仅支持 [v2.9.2](https://github.com/bitwarden/directory-connector/releases/tag/v2.9.2) 及更低版本，v2.9.3 及更高版本使用不同的登录方式，因此尚不被支持。
 * 某些企业策略：

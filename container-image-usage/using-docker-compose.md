@@ -6,7 +6,21 @@
 
 [Docker Compose](https://docs.docker.com/compose/) 是一个用于定义和配置多容器应用程序的工具。在我们的例子中，我们希望 Vaultwarden 服务器和代理都将 WebSocket 请求重定向到正确的地方。
 
-## 带有 HTTP 验证的 Caddy <a href="caddy-with-http-challenge" id="caddy-with-http-challenge"></a>
+{% hint style="danger" %}
+**不要在环境变量的值中使用引号 `"`！这会导致问题。**
+
+如果你需要把它放在引号内，请把整个项目（变量 + 值）括起来。
+
+错误：
+
+`DATABASE_URL="/path/to/db.sqlite3"`
+
+正确：
+
+`"DATABASE_URL=/path/to/db.sqlite3"`
+{% endhint %}
+
+## 带有 HTTP 验证的 Caddy <a href="#caddy-with-http-challenge" id="caddy-with-http-challenge"></a>
 
 本示例假定您已[安装](https://docs.docker.com/compose/install/) Docker Compose，并且您的 Vaultwarden 实例具有一个可以公开访问的域名（比如 `vaultwarden.example.com`）。
 
@@ -87,7 +101,7 @@ docker-compose down
 
 [此处](https://github.com/sosandroid/docker-bitwarden\_rs-caddy-synology)提供了一个类似的适用于 Synology 的基于 Caddy 的示例。
 
-## 带有 DNS 验证的 Caddy <a href="caddy-with-dns-challenge" id="caddy-with-dns-challenge"></a>
+## 带有 DNS 验证的 Caddy <a href="#caddy-with-dns-challenge" id="caddy-with-dns-challenge"></a>
 
 这个示例和上一个示例一样，但适用于您不希望您的实例被公开访问的情况（即您只能从您的本地网络访问它）。这个示例使用 Duck DNS 作为 DNS 提供商。更多的背景资料，以及如何设置 Duck DNS 的细节，请参考[使用 Let's Encrypt 证书运行私有 vaultwarden 实例](../deployment/https/running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md)。
 

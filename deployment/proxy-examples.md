@@ -186,8 +186,16 @@ DOMAIN=https://vaultwarden.example.tld/vault/
 
 ```python
 # 在这里定义服务器的 IP 和端口
-upstream vaultwarden-default { server 127.0.0.1:8080; }
-upstream vaultwarden-ws { server 127.0.0.1:3012; }
+upstream vaultwarden-default {
+  zone vaultwarden-default 64k;
+  server 127.0.0.1:8080;
+  keepalive 2;
+}
+upstream vaultwarden-ws {
+  zone vaultwarden-ws 64k;
+  server 127.0.0.1:3012;
+  keepalive 2;
+}
 
 # 将 HTTP 重定向到 HTTPS
 server {
@@ -213,6 +221,9 @@ server {
     # 您的安装的 root 路径
     # 一定要添加 / 后缀，否则你可能会遇到问题
     location /vault/ {
+      proxy_http_version 1.1;
+      proxy_set_header "Connection" "";
+      
       proxy_set_header Host $host;
       proxy_set_header X-Real-IP $remote_addr;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -222,28 +233,40 @@ server {
     }
 
     location /vault/notifications/hub/negotiate {
+      proxy_http_version 1.1;
+      proxy_set_header "Connection" "";
+
       proxy_set_header Host $host;
       proxy_set_header X-Real-IP $remote_addr;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto $scheme;
 
-      proxy_pass http://bitwardenrs-default;
+      proxy_pass http://vaultwarden-default;
     }
 
     location /vault/notifications/hub {
+      proxy_http_version 1.1;
       proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection $http_connection;
-      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header Connection "upgrade";
 
-      proxy_pass http://bitwardenrs-ws;
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header Forwarded $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+
+      proxy_pass http://vaultwarden-ws;
     }
 
     # 除了 ADMIN_TOKEN 之外，还可以选择添加额外的认证
     # 如果你不想要，就把这部分删掉
-    location ^~ /vault/admin {
-      # 参考: https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/
+    location /vault/admin {
+      # See: https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/
       auth_basic "Private";
       auth_basic_user_file /path/to/htpasswd_file;
+
+      proxy_http_version 1.1;
+      proxy_set_header "Connection" "";
 
       proxy_set_header Host $host;
       proxy_set_header X-Real-IP $remote_addr;

@@ -10,13 +10,19 @@
 
 **字符串连接语法：**
 
-```sql
+```python
 DATABASE_URL=postgresql://[[user]:[password]@]host[:port][/database]
 ```
 
-docker 运行环境变量的一个示例：`-e 'DATABASE_URL=postgresql://postgresadmin:strongpassword@postgres:5432/vaultwarden'`。
+docker 运行环境变量的一个示例：`-e 'DATABASE_URL=postgresql://user_name:user_password@db_host:5432/vaultwarden'`。
 
-如果密码包含特殊字符，则需要使用百分号编码。
+如果您要使用自定义架构/搜索路径，则需要使用以下连接字符串（注意其中的 `%3D` 是 url 编码的 `=` 符号）：
+
+```python
+DATABASE_URL=postgresql://user_name:user_password@db_host:5432/vaultwarden?application_name=vaultwarden&options=-c search_path%3Ddb_schema
+```
+
+如果您的密码包含特殊字符，则需要使用百分号编码。
 
 | !   | #   | $   | %   | &   | '   | (   | )   | \*  | +   | ,   | /   | :   | ;   | =   | ?   | @   | \[  | ]   |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -24,7 +30,7 @@ docker 运行环境变量的一个示例：`-e 'DATABASE_URL=postgresql://postgr
 
 完整的代码列表可以在 [Wikipedia 的百分号编码页面](https://zh.wikipedia.org/wiki/%E7%99%BE%E5%88%86%E5%8F%B7%E7%BC%96%E7%A0%81)上找到。
 
-**从** **SQLite** **迁移到 PostgreSQL**
+## **从 SQLite 迁移到 PostgreSQL** <a href="#migrating-from-sqlite-to-postgresql" id="migrating-from-sqlite-to-postgresql"></a>
 
 从 SQLite 迁移到 PostgreSQL 或 MySQL的方法比较简单，但请注意，**使用此方法风险自负，并且强烈建议备份您的安装和数据**！这**没有得到支持**，也没有经过强有力的测试。
 
