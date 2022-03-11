@@ -73,6 +73,10 @@ SMTP_SSL=false
 SMTP_EXPLICIT_TLS=false
 ```
 
+### HELO 主机名 <a href="#helo-hostname" id="helo-hostname"></a>
+
+默认情况下，机器的主机名用作 HELO 命令中的主机名。要覆盖它，您可以在配置中设置 `HELO_NAME`。
+
 ### Google/Gmail
 
 您需要为 Vaultwarden 生成应用专用密码才能使用 Gmail。按照此处的步骤操作：[使用应用专用密码登录](https://support.google.com/accounts/answer/185833?hl=zh-Hans\&ref\_topic=7189145)。最后你会得到一个密码（为了方便输入，中间没有空格），使用这个密码。
