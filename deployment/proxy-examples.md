@@ -476,7 +476,7 @@ labels:
   - traefik.http.routers.vaultwarden-ui.rule=Host(`vaultwarden.domain.tld`)
   - traefik.http.routers.vaultwarden-ui.service=vaultwarden-ui
   - traefik.http.services.vaultwarden-ui.loadbalancer.server.port=80
-  - traefik.http.routers.vaultwarden-websocket.rule=Host(`vaultwarden.domain.tld`) && Path(`/notifications/hub`)
+  - traefik.http.routers.bitwarden-websocket.rule=Host(`bitwarden.domain.tld`) && Path(`/notifications/hub`) && !Path(`/notifications/hub/negotiate`)
   - traefik.http.routers.vaultwarden-websocket.service=vaultwarden-websocket
   - traefik.http.services.vaultwarden-websocket.loadbalancer.server.port=3012
 ```
@@ -502,11 +502,11 @@ labels:
   - traefik.http.routers.vaultwarden-ui-http.middlewares=redirect-https
   - traefik.http.routers.vaultwarden-ui-http.service=bitwarden-ui
   - traefik.http.services.vaultwarden-ui.loadbalancer.server.port=80
-  - traefik.http.routers.vaultwarden-websocket-https.rule=Host(`vaultwarden.domain.tld`) && Path(`/notifications/hub`)
+  - traefik.http.routers.bitwarden-websocket.rule=Host(`bitwarden.domain.tld`) && Path(`/notifications/hub`) && !Path(`/notifications/hub/negotiate`)
   - traefik.http.routers.vaultwarden-websocket-https.entrypoints=websecure
   - traefik.http.routers.vaultwarden-websocket-https.tls=true
   - traefik.http.routers.vaultwardenarden-websocket-https.service=vaultwarden-websocket
-  - traefik.http.routers.vaultwarden-websocket-http.rule=Host(`vaultwarden.domain.tld`) && Path(`/notifications/hub`)
+  - traefik.http.routers.bitwarden-websocket.rule=Host(`bitwarden.domain.tld`) && Path(`/notifications/hub`) && !Path(`/notifications/hub/negotiate`)
   - traefik.http.routers.vaultwarden-websocket-http.entrypoints=web
   - traefik.http.routers.vaultwarden-websocket-http.middlewares=redirect-https
   - traefik.http.routers.vaultwarden-websocket-http.service=vaultwarden-websocket
