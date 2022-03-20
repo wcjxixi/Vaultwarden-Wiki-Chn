@@ -10,29 +10,33 @@
 
 * [https://github.com/dadatuputi/bitwarden\_gcloud](https://github.com/dadatuputi/bitwarden\_gcloud)
 
-针对 Google Cloud 的「永远免费」的 f1-micro 计算实例进行了优化的 Bitwarden 安装。
+针对 Google Cloud 的「永远免费」的 f1-micro 计算实例进行了优化的 Vaultwarden 安装。
 
 ## Kubernetes
 
 * [https://github.com/icicimov/kubernetes-bitwarden\_rs](https://github.com/icicimov/kubernetes-bitwarden\_rs)
 
-它将在以 [nginx-ingress-controller](https://github.com/kubernetes/ingress-nginx) 和 AWS [ELBv1](https://aws.amazon.com/elasticloadbalancing/features/#Details\_for\_Elastic\_Load\_Balancing\_Products) 作为后端的 Kubernetes 上设置一个功能齐全且安全的 `bitwarden_rs` 应用程序。它提供的不仅仅是简单的部署，还可以根据您的需要和设置使用全部或部分功能。
+在 Kubernetes 上以 [nginx-ingress-controller](https://github.com/kubernetes/ingress-nginx) 和 AWS [ELBv1](https://aws.amazon.com/elasticloadbalancing/features/#Details\_for\_Elastic\_Load\_Balancing\_Products) 作为后端设置一个功能齐全且安全的 Vaultwarden 应用程序。它提供的不仅仅是简单的部署，还可以根据您的需要和设置使用全部或部分功能。
 
 * [https://github.com/Skeen/helm-bitwarden\_rs](https://github.com/Skeen/helm-bitwarden\_rs)
 
-它将在以您选择的 nginx 控制器作为后端的 Kubernetes 上设置一个功能齐全且安全的 `bitwarden_rs` 应用程序。它运行良好，并已使用 [microk8s](https://microk8s.io) 设置进行了测试。而且支持通过 [cert-manager](https://github.com/jetstack/cert-manager) 生成 SSL 证书。
+在 Kubernetes 上以您选择的 nginx 控制器作为后端设置一个功能齐全且安全的 Vaultwarden 应用程序。它运行良好，并已使用 [microk8s](https://microk8s.io) 设置进行了测试。而且支持通过 [cert-manager](https://github.com/jetstack/cert-manager) 生成 SSL 证书。
+
+* [https://github.com/guerzon/vaultwarden](https://github.com/guerzon/vaultwarden)
+
+使用 [Helm](https://helm.sh/zh/docs/) 将 Vaultwarden 部署到 Kubernetes 集群。它支持重要的自定义，例如提供图像标签和自定义注册表值、使用​​外部 MySQL 或 PostgreSQL 数据库、使用入口控制器（如 [nginx-ingress](https://kubernetes.github.io/ingress-nginx/deploy/) 和 [AWS LB 入口控制器](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/deploy/installation/)）、使用服务帐户、配置 SMTP，以及配置存储选项。它拥有完整的文档记录，未来将继续引入更多配置选项。
 
 ## Raspberry Pi
 
 * [https://github.com/martient/vaultwarden-ansible](https://github.com/martient/vaultwarden-ansible)
 
-raspberry pi 上 Vaultwarden 的 Ansible 部署。要从以前的配置迁移，请遵循本指南 [https://martient.medium.com/migrate-from-bitwarden-rs-to-vaultwarden-199aeb6927a3](https://martient.medium.com/migrate-from-bitwarden-rs-to-vaultwarden-199aeb6927a3)
+raspberry pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，请遵循本指南 [https://martient.medium.com/migrate-from-bitwarden-rs-to-vaultwarden-199aeb6927a3](https://martient.medium.com/migrate-from-bitwarden-rs-to-vaultwarden-199aeb6927a3)
 
 ## 共享主机 <a href="#shared-hosting" id="shared-hosting"></a>
 
 * [https://github.com/jjlin/vaultwarden-shared-hosting](https://github.com/jjlin/vaultwarden-shared-hosting)
 
-在 [DreamHost](https://www.dreamhost.com) 上运行 `bitwarden_rs` 的配置示例，但应该也适用于许多其他共享主机服务。
+在 [DreamHost](https://www.dreamhost.com) 上运行 Vaultwarden 的配置示例，但应该也适用于许多其他共享主机服务。
 
 * [https://lab.uberspace.de/guide\_bitwarden.html](https://lab.uberspace.de/guide\_bitwarden.html)
 
