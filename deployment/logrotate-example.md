@@ -4,7 +4,7 @@
 对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Logrotate-example)
 {% endhint %}
 
-随着时间的流逝，Vaultwarden 日志文件的大小可能会增长到很大。使用 logrotate，我们可以定期转储日志。
+随着时间增长，Vaultwarden 日志文件的大小可能会增长到很大。使用 logrotate，我们可以定期转储日志。
 
 ```python
 sudo nano /etc/logrotate.d/vaultwarden
