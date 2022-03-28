@@ -5,7 +5,7 @@
 {% endhint %}
 
 {% hint style="warning" %}
-**注意**：v1.24.0 版本之前的 Vaultwarden 有一个关于 SSL 和 TLS 的漏洞/错误标记的配置设置项。这已在测试版和新发布的版本中得到修复。
+**注意**：v1.24.0 版本及之前的 Vaultwarden 有一个关于 SSL 和 TLS 的漏洞/错误标记的配置设置项。这已在测试版和新发布的版本中得到修复。
 
 旧设置项是 `SMTP_SSL` 和 `SMTP_EXPLICIT_TLS`。
 
