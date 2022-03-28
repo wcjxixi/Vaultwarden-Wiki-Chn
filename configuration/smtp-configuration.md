@@ -4,6 +4,19 @@
 对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/SMTP-configuration)
 {% endhint %}
 
+{% hint style="warning" %}
+**注意**：v1.24.0 版本之前的 Vaultwarden 有一个关于 SSL 和 TLS 的漏洞/错误标记的配置设置项。这已在测试版和新发布的版本中得到修复。
+
+旧设置项是 `SMTP_SSL` 和 `SMTP_EXPLICIT_TLS`。
+
+新设置项是 `SMTP_SECURITY`，它具有以下选项：`starttls`、`force_tls` 和 `off`。
+
+* `SMTP_SECURITY=starttls` 等同于 `SMTP_SSL=true`
+* `SMTP_SECURITY=force_tls` 等同于 `SMTP_EXPLICIT_TLS=true`
+
+下面的示例目前仍基于 v1.24.0 版本。
+{% endhint %}
+
 您可以配置 Vaultwarden 通过 SMTP 代理来发送电子邮件：
 
 ```python

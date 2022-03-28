@@ -18,7 +18,7 @@ Web 服务器的安全 TLS 协议和密码配置可以使用 Mozilla 的 [SSL Co
 
 * [Caddy 2.x](proxy-examples.md#caddy-2-x)
 * [lighttpd](proxy-examples.md#lighttpd-by-forkbomb-9) (by forkbomb9)
-* [Nginx](proxy-examples.md#nginx-by-shauder) (by shauder)
+* [Nginx](proxy-examples.md#nginx-by-shauder) (by blackdex)
 * [Nginx with sub-path](proxy-examples.md#nginx-with-sub-path-by-blackdex) (by BlackDex)
 * [Nginx](proxy-examples.md#nginx-by-ypid) (by ypid)
 * [Nginx](proxy-examples.md#nginx-nixos-by-tklitschi) (NixOS)(by tklitschi)
@@ -115,7 +115,7 @@ $HTTP["host"] == "vault.example.net" {
 
 在 Vaultwarden 环境中，您必须将 `IP_HEADER` 设置为 `X-Forwarded-For` 而不是 `X-Real-IP`。
 
-## Nginx (by shauder)
+## Nginx (by blackdex)
 
 ```python
 server {
