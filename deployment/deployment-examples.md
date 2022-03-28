@@ -38,7 +38,7 @@ raspberry pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 
 在 [DreamHost](https://www.dreamhost.com) 上运行 Vaultwarden 的配置示例，但应该也适用于许多其他共享主机服务。
 
-* [https://lab.uberspace.de/guide\_bitwarden.html](https://lab.uberspace.de/guide\_bitwarden.html)
+* [https://lab.uberspace.de/guide\_vaultwarden.html?highlight=bitwarden](https://lab.uberspace.de/guide\_vaultwarden.html?highlight=bitwarden)
 
 如何从源代码安装以及如何在 [Uberspace](https://uberspace.de/en/) 共享托管服务提供商上运行的说明。
 
