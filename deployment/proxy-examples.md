@@ -18,7 +18,7 @@ Web 服务器的安全 TLS 协议和密码配置可以使用 Mozilla 的 [SSL Co
 
 * [Caddy 2.x](proxy-examples.md#caddy-2-x)
 * [lighttpd](proxy-examples.md#lighttpd-by-forkbomb-9) (by forkbomb9)
-* [Nginx](proxy-examples.md#nginx-by-shauder) (by blackdex)
+* [Nginx](proxy-examples.md#nginx-by-blackdex) (by blackdex)
 * [Nginx with sub-path](proxy-examples.md#nginx-with-sub-path-by-blackdex) (by BlackDex)
 * [Nginx](proxy-examples.md#nginx-by-ypid) (by ypid)
 * [Nginx](proxy-examples.md#nginx-nixos-by-tklitschi) (NixOS)(by tklitschi)
@@ -118,49 +118,97 @@ $HTTP["host"] == "vault.example.net" {
 ## Nginx (by blackdex)
 
 ```python
+# 'upstream' 指令确保你有一个 http/1.1 连接
+# 这启用了 keepalive 选项并拥有更好的性能
+#
+# 在此处定义服务器 IP 和端口。
+upstream vaultwarden-default {
+  zone vaultwarden-default 64k;
+  server 127.0.0.1:8080;
+  keepalive 2;
+}
+upstream vaultwarden-ws {
+  zone vaultwarden-ws 64k;
+  server 127.0.0.1:3012;
+  keepalive 2;
+}
+
+# 将 HTTP 重定向到 HTTPS
 server {
-  listen 443 ssl http2;
-  server_name vault.*;
-  
-  # 如果使用共享的 SSL，请指定 SSL 配置。
-  # 包含 conf.d/ssl/ssl.conf;
-  
-  # 允许大型附件
-  client_max_body_size 128M;
+    listen 80;
+    listen [::]:80;
+    server_name vaultwarden.example.tld;
+    return 301 https://$host$request_uri;
+}
 
-  location / {
-    proxy_pass http://<SERVER>:80;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
-  }
-  
-  location /notifications/hub {
-    proxy_pass http://<SERVER>:3012;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection "upgrade";
-  }
-  
-  location /notifications/hub/negotiate {
-    proxy_pass http://<SERVER>:80;
-  }
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name vaultwarden.example.tld;
 
-  # 除 AUTH_TOKEN 外，还可以选择性添加额外的身份认证
-  # 如果您不需要，删除这部分即可
-  location /admin {
-    # 参考: https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/
-    auth_basic "Private";
-    auth_basic_user_file /path/to/htpasswd_file;
+    # 根据需要指定 SSL 配置
+    #ssl_certificate /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/fullchain.pem;
+    #ssl_certificate_key /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/privkey.pem;
+    #ssl_trusted_certificate /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/fullchain.pem;
 
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
+    client_max_body_size 128M;
 
-    proxy_pass http://<SERVER>:80;
-  }
+    location / {
+      proxy_http_version 1.1;
+      proxy_set_header "Connection" "";
 
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+
+      proxy_pass http://vaultwarden-default;
+    }
+
+    location /notifications/hub/negotiate {
+      proxy_http_version 1.1;
+      proxy_set_header "Connection" "";
+
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+
+      proxy_pass http://vaultwarden-default;
+    }
+
+    location /notifications/hub {
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header Forwarded $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+
+      proxy_pass http://vaultwarden-ws;
+    }
+
+    # 除了 ADMIN_TOKEN 之外，还可以选择添加额外的身份验证
+    # 删除下面的 '#' 注释并创建 htpasswd_file 以使其处于活动状态
+    #
+    #location /admin {
+    #  # 参阅: https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/
+    #  auth_basic "Private";
+    #  auth_basic_user_file /path/to/htpasswd_file;
+    #
+    #  proxy_http_version 1.1;
+    #  proxy_set_header "Connection" "";
+    #
+    #  proxy_set_header Host $host;
+    #  proxy_set_header X-Real-IP $remote_addr;
+    #  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    #  proxy_set_header X-Forwarded-Proto $scheme;
+    #
+    #  proxy_pass http://vaultwarden-default;
+    #}
 }
 ```
 
@@ -180,12 +228,15 @@ server {
 为此，您需要配置 `DOMAIN` 变量以使其匹配，它应类似于：
 
 ```python
-; Add the sub-path! Else this will not work!
+; 添加子路径！否则这将无法正常工作！
 DOMAIN=https://vaultwarden.example.tld/vault/
 ```
 
 ```python
-# 在这里定义服务器的 IP 和端口
+# 'upstream' 指令确保你有一个 http/1.1 连接
+# 这启用了 keepalive 选项并拥有更好的性能
+#
+# 在此处定义服务器 IP 和端口。
 upstream vaultwarden-default {
   zone vaultwarden-default 64k;
   server 127.0.0.1:8080;
@@ -218,18 +269,18 @@ server {
     client_max_body_size 128M;
 
     ## 使用子路径配置
-    # 您的安装的 root 路径
-    # 一定要添加 / 后缀，否则你可能会遇到问题
+    # 您的安装的 root 目录路径
+    # 确保在尾部添加 /，否则可能会有问题
     location /vault/ {
       proxy_http_version 1.1;
       proxy_set_header "Connection" "";
-      
+
       proxy_set_header Host $host;
       proxy_set_header X-Real-IP $remote_addr;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto $scheme;
 
-      proxy_pass http://bitwardenrs-default;
+      proxy_pass http://vaultwarden-default;
     }
 
     location /vault/notifications/hub/negotiate {
@@ -258,24 +309,24 @@ server {
       proxy_pass http://vaultwarden-ws;
     }
 
-    # 除了 ADMIN_TOKEN 之外，还可以选择添加额外的认证
-    # 如果你不想要，就把这部分删掉
-    location /vault/admin {
-      # See: https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/
-      auth_basic "Private";
-      auth_basic_user_file /path/to/htpasswd_file;
-
-      proxy_http_version 1.1;
-      proxy_set_header "Connection" "";
-
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-Proto $scheme;
-
-      proxy_pass http://vaultwarden-default;
-    }
-
+    # 除了 ADMIN_TOKEN 之外，还可以选择添加额外的身份验证
+    # 删除下面的 '#' 注释并创建 htpasswd_file 以使其处于活动状态
+    #
+    #location /vault/admin {
+    #  # 参阅: https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/
+    #  auth_basic "Private";
+    #  auth_basic_user_file /path/to/htpasswd_file;
+    #
+    #  proxy_http_version 1.1;
+    #  proxy_set_header "Connection" "";
+    #
+    #  proxy_set_header Host $host;
+    #  proxy_set_header X-Real-IP $remote_addr;
+    #  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    #  proxy_set_header X-Forwarded-Proto $scheme;
+    #
+    #  proxy_pass http://vaultwarden-default;
+    #}
 }
 ```
 
