@@ -32,9 +32,9 @@ DATABASE_URL=postgresql://user_name:user_password@db_host:5432/vaultwarden?appli
 
 ## **从 SQLite 迁移到 PostgreSQL** <a href="#migrating-from-sqlite-to-postgresql" id="migrating-from-sqlite-to-postgresql"></a>
 
-从 SQLite 迁移到 PostgreSQL 或 MySQL的方法比较简单，但请注意，**使用此方法风险自负，并且强烈建议备份您的安装和数据**！这**没有得到支持**，也没有经过强有力的测试。
+从 SQLite 迁移到 PostgreSQL 或 MySQL的方法比较简单，但请注意，**使用此方法风险自负，并且强烈建议备份您的安装和数据**！这**不受支持**，也没有经过强有力的测试。
 
-1、为 vaultwarden 创建一个新的（空）数据库：
+1、为 Vaultwarden 创建一个新的（空）数据库：
 
 ```sql
 CREATE DATABASE vaultwarden;
@@ -47,7 +47,7 @@ CREATE USER vaultwarden WITH ENCRYPTED PASSWORD 'yourpassword';
 GRANT all privileges ON database vaultwarden TO vaultwarden;
 ```
 
-3、配置 Vaultwarden 并启动它，以便 [diesel](http://diesel.rs) 可以运行迁移并正确设置模式。除此之外不要做别的。
+3、配置 Vaultwarden 并启动它，以便 [diesel](http://diesel.rs) 可以运行迁移并设置正确的模式。除此之外不要做别的。
 
 4、停止 Vaultwarden。
 
@@ -66,5 +66,48 @@ load database
 ```
 
 7、运行 `pgloader vaultwarden.load` 命令，你可能会看到一些警告，（不用理会）迁移会成功完成。
+
+8、重新启动 Vaultwarden。
+
+## 从 MySQL 迁移到 PostgreSQL <a href="#migrating-from-mysql-to-postgresql" id="migrating-from-mysql-to-postgresql"></a>
+
+> 使用 MariaDB 10.3.32、PostgreSQL 14.2 和 Vaultwarden 1.24.0 测试
+
+请注意，**使用此方法风险自负，并且强烈建议备份您的安装和数据**！这**不受支持**，也没有经过强有力的测试。
+
+1、为 Vaultwarden 创建一个新的（空）数据库：
+
+```sql
+CREATE DATABASE vaultwarden;
+```
+
+2、创建一个新的数据库用户并授予数据库权限：
+
+```sql
+CREATE USER vaultwarden WITH ENCRYPTED PASSWORD 'yourpassword';
+GRANT all privileges ON database vaultwarden TO vaultwarden;
+```
+
+3、配置 Vaultwarden 并启动它，以便 [diesel](http://diesel.rs) 可以运行迁移并设置正确的模式。除此之外不要做别的。
+
+4、停止 Vaultwarden。
+
+5、安装 [pgloader](http://pgloader.io) 。确保你使用的是最新版本的 pgloader，官方的 Ubuntu 存储库有一个过时的版本，它不能与新版本的 PostgreSQL 一起正常工作。最新版本可以从 [PostgreSQL Apt 存储库](https://www.postgresql.org/download/linux/ubuntu/)获取。
+
+6、使用如下内容创建 vaultwarden.load 文件：
+
+```sql
+load database
+     from mysql://yourmysqluser:yourmysqlpassword@yourmysqlserver:yourmysqlport/yourmysqldatabase 
+     into postgresql://yourpgsqluser:yourpgsqlpassword@yourpgsqlserver:yourpgsqlport/yourpgsqldatabase
+     WITH data only
+     EXCLUDING TABLE NAMES MATCHING '__diesel_schema_migrations'
+     ALTER SCHEMA 'vaultwarden' RENAME TO 'public'
+;
+```
+
+_如果您的连接需要 SSL，可以选择将 `?sslmode=require` 添加到 PostgreSQL 连接字符串中。_
+
+7、运行 `pgloader vaultwarden.load` 命令，你可能会看到一些警告，（不用理会）迁移会成功完成。如果有错误，很可能是你的 pgloader 版本过时了！
 
 8、重新启动 Vaultwarden。
