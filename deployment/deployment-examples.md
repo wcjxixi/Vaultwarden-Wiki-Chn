@@ -46,7 +46,9 @@ raspberry pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 
 这里是一个针对 NixOS 上的 bitwarden 配置的示例。它不是很复杂，有您想使用的数据库类型的后端选项、用于系统服务专用备份的备份目录、启用它的选项以及配置选项。对于配置选项，你只需[从 .env 模板](https://github.com/dani-garcia/bitwarden\_rs/blob/1.13.1/.env.template)传递 .env 变量到 nix 语法中即可。密码（SMTP\_PASSWORD,... ）存储在 /nix/store 之外的另一个 .env 文件中，并被 [services.vaultwarden.environmentFile](https://search.nixos.org/options?channel=21.11\&show=services.vaultwarden.environmentFile\&from=0\&size=50\&sort=relevance\&type=packages\&query=vaultw) 包含。请参阅[代理示例](proxy-examples.md)以了解 nixos-nginx 的配置示例。
 
-配置示例：
+<details>
+
+<summary>配置示例</summary>
 
 ```python
 { pkgs, ... }:
@@ -83,6 +85,8 @@ raspberry pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 ```
 
 如果你有任何关于这部分的问题，请随时联系我。我在 matrix 的 @litschi:litschi.xyz 、以及 IRC（hackint 和 freenode）的 litschi，或简单地在 matrix.org 的 Vaultwarden 频道中询咨询我。
+
+</details>
 
 ## QNAP NAS (ARM 和 x86) <a href="#qnap-nas-arm-and-x-86" id="qnap-nas-arm-and-x-86"></a>
 
