@@ -10,27 +10,13 @@
 
 注意，当你把 Vaultwarden 放在反向代理后面时，反向代理和 Vaultwarden 之间的连接通常被认为是通过安全的私有网络进行的，因此不需要加密。下面的例子假设你是在这种配置下运行的，在这种情况下，不应该启用 Vaultwarden 中内置的 HTTPS 功能（也就是说，不应该设置 `ROCKET_TLS` 环境变量）。如果你这样做了，连接就会失败，因为反向代理使用 HTTP 连接到 Vaultwarden，但你配置的 Vaultwarden 却希望使用 HTTPS。
 
-通常使用 [Docker Compose](https://docs.docker.com/compose/) 将容器化的服务（例如，Vaultwarden 和反向代理）链接在一起。请参阅[使用 Docker Compose](../container-image-usage/using-docker-compose.md) 了解这方面的示例。
+通常使用 [Docker Compose](https://docs.docker.com/compose/) 将容器化的服务（例如，Vaultwarden 和反向代理）链接在一起。请参阅[ Compos](../container-image-usage/using-docker-compose.md) 了解这方面的示例。
 
-Web 服务器的安全 TLS 协议和密码配置可以使用 Mozilla 的 [SSL Configuration Generator](https://ssl-config.mozilla.org) 来生成。所有支持的浏览器和移动应用程序都可以使用这个「流行的」配置方式。
+Web 服务器的安全 TLS 协议和密码配置可以使用 Mozilla 的 [SSL Configuration Generator](https://ssl-config.mozilla.org) 来生成。所有支持的浏览器和移动应用程序都可以此「流行的」配置方式。
 
-## 目录 <a href="#table-of-contents" id="table-of-contents"></a>
+<details>
 
-* [Caddy 2.x](proxy-examples.md#caddy-2-x)
-* [lighttpd](proxy-examples.md#lighttpd-by-forkbomb-9) (by forkbomb9)
-* [Nginx](proxy-examples.md#nginx-by-blackdex) (by blackdex)
-* [Nginx with sub-path](proxy-examples.md#nginx-with-sub-path-by-blackdex) (by BlackDex)
-* [Nginx](proxy-examples.md#nginx-by-ypid) (by ypid)
-* [Nginx](proxy-examples.md#nginx-nixos-by-tklitschi) (NixOS)(by tklitschi)
-* [Apache](proxy-examples.md#apache-by-fbartels) (by fbartels)
-* [Apache in a sub-location](proxy-examples.md#apache-in-a-sub-location-by-ss-89) (by ss89)
-* [Traefik v1](proxy-examples.md#traefik-v1-dockercompose-shi-li) (docker-compose 示例)
-* [Traefik v2](proxy-examples.md#traefik-v-2-docker-compose-example-by-hwwilliams) (docker-compose 示例 by hwwilliams)
-* [HAproxy](proxy-examples.md#haproxy-by-blackdex) (by BlackDex)
-* [HAproxy](proxy-examples.md#haproxy-by-williamdes) (by [@williamdes](https://github.com/williamdes))
-* [HAproxy inside PfSense](proxy-examples.md#haproxy-inside-pfsense-by-richardmawdsley) (by [@RichardMawdsley](https://github.com/RichardMawdsley))
-
-## Caddy 2.x
+<summary>Caddy 2.x</summary>
 
 在大多数情况下 Caddy 2 会自动启用 HTTPS，参考[此文档](https://caddyserver.com/docs/automatic-https#activation)。
 
@@ -90,10 +76,14 @@ Web 服务器的安全 TLS 协议和密码配置可以使用 Mozilla 的 [SSL Co
 }
 ```
 
-## lighttpd (by forkbomb9)
+</details>
+
+<details>
+
+<summary>lighttpd (by forkbomb9)</summary>
 
 ```python
-server.modules += ( "mod_proxy" )
+erver.modules += ( "mod_proxy" )
 
 $HTTP["host"] == "vault.example.net" {
     $HTTP["url"] == "/notifications/hub" {
@@ -115,7 +105,11 @@ $HTTP["host"] == "vault.example.net" {
 
 在 Vaultwarden 环境中，您必须将 `IP_HEADER` 设置为 `X-Forwarded-For` 而不是 `X-Real-IP`。
 
-## Nginx (by blackdex)
+</details>
+
+<details>
+
+<summary>Nginx (by blackdex)</summary>
 
 ```python
 # 'upstream' 指令确保你有一个 http/1.1 连接
@@ -221,7 +215,11 @@ server {
   send_timeout                777;
 ```
 
-## Nginx with sub-path (by BlackDex)
+</details>
+
+<details>
+
+<summary>Nginx with sub-path (by BlackDex)</summary>
 
 在这个示例中，Vaultwarden 的访问地址为 `https://vaultwarden.example.tld/vault/`，如果您想使用任何其他的子路径，比如 `vaultwarden` 或 `secret-vault`，您需要更改下面示例中相应的地方。
 
@@ -330,7 +328,11 @@ server {
 }
 ```
 
-## Nginx (by ypid)
+</details>
+
+<details>
+
+<summary>Nginx (by ypid)</summary>
 
 使用 DebOps 配置 nginx 作为 Vaultwarden 的反向代理的清单示例。 我选择在 URL 中使用 PSK 以获得额外的安全性，从而不会将 API 公开给 Internet 上的每个人，因为客户端应用程序尚不支持客户端证书（我对其进行了测试）。 注意：使用 subpath/PSK 需要修补源代码并重新编译，请参考：[https://github.com/dani-garcia/vaultwarden/issues/241#issuecomment-436376497](https://github.com/dani-garcia/bitwarden\_rs/issues/241#issuecomment-436376497)。 /admin 未经测试。 有关安全性子路径托管的一般讨论，请参阅：[https://github.com/debops/debops/issues/1233](https://github.com/debops/debops/issues/1233)
 
@@ -385,7 +387,11 @@ nginx__servers:
           deny all;
 ```
 
-## Nginx (NixOS)(by tklitschi)
+</details>
+
+<details>
+
+<summary>Nginx (NixOS)(by tklitschi)</summary>
 
 NixOS Nginx 配置示例。关于 NixOS 部署的更多信息，请参阅[部署示例](deployment-examples.md)页面。
 
@@ -433,7 +439,11 @@ NixOS Nginx 配置示例。关于 NixOS 部署的更多信息，请参阅[部署
 }
 ```
 
-## Apache (by fbartels)
+</details>
+
+<details>
+
+<summary>Apache (by fbartels)</summary>
 
 记得启用 `mod_proxy_wstunnel` 和 `mod_proxy_http`，例如：`a2enmod proxy_wstunnel` 和 `a2enmod proxy_http`。
 
@@ -461,7 +471,11 @@ NixOS Nginx 配置示例。关于 NixOS 部署的更多信息，请参阅[部署
 </VirtualHost>
 ```
 
-## Apache in a sub-location (by ss89)
+</details>
+
+<details>
+
+<summary>Apache in a sub-location (by ss89)</summary>
 
 修改 docker 启动以包含 sub-location。
 
@@ -503,7 +517,11 @@ LoadModule proxy_wstunnel_module modules/mod_proxy_wstunnel.so`
 </VirtualHost>
 ```
 
-## Traefik v1 (docker-compose 示例)
+</details>
+
+<details>
+
+<summary>Traefik v1 (docker-compose 示例)</summary>
 
 ```python
 labels:
@@ -516,9 +534,13 @@ labels:
     - traefik.hub.protocol=ws
 ```
 
-## Traefik v2 (docker-compose 示例 by hwwilliams) <a href="#traefik-v-2-docker-compose-example-by-hwwilliams" id="traefik-v-2-docker-compose-example-by-hwwilliams"></a>
+</details>
 
-### 将 Traefik v1 标签迁移到 Traefik v2 <a href="#traefik-v-1-labels-migrated-to-traefik-v2" id="traefik-v-1-labels-migrated-to-traefik-v2"></a>
+<details>
+
+<summary>Traefik v2 (docker-compose 示例 by hwwilliams)</summary>
+
+#### 将 Traefik v1 标签迁移到 Traefik v2 <a href="#traefik-v-1-labels-migrated-to-traefik-v2" id="traefik-v-1-labels-migrated-to-traefik-v2"></a>
 
 ```python
 labels:
@@ -532,7 +554,7 @@ labels:
   - traefik.http.services.vaultwarden-websocket.loadbalancer.server.port=3012
 ```
 
-### 迁移的标签加上 HTTP 到 HTTPS 重定向 <a href="#migrated-labels-plus-http-to-https-redirect" id="migrated-labels-plus-http-to-https-redirect"></a>
+#### 迁移的标签加上 HTTP 到 HTTPS 重定向 <a href="#migrated-labels-plus-http-to-https-redirect" id="migrated-labels-plus-http-to-https-redirect"></a>
 
 这些标签假定 Traefik 中为端口 80 和 443 定义的入口点分别是「web」和「websecure」。
 
@@ -564,7 +586,11 @@ labels:
   - traefik.http.services.vaultwarden-websocket.loadbalancer.server.port=3012
 ```
 
-## HAproxy (by BlackDex)
+</details>
+
+<details>
+
+<summary>HAproxy (by BlackDex)</summary>
 
 将这些行添加到您的 HAproxy 配置中。
 
@@ -586,7 +612,11 @@ backend vaultwarden_ws
     server vwws 0.0.0.0:3012
 ```
 
-## HAproxy (by [@williamdes](https://github.com/williamdes))
+</details>
+
+<details>
+
+<summary>HAproxy (by <a href="https://github.com/williamdes">@williamdes</a>)</summary>
 
 将这些行添加到您的 HAproxy 配置中。
 
@@ -622,7 +652,11 @@ backend vaultwarden_ws
     server vw_ws 0.0.0.0:3012
 ```
 
-## HAproxy inside PfSense (by [@RichardMawdsley](https://github.com/RichardMawdsley))
+</details>
+
+<details>
+
+<summary>HAproxy inside PfSense (by <a href="https://github.com/RichardMawdsley">@RichardMawdsley</a>)</summary>
 
 作为 GUI 设置，下面的详细信息\说明供您在需要的地方添加。
 
@@ -804,7 +838,11 @@ use_backend VaultWarden-Notifications_ipvANY  if  !ACL4
 
 为了进行测试，如果您在浏览器中导航到 /notifications/hub，那么您应该会看到一个页面，上面写着「WebSocket Protocol Error: Unable to parse WebSocket key.」（WebSocket 协议错误：无法解析 WebSocket 密钥。） ……这意味着它可以正常工作！ - 所有其他子页面都应该出现 Rocket 错误。
 
-## Istio k8s (by [@dpoke](https://github.com/dpoke))
+</details>
+
+<details>
+
+<summary>Istio k8s (by <a href="https://github.com/dpoke">@dpoke</a>)</summary>
 
 ```
 apiVersion: networking.istio.io/v1beta1
@@ -862,3 +900,5 @@ spec:
           number: 80
         host: vaultwarden
 ```
+
+</details>
