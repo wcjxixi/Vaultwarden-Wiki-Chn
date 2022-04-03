@@ -10,7 +10,7 @@
 
 注意，当你把 Vaultwarden 放在反向代理后面时，反向代理和 Vaultwarden 之间的连接通常被认为是通过安全的私有网络进行的，因此不需要加密。下面的例子假设你是在这种配置下运行的，在这种情况下，不应该启用 Vaultwarden 中内置的 HTTPS 功能（也就是说，不应该设置 `ROCKET_TLS` 环境变量）。如果你这样做了，连接就会失败，因为反向代理使用 HTTP 连接到 Vaultwarden，但你配置的 Vaultwarden 却希望使用 HTTPS。
 
-通常使用 [Docker Compose](https://docs.docker.com/compose/) 将容器化的服务（例如，Vaultwarden 和反向代理）链接在一起。请参阅[ Compos](../container-image-usage/using-docker-compose.md) 了解这方面的示例。
+通常使用 [Docker Compose](https://docs.docker.com/compose/) 将容器化的服务（例如，Vaultwarden 与反向代理）链接在一起。请参阅[使用 Docker Compose](../container-image-usage/using-docker-compose.md) 来了解这方面的示例。
 
 Web 服务器的安全 TLS 协议和密码配置可以使用 Mozilla 的 [SSL Configuration Generator](https://ssl-config.mozilla.org) 来生成。所有支持的浏览器和移动应用程序都可以此「流行的」配置方式。
 
