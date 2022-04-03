@@ -4,15 +4,25 @@
 对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Third-party-packages)
 {% endhint %}
 
-本页面是一个第三方 Vaultwarden 软件包的索引。由于这些软件包不是由 Vaultwarden 维护或控制的，因此它们可能会比官方的发行版本滞后，有时甚至会很明显。如果你依赖这些软件包，你可能需要[启用监视](https://docs.github.com/en/github/managing-subscriptions-and-notifications-on-github/viewing-your-subscriptions#configuring-your-watch-settings-for-an-individual-repository)新的 Vaultwarden 发行版本，并让维护者知道该软件包未保持更新。
+{% hint style="danger" %}
+本页面是一个第三方 Vaultwarden 软件包的索引。
+
+由于这些软件包不是由 Vaultwarden 维护或控制的，因此它们可能会比官方的发行版本滞后，有时甚至会明显滞后。如果你依赖这些软件包，你可能需要为新的 Vaultwarden 发行版本[启用监视](https://docs.github.com/en/github/managing-subscriptions-and-notifications-on-github/viewing-your-subscriptions#configuring-your-watch-settings-for-an-individual-repository)功能，并让维护者知道该软件包未保持更新。
+{% endhint %}
+
+## 非官方软件包状态
+
+Server：[https://repology.org/project/vaultwarden/versions](https://repology.org/project/vaultwarden/versions)
+
+Web-Vault：[https://repology.org/project/vaultwarden-web/versions](https://repology.org/project/vaultwarden-web/versions)
 
 ## Arch Linux
 
-可在[官方库](https://archlinux.org/packages/community/x86\_64/vaultwarden/)中获取，同时包含了[网页版密码库](https://archlinux.org/packages/community/any/vaultwarden-web/)。
+可在[官方仓库](https://archlinux.org/packages/community/x86\_64/vaultwarden/)中获取，同时包含了[网页版密码库](https://archlinux.org/packages/community/any/vaultwarden-web/)。
 
 ## Debian
 
-基于工具链的 docker 可用于构建 debian 软件包：[https://github.com/greizgh/bitwarden\_rs-debian](https://github.com/greizgh/bitwarden\_rs-debian)。它将服务器和网页密码库捆绑在一起。
+基于工具链的 docker 可用于构建 debian 软件包：[https://github.com/greizgh/bitwarden\_rs-debian](https://github.com/greizgh/bitwarden\_rs-debian)。它将服务器和网页版密码库捆绑在一起。
 
 ## CentOS7 / RHEL7
 
