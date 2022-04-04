@@ -113,9 +113,9 @@ $HTTP["host"] == "vault.example.net" {
 
 ```python
 # 'upstream' 指令确保你有一个 http/1.1 连接
-# 这启用了 keepalive 选项并拥有更好的性能
+# 这里启用了 keepalive 选项并拥有更好的性能
 #
-# 在此处定义服务器 IP 和端口。
+# 此处定义服务器的 IP 和端口。
 upstream vaultwarden-default {
   zone vaultwarden-default 64k;
   server 127.0.0.1:8080;
@@ -226,15 +226,15 @@ server {
 为此，您需要配置 `DOMAIN` 变量以使其匹配，它应类似于：
 
 ```python
-; 添加子路径！否则这将无法正常工作！
+; 添加子路径！否则将无法正常工作！
 DOMAIN=https://vaultwarden.example.tld/vault/
 ```
 
 ```python
 # 'upstream' 指令确保你有一个 http/1.1 连接
-# 这启用了 keepalive 选项并拥有更好的性能
+# 这里启用了 keepalive 选项并拥有更好的性能
 #
-# 在此处定义服务器 IP 和端口。
+# 此处定义服务器的 IP 和端口。
 upstream vaultwarden-default {
   zone vaultwarden-default 64k;
   server 127.0.0.1:8080;
