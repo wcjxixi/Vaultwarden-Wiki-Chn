@@ -19,7 +19,7 @@
 * （推荐）如果你信任 [Cloudflare](https://www.cloudflare.com) 来代理你的流量，你可以让他们处理你的 SSL/TLS 证书的发放。请注意，上游的 Bitwarden 网络密码库（[https://vault.bitwarden.com/](https://vault.bitwarden.com)）运行在 Cloudflare 后面。
 * （不推荐）[建立一个私人 CA](../../other-information/private-ca-and-self-signed-certs-that-work-with-chrome.md)，并发行你自己的（自签名）证书。这有各种陷阱和不便，所以请自行考虑是否使用此选项。
 
-参考[获取 SSL/TLS 证书](enabling-https.md#getting-ssl-tls-certificates)部分，以了解这些选项的更多细节。要使移动应用程序正常运行，必须设置正确的 [OCSP 装订](https://en.wikipedia.org/wiki/OCSP\_stapling)设置。
+有关这些选项的更多细节，请参考[获取 SSL/TLS 证书](enabling-https.md#getting-ssl-tls-certificates)部分。要使移动应用程序正常运行，必须设置正确的 [OCSP 装订](https://en.wikipedia.org/wiki/OCSP\_stapling)设置。
 
 ## 启用 HTTPS <a href="#enabling-https" id="enabling-https"></a>
 
@@ -30,7 +30,7 @@
 ### 通过 Rocket <a href="#via-rocket" id="via-rocket"></a>
 
 {% hint style="warning" %}
-不建议使用此方法。
+不建议使用此方式。
 {% endhint %}
 
 要对 `vaultwarden` 本身启用 HTTPS，请设置如下格式的 `ROCKET_TLS` 环境变量：
@@ -88,7 +88,7 @@ docker run -d --name vaultwarden \
   vaultwarden/server:latest
 ```
 
-#### 检查证书是否有效 <a href="#check-if-certificate-is-valid" id="check-if-certificate-is-valid"></a>
+### 检查证书是否有效 <a href="#check-if-certificate-is-valid" id="check-if-certificate-is-valid"></a>
 
 当您的 Vaultwarden 服务器对外界可用时，您可以使用 [Comodo SSL Checker](https://comodosslstore.com/ssltools/ssl-checker.php)，[Qualys' SSL Labs](https://www.ssllabs.com/ssltest/) 或 [Digicert SSL Certficate Checker](https://www.digicert.com/help/) 来检查您的 SSL 证书（包括证书链）是否有效。缺少证书链，Android 设备将连接失败。
 
@@ -119,7 +119,7 @@ verify return:1
 
 有 3 个不同深度（请注意，它是从 0 开始的）级别的验证。在接下来的输出中，您应该看到来自 Let's Encryptbase 的使用 base64 编码的证书信息。
 
-#### 检查 OSCP 有效性 <a href="#check-oscp-validity" id="check-oscp-validity"></a>
+### 检查 OSCP 有效性 <a href="#check-oscp-validity" id="check-oscp-validity"></a>
 
 > \[**译者注**]：OCSP是在线证书状态协议（Online Certificate Status Protocol）的缩写 ，是一个用于获取 X.509 数字证书撤销状态的网际协议，用于检验证书合法性。OCSP 查询需要建立一次完整的 HTTP 查询请求，期间的 DNS 查询、建立 TCP 连接、服务端响应和数据传输都是额外开销，使得建立 TLS 连接花费更多时长。后来出现了OCSP Stapling ，将原本需要客户端发起的 OCSP 请求转嫁给服务端，并随证书一起发送给客户端，因此能提高 TLS 握手效率。
 >

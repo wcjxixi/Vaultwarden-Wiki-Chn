@@ -6,7 +6,7 @@
 
 Vaultwarden 目前并没有提供独立的二进制文件作为单独的下载，但对于拥有基于 Alpine 的 Docker 镜像的平台（当前是 x86-64 和 ARMv7），您可以从官方的 Docker 镜像中提取独立的、静态链接的二进制文件。每个 Docker 镜像还包括一个匹配的网页密码库构建（与平台无关）。
 
-## 在已安装 Docker 情况下提取二进制文件 <a href="extracting-binaries-with-docker-installed" id="extracting-binaries-with-docker-installed"></a>
+## 在已安装 Docker 情况下提取二进制文件 <a href="#extracting-binaries-with-docker-installed" id="extracting-binaries-with-docker-installed"></a>
 
 假设要为您运行的平台提取二进制文件：
 
@@ -23,13 +23,13 @@ docker rm vm
 ```python
 docker pull --platform linux/arm/v7 vaultwarden/server:alpine
 # 按照上面的方法运行其余的命令。
-# 注意， `docker create` 命令可能会打印出如下类似的信息：
+# 注意， `docker create` 命令可能会输出如下类似的信息：
 #   WARNING: The requested image's platform (linux/arm/v7) does not match the detected host platform (linux/amd64)
 #   and no specific platform was requested
 # 这是预料之中的，不用担心。
 ```
 
-## 在未安装 Docker 情况下提取二进制文件 <a href="extracting-binaries-without-docker-installed" id="extracting-binaries-without-docker-installed"></a>
+## 在未安装 Docker 情况下提取二进制文件 <a href="#extracting-binaries-without-docker-installed" id="extracting-binaries-without-docker-installed"></a>
 
 如果您不能或不想安装 Docker，您可以使用 [docker-imag-extract](https://github.com/jjlin/docker-image-extract) 脚本来拉取和提取 Docker 镜像。例如，要拉取和提取 x86-64 镜像：
 
