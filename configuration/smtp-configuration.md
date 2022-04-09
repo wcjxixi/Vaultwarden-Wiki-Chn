@@ -1,7 +1,7 @@
 # 12.SMTP 配置
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/SMTP-configuration)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/SMTP-Configuration)
 {% endhint %}
 
 {% hint style="warning" %}

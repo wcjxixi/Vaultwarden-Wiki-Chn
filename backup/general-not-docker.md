@@ -1,7 +1,7 @@
 # 通用（非 docker）
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/General-\(not-docker\))
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/General-\(not-docker\))
 {% endhint %}
 
 ## 备份 <a href="#backup" id="backup"></a>

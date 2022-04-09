@@ -1,7 +1,7 @@
 # \*6.使私有 CA 和自签名证书兼容 Chrome
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Private-CA-and-self-signed-certs-that-work-with-Chrome)
+对应的官方页面地址
 {% endhint %}
 
 {% hint style="warning" %}

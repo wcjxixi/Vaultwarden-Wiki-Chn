@@ -1,7 +1,7 @@
 # 主页
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki)
 {% endhint %}
 
 Vaultwarden 是一个使用 Rust 编写的非官方 Bitwarden 服务器实现，它与[官方 Bitwarden 客户端](https://bitwarden.com/download/)兼容，对于不希望使用官方的占用大量资源的自托管部署而言，它是理想的选择。

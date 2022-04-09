@@ -1,7 +1,7 @@
 # 4.启用管理页面
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-admin-page)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-admin-page)
 {% endhint %}
 
 **重要说明**：强烈建议在启用此功能之前激活 HTTPS，以避免可能的 [MITM](https://zh.wikipedia.org/wiki/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB) 攻击。

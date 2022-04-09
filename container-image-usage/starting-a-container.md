@@ -1,7 +1,7 @@
 # 2.启动容器
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Starting-a-Container)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Starting-a-Container)
 {% endhint %}
 
 请注意，`docker run` 命令的名字略有误导性，因为它不仅会创建一个容器，它还会启动此容器。当在仅停止容器而不删除容器后使用 `docker run` 命令时，会导致发生冲突。为了一个简单的开始，请接着往下看。

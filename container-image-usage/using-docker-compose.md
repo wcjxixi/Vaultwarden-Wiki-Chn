@@ -1,7 +1,7 @@
 # 4.使用 Docker Compose
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Using-Docker-Compose)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Using-Docker-Compose)
 {% endhint %}
 
 [Docker Compose](https://docs.docker.com/compose/) 是一个用于定义和配置多容器应用程序的工具。在我们的例子中，我们希望 Vaultwarden 服务器和代理都将 WebSocket 请求重定向到正确的地方。

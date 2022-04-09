@@ -1,7 +1,7 @@
 # 1.启用 HTTPS
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-HTTPS)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-HTTPS)
 {% endhint %}
 
 现在几乎都需要启用 [HTTPS](https://en.wikipedia.org/wiki/HTTPS)，才能满足 Vaultwarden 的正常操作，这是因为 Bitwarden 网络密码库使用的 [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto)，大多数浏览器只有在 HTTPS 环境下才能使用。

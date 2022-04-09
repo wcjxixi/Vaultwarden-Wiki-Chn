@@ -1,7 +1,7 @@
 # 13.显示密码提示
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Password-hint-display)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Password-hint-display)
 {% endhint %}
 
 > \[**译者注**]：此配置默认为 `true`，但当您未配置 SMTP 时才会起作用。输入您的电子邮件后，右上角将显示一条错误信息，其内容即为您的密码提示信息。

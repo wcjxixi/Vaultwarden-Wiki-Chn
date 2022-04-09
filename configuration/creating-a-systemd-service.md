@@ -1,12 +1,12 @@
 # 16.设置为 systemd 服务
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Setup-as-a-systemd-service)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Setup-as-a-systemd-service)
 {% endhint %}
 
 这部分的内容要求您已经[编译了 Vaultwarden 二进制](../deployment/building-binary.md)。如果您已生成了 docker 镜像，则需要查看[使用 systemd-docker 运行](running-with-systemd-docker.md)。
 
-## 设置 <a href="setup" id="setup"></a>
+## 设置 <a href="#setup" id="setup"></a>
 
 要使 Vaultwarden 在系统启动的时候启动并使用 systemd 的其他功能（例如，隔离、日志记录等），则需要一个 `.service` 文件。以下是一个可行的起点：
 
@@ -75,7 +75,7 @@ $ sudo systemctl edit vaultwarden.service
 $ sudo systemctl daemon-reload
 ```
 
-## 用法 <a href="usage" id="usage"></a>
+## 用法 <a href="#usage" id="usage"></a>
 
 要启动此「服务」，请运行：
 
@@ -91,7 +91,7 @@ $ sudo systemctl enable vaultwarden.service
 
 同理，你可以使用 `stop`、`restart` 和 `disable` 来停止、重启或禁用此服务。
 
-### 更新 Vaultwarden <a href="updating-bitwarden_rs" id="updating-bitwarden_rs"></a>
+### 更新 Vaultwarden <a href="#updating-bitwarden_rs" id="updating-bitwarden_rs"></a>
 
 编译新版本的 Vaultwarden 之后，您可以复制已编译的（新）二进制文件并替换现有的（旧）二进制文件，然后重新启动服务：
 
@@ -99,7 +99,7 @@ $ sudo systemctl enable vaultwarden.service
 $ sudo systemctl restart vaultwarden.service
 ```
 
-### 卸载 Vaultwarden <a href="uninstalling-bitwarden_rs" id="uninstalling-bitwarden_rs"></a>
+### 卸载 Vaultwarden <a href="#uninstalling-bitwarden_rs" id="uninstalling-bitwarden_rs"></a>
 
 在执行其他操作之前，应先停止并禁用该服务：
 
@@ -115,7 +115,7 @@ $ sudo systemctl disable --now vaultwarden.service
 $ sudo systemctl daemon-reload
 ```
 
-### 查看日志和状态 <a href="logging-and-status-view" id="logging-and-status-view"></a>
+### 查看日志和状态 <a href="#logging-and-status-view" id="logging-and-status-view"></a>
 
 如果要查看日志输出，请运行：
 
@@ -129,9 +129,9 @@ $ journalctl -u vaultwarden.service
 $ systemctl status vaultwarden.service
 ```
 
-## 故障排除 <a href="troubleshooting" id="troubleshooting"></a>
+## 故障排除 <a href="#troubleshooting" id="troubleshooting"></a>
 
-### 旧版 systemd 的沙盒选项 <a href="sandboxing-options-with-older-systemd-versions" id="sandboxing-options-with-older-systemd-versions"></a>
+### 旧版 systemd 的沙盒选项 <a href="#sandboxing-options-with-older-systemd-versions" id="sandboxing-options-with-older-systemd-versions"></a>
 
 在 RHEL 7（以及 debian 8）中，使用的 systemd 不支持某些隔离选项（[#445](https://github.com/dani-garcia/bitwarden\_rs/issues/445)，[#363](https://github.com/dani-garcia/bitwarden\_rs/issues/363)）。这可能导致出现如下错误：
 
@@ -159,7 +159,7 @@ $ systemctl --version
 $ sudo systemctl daemon-reload
 ```
 
-### 服务无法启动 <a href="service-fails-to-start" id="service-fails-to-start"></a>
+### 服务无法启动 <a href="#service-fails-to-start" id="service-fails-to-start"></a>
 
 systemd 日志中显示以下错误（`journalctl -eu vaultwarden.service`）：
 
@@ -181,7 +181,7 @@ Feb 18 05:29:10 staging-bitwarden systemd[1]: vaultwarden.service: Failed with r
 
 然后重新加载守护程序并重新启动。
 
-### 环境变量未被加载 <a href="environment-variable-its-not-loaded" id="environment-variable-its-not-loaded"></a>
+### 环境变量未被加载 <a href="#environment-variable-its-not-loaded" id="environment-variable-its-not-loaded"></a>
 
 请注意，systemd 不支持环境文件中与变量在同一行的注释。比如下面这个 `.env` 文件示例中，变量 `WEBSOCKET_ENABLED` 将不会被加载：
 
@@ -192,6 +192,6 @@ WEBSOCKET_ENABLED=true # enable websocket
 
 来源：[#1607](https://github.com/dani-garcia/vaultwarden/issues/1607)
 
-## 更多信息 <a href="more-information" id="more-information"></a>
+## 更多信息 <a href="#more-information" id="more-information"></a>
 
 有关 .service 文件的更多信息，请参阅 [systemd.service](https://www.freedesktop.org/software/systemd/man/systemd.service.html) 和 [systemd.exec](https://www.freedesktop.org/software/systemd/man/systemd.exec.html)（用于安全性配置）手册页。

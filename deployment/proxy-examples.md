@@ -1,7 +1,7 @@
 # 6.代理示例
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Proxy-examples)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Proxy-examples)
 {% endhint %}
 
 在此文档中，`<SERVER>` 指用于访问 Vaultwarden 的 IP 或域名，如果代理和 Vaultwarden 两者在同一系统中运行，简单地使用 `localhost` 即可。

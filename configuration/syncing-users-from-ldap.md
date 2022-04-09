@@ -1,7 +1,7 @@
 # 18.从 LDAP 同步用户
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Syncing-users-from-LDAP)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Syncing-users-from-LDAP)
 {% endhint %}
 
 LDAP 集成使用小型服务来执行，该小型服务用于查询 LDAP 并邀请用户加入您的 Vaultwarden 实例。该服务的名称被非正式地命名为 [bitwarden\_rs\_ldap](https://github.com/ViViDboarder/bitwarden\_rs\_ldap)。

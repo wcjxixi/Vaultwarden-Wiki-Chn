@@ -1,7 +1,7 @@
 # 6.启用 WebSocket 通知
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-WebSocket-notifications)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-WebSocket-notifications)
 {% endhint %}
 
 **重要提示**：这不适用于使用推送通知的移动客户端。

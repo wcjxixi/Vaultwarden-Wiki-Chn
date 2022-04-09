@@ -1,7 +1,7 @@
 # 8.启用 Yubikey OTP 身份验证
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-Yubikey-OTP-authentication)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-Yubikey-OTP-authentication)
 {% endhint %}
 
 要启用 YubiKey 身份验证，必须设置 `YUBICO_CLIENT_ID` 和 `YUBICO_SECRET_KEY` 变量。

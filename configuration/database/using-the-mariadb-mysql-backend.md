@@ -1,7 +1,7 @@
 # 1.使用 MariaDB（MySQL）后端
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Using-the-MariaDB-\(MySQL\)-Backend)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Using-the-MariaDB-\(MySQL\)-Backend)
 {% endhint %}
 
 {% hint style="warning" %}

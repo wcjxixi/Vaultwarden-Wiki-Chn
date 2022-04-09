@@ -1,7 +1,7 @@
 # 2.使用 Let's Encrypt 证书运行私有 Vaultwarden 实例
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Running-a-private-vaultwarden-instance-with-Let's-Encrypt-certs)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Running-a-private-vaultwarden-instance-with-Let's-Encrypt-certs)
 {% endhint %}
 
 假设你希望运行一个只能从本地网络访问的 Vaultwarden 实例，但你又希望此实例启用 HTTPS，此 HTTPS 证书由一个被广泛接受的 CA 而不是你自己的[私有 CA](../../other-information/private-ca-and-self-signed-certs-that-work-with-chrome.md) 来签署（以避免将专用 CA 证书加载到所有设备中的麻烦）。

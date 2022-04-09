@@ -1,7 +1,7 @@
 # 5.禁用管理令牌
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Disable-admin-token)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Disable-admin-token)
 {% endhint %}
 
 **重要提示**：任何人都将可以访问管理页面。

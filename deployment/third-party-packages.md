@@ -1,7 +1,7 @@
 # 4.第三方软件包
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Third-party-packages)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Third-party-packages)
 {% endhint %}
 
 {% hint style="danger" %}

@@ -1,7 +1,7 @@
 # 2.构建二进制
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Building-binary)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Building-binary)
 {% endhint %}
 
 这个页面主要是给那些对 Vaultwarden 开发感兴趣，或者有特殊原因想要构建自己的二进制的人。

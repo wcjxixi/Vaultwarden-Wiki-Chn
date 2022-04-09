@@ -1,12 +1,12 @@
 # 5.使用 Podman
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Using-Podman)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Using-Podman)
 {% endhint %}
 
 [Podman](https://podman.io) 是替代 Docker 的无守护程序，它与大部分 Docker 容器兼容。
 
-## 创建一个 systemd 服务文件 <a href="creating-a-systemd-service-file" id="creating-a-systemd-service-file"></a>
+## 创建一个 systemd 服务文件 <a href="#creating-a-systemd-service-file" id="creating-a-systemd-service-file"></a>
 
 由于 Podman 的无守护程序架构，因此它比 Docker 更容易在 systemd 中运行。它带有一个便捷的 [generate syetemd 命令](http://docs.podman.io/en/latest/markdown/podman-generate-systemd.1.html)，该命令可以生成 systemd 文件，这里有[一篇不错的文章详细介绍了它](https://www.redhat.com/sysadmin/podman-shareable-systemd-services)，还有[这篇文章也详细介绍了一些最新的更新](https://www.redhat.com/sysadmin/improved-systemd-podman)。
 
@@ -41,7 +41,7 @@ $ systemctl --user enable /etc/systemd/system/container-vaultwarden.service
 $ systemctl --user start container-vaultwarden.service
 ```
 
-### 每次重启时新建容器 <a href="new-container-every-restart" id="new-container-every-restart"></a>
+### 每次重启时新建容器 <a href="#new-container-every-restart" id="new-container-every-restart"></a>
 
 如果我们希望每次服务启动时都创建一个新的容器，我们可以编辑服务文件以包含以下内容：
 
@@ -71,9 +71,9 @@ ROCKET_PORT=8080
 
 如果您希望容器拥有特定名称，则需要添加 `ExecStartPre=/usr/bin/podman rm -i -f vaultwarden`，如果进程未被正确清理的话。注意，此方式当前无法与具有 `User=` 选项的用户一起正常工作（见 [https://github.com/containers/podman/issues/5572](%20https:/github.com/containers/podman/issues/5572/)）。
 
-## 故障排除 <a href="troubleshooting" id="troubleshooting"></a>
+## 故障排除 <a href="#troubleshooting" id="troubleshooting"></a>
 
-### 调试 systemd 服务文件 <a href="debugging-systemd-service-file" id="debugging-systemd-service-file"></a>
+### 调试 systemd 服务文件 <a href="#debugging-systemd-service-file" id="debugging-systemd-service-file"></a>
 
 如果主机出现故障或容器崩溃，则 systemd 服务文件应自动停止现有容器并将其重新启动。可以通过 `journalctl --user -u container-vaultwarden -t 100` 来定位错误。
 

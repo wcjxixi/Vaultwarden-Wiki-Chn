@@ -1,7 +1,7 @@
 # \*17.使用 systemd docker 运行
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Running-with-systemd-docker)
+对应的官方页面地址
 {% endhint %}
 
 {% hint style="info" %}
@@ -53,7 +53,7 @@ WantedBy=multi-user.target
 * `Type` 的值 `notify`：告诉 systemd 从已准备就绪的服务中获取通知。
 * `NotifyAccess` 的值 `all`：是由 `systemd-docker` 请求的。
 
-## 设置环境变量 <a href="setting-environment-variables" id="setting-environment-variables"></a>
+## 设置环境变量 <a href="#setting-environment-variables" id="setting-environment-variables"></a>
 
 可以通过两种方式在单元文件中直接指定环境变量：
 
@@ -90,7 +90,7 @@ TimeoutStartSec=0
 -snip-
 ```
 
-## 运行服务 <a href="running-the-service" id="running-the-service"></a>
+## 运行服务 <a href="#running-the-service" id="running-the-service"></a>
 
 完成上述安装和配置后，使用 `sudo systemctl daemon-reload` 命令重新加载systemd 。然后，使用 `sudo systemctl start vaultwarden` 命令启动 Vaultwarden 服务。
 

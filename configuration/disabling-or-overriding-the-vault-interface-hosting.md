@@ -1,7 +1,7 @@
 # 14.禁用或覆盖密码库接口托管
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Disabling-or-overriding-the-Vault-interface-hosting)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Disabling-or-overriding-the-Vault-interface-hosting)
 {% endhint %}
 
 为方便起见，Vaultwarden 镜像还将托管网页密码库界面的静态文件。您可以通过设置 `WEB_VAULT_ENABLED` 环境变量来完全禁用静态文件的托管。

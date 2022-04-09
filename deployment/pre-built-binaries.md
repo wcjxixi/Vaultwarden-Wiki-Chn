@@ -1,7 +1,7 @@
 # 3.预构建二进制
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Pre-built-binaries)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Pre-built-binaries)
 {% endhint %}
 
 Vaultwarden 目前并没有提供独立的二进制文件作为单独的下载，但对于拥有基于 Alpine 的 Docker 镜像的平台（当前是 x86-64 和 ARMv7），您可以从官方的 Docker 镜像中提取独立的、静态链接的二进制文件。每个 Docker 镜像还包括一个匹配的网页密码库构建（与平台无关）。

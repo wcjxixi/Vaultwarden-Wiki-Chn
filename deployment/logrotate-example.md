@@ -1,7 +1,7 @@
 # 7.转储示例
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Logrotate-example)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Logrotate-example)
 {% endhint %}
 
 随着时间增长，Vaultwarden 日志文件的大小可能会增长到很大。使用 logrotate，我们可以定期转储日志。

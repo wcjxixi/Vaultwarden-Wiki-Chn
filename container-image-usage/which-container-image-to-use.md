@@ -1,7 +1,7 @@
 # 1.容器镜像的选择
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Which-container-image-to-use)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Which-container-image-to-use)
 {% endhint %}
 
 从版本 1.17.0 开始，`vaultwarden` 提供了一个单一的 Docker 镜像（[`vaultarden/server`](https://hub.docker.com/r/vaultwarden/server)），该镜像对 SQLite、MySQL 和 PostgreSQL 数据库后端提供统一的支持。在该版本之前，每一种数据库后端都有单独的镜像（请参阅[历史镜像](which-container-image-to-use.md#historical-images)）。

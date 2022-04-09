@@ -1,7 +1,7 @@
 # 4.支持上游发展
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Supporting-upstream)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Supporting-upstream)
 {% endhint %}
 
 Vaultwarden 仅提供 API（服务器）端实现，用户仍依赖来自上游的客户端程序（移动应用程序、桌面应用程序和网页密码库），这些都是 8bit Solutions LLC 公司在上游完成的许多工作。同时 Vaultwarden 支持上游的某些付费功能并免费提供该功能。这就提出了一些有关[维持和支持上游发展的问题](https://github.com/dani-garcia/vaultwarden/issues/331)。许多用户提出了这个问题，并咨询他们如何在使用 Vaultwarden 的同时支持上游的发展。

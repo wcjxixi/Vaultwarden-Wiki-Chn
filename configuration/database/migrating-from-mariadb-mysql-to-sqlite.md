@@ -1,7 +1,7 @@
 # 4.从 MariaDB（MySQL）迁移到 SQLite
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Migrating-from-MariaDB-\(MySQL\)-to-SQLite)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Migrating-from-MariaDB-\(MySQL\)-to-SQLite)
 {% endhint %}
 
 {% hint style="danger" %}

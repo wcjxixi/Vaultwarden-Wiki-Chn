@@ -1,12 +1,12 @@
 # 2.Fail2Ban 设置
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Fail2Ban-Setup)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Fail2Ban-Setup)
 {% endhint %}
 
 设置 Fail2ban 可以阻止攻击者暴力破解您的密码库登录。如果您的实例是公开的，这一点尤其重要。
 
-## 目录 <a href="table-of-contents" id="table-of-contents"></a>
+## 目录 <a href="#table-of-contents" id="table-of-contents"></a>
 
 * [预先说明](fail2ban-setup.md#pre-requisite)
 * [安装](fail2ban-setup.md#installation)
@@ -22,7 +22,7 @@
 * [测试 Fail2Ban](fail2ban-setup.md#testing-fail-2-ban)
 * [SELinux 中的问题](fail2ban-setup.md#selinux-problems)
 
-## 预先说明 <a href="pre-requisite" id="pre-requisite"></a>
+## 预先说明 <a href="#pre-requisite" id="pre-requisite"></a>
 
 * 文件名位于每个代码块的顶部。
 * 从 1.5.0 版开始，Vaultwarden 支持记录到文件。请设置[日志记录](../logging.md)。
@@ -32,7 +32,7 @@
 [YYYY-MM-DD hh:mm:ss][vaultwarden::api::identity][ERROR] Username or password is incorrect. Try again. IP: XXX.XXX.XXX.XXX. Username: email@domain.com.
 ```
 
-## 安装 <a href="installation" id="installation"></a>
+## 安装 <a href="#installation" id="installation"></a>
 
 ### Debian / Ubuntu / Raspian Pi OS
 
@@ -49,7 +49,7 @@ sudo yum install epel-release
 sudo yum install fail2ban -y
 ```
 
-### 群晖 DSM <a href="synology-dsm" id="synology-dsm"></a>
+### 群晖 DSM <a href="#synology-dsm" id="synology-dsm"></a>
 
 使用 Synology 的话，由于各种原因需要做更多的工作。使用 Docker Compose 的完整的解决方案发布在[这里](https://github.com/sosandroid/docker-fail2ban-synology)。主要的问题是：
 
@@ -124,11 +124,11 @@ docker-compose up -d
 
 您现在应该看到该容器在 Synolog 的 Docker GUI 中运行了。在配置筛选器和 jail 后，您必须重新加载。
 
-## 为网页密码库设置 <a href="setup-for-web-vault" id="setup-for-web-vault"></a>
+## 为网页密码库设置 <a href="#setup-for-web-vault" id="setup-for-web-vault"></a>
 
 按照惯例，`path_f2b` 代表 Fail2ban 工作所需的路径。这取决于您的系统，例如在 Synology 上是 `/volumeX/docker/fail2ban/`，但在其他系统上是 `/etc/fail2ban/`。
 
-### Filter <a href="filter" id="filter"></a>
+### Filter <a href="#filter" id="filter"></a>
 
 使用如下内容创建文件：
 
@@ -195,11 +195,11 @@ sudo systemctl reload fail2ban
 
 随意更改您认为合适的选项。
 
-## 为管理页面设置 <a href="setup-for-admin-page" id="setup-for-admin-page"></a>
+## 为管理页面设置 <a href="#setup-for-admin-page" id="setup-for-admin-page"></a>
 
 如果您通过设置 `ADMIN_TOKEN` 环境变量启用了管理控制台，则可以使用 Fail2Ban 来阻止攻击者暴力破解您的管理令牌。该过程与网页密码库相同。
 
-### Filter <a href="filter" id="filter"></a>
+### Filter <a href="#filter" id="filter"></a>
 
 使用如下内容创建文件：
 
@@ -246,7 +246,7 @@ action = iptables-allports[name=vaultwarden, chain=FORWARD]
 sudo systemctl reload fail2ban
 ```
 
-## 测试 Fail2Ban <a href="testing-fail-2-ban" id="testing-fail-2-ban"></a>
+## 测试 Fail2Ban <a href="#testing-fail-2-ban" id="testing-fail-2-ban"></a>
 
 现在，尝试使用任何电子邮件地址登录 Vaultwarden （不必是有效电子邮件，只需是电子邮件格式即可）。如果它可以正常工作，您的 IP 将被阻止。运行以下命令来取消阻止的 IP：
 
@@ -263,7 +263,7 @@ sudo fail2ban-client set vaultwarden unbanip XX.XX.XX.XX
 
 如果您使用的是 podman 而不是 docker，则无法通过 `-e "TZ = <timezone>"` 来设置时区。可以按照以下指南解决此问题（当使用 alpine 镜像时）：[https://wiki.alpinelinux.org/wiki/Setting\_the\_timezone](https://wiki.alpinelinux.org/wiki/Setting\_the\_timezone)。
 
-## SELinux 中的问题 <a href="selinux-problems" id="selinux-problems"></a>
+## SELinux 中的问题 <a href="#selinux-problems" id="selinux-problems"></a>
 
 当使用 SELinux 时，SELinux 可能会阻止 fail2ban 读取日志。如果是这样，请运行此命令： `sudo tail /var/log/audit/audit.log`。您应该会看到如下类似内容（当然，实际的审核 ID 会因您的情况而不一样）：
 

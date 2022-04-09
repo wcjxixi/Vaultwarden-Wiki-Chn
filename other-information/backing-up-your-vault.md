@@ -1,7 +1,7 @@
 # 2.备份您的密码库
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Backing-up-your-vault)
+对应的
 {% endhint %}
 
 ## 概览 <a href="#overview" id="overview"></a>

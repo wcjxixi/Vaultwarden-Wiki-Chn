@@ -1,7 +1,7 @@
 # 1.构建你自己的镜像
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Building-your-own-docker-image)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Building-your-own-docker-image)
 {% endhint %}
 
 克隆库，然后从库的根目录运行以使用默认的 SQLite 后端进行构建：

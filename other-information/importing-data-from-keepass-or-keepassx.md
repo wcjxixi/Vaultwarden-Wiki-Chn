@@ -1,7 +1,7 @@
 # 1.从 Keepass 或 KeepassX 导入数据
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Importing-data-from-Keepass-or-KeepassX)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Importing-data-from-Keepass-or-KeepassX)
 {% endhint %}
 
 ## 介绍 <a href="#introduction" id="introduction"></a>

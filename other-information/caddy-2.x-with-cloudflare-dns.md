@@ -1,7 +1,7 @@
 # 5.使用 Cloudflare DNS 的 Caddy 2.x
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Caddy-2.x-with-Cloudflare-DNS)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Caddy-2.x-with-Cloudflare-DNS)
 {% endhint %}
 
 Dockerfile（Caddy 构建器）：

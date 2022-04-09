@@ -1,7 +1,7 @@
 # 5.部署示例
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Deployment-examples)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Deployment-examples)
 {% endhint %}
 
 本页面是独立部署示例的索引。如果要添加新的示例，请在适当的时候创建一个新的类别，并在总体上保持有序。

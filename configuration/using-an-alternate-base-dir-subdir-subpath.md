@@ -1,7 +1,7 @@
 # 19.使用备用基本目录（子目录/子路径）
 
 {% hint style="success" %}
-对应的[页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Using-an-alternate-base-dir)
+对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Using-an-alternate-base-dir)
 {% endhint %}
 
 通常，Vaultwarden 被限制驻留在子域的根目录中，比如`https://vaultwarden.example.com`。
@@ -10,7 +10,7 @@
 
 随着对 Vaultwarden 的更改（[PR#868](https://github.com/dani-garcia/vaultwarden/pull/868)（后端）和 [PR#11](https://github.com/dani-garcia/bw\_web\_builds/pull/11)（网页密码库）），您现在已经可以使用备用基本目录配置功能齐全的实例了。
 
-## 配置 <a href="configuration" id="configuration"></a>
+## 配置 <a href="#configuration" id="configuration"></a>
 
 只需将您的域名 URL 简单配置为包括基本目录即可。例如，假设您想使用 `https://vaultwarden.example.com/base-dir` 访问您的实例。（提示，您也可以根据需要使用多级目录，例如 `https://vaultwarden.example.com/multi/level/base/dir`）
 
@@ -49,6 +49,6 @@ location /my-base-path-2/ {
 }
 ```
 
-## 反向代理 <a href="reverse-proxying" id="reverse-proxying"></a>
+## 反向代理 <a href="#reverse-proxying" id="reverse-proxying"></a>
 
 既然 Vaultwarden API 路由已设置为期望的基本目录，如果您将 Vaultwarden 放置在反向代理后面，请确保将您的代理配置为将请求路径传递到 Vaultwarden。假如反向代理在 `localhost:8080` 上监听您的 vaultwarden，来自 `https://vaultwarden.example.com/base-dir/api/sync` 的请求到达了您的反向代理，则该请求必须转发到 `http://localhost:8080/base-dir/api/sync`，而不是 `http://localhost:8080/api/sync`。
