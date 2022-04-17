@@ -44,9 +44,9 @@ Vaultwarden 被同时打包用于 mysql、sqlite、postgresql，以及用于 Vau
 
 ## Cloudron
 
-[Cloudron](https://cloudron.io) 是一个帮助你在服务器上运行 Web 应用的平台。使用 Cloudron，你可以从 [App Library](https://cloudron.io/store/com.github.bitwardenrs.html) 中轻松地安装自定义域名的 Bitwarden\_rs。该应用包与上游网页密码库捆绑在一起，安装后不需要任何进一步的配置即可开始使用。Cloudron 团队会保持发行版跟踪并提供自动更新。
+[Cloudron](https://cloudron.io) 是一个帮助你在服务器上运行 Web 应用的平台。使用 Cloudron，你可以从 [App Library](https://cloudron.io/store/com.github.bitwardenrs.html) 中轻松地安装自定义域名的 Vaultwarden。该应用包与上游网页密码库捆绑在一起，安装后不需要任何进一步的配置即可开始使用。Cloudron 团队会保持发行版跟踪并提供自动更新。
 
-软件包代码和话题跟踪器可以在这里找到：[https://git.cloudron.io/cloudron/bitwardenrs-app](https://git.cloudron.io/cloudron/bitwardenrs-app)。
+软件包代码和话题跟踪器可以在这里找到：[https://git.cloudron.io/cloudron/bitwardenrs-app](https://git.cloudron.io/cloudron/vaultwarden-app)。
 
 ## Home Assistant <a href="#home-assistant" id="home-assistant"></a>
 

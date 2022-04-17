@@ -70,7 +70,7 @@ sqlite3 data/db.sqlite3 "VACUUM INTO '/path/to/backups/db-$(date '+%Y%m%d-%H%M')
 
 _**需要备份。**_
 
-[文件附件](https://help.bitwarden.ltd/your-vault/file-attachments)是唯一不存储在数据库表中的重要数据，主要是因为它们可以是任意大小，而 SQL 数据库一般不是为了有效处理大的 blob 而设计的。如果未创建文件附件，则该目录将不存在。
+[文件附件](https://help.ppgg.in/your-vault/file-attachments)是唯一不存储在数据库表中的重要数据，主要是因为它们可以是任意大小，而 SQL 数据库一般不是为了有效处理大的 blob 而设计的。如果未创建文件附件，则该目录将不存在。
 
 ### `sends` 目录 <a href="#the-sends-dir" id="the-sends-dir"></a>
 
@@ -102,7 +102,7 @@ _**建议备份。**_
 
 _**可选备份。**_
 
-图标缓存用于存储[网站图标](https://help.bitwarden.ltd/security/privacy-when-using-website-icons)，这样就不需要反复从登录网站获取图标。这可能不值得备份，除非你真的想避免重新获取大量的图标缓存。
+图标缓存用于存储[网站图标](https://help.ppgg.in/security/privacy-when-using-website-icons)，这样就不需要反复从登录网站获取图标。这可能不值得备份，除非你真的想避免重新获取大量的图标缓存。
 
 ## 恢复备份数据 <a href="#restoring-backup-data" id="restoring-backup-data"></a>
 

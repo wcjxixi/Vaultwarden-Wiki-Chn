@@ -1,7 +1,7 @@
 # \*6.使私有 CA 和自签名证书兼容 Chrome
 
 {% hint style="success" %}
-对应的官方页面地址
+对应的官方页面地址（Vaultwarden WiKi 已移除此页面）
 {% endhint %}
 
 {% hint style="warning" %}

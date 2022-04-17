@@ -135,7 +135,7 @@ export WEBSOCKET_ENABLED=true
 
 ## 使用 `lego` CLI 获取证书 <a href="#getting-certs-using-the-lego-cli" id="getting-certs-using-the-lego-cli"></a>
 
-在上面的 DuckDNS 例子中，Caddy 使用 `lego` 库通过 DNS 验证获取证书。`lego` 也有一个 CLI，你可以直接使用它来获取证书，例如，如果你想使用 Caddy 以外的反向代理。 (注意：这个例子使用 `lego`，但也有其他独立的 ACME 客户端支持 DNS 验证方式（参见 [DNS 验证](running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md#dns-challenge)部分）。
+在上面的 DuckDNS 例子中，Caddy 使用 `lego` 库通过 DNS 验证获取证书。`lego` 也有一个 CLI，你可以直接使用它来获取证书，例如，如果你想使用 Caddy 以外的反向代理。 (注意：这个例子使用 `lego`，但也有其他独立的 ACME 客户端支持 DNS 验证方式（参阅 [DNS 验证](running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md#dns-challenge)部分）。
 
 下面是一个如何做到这一点的例子。
 

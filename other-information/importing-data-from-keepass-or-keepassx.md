@@ -6,7 +6,7 @@
 
 ## 介绍 <a href="#introduction" id="introduction"></a>
 
-Bitwarden 可以导入来自许多[应用程序](https://help.bitwarden.ltd/import-export/import-data-to-your-vault)的数据。
+Bitwarden 可以导入来自许多[应用程序](https://help.ppgg.in/import-export/import-data-to-your-vault)的数据。
 
 当前的导入器让您仅选择导入文件的格式即可，而不用去管它是如何将数据转换为 Bitwarden 的。
 
@@ -53,6 +53,6 @@ Bitwarden 可以导入来自许多[应用程序](https://help.bitwarden.ltd/impo
     * Group2Sub2
   * Group2
 
-注意1：您必须手动创建主文件夹，否则导入后会将 MyVault/Group1 和 MyVault/Group2 显示为文件夹（因为没有上级 MyVault 文件夹）。创建 MyVault 文件夹后才会在 MMI 中显示子文件夹。（\[**译者注**]：Bitwarden 文件夹规则：[官方 Help](https://help.bitwarden.com/article/folders/)，[中文版](https://help.bitwarden.ltd/your-vault/folders)）
+注意1：您必须手动创建主文件夹，否则导入后会将 MyVault/Group1 和 MyVault/Group2 显示为文件夹（因为没有上级 MyVault 文件夹）。创建 MyVault 文件夹后才会在 MMI 中显示子文件夹。（\[**译者注**]：Bitwarden 文件夹规则：[官方 Help](https://help.bitwarden.com/article/folders/)，[中文版](https://help.ppgg.in/your-vault/folders)）
 
 注意2：在导入 Bitwarden 之前，您可以编辑文件夹以删除主文件夹「MyVault」，或编辑导出的 CSV 文件并删除每个条目中的「MyVault/」字符串。

@@ -1,11 +1,7 @@
 # \*17.使用 systemd docker 运行
 
 {% hint style="success" %}
-对应的官方页面地址
-{% endhint %}
-
-{% hint style="info" %}
-Vaultwarden WiKi 已删除此页面。
+对应的官方页面地址（Vaultwarden WiKi 已移除此页面）
 {% endhint %}
 
 这部分的内容允许您使用 systemd 来管理 Docker 容器的生命周期，若你喜欢的话。
