@@ -248,10 +248,15 @@ upstream vaultwarden-ws {
 
 # 将 HTTP 重定向到 HTTPS
 server {
+    if ($host = vaultwarden.example.tld) {
+        return 301 https://$host$request_uri;
+    }
+
     listen 80;
     listen [::]:80;
     server_name vaultwarden.example.tld;
-    return 301 https://$host$request_uri;
+    return 404;
+
 }
 
 server {
