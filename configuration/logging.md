@@ -4,7 +4,7 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Logging)
 {% endhint %}
 
-默认情况下，Vaultwarden 仅记录到[标准输出](https://zh.wikipedia.org/wiki/%E6%A8%99%E6%BA%96%E4%B8%B2%E6%B5%81)（stdout）。您也可以将它配置为记录到文件。
+默认情况下，Vaultwarden 仅记录到[标准输出](https://zh.wikipedia.org/wiki/%E6%A8%99%E6%BA%96%E4%B8%B2%E6%B5%81) (stdout)。您也可以将它配置为记录到文件。
 
 ## 记录到文件 <a href="#logging-to-a-file" id="logging-to-a-file"></a>
 
@@ -17,7 +17,7 @@ docker run -d --name vaultwarden \
 ...
 ```
 
-当设置此环境变量时，日志消息将被记录到标准输出和日志文件中。如果您在 Docker 中运行，则需要使用从 Docker 主机挂载的文件路径（如 `data` 文件夹）；否则，如果容器被重新启动或移除，您的日志文件将丢失（或至少难以找到）。
+当设置此环境变量时，日志消息将被记录到标准输出和日志文件中。如果您在 Docker 中运行，则需要使用从 Docker 主机挂载的文件路径（如 `data` 文件夹）；否则，如果容器被重新启动或移除，您的日志文件将丢失（或至少难以找回）。
 
 ## 更改日志级别 <a href="#change-the-log-level" id="change-the-log-level"></a>
 

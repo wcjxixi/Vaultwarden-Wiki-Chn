@@ -1,4 +1,4 @@
-# 4.从 MariaDB（MySQL）迁移到 SQLite
+# 4.从 MariaDB (MySQL) 迁移到 SQLite
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Migrating-from-MariaDB-\(MySQL\)-to-SQLite)
@@ -18,7 +18,7 @@ Vaultwarden 最初设计时仅使用 SQLite，但当时 MariaDB (MySQL) 和 Post
 
 ## 如何从 MariaDB 迁移到 SQLite <a href="#how-to-migrate-from-mariadb-to-sqlite" id="how-to-migrate-from-mariadb-to-sqlite"></a>
 
-确保您对 SQLite 和 MariaDB 使用的是相同版本的 Vaultwarden（Docker 或自定义构建），不要在这些步骤之间更新 Docker 镜像。要迁移到 SQLite，我们首先需要有一个 SQLite 数据库文件，我们可以用它来传输数据。要创建此文件，您需要停止当前的 Vaultwarden 实例，并将其配置为使用 SQLite。例如，您可以通过将 `DATABASE_URL` 从 `DATABASE_URL=mysql://<vaultwarden_user>:<vaultwarden_pw>@mariadb/vaultwarden` 更改为 `DATABASE_URL=/data/db.sqlite3` 来实现。 （ `/data` 是您使用的 `-v` 值的 Docker 容器内的内部路径）。
+确保您对 SQLite 和 MariaDB 使用的是相同版本的 Vaultwarden（Docker 或自定义构建），不要在这些步骤之间更新 Docker 镜像。要迁移到 SQLite，我们首先需要有一个 SQLite 数据库文件，我们可以用它来传输数据。要创建此文件，您需要停止当前的 Vaultwarden 实例，并将其配置为使用 SQLite。例如，您可以通过将 `DATABASE_URL` 从 `DATABASE_URL=mysql://<vaultwarden_user>:<vaultwarden_pw>@mariadb/vaultwarden` 更改为 `DATABASE_URL=/data/db.sqlite3` 来实现。（ `/data` 是您使用的 `-v` 值的 Docker 容器内的内部路径）。
 
 更改此配置后，启动 Vaultwarden，检查以 `Executing migration script .....` 开头的行的日志信息，这些信息显示它执行了一些迁移。
 

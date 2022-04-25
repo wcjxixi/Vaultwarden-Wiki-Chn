@@ -42,7 +42,7 @@ sudo apt-get install fail2ban -y
 
 ### Fedora / Centos
 
-需要 EPEL 库（CentOS 7）
+需要 EPEL 库 (CentOS 7)
 
 ```python
 sudo yum install epel-release
@@ -143,11 +143,11 @@ failregex = ^.*Username or password is incorrect\. Try again\. IP: <ADDR>\. User
 ignoreregex =
 ```
 
-\*\*提示：\*\*如果在 `fail2ban.log` 中出现以下错误消息（CentOS 7，fail2ban v0.9.7）\
+**提示**：如果在 `fail2ban.log` 中出现以下错误消息 (CentOS 7，fail2ban v0.9.7) \
 `fail2ban.filter [5291]: ERROR No 'host' group in '^.*Username or password is incorrect\. Try again\. IP: <ADDR>\. Username:.*$'`\
 请将 `vaultwarden.local` 中的 `<ADDR>` 改为 `<HOST>`。
 
-\*\*提示：\*\*如果您在 `vaultwarden.log` 中看到 127.0.0.1 是登录失败的 IP 地址，那么您可能正在使用反向代理，而 fail2ban 无法正常工作：
+**提示**：如果您在 `vaultwarden.log` 中看到 127.0.0.1 是登录失败的 IP 地址，那么您可能正在使用反向代理，而 fail2ban 无法正常工作：
 
 ```python
 [YYYY-MM-DD hh:mm:ss][vaultwarden::api::identity][ERROR] Username or password is incorrect. Try again. IP: 127.0.0.1. Username: email@example.com.
@@ -185,7 +185,7 @@ action = iptables-allports[name=vaultwarden, chain=FORWARD]
 如果在 Docker 容器之前使用了反向代理，请不要做此操作。如果使用了 apache2 或 nginx 之类的代理，请使用代理的端口而不要使用 `chain = FORWARD`。仅当在**无**代理的 Docker 时使用！
 
 **上面注意中的注意**：\
-在使用 caddy 作为反向代理的 Docker（CentOS 7）上运行时，上面的说法是不正确的。当用 caddy 作为反向代理时，可以使用 `chain = FORWARD` 。
+在使用 caddy 作为反向代理的 Docker (CentOS 7) 上运行时，上面的说法是不正确的。当用 caddy 作为反向代理时，可以使用 `chain = FORWARD` 。
 
 重新加载 fail2ban 使更改生效：
 
@@ -214,7 +214,7 @@ failregex = ^.*Invalid admin token\. IP: <ADDR>.*$
 ignoreregex =
 ```
 
-\*\*提示：\*\*如果在 `fail2ban.log` 中出现以下错误消息：`ERROR NOK: ("No 'host' group in '^.*Invalid admin token\\. IP: <ADDR>.*$'")`，请将 `vaultwarden-admin.local` 中的 `<ADDR>` 改为 `<HOST>`
+**提示**：如果在 `fail2ban.log` 中出现以下错误消息：`ERROR NOK: ("No 'host' group in '^.*Invalid admin token\\. IP: <ADDR>.*$'")`，请将 `vaultwarden-admin.local` 中的 `<ADDR>` 改为 `<HOST>`
 
 ### Jail
 
@@ -234,7 +234,7 @@ bantime = 14400
 findtime = 14400
 ```
 
-注意：Docker 使用 FORWARD 链而不是默认的 INPUT 链。因此，当使用 Docker 时，请用下面的 `action` 行替换 `banaction` 行：
+**注意**：Docker 使用 FORWARD 链而不是默认的 INPUT 链。因此，当使用 Docker 时，请用下面的 `action` 行替换 `banaction` 行：
 
 ```python
 action = iptables-allports[name=vaultwarden, chain=FORWARD]
@@ -248,7 +248,7 @@ sudo systemctl reload fail2ban
 
 ## 测试 Fail2Ban <a href="#testing-fail-2-ban" id="testing-fail-2-ban"></a>
 
-现在，尝试使用任何电子邮件地址登录 Vaultwarden （不必是有效电子邮件，只需是电子邮件格式即可）。如果它可以正常工作，您的 IP 将被阻止。运行以下命令来取消阻止的 IP：
+现在，尝试使用任何电子邮件地址登录 Vaultwarden（不必是有效电子邮件，只需是电子邮件格式即可）。如果它可以正常工作，您的 IP 将被阻止。运行以下命令来取消阻止的 IP：
 
 ```python
 # 使用 Docker

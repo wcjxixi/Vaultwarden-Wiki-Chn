@@ -50,14 +50,14 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 
 * [Bitwarden 公共 API](https://help.ppgg.in/organizations/bitwarden-public-api) / [组织 API 密钥](https://help.ppgg.in/organizations/bitwarden-public-api#authentication)
 * [事件日志](https://help.ppgg.in/organizations/event-logs)
-* 用于移动客户端（Android/iOS）的[实时同步](https://bitwarden.com/blog/post/live-sync/)（推送通知）
+* 用于移动客户端 (Android/iOS) 的[实时同步](https://bitwarden.com/blog/post/live-sync/)（推送通知）
 * [管理员密码重置](https://help.ppgg.in/organizations/admin-password-reset)
 * 某些企业策略：
   * [主密码重置](https://help.ppgg.in/organizations/enterprise-policies#master-password-reset)
 
 除非做出贡献，否则可能不会添加的功能：
 
-* [单点登录（SSO）](https://help.ppgg.in/login-with-sso/about-login-with-sso)
+* [单点登录 (SSO)](https://help.ppgg.in/login-with-sso/about-login-with-sso)
 * [群组](https://help.ppgg.in/organizations/groups)
 * [自定义角色](https://help.ppgg.in/organizations/user-types-and-access-control#custom-role)
 * 某些企业策略（[UI 不是开源的](https://github.com/bitwarden/web/tree/master/bitwarden\_license/src/app/policies)，可能需要通过管理页面进行配置）：

@@ -30,7 +30,7 @@ Bitwarden 可以导入来自许多[应用程序](https://help.ppgg.in/import-exp
   * Group2Sub2
 * Group2
 
-### 通过 Keepass(CSV) 导入后 <a href="#import-via-keepass-csv" id="import-via-keepass-csv"></a>
+### 通过 Keepass (CSV) 导入后 <a href="#import-via-keepass-csv" id="import-via-keepass-csv"></a>
 
 **所有者** = 组织
 
@@ -41,7 +41,7 @@ Bitwarden 可以导入来自许多[应用程序](https://help.ppgg.in/import-exp
   * Group2Sub2
 * Group2
 
-### 通过 Keepass(XML) 导入后 <a href="#import-via-keepass-xml" id="import-via-keepass-xml"></a>
+### 通过 Keepass (XML) 导入后 <a href="#import-via-keepass-xml" id="import-via-keepass-xml"></a>
 
 **所有者** = 已登录的用户
 

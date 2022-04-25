@@ -150,7 +150,7 @@ diesel migration redo
 
 ## 如何从 SQLite 后端迁移到 MySQL 后端（面向开发人员） <a href="#how-to-migrate-from-sqlite-backend-to-mysql-backend-for-developers" id="how-to-migrate-from-sqlite-backend-to-mysql-backend-for-developers"></a>
 
-如果要从 SQLite 迁移，请参考[使用 MariaDB（MySQL）后端](../configuration/database/using-the-mariadb-mysql-backend.md)。
+如果要从 SQLite 迁移，请参考[使用 MariaDB (MySQL) 后端](../configuration/database/using-the-mariadb-mysql-backend.md)。
 
 ## 如何从 SQLite 后端迁移到 PostgreSQL 后端（面向开发人员） <a href="#how-to-migrate-from-sqlite-backend-to-postgresql-backend-for-developers" id="how-to-migrate-from-sqlite-backend-to-postgresql-backend-for-developers"></a>
 

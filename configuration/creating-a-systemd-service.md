@@ -16,8 +16,8 @@ Description=Vaultwarden Server (Rust Edition)
 Documentation=https://github.com/dani-garcia/vaultwarden
 # 如果你使用 mariadb、mysql 或 postgresql 数据库， 
 # 你必须像下面这样添加它们，并去掉前面的 # 以取消注释。
-# 这将确保你的数据库服务器在 Vaultwarden 之前启动("After")，
-# 并且在启动 Vaultwarden 之前成功启动("Requires")。
+# 这将确保你的数据库服务器在 Vaultwarden 之前启动 ("After")，
+# 并且在启动 Vaultwarden 之前成功启动 ("Requires")。
 
 # 仅 sqlite
 After=network.target
@@ -36,7 +36,7 @@ After=network.target
 
 
 [Service]
-# 设置 bitwarden_rs 用户/群组。此用户/群组对工作目录(见下文)允许有读写权限
+# 设置 bitwarden_rs 用户/群组。此用户/群组对工作目录（见下文）允许有读写权限
 User=vaultwarden
 Group=vaultwarden
 # 用作配置作用的 .env 文件的位置
@@ -51,7 +51,7 @@ PrivateTmp=true
 PrivateDevices=true
 ProtectHome=true
 ProtectSystem=strict
-# 仅允许对以下目录进行写入，并将其设置为工作目录(用户和密码数据存储在这里)
+# 仅允许对以下目录进行写入，并将其设置为工作目录（用户和密码数据存储在这里）
 WorkingDirectory=/var/lib/vaultwarden
 ReadWriteDirectories=/var/lib/vaultwarden
 # 允许 bitwarden_rs 绑定 0-1024 范围内的端口
@@ -133,7 +133,7 @@ $ systemctl status vaultwarden.service
 
 ### 旧版 systemd 的沙盒选项 <a href="#sandboxing-options-with-older-systemd-versions" id="sandboxing-options-with-older-systemd-versions"></a>
 
-在 RHEL 7（以及 debian 8）中，使用的 systemd 不支持某些隔离选项（[#445](https://github.com/dani-garcia/bitwarden\_rs/issues/445)，[#363](https://github.com/dani-garcia/bitwarden\_rs/issues/363)）。这可能导致出现如下错误：
+在 RHEL 7（以及 debian 8）中，使用的 systemd 不支持某些隔离选项 ([#445](https://github.com/dani-garcia/bitwarden\_rs/issues/445)，[#363](https://github.com/dani-garcia/bitwarden\_rs/issues/363))。这可能导致出现如下错误：
 
 ```python
 Failed at step NAMESPACE spawning /home/vaultwarden/vaultwarden: Permission denied
@@ -161,7 +161,7 @@ $ sudo systemctl daemon-reload
 
 ### 服务无法启动 <a href="#service-fails-to-start" id="service-fails-to-start"></a>
 
-systemd 日志中显示以下错误（`journalctl -eu vaultwarden.service`）：
+systemd 日志中显示以下错误 (`journalctl -eu vaultwarden.service`)：
 
 ```python
 Feb 18 05:29:10 staging-bitwarden systemd[1]: Started Vaultwarden Server (Rust Edition).
@@ -173,7 +173,7 @@ Feb 18 05:29:10 staging-bitwarden systemd[1]: vaultwarden.service: Failed with r
 
 已知当 Vaultwarden 在容器（LXC 等）内或本地运行时，会出现这种情况。服务文件中的参数 `LimitNPROC=64` 使服务无法启动。注释掉这个参数后，服务可以正常启动。
 
-\*\*注意：\*\*systemd 覆盖文件不起作用，必须注释/删除该行。最简单的方法是通过
+**注意**：systemd 覆盖文件不起作用，必须注释/删除该行。最简单的方法是通过
 
 ```python
 # systemctl edit --full vaultwarden.service

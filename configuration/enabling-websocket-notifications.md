@@ -4,7 +4,9 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-WebSocket-notifications)
 {% endhint %}
 
-**重要提示**：这不适用于使用推送通知的移动客户端。
+WebSocket 通知用于通知浏览器和桌面 Bitwarden 客户端发生了一些相关的事件，例如密码数据库中有条目被修改或删除。收到通知后，客户端可以采取适当的操作，例如重新获取修改的条目，或从其本地数据库副本中移除已删除的条目。在此通知方案中，Bitwarden 客户端与 Bitwarden 服务器（在本例中为 Vaultwarden）建立持久的 WebSocket 连接。每当服务器有要报告的事件时，它都会通过此持久连接将其发送给客户端。
+
+请注意，WebSocket 通知不适用于移动 (Android/iOS) Bitwarden 客户端。这些客户端改为使用原生推送通知服务（Android 为 [FCM](https://firebase.google.com/docs/cloud-messaging)，iOS 为 [APN](https://developer.apple.com/go/?id=push-notifications)）。Vaultwarden 目前不支持向移动客户端推送通知。
 
 要启用 WebSockets 通知，必须使用外部反向代理，并且必须执行以下配置操作：
 

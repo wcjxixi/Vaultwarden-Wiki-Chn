@@ -4,7 +4,7 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Which-container-image-to-use)
 {% endhint %}
 
-从版本 1.17.0 开始，`vaultwarden` 提供了一个单一的 Docker 镜像（[`vaultarden/server`](https://hub.docker.com/r/vaultwarden/server)），该镜像对 SQLite、MySQL 和 PostgreSQL 数据库后端提供统一的支持。在该版本之前，每一种数据库后端都有单独的镜像（请参阅[历史镜像](which-container-image-to-use.md#historical-images)）。
+从版本 1.17.0 开始，`vaultwarden` 提供了一个单一的 Docker 镜像 ([`vaultarden/server`](https://hub.docker.com/r/vaultwarden/server))，该镜像对 SQLite、MySQL 和 PostgreSQL 数据库后端提供统一的支持。在该版本之前，每一种数据库后端都有单独的镜像（请参阅[历史镜像](which-container-image-to-use.md#historical-images)）。
 
 `vaultwarden/server` 是一个多架构镜像，这意味着它在一个镜像名下支持多种 CPU 架构。假设你运行的是支持的架构之一，简单地拉取 `vaultwarden/server` 会自动产生适合你的环境的特定架构的镜像，但 Armv6 板卡可能除外，比如 Raspberry Pi 1 和 Zero（请参阅 [moby/moby#41017](https://github.com/moby/moby/issues/41017)）。运行 Docker 20.10.0 以及更高版本的 Armv6 用户可以像通常那样简单地拉取 `vaultwarden/server` 多架构镜像，运行早期 Docker 版本的 Armv6 用户必须在镜像标签中指定 `arm32v6` 标签，例如 `latest- arm32v6`。
 

@@ -31,11 +31,11 @@
 xcaddy build --with github.com/caddy-dns/cloudflare --with github.com/caddy-dns/duckdns
 ```
 
-将 `caddy` 二进制 移动到 `/usr/local/bin/caddy` 或其他合适的目录中。（可选）运行语句 `sudo setcap cap_net_bind_service=+ep /usr/local/bin/caddy` 以允许 `caddy` 而在特权端口（< 1024）上监听，而无须以 root 身份运行。
+将 `caddy` 二进制 移动到 `/usr/local/bin/caddy` 或其他合适的目录中。（可选）运行语句 `sudo setcap cap_net_bind_service=+ep /usr/local/bin/caddy` 以允许 `caddy` 而在特权端口 (< 1024) 上监听，而无须以 root 身份运行。
 
 ## Duck DNS 设置 <a href="#duck-dns-setup" id="duck-dns-setup"></a>
 
-如果您还没有账户，请在 [https://www.duckdns.org/](https://www.duckdns.org) 创建一个。给您的 bitwarden\_rs 实例创建一个子域名（例如，`my-vw.duckdns.org`），将其 IP 地址设置为你的 bitwarden\_rs 主机的私有 IP（例如，192.168.1.100）。记下你的账户的 token 值（[UUID](https://en.wikipedia.org/wiki/UUID) 格式的字符串）。Caddy 将需要此 token 来完成 DNS 验证。
+如果您还没有账户，请在 [https://www.duckdns.org/](https://www.duckdns.org) 创建一个。给您的 Vaultwarden 实例创建一个子域名（例如，`my-vw.duckdns.org`），将其 IP 地址设置为你的 Vaultwarden 主机的私有 IP（例如，192.168.1.100）。记下你的账户的 token 值（[UUID](https://en.wikipedia.org/wiki/UUID) 格式的字符串）。Caddy 将需要此 token 来完成 DNS 验证。
 
 创建一个名为 `Caddyfile` 的文件，内容如下：
 
@@ -159,7 +159,7 @@ export WEBSOCKET_ENABLED=true
 如果你的子域出现 DNS 解析错误（例如，`DNS_PROBE_FINISHED_NXDOMAIN` 或 `ERR_NAME_NOT_RESOLVED`），可能是你的 DNS 解析器阻止了解析，有以下原因：
 
 1. 出于安全原因，它阻止动态 DNS 服务。
-2. 为防止 [DNS 重定向攻击](https://en.wikipedia.org/wiki/DNS\_rebinding)，或出于其他一些原因，它阻止域名解析到私有（RFC 1918）IP 地址。
+2. 为防止 [DNS 重定向攻击](https://en.wikipedia.org/wiki/DNS\_rebinding)，或出于其他一些原因，它阻止域名解析到私有 (RFC 1918) IP 地址。
 
 无论哪种情况，您都可以尝试使用其他 DNS 解析器，例如 Google 的 `8.8.8.8` 或 Cloudflare 的 `1.1.1.1`。对于第二种情况，如果您在 dnsmasq 或 Unbound 等本地 DNS 服务器后面运行，则可以将其配置为完全禁用 DNS 重新绑定保护，或允许某些域名返回私有地址。
 

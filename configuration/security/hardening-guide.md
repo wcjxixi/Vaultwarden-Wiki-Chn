@@ -44,7 +44,7 @@ Vaultwarden 在登录页面上显示密码提示，以适应未配置 SMTP 的�
 
 Vaultwarden Docker 镜像被配置为默认以 root 用户的身份运行容器进程。这允许 Vaultwarden 在没有权限问题的情况下读取/写入 [bind-mounted](https://docs.docker.com/storage/bind-mounts/) 到容器中的任何数据，即使这些数据是由另一个用户（例如，你在 Docker 主机上的用户账户）拥有的。默认配置在安全性和可用性之间取得了很好的平衡--在一个无权限的 Docker 容器中以 root 身份运行，本身就提供了合理的隔离度，同时也让那些不是非常精通如何在 Linux 上管理所有权/权限的用户更容易进行设置。然而，作为通用策略，从安全的角度来说，以所需的最低权限运行进程是更好的；对于用 Rust 等内存安全语言编写的程序来说，这一点就不那么重要了，但请注意，Vaultwarden 也使用了一些用 C 语言编写的库代码（例如 SQLite、OpenSSL、MySQL、PostgreSQL 等）。
 
-要在 Docker 中以非 root 用户（uid/gid 1000）的身份运行容器进程（vaultwarden）：
+要在 Docker 中以非 root 用户 (uid/gid 1000) 的身份运行容器进程 (vaultwarden)：
 
 ```python
 docker run -u 1000:1000 -e ROCKET_PORT=8080 -p <host-port>:8080 \

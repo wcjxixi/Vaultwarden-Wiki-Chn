@@ -1,4 +1,4 @@
-# 1.使用 MariaDB（MySQL）后端
+# 1.使用 MariaDB (MySQL) 后端
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Using-the-MariaDB-\(MySQL\)-Backend)
@@ -152,7 +152,7 @@ FLUSH PRIVILEGES;
 
 此[话题评论](https://github.com/dani-garcia/vaultwarden/issues/497#issuecomment-511827057)中描述了一种从 SQLite 迁移到 MySQL 的简单方法。下面重复这些步骤。请注意，使用此方法风险自负，强烈建议备份您的安装和数据！
 
-1、首先遵循上面的步骤 1 和步骤 2
+1、首先遵循上面的步骤 1 和步骤 2。
 
 2、配置 Vaultwarden 并启动它，以便 [diesel](http://diesel.rs) 可以运行迁移并正确设置模式。除此之外不要做别的。
 
@@ -160,7 +160,7 @@ FLUSH PRIVILEGES;
 
 4、使用下面的命令转储你现有的 SQLite 数据库。再次检查你的 sqlite 数据库的名称，默认应该是 db.sqlite。
 
-\*\*注意：\*\*在您的 Linux 系统上需要已经安装了 sqlite3 命令。
+**注意**：在您的 Linux 系统上需要已经安装了 sqlite3 命令。
 
 我们需要从 sqlite 转储的输出中移除一些查询，如创建表等，我们将在这里进行。
 

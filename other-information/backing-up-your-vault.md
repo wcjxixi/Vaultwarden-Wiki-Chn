@@ -23,7 +23,7 @@ data
 ├── db.sqlite3           # 主 SQLite 数据库文件。
 ├── db.sqlite3-shm       # SQLite 共享内存文件（并非始终存在）。
 ├── db.sqlite3-wal       # SQLite 预写日志文件（并非始终存在）。
-├── icon_cache           # 站点图标（favicon）缓存在此目录下。
+├── icon_cache           # 站点图标 (favicon) 缓存在此目录下。
 │   ├── <domain>.png
 │   ├── example.com.png
 │   ├── example.net.png
@@ -44,9 +44,9 @@ data
 
 _**需要备份。**_
 
-SQLite \_\*\*\*\*\_数据库文件（`db.sqlite3`）存储了几乎所有重要的 Vaultwarden 数据/状态（数据库条目、用户/org/设备元数据等），主要的例外是附件，附件作为单独的文件存储在文件系统中。
+SQLite 数据库文件 (`db.sqlite3`) 存储了几乎所有重要的 Vaultwarden 数据/状态（数据库条目、用户/组织/设备元数据等），主要的例外是附件，附件作为单独的文件存储在文件系统中。
 
-您一般应使用 SQLite CLI（`sqlite3`）中的 `.backup` 命令来备份数据库文件。该命令使用 [Online Backup API](https://www.sqlite.org/backup.html)，SQLite 文档是备份可能正在被使用的数据库文件的[最佳方式](https://www.sqlite.org/howtocorrupt.html#\_backup\_or\_restore\_while\_a\_transaction\_is\_active)。如果你能确保数据库在备份运行时未被使用，你也可以使用其他方式，例如 `.dump` 命令，或者简单地复制所有 SQLite 数据库文件（包括 `-wal` 文件，如果存在的话）。
+您一般应使用 SQLite CLI (`sqlite3`) 中的 `.backup` 命令来备份数据库文件。该命令使用 [Online Backup API](https://www.sqlite.org/backup.html)，SQLite 文档是备份可能正在被使用的数据库文件的[最佳方式](https://www.sqlite.org/howtocorrupt.html#\_backup\_or\_restore\_while\_a\_transaction\_is\_active)。如果你能确保数据库在备份运行时未被使用，你也可以使用其他方式，例如 `.dump` 命令，或者简单地复制所有 SQLite 数据库文件（包括 `-wal` 文件，如果存在的话）。
 
 假设你的数据文件夹是 `data`（默认），一个基本的备份命令看起来像这样：
 
@@ -96,7 +96,7 @@ _**建议备份。**_
 
 这些文件用于签署当前登录用户的 [JWT](https://en.wikipedia.org/wiki/JSON\_Web\_Token)（验证令牌）。删除这些文件将简单地注销每个用户，迫使他们重新登录。
 
-**\[译者注]**：[JWT](https://jwt.io)（JSON Web Tokens），是一种基于 JSON 的、用于在网络上声明某种主张的令牌（token）。JWT 通常由三部分组成:：头信息（header）、消息体（payload）和签名（signature）。
+**\[译者注]**：[JWT](https://jwt.io) (JSON Web Tokens)，是一种基于 JSON 的、用于在网络上声明某种主张的令牌 (token)。JWT 通常由三部分组成:：头信息 (header)、消息体 (payload)和签名 (signature)。
 
 ### `icon_cache` 目录 <a href="#the-icon_cache-dir" id="the-icon_cache-dir"></a>
 
