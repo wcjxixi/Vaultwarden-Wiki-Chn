@@ -8,9 +8,9 @@
 
 简短的回答，**没有**。两个项目的开发人员之间有时会有联系，但没有合作。除此之外，Vaultwarden 项目仅使用 8bit Solutions LLC 提供的 Web Vault 并打了一些补丁，以使其与我们的实现兼容。
 
-## Vaultwarden 能否连接到 Oracle MySQL V8.x 数据库？ <a href="#can-bitwarden_rs-connect-to-an-oracle-mysql-v-8-x-database" id="can-bitwarden_rs-connect-to-an-oracle-mysql-v-8-x-database"></a>
+## Vaultwarden 能连接到 Oracle MySQL V8.x 数据库吗？ <a href="#can-bitwarden_rs-connect-to-an-oracle-mysql-v-8-x-database" id="can-bitwarden_rs-connect-to-an-oracle-mysql-v-8-x-database"></a>
 
-使用 Oracle MySQL v8.x，当你试图启动 Vaultwarden 时，可能会出现以下警告：
+在使用 Oracle MySQL v8.x 时，当你试图启动 Vaultwarden 时，可能会出现以下警告：
 
 ```python
 [vaultwarden::util][WARN] Can't connect to database, retrying: DieselConError.
@@ -19,7 +19,7 @@
 )
 ```
 
-Oracle MySQL v8.x 默认使用更安全的密码散列方法，这很好，但目前不被我们的构建所支持。你需要以一种特定的方式创建 Vaultwarden 用户，以便它使用旧的本地密码散列。
+Oracle MySQL v8.x 默认使用更安全的密码散列方法，这很好，但目前不被我们的构建所支持。你需要以一种特定的方式创建 Vaultwarden 用户，以便它使用旧的本地密码散列：
 
 ```python
 -- Use this on MySQLv8 installations
