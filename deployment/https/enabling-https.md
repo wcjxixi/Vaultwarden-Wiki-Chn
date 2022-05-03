@@ -125,7 +125,7 @@ verify return:1
 >
 > OCSP Stapling 一般翻译为 OCSP 装订或 OCSP 封套。
 
-如果 OCSP Stapling 无法正常工作，则连接移动应用程序将失败，并显 `Chain validation failed` 消息。
+如果 OCSP Stapling 无法正常工作，则连接移动应用程序将失败，并显示 `Chain validation failed` 消息。
 
 正确设置 OCSP Stapling 后，[Digicert SSL Checker](https://www.digicert.com/help/) 的吊销检查部分将包含「OCSP Staple: Good」。您的网络服务器必须能够连接到证书的 X509v3 扩展中的「Authority Information Access」URL，才能使 OCSP Stapling 正常工作。
 
