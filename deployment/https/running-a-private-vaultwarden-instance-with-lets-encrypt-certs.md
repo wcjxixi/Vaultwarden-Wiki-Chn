@@ -139,15 +139,15 @@ export WEBSOCKET_ENABLED=true
 
 下面是一个如何做到这一点的例子。
 
-1. 从 [https://github.com/go-acme/lego/releases](https://github.com/go-acme/lego/releases) 下载预建的 `lego` 二进制文件到您的系统中。解压内容到某个目录，比如 `/usr/local/lego`。
+1. 从 [https://github.com/go-acme/lego/releases](https://github.com/go-acme/lego/releases) 下载预建的 `lego` 二进制文件到您的系统中。将其解压到某个目录，比如 `/usr/local/lego`。
 2. 从那个目录中，运行 `DUCKDNS_TOKEN=<token> ./lego -a --dns duckdns -d my-vm.duckdns.org -m me@example.com run`（用合适的值替换令牌、域名和电子邮件地址）。这将使你在 Let's Encrypt 注册，并为你的域名获取一个证书。
 3. 设置一个每周的 cron 作业来运行 `DUCKDNS_TOKEN=<token> ./lego --dns duckdns -d my-vw.duckdns.org -m me@example.com renew`。这将在你的证书即将到期时更新它。
 
 {% hint style="warning" %}
-`lego` 默认请求 ECC/ECDSA 证书。如果你使用 vaultwarden 中内置的 [Rocket HTTPS 服务器](enabling-https.md#via-rocket)，你需要请求 RSA 证书。在上面的 `lego` 命令中，添加选项 `--key-type rsa2048`。
+`lego` 默认请求 ECC/ECDSA 证书。如果你使用 Vaultwarden 中内置的 [Rocket HTTPS 服务器](enabling-https.md#via-rocket)，你需要请求 RSA 证书。在上面的 `lego` 命令中，添加选项 `--key-type rsa2048`。
 {% endhint %}
 
-在这个例子中，用于配置您的反向代理所生成的输出为：
+在这个例子中，你需要用生成的输出来配置你的反向代理：
 
 * `/usr/local/lego/.lego/certificates/my-vw.duckdns.org.crt` （证书）
 * `/usr/local/lego/.lego/certificates/my-vw.duckdns.org.key` （私钥）
@@ -156,10 +156,10 @@ export WEBSOCKET_ENABLED=true
 
 ### DNS 问题 <a href="#dns-issues" id="dns-issues"></a>
 
-如果你的子域出现 DNS 解析错误（例如，`DNS_PROBE_FINISHED_NXDOMAIN` 或 `ERR_NAME_NOT_RESOLVED`），可能是你的 DNS 解析器阻止了解析，有以下原因：
+如果你的子域名出现 DNS 解析错误（例如，`DNS_PROBE_FINISHED_NXDOMAIN` 或 `ERR_NAME_NOT_RESOLVED`），可能是你的 DNS 解析器阻止了解析，有以下原因：
 
-1. 出于安全原因，它阻止动态 DNS 服务。
-2. 为防止 [DNS 重定向攻击](https://en.wikipedia.org/wiki/DNS\_rebinding)，或出于其他一些原因，它阻止域名解析到私有 (RFC 1918) IP 地址。
+1. 出于安全原因，它会阻止动态 DNS 服务。
+2. 为防止 [DNS 重新绑定](https://en.wikipedia.org/wiki/DNS\_rebinding)攻击，或出于其他一些原因，它会阻止域名解析到私有 (RFC 1918) IP 地址。
 
 无论哪种情况，您都可以尝试使用其他 DNS 解析器，例如 Google 的 `8.8.8.8` 或 Cloudflare 的 `1.1.1.1`。对于第二种情况，如果您在 dnsmasq 或 Unbound 等本地 DNS 服务器后面运行，则可以将其配置为完全禁用 DNS 重新绑定保护，或允许某些域名返回私有地址。
 
