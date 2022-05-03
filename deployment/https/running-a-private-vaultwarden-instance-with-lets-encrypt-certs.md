@@ -4,7 +4,7 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Running-a-private-vaultwarden-instance-with-Let's-Encrypt-certs)
 {% endhint %}
 
-假设你希望运行一个只能从本地网络访问的 Vaultwarden 实例，但你又希望此实例启用 HTTPS，此 HTTPS 证书由一个被广泛接受的 CA 而不是你自己的[私有 CA](../../other-information/private-ca-and-self-signed-certs-that-work-with-chrome.md) 来签署（以避免将专用 CA 证书加载到所有设备中的麻烦）。
+假设你希望运行一个只能从本地网络访问的 Vaultwarden 实例，但你又希望此实例启用由一个被广泛接受的 CA 而不是你自己的[私有 CA](../../other-information/private-ca-and-self-signed-certs-that-work-with-chrome.md) 来签署的 HTTPS（以避免将专用 CA 证书加载到所有设备中的麻烦）。
 
 本文将演示如何使用 [Caddy](https://caddyserver.com) Web 服务器创建这样的设置，Caddy 内置了对诸多 DNS 提供商的 ACME 支持。我们将通过 ACME [DNS 验证方式](https://letsencrypt.org/docs/challenge-types/#dns-01-challenge)获取 Let's Encrypt 证书来配置 Caddy -- 在这里使用通常的 HTTP 验证方式的话会有问题，因为它依赖于 Let's Encrypt 服务器能够访问到你的内部 Web 服务器。
 
