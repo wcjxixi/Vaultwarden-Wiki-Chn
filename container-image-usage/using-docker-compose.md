@@ -24,7 +24,7 @@
 
 本示例假定您已[安装](https://docs.docker.com/compose/install/) Docker Compose，并且您的 Vaultwarden 实例具有一个可以公开访问的域名（比如 `vaultwarden.example.com`）。
 
-首先创建一个新的目录，并切换到该目录下。接下来，创建下面的 `docker-compose.yml` 文件，确保将 `DOMAIN` 和 `EMAIL` 变量替换为适当的值。
+首先创建一个新的目录，并切换到该目录下。接下来，创建下面的 `docker-compose.yml` 文件，确保将 `DOMAIN` 和 `EMAIL` 变量替换为实际的值。
 
 ```python
 version: '3'
@@ -99,13 +99,13 @@ docker-compose up -d
 docker-compose down
 ```
 
-[此处](https://github.com/sosandroid/docker-bitwarden\_rs-caddy-synology)提供了一个类似的适用于 Synology 的基于 Caddy 的示例。
+[此处](https://github.com/sosandroid/docker-bitwarden\_rs-caddy-synology)提供了一个类似的基于 Caddy 的适用于 Synology 的示例。
 
 ## 带有 DNS 验证的 Caddy <a href="#caddy-with-dns-challenge" id="caddy-with-dns-challenge"></a>
 
-这个示例和上一个示例一样，但适用于您不希望您的实例被公开访问的情况（即您只能从您的本地网络访问它）。这个示例使用 Duck DNS 作为 DNS 提供商。更多的背景资料，以及如何设置 Duck DNS 的细节，请参考[使用 Let's Encrypt 证书运行私有 vaultwarden 实例](../deployment/https/running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md)。
+这个示例和上一个示例一样，但适用于您不希望您的实例被公开访问的情况（即您只能从您的本地网络访问它）。这个示例使用 Duck DNS 作为 DNS 提供商。更多的背景资料，以及如何设置 Duck DNS 的细节，请参考[使用 Let's Encrypt 证书运行私有 Vaultwarden 实例](../deployment/https/running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md)。
 
-首先创建一个新的目录，并切换到该目录下。接下来，创建下面的 `docker-compose.yml` 文件，确保将 `DOMAIN` 和 `EMAIL` 变量替换为适当的值。
+首先创建一个新的目录，并切换到该目录下。接下来，创建下面的 `docker-compose.yml` 文件，确保将 `DOMAIN` 和 `EMAIL` 变量替换为实际的值。
 
 ```python
 version: '3'

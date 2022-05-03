@@ -12,24 +12,24 @@ SQLite 后端是最广泛被使用/测试的后端，除非有特殊需要使用
 
 ## 镜像标签 <a href="#image-tags" id="image-tags"></a>
 
-`vaultwarden/server` 镜像有好几个标签，每个标签都代表了镜像的一些变体或属性（例如特定的版本）。
+`vaultwarden/server` 镜像有一些列标签，每种标签都代表了镜像的一些变体或属性（例如特定的版本）。
 
 * `latest` -- 跟踪最新发布的版本（即带有版本号的标签）。推荐大多数用户使用这个标签，因为它通常是最稳定的。
 * `testing` -- 跟踪源代码库的最新提交的版本。这个标签推荐给想要提前获取最新功能或增强功能的用户。测试版一般都很稳定，但不可避免它偶尔也会出现一些问题。
 * `x.y.z` (例如 `1.16.0`) -- 代表一个特定的发布版本。
 * `alpine` -- 除了少数例外，该镜像功能上与 `latest` 相同，但它是基于 Alpine 而非 Debian，因此镜像更小。选择 `latest` 或 `alpine` 主要是一个喜好问题，但请注意 `alpine` 标签目前只支持 `amd64` 和 `arm32v7` 架构，并且仅支持 SQLite 和 PostgreSQL 数据库后端。
 * `x.y.z-alpine` (例如 `1.16.0-alpine`) -- 与 `alpine` 类似，但它代表一个特定的发布版本。
-* `latest-arm32v6` -- 与 `latest` 相同，但明确表示为 `arm32v6` 镜像。目前，对于使用 Armv6 板卡（如 Raspberry Pi 1 和 Zero）的用户来说，需要使用此标签。否则，Docker 会尝试拉取 `arm32v7` 镜像，这将无法工作（见 [moby/moby#41017](https://github.com/moby/moby/issues/41017)）。
+* `latest-arm32v6` -- 与 `latest` 相同，但明确表示为 `arm32v6` 镜像。目前，对于使用 Armv6 板卡（如 Raspberry Pi 1 和 Zero）的用户来说，需要使用此标签。否则，Docker 会尝试拉取 `arm32v7` 镜像，这将无法工作（参阅 [moby/moby#41017](https://github.com/moby/moby/issues/41017)）。
 * `testing-arm32v6` -- 与 `testing` 相同，但明确表示为 `arm32v6` 镜像。
 * `x.y.z-arm32v6` (例如 `1.16.0-arm32v6`) -- 与 `latest-arm32v6` 类似，但它代表一个特定的发布版本。
 
 ## 镜像更新 <a href="#image-updates" id="image-updates"></a>
 
-偶尔，上游的 Bitwarden 项目（即 Bitwarden 公司）会对客户端做一些向后不兼容的改动，这就需要对服务器的实现做相应的改动。vaultwarden 一般会及时推送新的版本来适应这些改动。
+偶尔，上游的 Bitwarden 项目（即 Bitwarden 公司）会对客户端做一些向后不兼容的改动，这就需要对服务器的实现做相应的改动。Vaultwarden 一般会及时推送新的版本来适应这些改动。
 
-然而，由于上游控制着客户端的发布，而移动应用和浏览器扩展通常会自己自动更新，因此，对于 vaultwarden 用户来说，保持更新为最新的 vaultwarden 版本非常重要。否则，不兼容的客户端和服务器版本可能会导致突然中断或异常。
+然而，由于上游控制着客户端的发布，而移动应用和浏览器扩展通常会自己自动更新，因此，对于 Vaultwarden 用户来说，保持更新为最新的 Vaultwarden 版本非常重要。否则，不兼容的客户端和服务器版本可能会导致出现突然中断或异常。
 
-网页密码库是唯一的例外：由于网页密码库与 vaultwarden 镜像捆绑在一起，它的版本总是与 vaultwarden 服务器的版本相匹配。如果你只把网页密码库用作客户端（可能性不大），那么你就不需要担心这些兼容性问题。
+网页密码库是唯一的例外：由于网页密码库与 Vaultwarden 镜像捆绑在一起，它的版本总是与 Vaultwarden 服务器的版本相匹配。如果你只把网页密码库用作客户端（可能性不大），那么你就不需要担心这些兼容性问题。
 
 ## 历史镜像 <a href="#historical-images" id="historical-images"></a>
 

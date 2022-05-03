@@ -10,7 +10,7 @@
 
 ## Vaultwarden 能连接到 Oracle MySQL V8.x 数据库吗？ <a href="#can-bitwarden_rs-connect-to-an-oracle-mysql-v-8-x-database" id="can-bitwarden_rs-connect-to-an-oracle-mysql-v-8-x-database"></a>
 
-在使用 Oracle MySQL v8.x 时，当你试图启动 Vaultwarden 时，可能会出现以下警告：
+在使用 Oracle MySQL v8.x 时，当你试图启动 Vaultwarden，可能会出现以下警告：
 
 ```python
 [vaultwarden::util][WARN] Can't connect to database, retrying: DieselConError.
@@ -19,7 +19,9 @@
 )
 ```
 
-Oracle MySQL v8.x 默认使用更安全的密码散列方法，这很好，但目前不被我们的构建所支持。你需要以一种特定的方式创建 Vaultwarden 用户，以便它使用旧的本地密码散列：
+Oracle MySQL v8.x 默认使用更安全的密码散列方法，这很好，但目前不被我们的构建所支持。
+
+你需要以一种特定的方式创建 Vaultwarden 用户，以便它能使用旧的原生密码散列：
 
 ```python
 -- Use this on MySQLv8 installations
@@ -39,7 +41,7 @@ ALTER USER 'vaultwarden'@'localhost' IDENTIFIED WITH mysql_native_password BY 'y
 
 Bitwarden 客户端需要一个安全的连接，才能正常工作且没有任何问题。虽然有些客户端可以在没有安全连接的情况下工作，但我们并不推荐这样做。
 
-大多数时候，当人们在使用证书时仍然有问题，因为他们使用的是所谓的自签名证书。虽然这些证书可以提供安全连接，但一些平台不允许或不支持这样做。
+大多数时候，当人们在使用证书时仍然有问题，因为他们使用的是所谓的自签名证书。虽然这些证书可以提供安全连接，但一些平台不允许或不支持它。
 
 我们建议使用诸如 Let's Encrypt 这样的服务来提供一个有效的、被大多数设备默认接受的证书。请参阅以下页面：
 
@@ -50,7 +52,7 @@ Bitwarden 客户端需要一个安全的连接，才能正常工作且没有任�
 
 没有显示图标的原因有很多。如果只是几个密码库项目，可能是我们无法提取它。有些网站启用了一些保护措施，导致我们的实施失败。他们中的大多数需要 Javascript 才能工作。
 
-这也可能是 Vaultwarden 服务器无法访问互联网或未解决 DNS 查询。你可以检查 `/admin/diagnostics` 页面，看看你是否能解决 DNS 查询以及是否有连接到互联网。如果都没问题，也有可能是防火墙或外发互联网代理阻止了这些请求。
+这也可能是 Vaultwarden 服务器无法访问互联网或未解决 DNS 查询所致。你可以检查 `/admin/diagnostics` 页面，看看你是否能解决 DNS 查询以及是否有连接到互联网。如果都没问题，也有可能是防火墙或外发互联网代理阻止了这些请求。
 
 ## Websocket 连接显示错误的 IP 地址。 <a href="#websocket-connections-show-wrong-ip-address" id="websocket-connections-show-wrong-ip-address"></a>
 
@@ -64,7 +66,7 @@ Bitwarden 客户端需要一个安全的连接，才能正常工作且没有任�
 
 有两种解决方式：
 
-1. 不要使用 SQLite，而使用 MariaDB/MySQL 或 Posgresql 作为数据库后端。
+1. 不要使用 SQLite，改为使用 MariaDB/MySQL 或 Posgresql 作为数据库后端。
 2. 尝试将 `ENABLE_DB_WAL` 环境变量的值设置为 `false` 以禁用 WAL。这需要在一个新的文件上完成，所以你需要移除之前创建的 `db.sqlite3` 文件，并再次重启 Vaultwarden 应用程序。
 
 ## 我在 FAQ 中找不到答案，下一步该怎么做？ <a href="#i-did-not-find-my-answer-here-in-the-faq-what-to-do-next" id="i-did-not-find-my-answer-here-in-the-faq-what-to-do-next"></a>
