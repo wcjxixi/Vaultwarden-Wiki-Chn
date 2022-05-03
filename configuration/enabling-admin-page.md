@@ -4,11 +4,11 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-admin-page)
 {% endhint %}
 
-**重要说明**：强烈建议在启用此功能之前激活 HTTPS，以避免可能的 [MITM](https://zh.wikipedia.org/wiki/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB) 攻击。
+**重要说明**：强烈建议在启用此功能之前激活 HTTPS，以避免潜在的 [MITM](https://zh.wikipedia.org/wiki/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB) 攻击。
 
 该页面允许服务器管理员查看并删除所有已注册的用户。它也允许邀请新用户，即使禁用了注册功能。
 
-要启用管理页面，您需要设置一组身份验证令牌。该令牌可以是任何字符，但建议使用随机生成的长字符串，比如运行 `openssl rand -base64 48` 命令生成的。**将此令牌保存在安全的地方，它是你访问服务器管理区域的密码！**
+要启用管理页面，您需要设置一组身份验证令牌。该令牌可以是任何字符，但建议使用随机生成的长字符串，比如运行 `openssl rand -base64 48` 命令生成的。**此令牌是你访问服务器管理区域的密码！将其保存在安全的地方。**
 
 要设置令牌，请使用 `ADMIN_TOKEN` 变量：
 
