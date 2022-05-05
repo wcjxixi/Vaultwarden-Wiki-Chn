@@ -6,11 +6,11 @@
 
 ## 概览 <a href="#overview" id="overview"></a>
 
-应该定期备份 Vaultwarden 数据，并且最好是通过自动化的流程（例如，cron 作业）。理想情况下，应该至少存储一个远程（例如，云存储或不同的计算机）副本。避免依赖文件系统或虚拟机快照作为备份方法，因为这是更复杂的操作，可能会出现更多的问题，在这种情况下的恢复操作对普通用户来说很困难甚至不可能。在备份上添加额外的加密层通常是个好主意（尤其是当您的备份还包含配置数据时，例如您的[管理员令牌](../configuration/enabling-admin-page.md)），但如果您确信您的主密码（以及您的其他用户的主密码，如果有的话）足够强大，也可以选择跳过这一步。
+应该定期备份 Vaultwarden 数据，并且最好是通过自动化的流程（例如，cron 作业）。理想情况下，应该至少存储一个远程（例如，云存储或不同的计算机）副本。避免依赖文件系统或虚拟机快照作为备份方法，因为这是更复杂的操作，可能会出现更多的问题，在这种情况下的恢复操作对普通用户来说很困难甚至是不可能的。在备份上添加额外的加密层通常是个好主意（尤其是当您的备份还包含配置数据时，例如您的[管理员令牌](../configuration/enabling-admin-page.md)），但如果您确信您的主密码（以及您的其他用户的主密码，如果有的话）足够强大，也可以选择跳过这一步。
 
 ## 备份您的数据 <a href="#backing-up-data" id="backing-up-data"></a>
 
-默认情况下，Vaultwarden 将所有的数据存储在一个名为 `data` 的目录下（与 `vaultwarden` 可执行文件位于同一目录下）。这个位置可以通过设置 [DATA\_FOLDER](../configuration/changing-persistent-data-location.md) 环境变量来改变。如果你使用 SQLite 运行 Vaultwarden（这是最常见的设置），那么 SQL 数据库只是 data 文件夹中的一个文件。如果你使用 MySQL 或 PostgreSQL 运行，则必须单独转储这些数据 -- 这超出了本文的范围，但在网上搜索会发现有许多涵盖了这个主题的教程。
+默认情况下，Vaultwarden 将所有的数据存储在一个名为 `data` 的目录下（与 `vaultwarden` 可执行文件位于同一目录）。这个位置可以通过设置 [DATA\_FOLDER](../configuration/changing-persistent-data-location.md) 环境变量来改变。如果你使用 SQLite 运行 Vaultwarden（这是最常见的设置），那么 SQL 数据库只是 data 文件夹中的一个文件。如果你使用 MySQL 或 PostgreSQL 运行，则必须单独转储这些数据 -- 这超出了本文的范围，但在网上搜索会发现有许多涵盖了这个话题的教程。
 
 当使用默认的 SQLite 后端运行时，Vaultwarden 的 `data` 目录具有如下的结构：
 
@@ -38,7 +38,7 @@ data
 
 当使用 MySQL 或 PostgreSQL 后端运行时，目录结构是一样的，只是没有 SQLite 文件。你仍然需要备份数据目录中的文件，以及 MySQL 或 PostgreSQL 表的转储。
 
-接下来详细讨论每一系列文件。
+接下来详细讨论每一组文件。
 
 ### SQLite 数据库文件 <a href="#sqlite-database-files" id="sqlite-database-files"></a>
 
@@ -60,7 +60,7 @@ sqlite3 data/db.sqlite3 ".backup '/path/to/backups/db-$(date '+%Y%m%d-%H%M').sql
 sqlite3 data/db.sqlite3 "VACUUM INTO '/path/to/backups/db-$(date '+%Y%m%d-%H%M').sqlite3'"
 ```
 
-假设此命令在 2021 年 1 月 1 日中午 12:34（当地时间）运行，这将备份你的 SQLite 数据库文件到 `/path/to/backups/db-20210101-1234.sqlite3`。
+假设在 2021 年 1 月 1 日中午 12:34（当地时间）运行此命令，这将备份你的 SQLite 数据库文件到 `/path/to/backups/db-20210101-1234.sqlite3`。
 
 你可以通过一个 cron 作业定期运行这个命令（最好每天至少一次）。如果您通过 Docker 运行，请注意 Docker 映像不包含 sqlite3 二进制文件或 cron 守护程序，因此通常会将它们安装在 Docker 主机本身上并在容器外运行 cron 作业。如果您出于某种原因确实想从容器内运行备份，您可以在[容器启动](../container-image-usage/starting-a-container.md#customizing-container-startup)期间安装任何必要的包，或者使用您首选的 `vaultwarden/server:<tag>` 镜像作为父镜像创建您自己的自定义 Docker 镜像。
 
@@ -96,7 +96,7 @@ _**建议备份。**_
 
 这些文件用于签署当前登录用户的 [JWT](https://en.wikipedia.org/wiki/JSON\_Web\_Token)（验证令牌）。删除这些文件将简单地注销每个用户，迫使他们重新登录。
 
-**\[译者注]**：[JWT](https://jwt.io) (JSON Web Tokens)，是一种基于 JSON 的、用于在网络上声明某种主张的令牌 (token)。JWT 通常由三部分组成:：头信息 (header)、消息体 (payload)和签名 (signature)。
+**\[译者注]**：[JWT](https://jwt.io) (JSON Web Tokens)，是一种基于 JSON 的、用于在网络上声明某种主张的令牌 (token)。JWT 通常由三部分组成:：头信息 (header)、消息体 (payload) 和签名 (signature)。
 
 ### `icon_cache` 目录 <a href="#the-icon_cache-dir" id="the-icon_cache-dir"></a>
 
