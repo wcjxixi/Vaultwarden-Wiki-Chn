@@ -114,7 +114,7 @@ _**可选备份。**_
 
 ## 示例 <a href="#examples" id="examples"></a>
 
-本部分是第三方备份示例的索引。在使用某个示例之前，您应该彻底阅读此示例并了解其功能。
+本部分是第三方备份示例的索引。在使用某个示例之前，您应该彻底审阅此示例并了解其功能。
 
 * [https://github.com/ttionya/vaultwarden-backup](https://github.com/ttionya/vaultwarden-backup)
 * [https://github.com/shivpatel/bitwarden\_rs-local-backup](https://github.com/shivpatel/bitwarden\_rs-local-backup)
