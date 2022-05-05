@@ -32,7 +32,7 @@ data
 ├── rsa_key.pem
 ├── rsa_key.pub.der
 └── sends                # 每一个 Send 的附件都作为单独的文件存储在此目录下。
-    └── <uuid>           # （如果未创建 Send 附件，则这个 sends 目录将不存在）
+    └── <uuid>           # （如果未创建 Send 附件，则此 sends 目录将不存在）
         └── <random_id>
 ```
 
