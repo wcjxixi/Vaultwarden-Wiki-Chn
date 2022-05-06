@@ -9,7 +9,7 @@
 
 旧设置项是 `SMTP_SSL` 和 `SMTP_EXPLICIT_TLS`。
 
-新设置项是 `SMTP_SECURITY`，它具有以下选项：`starttls`、`force_tls` 和 `off`。
+新设置项是 `SMTP_SECURITY`，它具有以下可用选项：`starttls`、`force_tls` 以及 `off`。
 
 * `SMTP_SECURITY=starttls` 等同于 `SMTP_SSL=true`
 * `SMTP_SECURITY=force_tls` 等同于 `SMTP_EXPLICIT_TLS=true`
@@ -58,7 +58,7 @@ docker run -d --name vaultwarden \
 
 ### 通用 <a href="#general" id="general"></a>
 
-邮件服务器侦听端口 25 主要只是为了接受来自其他邮件服务器的邮件，并且仅用于它们是最终位置的邮件。此外，许多互联网提供商会阻止传出端口 25 以防止垃圾邮件。大多数需要登录的邮件服务器使用端口 587 或端口 465 。端口 587 称为提交端口，大多数时候只能在使用用户名和密码时使用。在客户端和服务器之间的通信期间，端口 587 开始时未加密然后升级为 TLS 加密连接。端口 465 从一开始就是 SSL 加密的，该端口根本没有纯文本通信。
+邮件服务器侦听端口 25 主要只是为了接受来自其他邮件服务器的邮件，并且仅用于它们是最终位置的邮件。此外，许多互联网提供商会阻止传出端口 25 以防止垃圾邮件。大多数需要登录的邮件服务器使用端口 587 或端口 465。端口 587 称为提交端口，大多数时候只能在使用用户名和密码时使用。在客户端和服务器之间的通信期间，端口 587 开始时未加密然后升级为 TLS 加密连接。端口 465 从一开始就是 SSL 加密的，该端口根本没有纯文本通信。
 
 每种端口的一些常规设置：
 
@@ -88,7 +88,7 @@ SMTP_EXPLICIT_TLS=false
 
 ### HELO 主机名 <a href="#helo-hostname" id="helo-hostname"></a>
 
-默认情况下，机器的主机名用作 HELO 命令中的主机名。要覆盖它，您可以在配置中设置 `HELO_NAME`。
+默认情况下，机器的主机名被用来作为 HELO 命令中的主机名。要覆盖它，您可以在配置中设置 `HELO_NAME`。
 
 ### Google/Gmail
 

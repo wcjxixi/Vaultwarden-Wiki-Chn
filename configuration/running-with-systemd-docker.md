@@ -43,7 +43,7 @@ WantedBy=multi-user.target
 
 对上述选项的解释：
 
-* `TimeoutStartSec` 的值 0：等待默认启动时间后，认为服务已经失败，将停止 systemd。此为必选项，因为 `ExecStartPre` 中的 `docker pull` 命令需要一段时间来完成。
+* `TimeoutStartSec` 的值 `0`：等待默认启动时间后，认为服务已经失败，将停止 systemd。此为必选项，因为 `ExecStartPre` 中的 `docker pull` 命令需要一段时间来完成。
 * `ExecStartPre`：在运行之前拉取 docker 标签。
 * `ExecStopPost`：删除容器（以确保我们下次可以重新启动）。我们这样做的原因是 systemd 监控的是 docker 服务而不是单个容器。因此，我们使用 `unless-stopped` 告诉 docker 服务重启容器。这基本上就像 `--restart=Always`，但不包括 docker 服务停止的时候（或者容器被挂起）。当 docker 服务停止时，这允许我们使用 `Restart=Always` 让 systemd 仅重启服务。
 * `Type` 的值 `notify`：告诉 systemd 从已准备就绪的服务中获取通知。
@@ -60,7 +60,7 @@ WantedBy=multi-user.target
 
 也可以在单元文件中使用 `EnvironmentFile` 指令将环境变量存储在单独的文件中。在这种情况下，请如上面示例中所示在 docker 命令行中设置 `--env` 选项，否则将不会处理环境文件。
 
-Systemd 可以获取以下格式的文件：
+systemd 可以获取以下格式的文件：
 
 ```python
 Key="Value"
@@ -90,7 +90,7 @@ TimeoutStartSec=0
 
 完成上述安装和配置后，使用 `sudo systemctl daemon-reload` 命令重新加载systemd 。然后，使用 `sudo systemctl start vaultwarden` 命令启动 Vaultwarden 服务。
 
-要使服务跟随系统启动，使用 `sudo systemctl enable vaultwarden`。
+要使服务跟随系统启动，请使用 `sudo systemctl enable vaultwarden`。
 
 使用 `systemctl status vaultwarden` 来验证容器是否已经启动。
 

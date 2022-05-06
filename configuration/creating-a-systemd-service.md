@@ -93,7 +93,7 @@ $ sudo systemctl enable vaultwarden.service
 
 ### 更新 Vaultwarden <a href="#updating-bitwarden_rs" id="updating-bitwarden_rs"></a>
 
-编译新版本的 Vaultwarden 之后，您可以复制已编译的（新）二进制文件并替换现有的（旧）二进制文件，然后重新启动服务：
+编译新版本的 Vaultwarden 之后，您可以复制已编译的（新的）二进制文件并替换现有的（旧的）二进制文件，然后重新启动服务：
 
 ```php
 $ sudo systemctl restart vaultwarden.service
@@ -145,7 +145,7 @@ Failed at step NAMESPACE spawning /home/vaultwarden/vaultwarden: Permission deni
 Failed to parse protect system value
 ```
 
-要解决这一点，你可以在包含有 `PrivateTmp`、`PrivateDevices`、`ProtectHome`、`ProtectSystem` 和 `ReadWriteDirectories` 的部分或全部行前面放置 `#` 符号来将其注释掉。尽管将所有这些行注释掉可能会起作用，但不建议这样做，因为这些都是很好的安全措施。要查看您的 systemd 支持哪些选项，请运行以下命令来查看输出：
+要解决这一点，你可以在包含有 `PrivateTmp`、`PrivateDevices`、`ProtectHome`、`ProtectSystem` 和 `ReadWriteDirectories` 的部分或全部行前面放置 `#` 符号来将其注释掉。尽管将所有这些行注释掉可能会起作用，但不建议这样做，因为这些都是很好的安全措施。要查看您的 systemd 支持哪些选项，请运行以下命令来查看其输出：
 
 ```php
 $ systemctl --version
@@ -161,7 +161,7 @@ $ sudo systemctl daemon-reload
 
 ### 服务无法启动 <a href="#service-fails-to-start" id="service-fails-to-start"></a>
 
-systemd 日志中显示以下错误 (`journalctl -eu vaultwarden.service`)：
+systemd journal (`journalctl -eu vaultwarden.service`) 中显示以下错误：
 
 ```python
 Feb 18 05:29:10 staging-bitwarden systemd[1]: Started Vaultwarden Server (Rust Edition).
@@ -171,7 +171,7 @@ Feb 18 05:29:10 staging-bitwarden systemd[1]: vaultwarden.service: Main process 
 Feb 18 05:29:10 staging-bitwarden systemd[1]: vaultwarden.service: Failed with result 'exit-code'.
 ```
 
-已知当 Vaultwarden 在容器（LXC 等）内或本地运行时，会出现这种情况。服务文件中的参数 `LimitNPROC=64` 使服务无法启动。注释掉这个参数后，服务可以正常启动。
+已知当 Vaultwarden 在容器（LXC 等）内部或本地运行时，会出现这种情况。服务文件中的参数 `LimitNPROC=64` 使服务无法启动。注释掉此参数后，服务可以正常启动。
 
 **注意**：systemd 覆盖文件不起作用，必须注释/删除该行。最简单的方法是通过
 
@@ -183,7 +183,7 @@ Feb 18 05:29:10 staging-bitwarden systemd[1]: vaultwarden.service: Failed with r
 
 ### 环境变量未被加载 <a href="#environment-variable-its-not-loaded" id="environment-variable-its-not-loaded"></a>
 
-请注意，systemd 不支持环境文件中与变量在同一行的注释。比如下面这个 `.env` 文件示例中，变量 `WEBSOCKET_ENABLED` 将不会被加载：
+请注意，systemd 不支持环境文件中的注释与变量在同一行中。比如下面这个 `.env` 文件示例中，变量 `WEBSOCKET_ENABLED` 将不会被加载：
 
 ```python
 ROCKET_PORT=XXXX
