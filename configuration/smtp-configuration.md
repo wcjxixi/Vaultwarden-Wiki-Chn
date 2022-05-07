@@ -47,12 +47,13 @@ docker run -d --name vaultwarden \
 
 ## SMTP 服务器 <a href="#smtp-servers" id="smtp-servers"></a>
 
-正确配置 SMTP 服务器/中继并不是一件小事。Vaultwarden 使用的邮件库也不是最容易排除故障的。所以，除非你对自己设置这个特别感兴趣，否则使用外部服务可能更容易。
+正确配置 SMTP 服务器/中继并不是一件容易的事。Vaultwarden 使用的邮件程序库也不是最容易排除故障的。所以，除非你对自己设置这个特别感兴趣，否则使用外部服务可能更容易。
 
-这里有几个免费的服务，每天可以发送 100-200 封邮件（对于大多数用例来说已经足够了）：
+这里有几个对于大部分使用场景来说已经足够的免费服务：
 
-* [SendGrid](https://sendgrid.com)
-* [MailJet](https://www.mailjet.com)
+* [SendGrid](https://sendgrid.com)（每天 100 封电子邮件）
+* [MailJet](https://www.mailjet.com)（每天 200 封电子邮件）
+* [SMTP2GO](https://www.smtp2go.com)（每月 1000 封电子邮件）
 
 ## 一些知名服务的默认设置 <a href="#here-some-sane-defaults-for-well-known-services" id="here-some-sane-defaults-for-well-known-services"></a>
 
