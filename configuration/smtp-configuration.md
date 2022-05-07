@@ -63,7 +63,7 @@ docker run -d --name vaultwarden \
 
 针对每一种端口的常见设置：
 
-#### 对于使用端口 465 的邮件服务器
+* 对于使用端口 465 的邮件服务器
 
 ```coffeescript
 SMTP_PORT=465
@@ -71,7 +71,7 @@ SMTP_SSL=false
 SMTP_EXPLICIT_TLS=true
 ```
 
-#### 对于使用端口 587（有时候是 25）的邮件服务器
+* 对于使用端口 587（有时候是 25）的邮件服务器
 
 ```coffeescript
 SMTP_PORT=587
@@ -79,7 +79,7 @@ SMTP_SSL=true
 SMTP_EXPLICIT_TLS=false
 ```
 
-#### 对于根本不支持加密的邮件服务器
+* 对于根本不支持加密的邮件服务器
 
 ```coffeescript
 SMTP_PORT=25
