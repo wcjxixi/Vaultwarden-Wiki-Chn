@@ -12,9 +12,9 @@
 
 ## 非官方软件包状态
 
-Server：[https://repology.org/project/vaultwarden/versions](https://repology.org/project/vaultwarden/versions)
-
-Web-Vault：[https://repology.org/project/vaultwarden-web/versions](https://repology.org/project/vaultwarden-web/versions)
+|                                                                 Server                                                                 |                                                                    Web-Vault                                                                   |
+| :------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: |
+| [![Packaging status](https://repology.org/badge/vertical-allrepos/vaultwarden.svg)](https://repology.org/project/vaultwarden/versions) | [![Packaging status](https://repology.org/badge/vertical-allrepos/vaultwarden-web.svg)](https://repology.org/project/vaultwarden-web/versions) |
 
 ## Arch Linux
 
@@ -44,13 +44,13 @@ Vaultwarden 被同时打包用于 mysql、sqlite、postgresql，以及用于 Vau
 
 ## Cloudron
 
-[Cloudron](https://cloudron.io) 是一个帮助你在服务器上运行 Web 应用的平台。使用 Cloudron，你可以从 [App Library](https://cloudron.io/store/com.github.bitwardenrs.html) 中轻松地安装自定义域名的 Vaultwarden。该应用包与上游网页密码库捆绑在一起，安装后不需要任何进一步的配置即可开始使用。Cloudron 团队会保持发行版跟踪并提供自动更新。
+[Cloudron](https://cloudron.io/) 是一个帮助你在服务器上运行 Web 应用的平台。使用 Cloudron，你可以从 [App Library](https://cloudron.io/store/com.github.bitwardenrs.html) 中轻松地安装自定义域名的 Vaultwarden。该应用包与上游网页密码库捆绑在一起，安装后不需要任何进一步的配置即可开始使用。Cloudron 团队会保持发行版跟踪并提供自动更新。
 
 软件包代码和话题跟踪器可以在这里找到：[https://git.cloudron.io/cloudron/bitwardenrs-app](https://git.cloudron.io/cloudron/vaultwarden-app)。
 
 ## Home Assistant <a href="#home-assistant" id="home-assistant"></a>
 
-[Home Assistant](https://www.home-assistant.io) 是一个开源的家庭自动化平台。在这里可找到 bitwarden\_rs 社区插件：[https://github.com/hassio-addons/addon-bitwarden](https://github.com/hassio-addons/addon-bitwarden)。
+[Home Assistant](https://www.home-assistant.io/) 是一个开源的家庭自动化平台。在这里可找到 bitwarden\_rs 社区插件：[https://github.com/hassio-addons/addon-bitwarden](https://github.com/hassio-addons/addon-bitwarden)。
 
 ## 用于 Ubuntu 20.04 的编译脚本 <a href="#build-script-for-ubuntu-20-04" id="build-script-for-ubuntu-20-04"></a>
 
