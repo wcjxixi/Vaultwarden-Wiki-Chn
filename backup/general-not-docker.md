@@ -21,7 +21,7 @@
 * 安装 Vaultwarden
 * （不适用于 SQLite）从备份中恢复数据库
 * 恢复环境文件
-* 将您的 `data` 目录还原到正确的位置
+* 恢复您的 `data` 目录到正确的位置
 
 ## 特定平台 <a href="#platform-specific" id="platform-specific"></a>
 
@@ -34,4 +34,4 @@
 
 ### MariaDB / MySQL <a href="#mariadb-mysql" id="mariadb-mysql"></a>
 
-参考诸如 [MariaDB - 备份和还原概述](https://mariadb.com/kb/en/backup-and-restore-overview/)
+参阅 [MariaDB - 备份和还原概述](https://mariadb.com/kb/en/backup-and-restore-overview/)

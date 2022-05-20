@@ -8,14 +8,14 @@
 
 Bitwarden 可以导入来自许多[应用程序](https://help.ppgg.in/import-export/import-data-to-your-vault)的数据。
 
-当前的导入器让您仅选择导入文件的格式即可，而不用去管它是如何将数据转换为 Bitwarden 的。
+当前的导入器让您只需选择导入文件的格式即可，而不用去管它是如何将数据转换为 Bitwarden 的。
 
-## Keepass 与 KeepassX 不同的导入结果 <a href="#different-import-results-for-keepass-and-keepassx" id="different-import-results-for-keepass-and-keepassx"></a>
+## Keepass 和 KeepassX 有不同的导入结果 <a href="#different-import-results-for-keepass-and-keepassx" id="different-import-results-for-keepass-and-keepassx"></a>
 
 从 Keepass 或 KeepassX 导入会产生完全不同的结果，尽管它们使用相同的 Keepass 2.x kbdx 数据库：
 
-* Keepass CSV 文件是在**组织**级别（每个条目的所有者）导入，Keepass 群组将转换为 Bitwarden 的**集合**。
-* Keepass XML 文件是在**用户**级别（每个条目的所有者）导入，Keepass 群组将转换为 Bitwarden 的**文件夹**，其主文件夹为 Keepass 数据库的名称。
+* Keepass CSV 文件是在**组织**级别（每个条目的所有者）导入，Keepass 的群组将转换为 Bitwarden 的**集合**。
+* Keepass XML 文件是在**用户**级别（每个条目的所有者）导入，Keepass 的群组将转换为 Bitwarden 的**文件夹**，其主文件夹为 Keepass 数据库的名称。
 
 做导入操作时，Bitwarden 自己会自动做很多工作：比如将「集合」更改为「文件夹」以及转换所有条目的所有权等。因此，根据您的需要选择合适的方式！
 

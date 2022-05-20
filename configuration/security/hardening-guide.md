@@ -12,11 +12,11 @@
 
 默认情况下，Vaultwarden 允许任何匿名用户在未被邀请的情况下在服务器上注册新帐户。这是在服务器上创建第一个用户所必需的，但建议您在管理面板中（如果启用了管理面板的话）或[使用环境变量](../disable-registration-of-new-users.md)将其禁用，以防止攻击者在 Vaultwarden 服务器上创建帐户。
 
-Vaultwarden 还允许注册用户邀请其他新用户在服务器上创建帐户并加入其组织。只要您信任用户，这不会带来直接风险，但是可以在管理面板或[使用环境变量](../disable-registration-of-new-users.md)将其禁用。
+Vaultwarden 还允许注册用户邀请其他新用户在服务器上创建帐户并加入其组织。只要您信任您的用户，这不会带来直接风险，但是可以在管理面板或[使用环境变量](../disable-registration-of-new-users.md)将其禁用。
 
 ### 禁用显示密码提示 <a href="#disable-password-hint-display" id="disable-password-hint-display"></a>
 
-Vaultwarden 在登录页面上显示密码提示，以适应未配置 SMTP 的小型/本地部署，攻击者可能会滥用这些密码来促进针对服务器用户的猜测密码攻击。可以在管理面板中通过取消选中 `Show password hints` 选项或[使用环境变量](../disable-registration-of-new-users.md)来禁用它。
+Vaultwarden 在登录页面上显示密码提示，以适应没有配置 SMTP 的小型/本地部署，这可能被攻击者滥用，以方便对服务器上的用户进行密码猜测攻击。可以在管理面板中通过取消勾选 `Show password hints` 选项或[使用环境变量](../disable-registration-of-new-users.md)来禁用它。
 
 ## HTTPS / TLS 配置 <a href="#https-tls-configuration" id="https-tls-configuration"></a>
 
@@ -34,7 +34,7 @@ Vaultwarden 在登录页面上显示密码提示，以适应未配置 SMTP 的�
 
 比如，Rocket TLS 不支持严格 SNI 或 ECC 证书（仅 RSA）。
 
-请参看[代理示例](../../deployment/proxy-examples.md)，以了解反向代理配置的案例。
+请参看[代理示例](../../deployment/proxy-examples.md)，以了解反向代理配置的示例。
 
 ## Docker 配置 <a href="#docker-configuration" id="docker-configuration"></a>
 
@@ -82,8 +82,8 @@ services:
 
 ### 暴力破解 <a href="#brute-force-mitigation" id="brute-force-mitigation"></a>
 
-当不使用双重身份认证时，（理论上）可以暴力破解用户密码，从而获得对其帐户的访问权限。缓解此问题的一种相对简单的方法是设置 fail2ban，设置后，在过多的失败登录尝试后将阻止访问者的 IP 地址。但是：在多个反向代理（例如 cloudflare）后面使用此功能时，应格外注意。请参阅：[Fail2Ban 设置](fail2ban-setup.md)。
+当不使用双重身份验证时，（理论上）有可能对用户的密码进行暴力破解，从而获得对其帐户的访问权限。缓解此问题的一种相对简单的方法是设置 fail2ban，设置后，在过多的失败登录尝试后将阻止访问者的 IP 地址。但是在许多反向代理（例如 cloudflare）后面使用此功能时，应格外注意。参阅：[Fail2Ban 设置](fail2ban-setup.md)。
 
 ### 隐藏在子目录下 <a href="#hiding-under-a-subdir" id="hiding-under-a-subdir"></a>
 
-通常，Bitwarden 实例驻留在子域的根目录下（即 `bitwarden.example.com`，而不是 `bitwarden.example.com/some/path`）。上游的 Bitwarden 服务器目前只支持子域根目录，而 Vaultwarden 则增加了对[备用基础目录](../using-an-alternate-base-dir-subdir-subpath.md)的支持。对于某些用户来说，这很有用，因为他们只能访问一个子域，却想在不同的目录下运行多个服务。在这种情况下，他们通常可以做一些显而易见的选择，比如使用 `mysubdomain.example.com/bitwarden`。然而，你也可以通过把 Vaultwarden 放在类似 `mysubdomain.example.com/vaultwarden/<mysecretstring>` 这样的目录下来提供额外的保护层，其中 `<mysecretstring>` 有效地充当一个密码。也许有人会说这是[通过隐藏实现安全](https://en.wikipedia.org/wiki/Security\_through\_obscurity)，但实际上这是深度防御 -- 子目录的隐蔽性只是额外的一层安全保护，而不是为了成为主要的安全手段（用户主密码的强度仍然是主要的安全手段）。
+通常，Bitwarden 实例驻留在子域的根目录下（即 `bitwarden.example.com`，而不是 `bitwarden.example.com/some/path`）。上游的 Bitwarden 服务器目前只支持子域根目录，而 Vaultwarden 则增加了对[备用基本目录](../using-an-alternate-base-dir-subdir-subpath.md)的支持。对于某些用户来说，这很有用，因为他们只能访问一个子域，并希望在不同的目录下运行多个服务。在这种情况下，他们通常可以做一些显而易见的选择，比如使用 `mysubdomain.example.com/bitwarden`。然而，你也可以通过把 Vaultwarden 放在类似 `mysubdomain.example.com/vaultwarden/<mysecretstring>` 这样的目录下来提供额外的保护，其中 `<mysecretstring>` 有效地充当一个密码。也许有人会说这是[通过隐藏实现安全](https://en.wikipedia.org/wiki/Security\_through\_obscurity)，但实际上这是深度防御 -- 子目录的隐蔽性只是额外的一层安全保护，而不是为了成为主要的安全手段（用户主密码的强度仍然是主要的安全手段）。
