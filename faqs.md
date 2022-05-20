@@ -24,14 +24,14 @@ Oracle MySQL v8.x 默认使用更安全的密码散列方法，这很好，但�
 你需要以一种特定的方式创建 Vaultwarden 用户，以便它能使用旧的原生密码散列：
 
 ```python
--- Use this on MySQLv8 installations
+-- 在 MySQLv8 安装上使用此命令
 CREATE USER 'vaultwarden'@'localhost' IDENTIFIED WITH mysql_native_password BY 'yourpassword';
 ```
 
 如果您已经创建了用户，并且只想更改散列方法，请使用以下命令：
 
 ```python
--- Change password type from caching_sha2_password to native
+-- 将密码类型从 caching_sha2_password 更改为 native
 ALTER USER 'vaultwarden'@'localhost' IDENTIFIED WITH mysql_native_password BY 'yourpassword';
 ```
 

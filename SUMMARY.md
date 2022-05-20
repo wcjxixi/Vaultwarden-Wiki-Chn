@@ -55,6 +55,6 @@
   * [1.从 Keepass 或 KeepassX 导入数据](other-information/importing-data-from-keepass-or-keepassx.md)
   * [2.备份您的密码库](other-information/backing-up-your-vault.md)
   * [3.与上游 API 实现的区别](other-information/differences-from-the-upstream-api-implementation.md)
-  * [4.支持上游发展](other-information/supporting-upstream-development.md)
+  * [4.支持上游的发展](other-information/supporting-upstream-development.md)
   * [5.使用 Cloudflare DNS 的 Caddy 2.x](other-information/caddy-2.x-with-cloudflare-dns.md)
   * [\*6.使私有 CA 和自签名证书兼容 Chrome](other-information/private-ca-and-self-signed-certs-that-work-with-chrome.md)

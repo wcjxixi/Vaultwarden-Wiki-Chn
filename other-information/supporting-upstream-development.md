@@ -1,10 +1,10 @@
-# 4.支持上游发展
+# 4.支持上游的发展
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Supporting-upstream)
 {% endhint %}
 
-Vaultwarden 仅提供 API（服务器）端实现，用户仍依赖来自上游的客户端程序（移动应用程序、桌面应用程序和网页密码库），这些都是 8bit Solutions LLC 公司在上游完成的许多工作。同时 Vaultwarden 支持上游的某些付费功能并免费提供该功能。这就提出了一些有关[维持和支持上游发展的问题](https://github.com/dani-garcia/vaultwarden/issues/331)。许多用户提出了这个问题，并咨询他们如何在使用 Vaultwarden 的同时支持上游的发展。
+Vaultwarden 仅提供 API（服务器）端实现，用户仍依赖来自上游的客户端程序（移动应用程序、桌面应用程序以及浏览器扩展），这些客户端都是 8bit Solutions LLC 公司在上游完成的许多工作。同时 Vaultwarden 支持上游的某些付费功能并免费提供该功能。这就提出了一些有关[维持和支持上游发展的问题](https://github.com/dani-garcia/vaultwarden/issues/331)。许多用户提出了这个问题，并咨询他们如何在使用 Vaultwarden 的同时支持上游的发展。
 
 ## 捐赠 <a href="#donating" id="donating"></a>
 
@@ -24,4 +24,4 @@ Vaultwarden 仅提供 API（服务器）端实现，用户仍依赖来自上游�
 
 ## 帮助社区中的其他用户 <a href="#helping-other-users-in-the-community" id="helping-other-users-in-the-community"></a>
 
-有很多新用户有时会遇到一些基础问题。帮助他们是支持此项目（并使社区发展壮大）的一个好方式。根据我在 Vaultwarden 周围的社区经验，很高兴看到人们在我回答他们的问题之前就真正地互相帮助了。这节省了时间，也使我经常学到新的东西。[Reddit 上的 Bitwarden 社区](https://www.reddit.com/r/bitwarden)，也有[官方论坛](https://community.bitwarden.com)。
+有很多新用户有时会遇到一些基础问题。帮助他们是支持此项目（并使社区发展壮大）的一个好方式。根据我在 Vaultwarden 周围的社区经验，很高兴看到人们在我回答他们的问题之前就真正地互相帮助了。这节省了时间，也使我经常学到新的东西。[Reddit 上的 Bitwarden 社区](https://www.reddit.com/r/bitwarden)，以及[官方论坛](https://community.bitwarden.com/)。
