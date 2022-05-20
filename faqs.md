@@ -37,7 +37,7 @@ ALTER USER 'vaultwarden'@'localhost' IDENTIFIED WITH mysql_native_password BY 'y
 
 另外可参阅：[使用 MariaDB - 创建数据库和用户](configuration/database/using-the-mariadb-mysql-backend.md#create-database-and-user)
 
-## 我的客户端（桌面端、移动端、网页端）无法正常工作，无法登录或提示证书无效。 <a href="#my-client-desktop-mobile-web-does-not-work-i-can-not-login-or-it-complains-about-invalid-certificate" id="my-client-desktop-mobile-web-does-not-work-i-can-not-login-or-it-complains-about-invalid-certificate"></a>
+## 客户端（桌面端、移动端、网页端）无法正常工作，无法登录或提示证书无效。 <a href="#my-client-desktop-mobile-web-does-not-work-i-can-not-login-or-it-complains-about-invalid-certificate" id="my-client-desktop-mobile-web-does-not-work-i-can-not-login-or-it-complains-about-invalid-certificate"></a>
 
 Bitwarden 客户端需要一个安全的连接，才能正常工作且没有任何问题。虽然有些客户端可以在没有安全连接的情况下工作，但我们并不推荐这样做。
 

@@ -99,7 +99,7 @@ volumes:
  mariadb_vol:
 ```
 
-### 手动创建数据库（例如，使用现有的数据库服务器） <a href="#manually-create-a-database-for-example-using-an-existing-database-server" id="manually-create-a-database-for-example-using-an-existing-database-server"></a>
+## 手动创建数据库（例如，使用现有的数据库服务器） <a href="#manually-create-a-database-for-example-using-an-existing-database-server" id="manually-create-a-database-for-example-using-an-existing-database-server"></a>
 
 {% hint style="warning" %}
 要执行这些查询，您需要有一个可以创建新数据库和用户的用户。大多数情况下，这将是 `root` 用户，但根据您的数据库可能会有所不同。
@@ -109,7 +109,7 @@ volumes:
 使用上面的 docker-compose 示例使这些步骤变得不必要。数据库、排序规则和字符集在启动时将被自动创建。
 {% endhint %}
 
-#### 创建数据库和用户 <a href="#create-database-and-user" id="create-database-and-user"></a>
+### 创建数据库和用户 <a href="#create-database-and-user" id="create-database-and-user"></a>
 
 1、为 Vaultwarden 创建一个新的（空）数据库（确保字符集和排序规则正确！）：
 
@@ -148,13 +148,13 @@ GRANT ALTER, CREATE, DELETE, DROP, INDEX, INSERT, SELECT, UPDATE ON `vaultwarden
 FLUSH PRIVILEGES;
 ```
 
-### 从 SQLite 迁移到 MySQL <a href="#migrating-from-sqlite-to-mysql" id="migrating-from-sqlite-to-mysql"></a>
+## 从 SQLite 迁移到 MySQL <a href="#migrating-from-sqlite-to-mysql" id="migrating-from-sqlite-to-mysql"></a>
 
 此[话题评论](https://github.com/dani-garcia/vaultwarden/issues/497#issuecomment-511827057)中描述了一种从 SQLite 迁移到 MySQL 的简单方法。下面重复这些步骤。请注意，使用此方法风险自负，强烈建议备份您的安装和数据！
 
 1、首先遵循上面的步骤 1 和步骤 2。
 
-2、配置 Vaultwarden 并启动它，以便 [diesel](http://diesel.rs) 可以运行迁移并正确设置模式。除此之外不要做别的。
+2、配置 Vaultwarden 并启动它，以便 [diesel](http://diesel.rs/) 可以运行迁移并正确设置模式。除此之外不要做别的。
 
 3、停止 Vaultwarden。
 
