@@ -58,7 +58,7 @@ Bitwarden 客户端需要一个安全的连接，才能正常工作且没有任�
 
 这不是我们可以解决的问题。我们使用的库不支持任何形式的 `X-Forwarded-For` 或 `Forward` 标头。
 
-它会始终显示所使用的反向代理的 IP，除非您在没有任何代理的情况下直接运行 Vaultwarden，或者运行透明代理，这可能会导致它显示正确的 IP。这不是一个重要的日志记录部分，并且如果您使用反向代理，您可能还会在其日志中看到此请求，其具有正确的 IP。
+它会始终显示所使用的反向代理的 IP，除非您在没有任何代理的情况下直接运行 Vaultwarden，或者运行透明代理，这可能会让它显示正确的 IP。这不是一个重要的日志记录部分，并且如果您使用反向代理，您可能还可以在其日志中看到此请求，该请求具有正确的 IP。
 
 ## 可以将 Vaultwarden 作为 Azure WebApp 运行吗？ <a href="#can-i-run-bitwarden_rs-as-an-azure-webapp" id="can-i-run-bitwarden_rs-as-an-azure-webapp"></a>
 
@@ -71,6 +71,6 @@ Bitwarden 客户端需要一个安全的连接，才能正常工作且没有任�
 
 ## 我在 FAQ 中找不到答案，下一步该怎么做？ <a href="#i-did-not-find-my-answer-here-in-the-faq-what-to-do-next" id="i-did-not-find-my-answer-here-in-the-faq-what-to-do-next"></a>
 
-请尝试在我们精彩的 [Wiki](./) 中搜索和点击。如果这对你没有帮助，请尝试查看 [Github 讨论](https://github.com/dani-garcia/bitwarden\_rs/discussions)或 [Vaultwarden 论坛](https://bitwardenrs.discourse.group)。如果这也没有解决，你可以尝试搜索开放的和已关闭的[话题](https://github.com/dani-garcia/bitwarden\_rs/issues)。
+请尝试在我们精彩的 [Wiki](./) 中搜索和点击。如果这对你没有帮助，请尝试查看 [Github 讨论](https://github.com/dani-garcia/bitwarden\_rs/discussions)或 [Vaultwarden 论坛](https://bitwardenrs.discourse.group/)。如果这也没有解决，你可以尝试搜索开放的和已关闭的[话题](https://github.com/dani-garcia/bitwarden\_rs/issues)。
 
-如果你仍然没有找到答案，你可以在 [Github 讨论](https://github.com/dani-garcia/bitwarden\_rs/discussions)或 [Vaultwarden 论坛](https://bitwardenrs.discourse.group)上发起一个主题，或者加入我们的[聊天室](https://matrix.to/#/#bitwarden\_rs:matrix.org)。
+如果你仍然没有找到答案，你可以在 [Github 讨论](https://github.com/dani-garcia/bitwarden\_rs/discussions)或 [Vaultwarden 论坛](https://bitwardenrs.discourse.group/)上发起一个主题，或者加入我们的[聊天室](https://matrix.to/#/#bitwarden\_rs:matrix.org)。
