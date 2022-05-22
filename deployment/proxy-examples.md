@@ -12,7 +12,7 @@
 
 通常使用 [Docker Compose](https://docs.docker.com/compose/) 将容器化的服务（例如，Vaultwarden 与反向代理）链接在一起。请参阅[使用 Docker Compose](../container-image-usage/using-docker-compose.md) 来了解这方面的示例。
 
-可以使用 Mozilla 的 [SSL Configuration Generator](https://ssl-config.mozilla.org) 来生成 Web 服务器的安全 TLS 协议和密码配置。所有受支持的浏览器和移动应用程序都可以与这些「流行的」配置配合使用。
+可以使用 Mozilla 的 [SSL Configuration Generator](https://ssl-config.mozilla.org/) 来生成 Web 服务器的安全 TLS 协议和密码配置。所有受支持的浏览器和移动应用程序都可以与这些「流行的」配置配合使用。
 
 <details>
 
@@ -111,7 +111,7 @@ $HTTP["host"] == "vault.example.net" {
 
 <summary>Nginx (by blackdex)</summary>
 
-```python
+```nginx
 # 'upstream' 指令确保你有一个 http/1.1 连接
 # 这里启用了 keepalive 选项并拥有更好的性能
 #
