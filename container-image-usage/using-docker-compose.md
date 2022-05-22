@@ -26,7 +26,7 @@
 
 首先创建一个新的目录，并切换到该目录下。接下来，创建下面的 `docker-compose.yml` 文件，确保将 `DOMAIN` 和 `EMAIL` 变量替换为实际的值。
 
-```python
+```nginx
 version: '3'
 
 services:

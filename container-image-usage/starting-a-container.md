@@ -50,7 +50,7 @@ docker start vaultwarden
 
 假设你的脚本名为 `init.sh`，其包含以下内容：
 
-```python
+```shell
 echo "starting up"
 ```
 

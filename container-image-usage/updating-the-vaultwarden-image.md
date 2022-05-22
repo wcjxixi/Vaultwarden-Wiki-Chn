@@ -6,7 +6,7 @@
 
 更新非常简单，你只需确保保留了已挂载的卷。如果您使用[此处](starting-a-container.md)示例中的 bind-mounted 路径（绑定挂载路径）的方式，则只需使用 `pull` 拉取最新版的镜像，使用 `stop` 和 `rm` 停止和移除当前容器，然后与之前相同的方式启动一个新的容器即可：
 
-```batch
+```docker
 # 拉取最新版本的镜像
 docker pull vaultwarden/server:latest
 
@@ -54,7 +54,7 @@ docker-compose up -d
 
 ## 使用 systemd 服务时的更新（在本例中为 Debian/Raspbian） <a href="#updating-when-using-systemd-service-in-this-case-debian-raspbian" id="updating-when-using-systemd-service-in-this-case-debian-raspbian"></a>
 
-```batch
+```shell
 sudo systemctl restart vaultwarden.service
 sudo docker system prune -f
 # 警告！这将删除已停止或未使用的容器，例如与 Vaultwarden 无关的容器
@@ -78,7 +78,7 @@ docker images
 
 如果需要，可以将它们放入 cronjob 中以计划任务自动运行（根据您的需要修改时间）：
 
-```python
+```shell
 $ sudo crontab -e
 0 2 * * * sudo systemctl restart vaultwarden.service
 
