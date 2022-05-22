@@ -82,7 +82,7 @@
 
 <summary>lighttpd (by forkbomb9)</summary>
 
-```python
+```hsts
 erver.modules += ( "mod_proxy" )
 
 $HTTP["host"] == "vault.example.net" {
@@ -452,7 +452,7 @@ NixOS Nginx 配置示例。关于 NixOS 部署的更多信息，请参阅[部署
 
 记得启用 `mod_proxy_wstunnel` 和 `mod_proxy_http`，例如：`a2enmod proxy_wstunnel` 和 `a2enmod proxy_http`。
 
-```python
+```apacheconf
 <VirtualHost *:443>
     SSLEngine on
     ServerName vaultwarden.$hostname.$domainname
