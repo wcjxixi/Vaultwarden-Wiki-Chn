@@ -4,7 +4,7 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Using-the-PostgreSQL-Backend)
 {% endhint %}
 
-要使用 PostgreSQ 后端，你可以使用[官方的 Docker 镜像](https://hub.docker.com/r/bitwardenrs/server-postgresql)，也可以[使用 PostgreSQL](../../deployment/building-binary.md#postgresql-backend) 构建你自己的二进制。
+要使用 PostgreSQ 后端，你可以使用[官方 Docker 镜像](https://hub.docker.com/r/bitwardenrs/server-postgresql)，也可以构建您自己的[启用了 PostgreSQL](../../deployment/building-binary.md#postgresql-backend) 的二进制。
 
 要运行二进制或容器，请确保已设置 `DATABASE_URL` 环境变量（即 `DATABASE_URL='postgresql://<user>:<password>@postgresql/bitwarden'`）。
 

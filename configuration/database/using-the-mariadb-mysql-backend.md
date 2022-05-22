@@ -12,7 +12,7 @@
 如果您坚持使用 MySQLv8 而不是 MariaDB，请使用旧的密码散列方法而不是默认方法创建用户！
 {% endhint %}
 
-要使用 MySQL 后端，你可以使用[官方 Docker 镜像](https://hub.docker.com/r/bitwardenrs/server-mysql)，也可以构建你自己的启用了 [MySQL](../../deployment/building-binary.md#mysql-backend) 的二进制。
+要使用 MySQL 后端，你可以使用[官方 Docker 镜像](https://hub.docker.com/r/bitwardenrs/server-mysql)，也可以构建你自己的[启用了 MySQL](../../deployment/building-binary.md#mysql-backend) 的二进制。
 
 要运行二进制或容器，请确保已设置 `DATABASE_URL` 环境变量（即 `DATABASE_URL='mysql://<user>:<password>@mysql/vaultwarden'`）。
 
