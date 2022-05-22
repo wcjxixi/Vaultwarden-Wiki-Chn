@@ -8,7 +8,7 @@
 
 之后，您需要将 `DOMAIN` 环境变量设置为与访问 Vaultwarden 相同的地址：
 
-```python
+```docker
 docker run -d --name vaultwarden \
   -e DOMAIN=https://vw.domain.tld \
   -v /vw-data/:/data/ \

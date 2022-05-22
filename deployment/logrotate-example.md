@@ -6,11 +6,11 @@
 
 随着时间增长，Vaultwarden 日志文件的大小可能会增长到很大。使用 logrotate，我们可以定期转储日志。
 
-```python
+```shell
 sudo nano /etc/logrotate.d/vaultwarden
 ```
 
-```python
+```shell
 /var/log/vaultwarden/*.log {
     # 以 bitwarden 用户和群组的身份执行轮换
     su vaultwarden vaultwarden
@@ -37,7 +37,7 @@ sudo nano /etc/logrotate.d/vaultwarden
 
 无需手动解压缩而查看压缩的日志文件：
 
-```python
+```shell
 zcat logfile.gz
 zless logfile.gz
 zgrep -i keyword_search logfile.gz

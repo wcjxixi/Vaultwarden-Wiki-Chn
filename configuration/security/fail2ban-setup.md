@@ -28,7 +28,7 @@
 * 从 1.5.0 版开始，Vaultwarden 支持记录到文件。请设置[日志记录](../logging.md)。
 * 尝试使用错误的帐户信息登录到网页版密码库，并检查日志文件中如下格式的记录项：
 
-```python
+```
 [YYYY-MM-DD hh:mm:ss][vaultwarden::api::identity][ERROR] Username or password is incorrect. Try again. IP: XXX.XXX.XXX.XXX. Username: email@domain.com.
 ```
 
@@ -36,7 +36,7 @@
 
 ### Debian / Ubuntu / Raspian Pi OS
 
-```python
+```shell
 sudo apt-get install fail2ban -y
 ```
 
@@ -44,7 +44,7 @@ sudo apt-get install fail2ban -y
 
 需要 EPEL 库 (CentOS 7)
 
-```python
+```shell
 sudo yum install epel-release
 sudo yum install fail2ban -y
 ```
@@ -62,13 +62,13 @@ sudo yum install fail2ban -y
 
 1、获取 root 权限
 
-```python
+```shell
 sudo -i
 ```
 
 2、创建持久性文件夹
 
-```python
+```shell
 mkdir -p /volumeX/docker/fail2ban/action.d/
 mkdir -p /volumeX/docker/fail2ban/jail.d/
 mkdir -p /volumeX/docker/fail2ban/filter.d/
@@ -76,7 +76,7 @@ mkdir -p /volumeX/docker/fail2ban/filter.d/
 
 3、将 `REJECT` 替换为 `DROP` 块类型
 
-```python
+```systemd
 # /volumeX/docker/fail2ban/action.d/iptables-common.local
 
 [Init]
@@ -87,7 +87,7 @@ blocktype = DROP
 
 4、创建 docker-compose 文件
 
-```python
+```shell
 # /volumeX/docker/fail2ban/docker-compose.yml
 
 version: '3'
@@ -117,7 +117,7 @@ services:
 
 5、使用命令行启动容器
 
-```python
+```shell
 cd /volumeX/docker/fail2ban
 docker-compose up -d
 ```
@@ -132,7 +132,7 @@ docker-compose up -d
 
 使用如下内容创建文件：
 
-```python
+```systemd
 # path_f2b/filter.d/vaultwarden.local
 
 [INCLUDES]
@@ -149,7 +149,7 @@ ignoreregex =
 
 **提示**：如果您在 `vaultwarden.log` 中看到 127.0.0.1 是登录失败的 IP 地址，那么您可能正在使用反向代理，而 fail2ban 无法正常工作：
 
-```python
+```
 [YYYY-MM-DD hh:mm:ss][vaultwarden::api::identity][ERROR] Username or password is incorrect. Try again. IP: 127.0.0.1. Username: email@example.com.
 ```
 
@@ -161,7 +161,7 @@ ignoreregex =
 
 使用如下内容创建文件：
 
-```python
+```systemd
 # path_f2b/jail.d/vaultwarden.local
 
 [vaultwarden]
@@ -177,7 +177,7 @@ findtime = 14400
 
 请注意：Docker 使用 FORWARD 链而不是默认的 INPUT 链。因此，当使用 Docker 时，请用下面的 `action` 行替换 `banaction` 行：
 
-```python
+```systemd
 action = iptables-allports[name=vaultwarden, chain=FORWARD]
 ```
 
@@ -189,7 +189,7 @@ action = iptables-allports[name=vaultwarden, chain=FORWARD]
 
 重新加载 fail2ban 使更改生效：
 
-```
+```shell
 sudo systemctl reload fail2ban
 ```
 
@@ -203,7 +203,7 @@ sudo systemctl reload fail2ban
 
 使用如下内容创建文件：
 
-```python
+```systemd
 # path_f2b/filter.d/vaultwarden-admin.local
 
 [INCLUDES]
@@ -220,7 +220,7 @@ ignoreregex =
 
 使用如下内容创建文件：
 
-```python
+```systemd
 # path_f2b/jail.d/vaultwarden-admin.local
 
 [vaultwarden-admin]
@@ -236,13 +236,13 @@ findtime = 14400
 
 **注意**：Docker 使用 FORWARD 链而不是默认的 INPUT 链。因此，当使用 Docker 时，请用下面的 `action` 行替换 `banaction` 行：
 
-```python
+```systemd
 action = iptables-allports[name=vaultwarden, chain=FORWARD]
 ```
 
 重新加载 fail2ban 使更改生效：
 
-```
+```shell
 sudo systemctl reload fail2ban
 ```
 
@@ -250,7 +250,7 @@ sudo systemctl reload fail2ban
 
 现在，尝试使用任何电子邮件地址登录 Vaultwarden（不必是有效电子邮件，只需是电子邮件格式即可）。如果它可以正常工作，您的 IP 将被阻止。运行以下命令来取消阻止的 IP：
 
-```python
+```shell
 # 使用 Docker
 sudo docker exec -t fail2ban fail2ban-client set vaultwarden unbanip XX.XX.XX.XX
 # 未使用 Docker
@@ -267,7 +267,7 @@ sudo fail2ban-client set vaultwarden unbanip XX.XX.XX.XX
 
 当使用 SELinux 时，SELinux 可能会阻止 fail2ban 读取日志。如果是这样，请运行此命令： `sudo tail /var/log/audit/audit.log`。您应该会看到如下类似内容（当然，实际的审核 ID 会因您的情况而不一样）：
 
-```python
+```
 type=AVC msg=audit(1571777936.719:2193): avc:  denied  { search } for  pid=5853 comm="fail2ban-server" name="containers" dev="dm-0" ino=1144588 scontext=system_u:system_r:fail2ban_t:s0 tcontext=unconfined_u:object_r:container_var_lib_t:s0 tclass=dir permissive=0
 ```
 

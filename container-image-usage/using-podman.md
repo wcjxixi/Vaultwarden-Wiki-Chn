@@ -4,13 +4,13 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Using-Podman)
 {% endhint %}
 
-[Podman](https://podman.io) 是替代 Docker 的无守护程序，它与大部分 Docker 容器兼容。
+[Podman](https://podman.io/) 是替代 Docker 的无守护程序，它与大部分 Docker 容器兼容。
 
 ## 创建一个 systemd 服务文件 <a href="#creating-a-systemd-service-file" id="creating-a-systemd-service-file"></a>
 
-由于 Podman 的无守护程序架构，因此它比 Docker 更容易在 systemd 中运行。它带有一个便捷的 [generate syetemd 命令](http://docs.podman.io/en/latest/markdown/podman-generate-systemd.1.html)，该命令可以生成 systemd 文件，这里有[一篇不错的文章详细介绍了它](https://www.redhat.com/sysadmin/podman-shareable-systemd-services)，还有[这篇文章也详细介绍了一些最新的更新](https://www.redhat.com/sysadmin/improved-systemd-podman)。
+由于 Podman 的无守护程序架构，它比 Docker 更容易在 systemd 中运行。它带有一个便捷的 [generate syetemd 命令](http://docs.podman.io/en/latest/markdown/podman-generate-systemd.1.html)，该命令可以生成 systemd 文件。这里有[一篇不错的文章详细介绍了它](https://www.redhat.com/sysadmin/podman-shareable-systemd-services)，还有[这篇文章也详细介绍了一些最新的更新](https://www.redhat.com/sysadmin/improved-systemd-podman)。
 
-```python
+```systemd
 $ podman run -d --name vaultwarden -v /vw-data/:/data/:Z -e ROCKET_PORT=8080 -p 8080:8080 vaultwarden/server:latest
 54502f309f3092d32b4c496ef3d099b270b2af7b5464e7cb4887bc16a4d38597
 $ podman generate systemd --name vaultwarden
@@ -36,7 +36,7 @@ WantedBy=multi-user.target default.target
 
 您可以提供 `--files` 标志告诉 podman 将 systemd 服务放到一个文件中。这样，我们就可以像任何正常的服务文件一样启用和启动容器了。
 
-```python
+```systemd
 $ systemctl --user enable /etc/systemd/system/container-vaultwarden.service
 $ systemctl --user start container-vaultwarden.service
 ```
@@ -45,13 +45,13 @@ $ systemctl --user start container-vaultwarden.service
 
 如果我们希望每次服务启动时都创建一个新的容器，可以使用 `podman generate systemd --new` 命令生成一个重新创建容器的服务文件：
 
-```
+```systemd
 $ podman generate systemd --new --name vaultwarden
 ```
 
-如果您使用的是旧版 Podman，则可以编辑服务文件以包含以下内容：
+如果您使用的是旧版 Podman，则可以编辑服务文件以包含如下内容：
 
-```python
+```systemd
 [Unit]
 Description=Podman container-vaultwarden.service
 
@@ -71,11 +71,11 @@ WantedBy=multi-user.target default.target
 
 环境文件 `vaultwarden.conf` 可以包含你需要的容器的所有环境值，比如：
 
-```python
+```systemd
 ROCKET_PORT=8080
 ```
 
-如果您希望此容器拥有特定名称，则需要添加 `ExecStartPre=/usr/bin/podman rm -i -f vaultwarden`，如果进程未被正确清理的话。注意，此方式当前无法与具有 `User=` 选项的用户一起正常工作（见 [https://github.com/containers/podman/issues/5572](%20https:/github.com/containers/podman/issues/5572/)）。
+如果您希望此容器拥有特定的名称，则需要添加 `ExecStartPre=/usr/bin/podman rm -i -f vaultwarden`，如果进程未被正确清理的话。注意，此方式当前无法与具有 `User=` 选项的用户一起正常工作（见 [https://github.com/containers/podman/issues/5572](%20https:/github.com/containers/podman/issues/5572/)）。
 
 ## 故障排除 <a href="#troubleshooting" id="troubleshooting"></a>
 

@@ -54,7 +54,7 @@ docker-compose up -d
 
 ## 使用 systemd 服务时的更新（在本例中为 Debian/Raspbian） <a href="#updating-when-using-systemd-service-in-this-case-debian-raspbian" id="updating-when-using-systemd-service-in-this-case-debian-raspbian"></a>
 
-```shell
+```systemd
 sudo systemctl restart vaultwarden.service
 sudo docker system prune -f
 # 警告！这将删除已停止或未使用的容器，例如与 Vaultwarden 无关的容器
@@ -78,7 +78,7 @@ docker images
 
 如果需要，可以将它们放入 cronjob 中以计划任务自动运行（根据您的需要修改时间）：
 
-```shell
+```python
 $ sudo crontab -e
 0 2 * * * sudo systemctl restart vaultwarden.service
 

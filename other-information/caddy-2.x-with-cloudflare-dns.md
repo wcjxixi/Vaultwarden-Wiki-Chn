@@ -6,7 +6,7 @@
 
 Dockerfile（Caddy 构建器）：
 
-```python
+```shell
 FROM caddy:builder AS builder
 RUN xcaddy build --with github.com/caddy-dns/cloudflare
 
@@ -16,13 +16,13 @@ COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 
 构建命令：
 
-```python
+```shell
 docker build -t [YOUR-NAME]/caddycfdns .
 ```
 
 Caddyfile（作为反向代理）：
 
-```python
+```shell
 https://[YOUR-DOMAIN]:443 {
 
   tls {
@@ -60,7 +60,7 @@ https://[YOUR-DOMAIN]:443 {
 
 docker-compose.yml：
 
-```python
+```shell
 version: '3'
 
 services:

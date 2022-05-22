@@ -12,7 +12,7 @@
 
 以 root 身份，使用你喜欢的编辑器用以下内容创建 `/etc/systemd/system/vaultwarden.service` 文件：
 
-```python
+```systemd
 [Unit]
 Description=Vaultwarden
 After=docker.service
@@ -62,7 +62,7 @@ WantedBy=multi-user.target
 
 systemd 可以获取以下格式的文件：
 
-```python
+```systemd
 Key="Value"
 ```
 
@@ -74,7 +74,7 @@ Key="Value"
 
 在您的单元文件中的 `[Service]` 块中添加一个 `EnvironmentFile` 指令，其值是上面创建的文件的完整路径。例如：
 
-```python
+```systemd
 [Unit]
 Description=Vaultwarden
 After=docker.service

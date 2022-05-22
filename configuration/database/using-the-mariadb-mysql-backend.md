@@ -18,7 +18,7 @@
 
 **连接字符串语法：**
 
-```sql
+```systemd
 DATABASE_URL=mysql://[[user]:[password]@]host[:port][/database]
 ```
 
@@ -32,7 +32,7 @@ DATABASE_URL=mysql://[[user]:[password]@]host[:port][/database]
 
 ## 使用 Docker 的示例 <a href="#example-using-docker" id="example-using-docker"></a>
 
-```python
+```docker
 # 启动 mysql 容器
 docker run --name mysql --net <some-docker-network>\
  -e MYSQL_ROOT_PASSWORD=<my-secret-pw>\
@@ -51,14 +51,14 @@ docker run -d --name vaultwarden --net <some-docker-network>\
 
 ### 使用非 Docker MySQL 服务器的示例 <a href="#example-using-non-docker-mysql-server" id="example-using-non-docker-mysql-server"></a>
 
-```python
+```systemd
 Server IP/Port 192.168.1.10:3306 UN: dbuser / PW: yourpassword / DB: vaultwarden
 mysql://dbuser:yourpassword@192.168.1.10:3306/vaultwarden
 ```
 
 ### 使用 docker-compose 的示例 <a href="#example-using-docker-compose" id="example-using-docker-compose"></a>
 
-```python
+```systemd
 version: "3.7"
 services:
  mariadb:
@@ -113,7 +113,7 @@ volumes:
 
 1、为 Vaultwarden 创建一个新的（空）数据库（确保字符集和排序规则正确！）：
 
-```sql
+```shell
 CREATE DATABASE vaultwarden CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 

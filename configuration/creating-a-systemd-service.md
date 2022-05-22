@@ -10,7 +10,7 @@
 
 要使 Vaultwarden 在系统启动的时候启动并使用 systemd 的其他功能（例如，隔离、日志记录等），则需要一个 `.service` 文件。以下是一个可行的起点：
 
-```python
+```systemd
 [Unit]
 Description=Vaultwarden Server (Rust Edition)
 Documentation=https://github.com/dani-garcia/vaultwarden
@@ -65,13 +65,13 @@ WantedBy=multi-user.target
 
 如果必须更改现有（而不是像上面那样新建）的 systemd 文件（您安装的软件包提供给您的），可以使用下面的命令来添加更改：
 
-```python
+```systemd
 $ sudo systemctl edit vaultwarden.service
 ```
 
 请运行以下命令，以让 systemd 知道您的新文件或您所做的任何更改：
 
-```python
+```systemd
 $ sudo systemctl daemon-reload
 ```
 
@@ -79,13 +79,13 @@ $ sudo systemctl daemon-reload
 
 要启动此「服务」，请运行：
 
-```python
+```systemd
 $ sudo systemctl start vaultwarden.service
 ```
 
 要启用自动启动，请运行：
 
-```php
+```systemd
 $ sudo systemctl enable vaultwarden.service
 ```
 
@@ -95,7 +95,7 @@ $ sudo systemctl enable vaultwarden.service
 
 编译新版本的 Vaultwarden 之后，您可以复制已编译的（新的）二进制文件并替换现有的（旧的）二进制文件，然后重新启动服务：
 
-```php
+```systemd
 $ sudo systemctl restart vaultwarden.service
 ```
 
@@ -103,7 +103,7 @@ $ sudo systemctl restart vaultwarden.service
 
 在执行其他操作之前，应先停止并禁用该服务：
 
-```php
+```systemd
 $ sudo systemctl disable --now vaultwarden.service
 ```
 
@@ -111,7 +111,7 @@ $ sudo systemctl disable --now vaultwarden.service
 
 删除 systemd 文件后，您应该通过下面的方式使 systemd 意识到这一点：
 
-```php
+```systemd
 $ sudo systemctl daemon-reload
 ```
 
@@ -119,13 +119,13 @@ $ sudo systemctl daemon-reload
 
 如果要查看日志输出，请运行：
 
-```php
+```systemd
 $ journalctl -u vaultwarden.service
 ```
 
 或查看此服务的更简洁的状态，请运行：
 
-```php
+```systemd
 $ systemctl status vaultwarden.service
 ```
 
@@ -135,19 +135,19 @@ $ systemctl status vaultwarden.service
 
 在 RHEL 7（以及 debian 8）中，使用的 systemd 不支持某些隔离选项 ([#445](https://github.com/dani-garcia/bitwarden\_rs/issues/445)，[#363](https://github.com/dani-garcia/bitwarden\_rs/issues/363))。这可能导致出现如下错误：
 
-```python
+```
 Failed at step NAMESPACE spawning /home/vaultwarden/vaultwarden: Permission denied
 ```
 
 或者：
 
-```php
+```
 Failed to parse protect system value
 ```
 
 要解决这一点，你可以在包含有 `PrivateTmp`、`PrivateDevices`、`ProtectHome`、`ProtectSystem` 和 `ReadWriteDirectories` 的部分或全部行前面放置 `#` 符号来将其注释掉。尽管将所有这些行注释掉可能会起作用，但不建议这样做，因为这些都是很好的安全措施。要查看您的 systemd 支持哪些选项，请运行以下命令来查看其输出：
 
-```php
+```systemd
 $ systemctl --version
 ```
 
@@ -155,7 +155,7 @@ $ systemctl --version
 
 编辑 `.service` 文件后，请不要忘记在启动（或重启）服务之前运行如下命令：
 
-```php
+```systemd
 $ sudo systemctl daemon-reload
 ```
 
@@ -163,7 +163,7 @@ $ sudo systemctl daemon-reload
 
 systemd journal (`journalctl -eu vaultwarden.service`) 中显示以下错误：
 
-```python
+```
 Feb 18 05:29:10 staging-bitwarden systemd[1]: Started Vaultwarden Server (Rust Edition).
 Feb 18 05:29:10 staging-bitwarden systemd[49506]: vaultwarden.service: Failed to execute command: Resource temporarily unavailable
 Feb 18 05:29:10 staging-bitwarden systemd[49506]: vaultwarden.service: Failed at step EXEC spawning /usr/bin/vaultwarden: Resource temporarily unavailable
@@ -175,7 +175,7 @@ Feb 18 05:29:10 staging-bitwarden systemd[1]: vaultwarden.service: Failed with r
 
 **注意**：systemd 覆盖文件不起作用，必须注释/删除该行。最简单的方法是通过
 
-```python
+```systemd
 # systemctl edit --full vaultwarden.service
 ```
 
@@ -185,7 +185,7 @@ Feb 18 05:29:10 staging-bitwarden systemd[1]: vaultwarden.service: Failed with r
 
 请注意，systemd 不支持环境文件中的注释与变量在同一行中。比如下面这个 `.env` 文件示例中，变量 `WEBSOCKET_ENABLED` 将不会被加载：
 
-```python
+```systemd
 ROCKET_PORT=XXXX
 WEBSOCKET_ENABLED=true # enable websocket
 ```

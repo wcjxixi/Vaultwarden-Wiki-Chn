@@ -20,7 +20,7 @@
 
 * [https://github.com/Skeen/helm-bitwarden\_rs](https://github.com/Skeen/helm-bitwarden\_rs)
 
-在 Kubernetes 上以您选择的 nginx 控制器作为后端设置一个功能齐全且安全的 Vaultwarden 应用程序。它运行良好，并已使用 [microk8s](https://microk8s.io) 设置进行了测试。而且支持通过 [cert-manager](https://github.com/jetstack/cert-manager) 生成 SSL 证书。
+在 Kubernetes 上以您选择的 nginx 控制器作为后端设置一个功能齐全且安全的 Vaultwarden 应用程序。它运行良好，并已使用 [microk8s](https://microk8s.io/) 设置进行了测试。而且支持通过 [cert-manager](https://github.com/jetstack/cert-manager) 生成 SSL 证书。
 
 * [https://github.com/guerzon/vaultwarden](https://github.com/guerzon/vaultwarden)
 
@@ -36,7 +36,7 @@ raspberry pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 
 * [https://github.com/jjlin/vaultwarden-shared-hosting](https://github.com/jjlin/vaultwarden-shared-hosting)
 
-在 [DreamHost](https://www.dreamhost.com) 上运行 Vaultwarden 的配置示例，但应该也适用于许多其他共享主机服务。
+在 [DreamHost](https://www.dreamhost.com/) 上运行 Vaultwarden 的配置示例，但应该也适用于许多其他共享主机服务。
 
 * [https://lab.uberspace.de/guide\_vaultwarden.html?highlight=bitwarden](https://lab.uberspace.de/guide\_vaultwarden.html?highlight=bitwarden)
 
@@ -50,7 +50,7 @@ raspberry pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 
 <summary>配置示例</summary>
 
-```python
+```nix
 { pkgs, ... }:
 {
   services.bitwarden_rs = {

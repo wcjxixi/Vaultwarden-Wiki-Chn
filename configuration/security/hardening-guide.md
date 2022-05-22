@@ -46,7 +46,7 @@ Vaultwarden Docker 镜像被配置为默认以 root 用户的身份运行容器�
 
 要在 Docker 中以非 root 用户 (uid/gid 1000) 的身份运行容器进程 (vaultwarden)：
 
-```python
+```shell
 docker run -u 1000:1000 -e ROCKET_PORT=8080 -p <host-port>:8080 \
        [...other args...] \
        vaultwarden/server:latest
@@ -58,7 +58,7 @@ docker run -u 1000:1000 -e ROCKET_PORT=8080 -p <host-port>:8080 \
 
 要在 `docker-compose` 中进行同样的操作：
 
-```python
+```systemd
 services:
   vaultwarden:
     image: vaultwarden/server:latest

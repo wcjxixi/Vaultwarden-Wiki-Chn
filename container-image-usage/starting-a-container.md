@@ -11,11 +11,11 @@
 持久性数据存储在容器内的 `/data` 下，因此使用 Docker 进行持久性部署的唯一要求是在路径上挂载持久性卷：
 
 ```docker
-# 使用 Docker:
+# 使用 Docker
 docker run -d --name vaultwarden -v /vw-data/:/data/ -p 80:80 vaultwarden/server:latest
-# 使用 Podman as non-root:
+# 使用 Podman as non-root
 podman run -d --name vaultwarden -v /vw-data/:/data/:Z -e ROCKET_PORT=8080 -p 8080:8080 vaultwarden/server:latest
-# 使用 Podman as root:
+# 使用 Podman as root
 sudo podman run -d --name vaultwarden -v /vw-data:/data/:Z -p 80:80 vaultwarden/server:latest
 ```
 
@@ -28,7 +28,7 @@ sudo podman run -d --name vaultwarden -v /vw-data:/data/:Z -p 80:80 vaultwarden/
 如果您的 docker/vaultwarden 运行在具有固定 IP 的设备上，则可以将主机端口绑定到该 IP 地址，从而避免将主机端口暴露到网络上。如下所示，将 IP 地址（例如 192.168.0.2）添加到主机端口和容器端口前面：
 
 ```docker
-# 使用 Docker:
+# 使用 Docker
 docker run -d --name vaultwarden -v /vw-data/:/data/ -p 192.168.0.2:80:80 vaultwarden/server:latest
 ```
 

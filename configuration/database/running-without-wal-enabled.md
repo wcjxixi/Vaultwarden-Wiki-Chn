@@ -32,13 +32,13 @@
 
 3）使用 sqlite 打开此文件：
 
-```python
+```sql
 sqlite3 db.sqlite3
 ```
 
 4）键入 `PRAGMA journal_mode=delete;` 并按 Enter，以禁用 WAL：
 
-```python
+```sql
 sqlite> PRAGMA journal_mode=delete;
 delete
 ```
@@ -49,7 +49,7 @@ delete
 
 要关闭 WAL，你需要通过将 `ENABLE_DB_WAL` 变量的值设置为 `false` 来启动 `vaultwarden`。
 
-```python
+```docker
 docker run -d --name vaultwarden \
   -e ENABLE_DB_WAL=false \
   -v /vw-data/:/data/ \
@@ -63,7 +63,7 @@ docker run -d --name vaultwarden \
 
 通常来说，只要您在未将 `ENABLE_DB_WAL` 变量的值设置为 `false` 的情况下启动 `vaultwarden`，服务器将自动为您启用 WAL。您可以通过运行以下命令进行验证：
 
-```python
+```sql
 sqlite3 db.sqlite3 'PRAGMA journal_mode'
 ```
 

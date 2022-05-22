@@ -18,7 +18,7 @@
 
 2、如果您通常使用管理页面来配置 Vaultwarden，则将 `config.json` 编辑为如下所示：
 
-```python
+```systemd
 {
   "domain": "https://vaultwarden.example.com/base-dir",
   // ... other values ...
@@ -27,7 +27,7 @@
 
 3、如果您通常通过环境变量来配置 Vaultwarden，请更新您的配置文件/脚本，将 `DOMAIN` 环境变量设置为基本 URL 。例如：
 
-```python
+```shell
 docker run -e DOMAIN="https://vaultwarden.example.com/base-dir" ...
 ```
 
@@ -39,7 +39,7 @@ docker run -e DOMAIN="https://vaultwarden.example.com/base-dir" ...
 
 7、注意对于步骤 **5**。尾部的斜杠 `/` 问题可以通过在路由位置字符串后添加 `/` 来解决。例如，在 nginx 中：
 
-```
+```systemd
 location /my-base-path {
   # 此配置将导致`/`问题
 }

@@ -35,7 +35,7 @@
 
 要对 `vaultwarden` 本身启用 HTTPS，请设置如下格式的 `ROCKET_TLS` 环境变量：
 
-```python
+```systemd
 ROCKET_TLS={certs="/path/to/certs.pem",key="/path/to/key.pem"}
 ```
 
@@ -54,7 +54,7 @@ ROCKET_TLS={certs="/path/to/certs.pem",key="/path/to/key.pem"}
     （环境变量本身的格式没有错误；只是因为 Rocket 无法解析证书/密钥的内容。）
 * 如果在 Docker 下运行，请记住，Vaultwarden 在容器内部运行时将解析 `ROCKET_TLS` 值 ，所以请确保 `certs` 和 `key` 路径是容器内部呈现的样子（可能与 Docker 主机系统上的路径不同）。
 
-```python
+```docker
 docker run -d --name vaultwarden \
   -e ROCKET_TLS='{certs="/ssl/certs.pem",key="/ssl/key.pem"}' \
   -v /ssl/keys/:/ssl/ \
@@ -79,7 +79,7 @@ docker run -d --name vaultwarden \
 
 因此，从 Vaultwarden 容器中使用，应像这样：
 
-```python
+```docker
 docker run -d --name vaultwarden \
   -e ROCKET_TLS='{certs="/ssl/live/mydomain/fullchain.pem",key="/ssl/live/mydomain/privkey.pem"}' \
   -v /etc/letsencrypt/:/ssl/ \
@@ -98,7 +98,7 @@ docker run -d --name vaultwarden \
 
 执行以下操作以验证证书是否随链安装（注意将 vault.domain.com 改为您自己的域名）：
 
-```python
+```shell
 openssl s_client -showcerts -connect vault.domain.com:443 -servername vault.domain.com
 
 # 或者不同的端口，比如 7070
@@ -107,7 +107,7 @@ openssl s_client -showcerts -connect vault.domain.com:7070 -servername vault.dom
 
 输出的开头应类似于以下内容（使用 Let's Encrypt 证书）：
 
-```python
+```shell
 CONNECTED(00000003)
 depth=2 O = Digital Signature Trust Co., CN = DST Root CA X3
 verify return:1
@@ -131,13 +131,13 @@ verify return:1
 
 您还可以使用如下命令行检查 OCSP 的状态：
 
-```
+```shell
 openssl s_client -showcerts -connect vault.domain.com:443 -servername vault.domain.com -status
 ```
 
 在其输出中必须包含：
 
-```
+```shell
 OCSP Response Status: successful (0x0)
 ```
 

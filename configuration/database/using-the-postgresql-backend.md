@@ -10,7 +10,7 @@
 
 **字符串连接语法：**
 
-```python
+```systemd
 DATABASE_URL=postgresql://[[user]:[password]@]host[:port][/database]
 ```
 
@@ -18,7 +18,7 @@ docker 运行环境变量的一个示例：`-e 'DATABASE_URL=postgresql://user_n
 
 如果您要使用自定义架构/搜索路径，则需要使用以下连接字符串（注意其中的 `%3D` 是 url 编码的 `=` 符号）：
 
-```python
+```systemd
 DATABASE_URL=postgresql://user_name:user_password@db_host:5432/vaultwarden?application_name=vaultwarden&options=-c search_path%3Ddb_schema
 ```
 
@@ -47,11 +47,11 @@ CREATE USER vaultwarden WITH ENCRYPTED PASSWORD 'yourpassword';
 GRANT all privileges ON database vaultwarden TO vaultwarden;
 ```
 
-3、配置 Vaultwarden 并启动它，以便 [diesel](http://diesel.rs) 可以运行迁移并设置正确的模式。除此之外不要做别的。
+3、配置 Vaultwarden 并启动它，以便 [diesel](http://diesel.rs/) 可以运行迁移并设置正确的模式。除此之外不要做别的。
 
 4、停止 Vaultwarden。
 
-5、安装 [pgloader](http://pgloader.io) 。
+5、安装 [pgloader](http://pgloader.io/) 。
 
 6、使用如下内容创建 vaultwarden.load 文件：
 
@@ -88,11 +88,11 @@ CREATE USER vaultwarden WITH ENCRYPTED PASSWORD 'yourpassword';
 GRANT all privileges ON database vaultwarden TO vaultwarden;
 ```
 
-3、配置 Vaultwarden 并启动它，以便 [diesel](http://diesel.rs) 可以运行迁移并设置正确的模式。除此之外不要做别的。
+3、配置 Vaultwarden 并启动它，以便 [diesel](http://diesel.rs/) 可以运行迁移并设置正确的模式。除此之外不要做别的。
 
 4、停止 Vaultwarden。
 
-5、安装 [pgloader](http://pgloader.io) 。确保你使用的是最新版本的 pgloader，官方的 Ubuntu 存储库有一个过时的版本，它不能与新版本的 PostgreSQL 一起正常工作。最新版本可以从 [PostgreSQL Apt 存储库](https://www.postgresql.org/download/linux/ubuntu/)获取。
+5、安装 [pgloader](http://pgloader.io/) 。确保你使用的是最新版本的 pgloader，官方的 Ubuntu 存储库有一个过时的版本，它不能与新版本的 PostgreSQL 一起正常工作。最新版本可以从 [PostgreSQL Apt 存储库](https://www.postgresql.org/download/linux/ubuntu/)获取。
 
 6、使用如下内容创建 vaultwarden.load 文件：
 

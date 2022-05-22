@@ -19,7 +19,7 @@
 
 您可以配置 Vaultwarden 通过 SMTP 代理来发送电子邮件：
 
-```python
+```docker
 docker run -d --name vaultwarden \
   -e SMTP_HOST=<smtp.domain.tld> \
   -e SMTP_FROM=<vaultwarden@domain.tld> \
@@ -36,7 +36,7 @@ docker run -d --name vaultwarden \
 
 请注意，如果启用了 SMTP 和邀请，邀请将通过电子邮件发送给新用户。您必须使用 Vaultwarden 实例的基础 URL 来设置 `DOMAIN` 配置项，以生成正确的邀请链接：
 
-```python
+```docker
 docker run -d --name vaultwarden \
 ...
 -e DOMAIN=https://vault.example.com \
@@ -53,7 +53,7 @@ docker run -d --name vaultwarden \
 
 * [SendGrid](https://sendgrid.com)（每天 100 封电子邮件）
 * [MailJet](https://www.mailjet.com)（每天 200 封电子邮件）
-* [SMTP2GO](https://www.smtp2go.com)（每月 1000 封电子邮件）
+* [SMTP2GO](https://www.smtp2go.com/)（每月 1000 封电子邮件）
 
 ## 一些知名服务的默认设置 <a href="#here-some-sane-defaults-for-well-known-services" id="here-some-sane-defaults-for-well-known-services"></a>
 
@@ -65,7 +65,7 @@ docker run -d --name vaultwarden \
 
 * 对于使用端口 465 的邮件服务器
 
-```coffeescript
+```systemd
 SMTP_PORT=465
 SMTP_SSL=false
 SMTP_EXPLICIT_TLS=true
@@ -73,7 +73,7 @@ SMTP_EXPLICIT_TLS=true
 
 * 对于使用端口 587（有时候是 25）的邮件服务器
 
-```coffeescript
+```systemd
 SMTP_PORT=587
 SMTP_SSL=true
 SMTP_EXPLICIT_TLS=false
@@ -81,7 +81,7 @@ SMTP_EXPLICIT_TLS=false
 
 * 对于根本不支持加密的邮件服务器
 
-```coffeescript
+```systemd
 SMTP_PORT=25
 SMTP_SSL=false
 SMTP_EXPLICIT_TLS=false
@@ -97,7 +97,7 @@ SMTP_EXPLICIT_TLS=false
 
 严格 SSL：
 
-```coffeescript
+```systemd
  # Domains: gmail.com, googlemail.com
   SMTP_HOST=smtp.gmail.com
   SMTP_PORT=465
@@ -109,7 +109,7 @@ SMTP_EXPLICIT_TLS=false
 
 StartTLS：
 
-```coffeescript
+```systemd
   # Domains: gmail.com, googlemail.com
   SMTP_HOST=smtp.gmail.com
   SMTP_PORT=587
@@ -123,7 +123,7 @@ StartTLS：
 
 ### Hotmail/Outlook/Office365
 
-```coffeescript
+```systemd
   # Domains: hotmail.com, outlook.com, office365.com
   SMTP_HOST=smtp-mail.outlook.com
   SMTP_PORT=587
@@ -140,7 +140,7 @@ StartTLS：
 
 StartTLS：
 
-```coffeescript
+```systemd
   SMTP_HOST=smtp.sendgrid.net
   SMTP_PORT=587
   SMTP_SSL=true
@@ -152,7 +152,7 @@ StartTLS：
 
 严格 SSL：
 
-```python
+```systemd
   SMTP_HOST=smtp.sendgrid.net
   SMTP_PORT=465
   SMTP_SSL=false

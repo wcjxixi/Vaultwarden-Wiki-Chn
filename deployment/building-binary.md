@@ -10,7 +10,7 @@
 
 ## 依赖 <a href="#dependencies" id="dependencies"></a>
 
-* `Rust nightly`（强烈建议使用 [rustup](https://rustup.rs)）
+* `Rust nightly`（强烈建议使用 [rustup](https://rustup.rs/)）
 * 在基于 Debian 的发行版上，请安装以下软件包：`build-essential`、`git`，这些通用软件包可确保构建能正常进行
 * `OpenSSL`（应在路径中是可用的，请参阅 [openssl crate 文档](https://docs.rs/openssl/0.10.16/openssl/#automatic)）。在基于 Debian 的发行版上，需要安装 `pkg-config` 和 `libssl-dev`
 * 对于基于 Debian 发行版上的 SQLite3 后端，需要安装 `libsqlite3-dev`
@@ -22,7 +22,7 @@
 
 ### 所有后端 <a href="#all-backends" id="all-backends"></a>
 
-```python
+```shell
 # 使用所有后端编译并运行
 cargo run --features sqlite,mysql,postgresql --release
 # 或仅使用所有后端编译（二进制位于 target/release/vaultwarden）
@@ -31,7 +31,7 @@ cargo build --features sqlite,mysql,postgresql --release
 
 ### SQLite 后端 <a href="#sqlite-backend" id="sqlite-backend"></a>
 
-```python
+```shell
 # 使用 sqlite 后端编译并运行
 cargo run --features sqlite --release
 # 或仅使用 sqlite 编译（二进制位于 target/release/vaultwarden）
@@ -40,7 +40,7 @@ cargo build --features sqlite --release
 
 ### MySQL 后端 <a href="#mysql-backend" id="mysql-backend"></a>
 
-```python
+```shell
 # 使用 mysql 后端编译并运行
 cargo run --features mysql --release
 # 或仅使用 mysql 编译（二进制位于 target/release/vaultwarden）
@@ -49,14 +49,14 @@ cargo build --features mysql --release
 
 ### PostgreSQL 后端 <a href="#postgresql-backend" id="postgresql-backend"></a>
 
-```python
+```shell
 # 使用 postgresql 后端编译并运行
 cargo run --features postgresql --release
 # 或仅使用 postgresql 编译（二进制位于 target/release/vaultwarden）
 cargo build --features postgresql --release
 ```
 
-运行后，通过 [http://localhost:8000](http://localhost:8000) 访问服务器。
+运行后，通过 [http://localhost:8000](http://localhost:8000/) 访问服务器。
 
 {% hint style="warning" %}
 **注意**：一个先前的[话题](https://github.com/rust-lang/rust/issues/62896)表明由于 Rust 编译器和 LLVM 之间存在不兼容，导致编译可能会因段错误而失败。作为解决方法，可以使用较旧版本的编译器，例如 `cargo +nightly-2019-08-27 build --features yourbackend --release`
@@ -74,7 +74,7 @@ cargo build --features postgresql --release
 
 1、克隆 [bitwarden/web](https://github.com/bitwarden/web) git 库，并查看最新的发行标签（例如 v2.1.1）：
 
-```python
+```shell
 # 克隆库
 git clone https://github.com/bitwarden/web.git web-vault
 cd web-vault
@@ -91,14 +91,14 @@ git submodule update --init --recursive
 
 3、应用补丁：
 
-```python
+```shell
 # 在 'web-vault' 目录中运行命令
 git apply vX.Y.Z.patch
 ```
 
 4、然后，构建密码库：
 
-```python
+```shell
 npm install
 # 阅读下方的备注（我们将其用于我们的 docker 构建）
 # npm 审计修复
@@ -131,7 +131,7 @@ npm run dist:oss:selfhost
 
 使用 cargo 安装 diesel\_cli：
 
-```python
+```shell
 cargo install diesel_cli --no-default-features --features sqlite-bundled
 ```
 
@@ -139,7 +139,7 @@ cargo install diesel_cli --no-default-features --features sqlite-bundled
 
 如果要修改模式，请使用以下命令创建新迁移：
 
-```python
+```shell
 diesel migration generate <name>
 ```
 
@@ -147,7 +147,7 @@ diesel migration generate <name>
 
 应用迁移并保存生成的模式，如下所示：
 
-```python
+```shell
 diesel migration redo
 
 # 当使用的 diesel-cli > 1.3.0 时，此步骤会自动完成
