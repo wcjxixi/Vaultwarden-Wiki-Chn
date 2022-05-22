@@ -6,7 +6,7 @@
 
 更新非常简单，你只需确保保留了已挂载的卷。如果您使用[此处](starting-a-container.md)示例中的 bind-mounted 路径（绑定挂载路径）的方式，则只需使用 `pull` 拉取最新版的镜像，使用 `stop` 和 `rm` 停止和移除当前容器，然后与之前相同的方式启动一个新的容器即可：
 
-```python
+```batch
 # 拉取最新版本的镜像
 docker pull vaultwarden/server:latest
 
@@ -18,11 +18,11 @@ docker rm vaultwarden
 docker run -d --name vaultwarden -v /vw-data/:/data/ -p 80:80 vaultwarden/server:latest
 ```
 
-然后访问 [http://localhost:80](http://localhost)
+然后访问 [http://localhost:80](http://localhost/)
 
 如果您没有为持久性数据绑定挂载卷，则多一个中间步骤，就是使用中间容器来保留数据：
 
-```python
+```docker
 # 拉取最新版本的镜像
 docker pull vaultwarden/server:latest
 
@@ -46,7 +46,7 @@ docker rm vaultwarden_data
 
 ## 使用 docker-compose 时的更新 <a href="#updating-when-using-docker-compose" id="updating-when-using-docker-compose"></a>
 
-```python
+```docker
 docker-compose down
 docker-compose pull
 docker-compose up -d
@@ -54,7 +54,7 @@ docker-compose up -d
 
 ## 使用 systemd 服务时的更新（在本例中为 Debian/Raspbian） <a href="#updating-when-using-systemd-service-in-this-case-debian-raspbian" id="updating-when-using-systemd-service-in-this-case-debian-raspbian"></a>
 
-```python
+```batch
 sudo systemctl restart vaultwarden.service
 sudo docker system prune -f
 # 警告！这将删除已停止或未使用的容器，例如与 Vaultwarden 无关的容器
