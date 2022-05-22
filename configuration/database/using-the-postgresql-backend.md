@@ -16,7 +16,7 @@ DATABASE_URL=postgresql://[[user]:[password]@]host[:port][/database]
 
 docker 运行环境变量的一个示例：`-e 'DATABASE_URL=postgresql://user_name:user_password@db_host:5432/vaultwarden'`。
 
-如果您要使用自定义架构/搜索路径，则需要使用以下连接字符串（注意其中的 `%3D` 是 url 编码的 `=` 符号）：
+如果您要使用自定义架构/搜索路径，则需要使用以下连接字符串（注意其中的 `%3D` 是`=` 符号的 URL 编码）：
 
 ```systemd
 DATABASE_URL=postgresql://user_name:user_password@db_host:5432/vaultwarden?application_name=vaultwarden&options=-c search_path%3Ddb_schema
