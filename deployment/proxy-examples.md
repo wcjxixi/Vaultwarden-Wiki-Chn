@@ -225,7 +225,7 @@ server {
 
 为此，您需要配置 `DOMAIN` 变量以使其匹配，它应类似于：
 
-```python
+```nginx
 ; 添加子路径！否则将无法正常工作！
 DOMAIN=https://vaultwarden.example.tld/vault/
 ```
