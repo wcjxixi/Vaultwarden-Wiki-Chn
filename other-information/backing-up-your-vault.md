@@ -46,7 +46,7 @@ _**需要备份。**_
 
 SQLite 数据库文件 (`db.sqlite3`) 存储了几乎所有重要的 Vaultwarden 数据/状态（数据库条目、用户/组织/设备元数据等），主要的例外是附件，附件作为单独的文件存储在文件系统中。
 
-您通常应使用 SQLite CLI (`sqlite3`) 中的 `.backup` 命令来备份数据库文件。该命令使用 [Online Backup API](https://www.sqlite.org/backup.html)，它是备份可能正在被使用的数据库文件的[最佳方式](https://www.sqlite.org/howtocorrupt.html#\_backup\_or\_restore\_while\_a\_transaction\_is\_active)。如果你能确保数据库在备份运行时未被使用，你也可以使用其他方式，例如 `.dump` 命令，或者简单地复制所有 SQLite 数据库文件（包括 `-wal` 文件，如果存在的话）。
+你通常应使用 SQLite CLI (`sqlite3`) 中的 `.backup` 命令来备份数据库文件。该命令使用 [Online Backup API](https://www.sqlite.org/backup.html)，它是备份可能正在被使用的数据库文件的[最佳方式](https://www.sqlite.org/howtocorrupt.html#\_backup\_or\_restore\_while\_a\_transaction\_is\_active)。如果你能确保数据库在备份运行时未被使用，你也可以使用其他方式，例如 `.dump` 命令，或者简单地复制所有 SQLite 数据库文件（包括 `-wal` 文件，如果存在的话）。
 
 假设你的数据文件夹是 `data`（默认），一个基本的备份命令看起来像这样：
 
@@ -54,7 +54,7 @@ SQLite 数据库文件 (`db.sqlite3`) 存储了几乎所有重要的 Vaultwarden
 sqlite3 data/db.sqlite3 ".backup '/path/to/backups/db-$(date '+%Y%m%d-%H%M').sqlite3'"
 ```
 
-您也可以使用 `VACUUM INTO`，这将压缩空闲空间，但需要更多的处理时间：：
+你也可以使用 `VACUUM INTO`，这将压缩空闲空间，但需要更多的处理时间：：
 
 ```sql
 sqlite3 data/db.sqlite3 "VACUUM INTO '/path/to/backups/db-$(date '+%Y%m%d-%H%M').sqlite3'"
@@ -62,9 +62,9 @@ sqlite3 data/db.sqlite3 "VACUUM INTO '/path/to/backups/db-$(date '+%Y%m%d-%H%M')
 
 假设在 2021 年 1 月 1 日中午 12:34（当地时间）运行此命令，这将备份你的 SQLite 数据库文件到 `/path/to/backups/db-20210101-1234.sqlite3`。
 
-你可以通过一个 cron 作业定期运行这个命令（最好每天至少一次）。如果您通过 Docker 运行，请注意 Docker 映像不包含 sqlite3 二进制文件或 cron 守护程序，因此通常会将它们安装在 Docker 主机本身上并在容器外运行 cron 作业。如果您出于某种原因确实想从容器内运行备份，您可以在[容器启动](../container-image-usage/starting-a-container.md#customizing-container-startup)期间安装任何必要的包，或者使用您首选的 `vaultwarden/server:<tag>` 镜像作为父镜像创建您自己的自定义 Docker 镜像。
+你可以通过一个 cron 作业定期运行这个命令（最好每天至少一次）。如果你通过 Docker 运行，请注意 Docker 映像不包含 sqlite3 二进制文件或 cron 守护程序，因此通常会将它们安装在 Docker 主机本身上并在容器外运行 cron 作业。如果你出于某种原因确实想从容器内运行备份，你可以在[容器启动](../container-image-usage/starting-a-container.md#customizing-container-startup)期间安装任何必要的包，或者使用你首选的 `vaultwarden/server:<tag>` 镜像作为父镜像创建你自己的自定义 Docker 镜像。
 
-如果你想把备份数据复制到云存储上，[Rclone](https://rclone.org/) 是一个有用的工具，可以与各种云存储系统进行对接。[restic](https://restic.net/) 是另一个不错的选择，特别是如果您有较大的附件，并想避免每次都将其作为备份的一部分的时候。
+如果你想把备份数据复制到云存储上，[Rclone](https://rclone.org/) 是一个有用的工具，可以与各种云存储系统进行对接。[restic](https://restic.net/) 是另一个不错的选择，特别是如果你有较大的附件，并想避免每次都将其作为备份的一部分的时候。
 
 ### `attachments` 目录 <a href="#the-attachments-dir" id="the-attachments-dir"></a>
 
@@ -78,7 +78,7 @@ _**可选备份。**_
 
 与常规文件附件一样，Send 文件附件也不存储在数据库表中（但 Send 的文本注释存储在数据库中）。
 
-与常规附件不同，Send 附件的目的是短暂的。因此，如果要最小化备份的大小，则可以选择不备份此目录。另一方面，如果在还原过程中保持现有 Send 的正常功能更为重要，那么您应该备份此目录。
+与常规附件不同，Send 附件的目的是短暂的。因此，如果要尽量减小备份的大小，则可以选择不备份此目录。另一方面，如果还原后保持现有 Send 的功能正常对您很重要，那么你应该备份此目录。
 
 如果未创建任何 Send 附件，则该目录将不存在。
 
@@ -102,7 +102,7 @@ _**建议备份。**_
 
 _**可选备份。**_
 
-图标缓存用于存储[网站图标](https://help.ppgg.in/security/privacy-when-using-website-icons)，这样就不需要反复从登录网站获取图标了。这可能不值得备份，除非你真的想避免重新获取大量的图标缓存。
+图标缓存用于存储[网站图标](https://help.ppgg.in/security/privacy-when-using-website-icons)，这样就不需要从登录项目相关的站点反复获取图标了。这可能不值得备份，除非你真的想避免重新获取大量的图标缓存。
 
 ## 恢复备份数据 <a href="#restoring-backup-data" id="restoring-backup-data"></a>
 
@@ -114,7 +114,7 @@ _**可选备份。**_
 
 ## 示例 <a href="#examples" id="examples"></a>
 
-本部分是第三方备份示例的索引。在使用某个示例之前，您应该彻底审阅此示例并了解其工作方式。
+本部分是第三方备份示例的索引。在使用某个示例之前，你应该彻底审阅此示例并了解其工作方式。
 
 * [https://github.com/ttionya/vaultwarden-backup](https://github.com/ttionya/vaultwarden-backup)
 * [https://github.com/shivpatel/bitwarden\_rs-local-backup](https://github.com/shivpatel/bitwarden\_rs-local-backup)

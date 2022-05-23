@@ -18,6 +18,6 @@
 
 ## 在未加密的连接上运行 <a href="#running-on-unencrypted-connection" id="running-on-unencrypted-connection"></a>
 
-强烈建议通过 HTTPS 运行 Vaultwarden 服务。但是，服务器本身在[支持上](../deployment/https/enabling-https.md)并不严格要求进行此类设置。如果您使用信任的连接（比如内部的安全网络、通过 VPN 访问等），或者想要将该服务置于 HTTP 代理之后，从而在代理端进行加密。这些情况下启动服务会更加简单和容易。
+强烈建议通过 HTTPS 运行 Vaultwarden 服务。但是，服务器本身在[支持上](../deployment/https/enabling-https.md)并不严格要求进行此类设置。如果你使用信任的连接（比如内部的安全网络、通过 VPN 访问等），或者想要将该服务置于 HTTP 代理之后，从而在代理端进行加密。这些情况下启动服务会更加简单和容易。
 
-通过 HTTP 运行仍然是相当安全的，前提是您使用了非常强大的主密码，并且避免使用易受 MITM 攻击的基于网页密码库的连接，攻击者可能会在该接口中注入 javascript。但是，某些形式的两步登录可能无法在此设置中使用，并且[在此配置下的密码库无法在 Chrome 浏览器中使用](https://github.com/bitwarden/web/issues/254)。
+通过 HTTP 运行仍然是相当安全的，前提是你使用了非常强大的主密码，并且避免使用易受 MITM 攻击的基于网页密码库的连接，攻击者可能会在该接口中注入 javascript。但是，某些形式的两步登录可能无法在此设置中使用，并且[在此配置下的密码库无法在 Chrome 浏览器中使用](https://github.com/bitwarden/web/issues/254)。
