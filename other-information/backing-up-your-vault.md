@@ -96,7 +96,7 @@ _**建议备份。**_
 
 这些文件用于签署当前登录用户的 [JWT](https://en.wikipedia.org/wiki/JSON\_Web\_Token)（验证令牌）。删除这些文件将简单地注销每个用户，迫使他们重新登录。
 
-**\[译者注]**：[JWT](https://jwt.io/) (JSON Web Tokens)，是一种基于 JSON 的、用于在网络上声明某种主张的令牌 (token)。JWT 通常由三部分组成:：头信息 (header)、消息体 (payload) 和签名 (signature)。
+> \[**译者注**]：[JWT](https://jwt.io/) (JSON Web Tokens)，是一种基于 JSON 的、用于在网络上声明某种主张的令牌 (token)。JWT 通常由三部分组成:：头信息 (header)、消息体 (payload) 和签名 (signature)。
 
 ### `icon_cache` 目录 <a href="#the-icon_cache-dir" id="the-icon_cache-dir"></a>
 

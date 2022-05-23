@@ -6,7 +6,7 @@
 
 在此文档中，`<SERVER>` 是指用于访问 Vaultwarden 的 IP 或域名，如果代理和 Vaultwarden 两者在同一系统中运行，简单地使用 `localhost` 即可。
 
-默认情况下，Vaultwarden 在端口 80 上监听网页 (REST API) 流量，在端口 3012 上监听 WebSocket 流量（若启用了 [WebSocket](../configuration/enabling-websocket-notifications.md) 通知）。反向代理应该被配置为终止 SSL/TLS 连接（最好是在 HTTPS 的标准端口 443 上）。然后，反向代理将传入的客户端请求在端口 80 或 3012（视情况而定）上传递给 Vaultwarden，并在收到 Vaultwarden 的响应后，将该响应传回客户端。
+默认情况下，Vaultwarden 在端口 80 上监听网页 (REST API) 流量，在端口 3012 上监听 WebSocket 流量（如果启用了 [WebSocket](../configuration/enabling-websocket-notifications.md) 通知）。反向代理应该被配置为终止 SSL/TLS 连接（最好是在 HTTPS 的标准端口 443 上）。然后，反向代理将传入的客户端请求在端口 80 或 3012（视情况而定）上传递给 Vaultwarden，并在收到 Vaultwarden 的响应后，将该响应传回客户端。
 
 注意，当你把 Vaultwarden 放在反向代理后面时，反向代理和 Vaultwarden 之间的连接通常被认为是通过安全的私有网络进行的，因此不需要加密。下面的例子假设你是在这种配置下运行的，在这种情况下，不应该启用 Vaultwarden 中内置的 HTTPS 功能（也就是说，不应该设置 `ROCKET_TLS` 环境变量）。如果你这样做了，连接就会失败，因为反向代理使用 HTTP 连接到 Vaultwarden，但你配置的 Vaultwarden 却希望使用 HTTPS。
 
