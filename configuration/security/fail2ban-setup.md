@@ -157,7 +157,7 @@ ignoreregex =
 
 ### Jail
 
-> \[**译者注**]：[Jail 是什么](https://www.freebsd.org/doc/zh\_CN/books/arch-handbook/jail.html)
+> \[**译者注**]：[什么是 Jail](https://docs.freebsd.org/zh-cn/books/arch-handbook/jail/)
 
 使用如下内容创建文件：
 
@@ -186,6 +186,10 @@ action = iptables-allports[name=vaultwarden, chain=FORWARD]
 
 **上面注意中的注意**：\
 在使用 caddy 作为反向代理的 Docker (CentOS 7) 上运行时，上面的说法是不正确的。当用 caddy 作为反向代理时，可以使用 `chain = FORWARD` 。
+
+**Cloudflare 用户请注意：**
+
+如果您使用 Cloudflare 代理，您需要将 Cloudflare 添加到您的操作列表中，如[本指南](https://niksec.com/using-fail2ban-with-cloudflare/)中所示。
 
 重新加载 fail2ban 使更改生效：
 
@@ -234,11 +238,15 @@ bantime = 14400
 findtime = 14400
 ```
 
-**注意**：Docker 使用 FORWARD 链而不是默认的 INPUT 链。因此，当使用 Docker 时，请用下面的 `action` 行替换 `banaction` 行：
+**注意**：Docker 使用 FORWARD 链而不是默认的 INPUT 链。因此，当使用 Docker 时，请使用下面的 `action` 行替换掉 `banaction` 行：
 
 ```systemd
 action = iptables-allports[name=vaultwarden, chain=FORWARD]
 ```
+
+**Cloudflare 用户请注意：**
+
+如果您使用 Cloudflare 代理，您需要将 Cloudflare 添加到您的操作列表中，如[本指南](https://niksec.com/using-fail2ban-with-cloudflare/)中所示。
 
 重新加载 fail2ban 使更改生效：
 
@@ -257,7 +265,7 @@ sudo docker exec -t fail2ban fail2ban-client set vaultwarden unbanip XX.XX.XX.XX
 sudo fail2ban-client set vaultwarden unbanip XX.XX.XX.XX
 ```
 
-如果 Fail2Ban 无法正常运行，请检查 Vaultwarden 日志文件的路径是否正确。对于 Docker：如果指定的日志文件未生成和/或更新，请确保将 `EXTENDED_LOGGING` 变量设置为 true（默认值），并且日志文件的路径是 Docker 内部的路径（当您使用 `/vw-data/:/data/` 时，日志文件应位于容器外部的 `/data/...` 中）。
+如果 Fail2Ban 无法正常运行，请检查 Vaultwarden 日志文件的路径是否正确。对于 Docker：如果指定的日志文件未生成和/或更新，请确保将 `EXTENDED_LOGGING` 变量设置为 `true`（默认值），并且确保日志文件的路径是 Docker 内部的路径（当您使用 `/vw-data/:/data/` 时，日志文件应位于容器外部的 `/data/...` 中）。
 
 还要确认 Docker 容器的时区与主机的时区是否一致。通过将日志文件中显示的时间与主机操作系统的时间进行比较来进行检查。如果它们不一致，则有多种解决方法。一种是使用 `-e "TZ = <timezone>"` 选项启动 docker 。可用的时区（比如 `-e TZ = "Australia/Melbourne"`）列表在[这里](https://en.wikipedia.org/wiki/List\_of\_tz\_database\_time\_zones)查看。
 
@@ -265,7 +273,7 @@ sudo fail2ban-client set vaultwarden unbanip XX.XX.XX.XX
 
 ## SELinux 中的问题 <a href="#selinux-problems" id="selinux-problems"></a>
 
-当使用 SELinux 时，SELinux 可能会阻止 fail2ban 读取日志。如果是这样，请运行此命令： `sudo tail /var/log/audit/audit.log`。您应该会看到如下类似内容（当然，实际的审核 ID 会因您的情况而不一样）：
+当使用 SELinux 时，SELinux 可能会阻止 fail2ban 读取日志。如果是这样，请运行此命令： `sudo tail /var/log/audit/audit.log`。您应该会看到如下类似内容（当然，实际的审核 ID（pid）会因您的情况而不一样）：
 
 ```
 type=AVC msg=audit(1571777936.719:2193): avc:  denied  { search } for  pid=5853 comm="fail2ban-server" name="containers" dev="dm-0" ino=1144588 scontext=system_u:system_r:fail2ban_t:s0 tcontext=unconfined_u:object_r:container_var_lib_t:s0 tclass=dir permissive=0
