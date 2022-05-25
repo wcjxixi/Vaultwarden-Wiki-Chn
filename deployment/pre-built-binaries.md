@@ -10,7 +10,7 @@ Vaultwarden 目前并没有提供独立的二进制文件作为单独的下载�
 
 假设要为您运行的平台提取二进制文件：
 
-```docker
+```shell
 docker pull vaultwarden/server:alpine
 docker create --name vm vaultwarden/server:alpine
 docker cp vm:/vaultwarden .
@@ -20,7 +20,7 @@ docker rm vm
 
 如果您想获取不同平台的二进制文件（例如，你的 x86-64 机器上只安装了 Docker，但您想在 Raspberry Pi 上运行 Vaultwarden）， 将 `--platform` 选项添加到 `docker pull` 命令中：
 
-```docker
+```shell
 docker pull --platform linux/arm/v7 vaultwarden/server:alpine
 # 按照上面的方法运行其余的命令。
 # 注意， `docker create` 命令可能会输出如下类似的信息：
@@ -77,6 +77,6 @@ drwx------ 8 user user     4096 Feb  6 21:46 output/web-vault/
 
 例如：
 
-```shell
+```
 $ ./docker-image-extract vaultwarden/server:sha256:ef129de113bec3409b6370c37a6e5573a1dacc051a3aae2a8a3339323ae63623
 ```

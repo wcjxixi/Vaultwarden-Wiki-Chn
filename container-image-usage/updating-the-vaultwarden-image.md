@@ -46,7 +46,7 @@ docker rm vaultwarden_data
 
 ## 使用 docker-compose 时的更新 <a href="#updating-when-using-docker-compose" id="updating-when-using-docker-compose"></a>
 
-```docker
+```shell
 docker-compose down
 docker-compose pull
 docker-compose up -d
@@ -54,7 +54,7 @@ docker-compose up -d
 
 ## 使用 systemd 服务时的更新（在本例中为 Debian/Raspbian） <a href="#updating-when-using-systemd-service-in-this-case-debian-raspbian" id="updating-when-using-systemd-service-in-this-case-debian-raspbian"></a>
 
-```systemd
+```shell
 sudo systemctl restart vaultwarden.service
 sudo docker system prune -f
 # 警告！这将删除已停止或未使用的容器，例如与 Vaultwarden 无关的容器

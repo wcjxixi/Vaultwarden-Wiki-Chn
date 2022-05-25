@@ -50,7 +50,7 @@ raspberry pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 
 <summary>配置示例</summary>
 
-```nix
+```systemd
 { pkgs, ... }:
 {
   services.bitwarden_rs = {

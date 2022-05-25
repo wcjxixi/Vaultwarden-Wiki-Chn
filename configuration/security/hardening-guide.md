@@ -58,7 +58,7 @@ docker run -u 1000:1000 -e ROCKET_PORT=8080 -p <host-port>:8080 \
 
 要在 `docker-compose` 中进行同样的操作：
 
-```systemd
+```yaml
 services:
   vaultwarden:
     image: vaultwarden/server:latest

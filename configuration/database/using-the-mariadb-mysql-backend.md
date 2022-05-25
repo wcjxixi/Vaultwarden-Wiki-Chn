@@ -32,7 +32,7 @@ DATABASE_URL=mysql://[[user]:[password]@]host[:port][/database]
 
 ## 使用 Docker 的示例 <a href="#example-using-docker" id="example-using-docker"></a>
 
-```docker
+```shell
 # 启动 mysql 容器
 docker run --name mysql --net <some-docker-network>\
  -e MYSQL_ROOT_PASSWORD=<my-secret-pw>\
@@ -58,7 +58,7 @@ mysql://dbuser:yourpassword@192.168.1.10:3306/vaultwarden
 
 ### 使用 docker-compose 的示例 <a href="#example-using-docker-compose" id="example-using-docker-compose"></a>
 
-```systemd
+```yaml
 version: "3.7"
 services:
  mariadb:
@@ -188,24 +188,24 @@ mysql --force --password --user=vaultwarden --database=vaultwarden < mysqldump.s
 
 _注意：使用_ _`--show-warnings`_ _加载_ _MySQL_ _转储时，会突出显示 datetime_ _字段在导入期间被截断了，这**似乎**也不会有问题。_
 
-```python
+```
 Note (Code 1265): Data truncated for column 'created_at' at row 1
 Note (Code 1265): Data truncated for column 'updated_at' at row 1
 ```
 
 _注意 1：加载 mysqldump.sql 数据过程中出现加载错误_
 
-```python
+```
 error (1064): Syntax error near '"users" VALUES('9b5c2d13-8c4f-47e9-bd94-f0d7036ff581'*********)
 ```
 
 修复：
 
-```python
+```shell
 sed -i s#\"#\#g mysqldump.sql
 ```
 
-```python
+```shell
 mysql --password --user=vaultwarden
 use vaultwarden
 source /vw-data/mysqldump.sql

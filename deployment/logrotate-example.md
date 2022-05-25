@@ -10,25 +10,25 @@
 sudo nano /etc/logrotate.d/vaultwarden
 ```
 
-```shell
+```batch
 /var/log/vaultwarden/*.log {
-    # 以 bitwarden 用户和群组的身份执行轮换
+    # 以 vaultwarden 用户和群组的身份执行转储
     su vaultwarden vaultwarden
-    # 每天轮换
+    # 每天转储
     daily
-    # 当尺寸大于 5M 时轮换
+    # 当大小大于 5M 时转储
     size 5M
     # 压缩旧的日志文件
     compress
-    # 在删除或邮寄到 mail 指令中指定的地址之前，保留 4 个轮换的日志文件
+    # 在删除或邮寄到 mail 指令中指定的地址之前，保留 4 个转储的日志文件
     rotate 4
     # 把当前日志备份并截断
     copytruncate
     # 如果日志文件不存在，继续下一个操作
     missingok
-    # 如果日志文件为空则不进行轮换
+    # 如果日志文件为空则不进行转储
     notifempty
-    # 在轮换的日志文件中添加数字格式的日期
+    # 在转储的日志文件中添加数字格式的日期
     dateext
     # dateext 的日期格式
     dateformat -%Y-%m-%d-%s

@@ -6,27 +6,13 @@
 
 [Docker Compose](https://docs.docker.com/compose/) 是一个用于定义和配置多容器应用程序的工具。在我们的例子中，我们希望 Vaultwarden 服务器和代理都将 WebSocket 请求重定向到正确的地方。
 
-{% hint style="danger" %}
-**不要对环境变量的值使用引号 `"`！这会导致问题。**
-
-如果你需要把它放在引号内，请把整个项目（变量 + 值）括起来。
-
-错误：
-
-`- DATABASE_URL="/path/to/db.sqlite3"`
-
-正确：
-
-`- "DATABASE_URL=/path/to/db.sqlite3"`
-{% endhint %}
-
 ## 带有 HTTP 挑战的 Caddy <a href="#caddy-with-http-challenge" id="caddy-with-http-challenge"></a>
 
 本示例假定您已[安装](https://docs.docker.com/compose/install/) Docker Compose，并且您的 Vaultwarden 实例具有一个可以公开访问的域名（例如 `vaultwarden.example.com`）。
 
 首先创建一个新的目录，然后切换到该目录下。接下来，创建如下的 `docker-compose.yml` 文件，确保将 `DOMAIN` 和 `EMAIL` 变量替换为实际的值。
 
-```nginx
+```yaml
 version: '3'
 
 services:
@@ -35,7 +21,7 @@ services:
     container_name: vaultwarden
     restart: always
     environment:
-      - WEBSOCKET_ENABLED=true  # 启用 WebSocket 通知
+      WEBSOCKET_ENABLED: "true"  # 启用 WebSocket 通知
     volumes:
       - ./vw-data:/data
 
@@ -51,9 +37,9 @@ services:
       - ./caddy-config:/config
       - ./caddy-data:/data
     environment:
-      - DOMAIN=http(s)://vaultwarden.example.com  # 您的域名，以 http 或 https 作为前缀
-      - EMAIL=admin@example.com       # 用于 ACME 注册的电子邮件地址
-      - LOG_FILE=/data/access.log
+      DOMAIN: "https://vaultwarden.example.com"  # 您的域名，以 http 或 https 作为前缀
+      EMAIL: "admin@example.com"       # 用于 ACME 注册的电子邮件地址
+      LOG_FILE: "/data/access.log"
 ```
 
 在相同的目录下创建如下的 `Caddyfile` 文件（此文件不需要做修改）：
@@ -89,13 +75,13 @@ services:
 
 运行以下命令创建并启动容器。这将为 `docker-compose.yml` 文件中的服务创建私有网络，这样就只有 Caddy 暴露在外面了：
 
-```docker
+```shell
 docker-compose up -d
 ```
 
 停止并销毁容器：
 
-```docker
+```shell
 docker-compose down
 ```
 
@@ -107,7 +93,7 @@ docker-compose down
 
 首先创建一个新的目录，然后切换到该目录下。接下来，创建如下的 `docker-compose.yml` 文件，确保将 `DOMAIN` 和 `EMAIL` 变量替换为实际的值。
 
-```nginx
+```yaml
 version: '3'
 
 services:
@@ -116,9 +102,9 @@ services:
     container_name: vaultwarden
     restart: always
     environment:
-      - WEBSOCKET_ENABLED=true  # 启用 WebSocket 通知。
+       WEBSOCKET_ENABLED: "true"  # 启用 WebSocket 通知。
     volumes:
-      - ./vw-data:/data
+       - ./vw-data:/data
 
   caddy:
     image: caddy:2
@@ -133,10 +119,10 @@ services:
       - ./caddy-config:/config
       - ./caddy-data:/data
     environment:
-      - DOMAIN=http(s)://vaultwarden.example.com  # 您的域名，以 http 或 https 作为前缀
-      - EMAIL=admin@example.com       # 用于 ACME 注册的电子邮件地址
-      - DUCKDNS_TOKEN=<token>         # 您的 Duck DNS 令牌
-      - LOG_FILE=/data/access.log
+      DOMAIN: "https://vaultwarden.example.com"  # 您的域名，以 http 或 https 作为前缀
+      EMAIL: "admin@example.com"        # 用于 ACME 注册的电子邮件地址
+      DUCKDNS_TOKEN: "<token>"          # 您的 Duck DNS 令牌
+      LOG_FILE: "/data/access.log"
 ```
 
 原有的 Caddy 构建（包括 Docker 映像中的构建）不包含 DNS 挑战模块，因此接下来您需要[获取自定义 Caddy 构建](../deployment/https/running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md#getting-a-custom-caddy-build)。将自定义构建重命名为 `caddy` 并将其移动到与 `docker-compose.yml` 相同的目录下。确保 `caddy` 文件是可执行的（例如 `chmod a + x caddy`）。上面的 `docker-compose.yml` 文件会将自定义构建绑定挂载到 `caddy:2` 容器中，并替换原有的构建。
@@ -172,6 +158,6 @@ services:
 
 与 HTTP 挑战的示例一样，运行下面的命令以创建并启动容器：
 
-```docker
+```shell
 docker-compose up -d
 ```

@@ -36,7 +36,7 @@ docker run -d --name vaultwarden -v /vw-data/:/data/ -p 192.168.0.2:80:80 vaultw
 
 如果运行了 `docker stop vaultwarden` 命令，或重启，亦或任何其他原因，容器停止了，则可以使用以下命令将其启动：
 
-```docker
+```shell
 docker start vaultwarden
 ```
 

@@ -39,7 +39,7 @@ xcaddy build --with github.com/caddy-dns/cloudflare --with github.com/caddy-dns/
 
 创建一个名为 `Caddyfile` 的文件，内容如下：
 
-```systemd
+```yaml
 {$DOMAIN}:443 {
     tls {
         dns duckdns {$DUCKDNS_TOKEN}
@@ -97,7 +97,7 @@ export WEBSOCKET_ENABLED=true
 
 创建一个名为 `Caddyfile` 的文件，内容如下：
 
-```systemd
+```yaml
 {$DOMAIN}:443 {
     tls {
         dns cloudflare {$CLOUDFLARE_API_TOKEN}
@@ -116,13 +116,13 @@ CLOUDFLARE_API_TOKEN=<your-api-token>
 
 运行命令以启动 `caddy`：
 
-```python
+```shell
 caddy run -envfile caddy.env
 ```
 
 运行命令以启动 `vaultwarden`：
 
-```systemd
+```shell
 export ROCKET_PORT=8080
 export WEBSOCKET_ENABLED=true
 

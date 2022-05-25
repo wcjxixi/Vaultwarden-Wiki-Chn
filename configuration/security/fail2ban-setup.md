@@ -87,7 +87,7 @@ blocktype = DROP
 
 4、创建 docker-compose 文件
 
-```shell
+```yaml
 # /volumeX/docker/fail2ban/docker-compose.yml
 
 version: '3'

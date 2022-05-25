@@ -107,7 +107,7 @@ openssl s_client -showcerts -connect vault.domain.com:7070 -servername vault.dom
 
 输出的开头应类似于以下内容（使用 Let's Encrypt 证书）：
 
-```shell
+```
 CONNECTED(00000003)
 depth=2 O = Digital Signature Trust Co., CN = DST Root CA X3
 verify return:1
@@ -137,7 +137,7 @@ openssl s_client -showcerts -connect vault.domain.com:443 -servername vault.doma
 
 在其输出中必须包含：
 
-```shell
+```
 OCSP Response Status: successful (0x0)
 ```
 

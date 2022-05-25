@@ -36,7 +36,7 @@ WantedBy=multi-user.target default.target
 
 您可以提供 `--files` 标志告诉 podman 将 systemd 服务放到一个文件中。这样，我们就可以像任何正常的服务文件一样启用和启动容器了。
 
-```systemd
+```shell
 $ systemctl --user enable /etc/systemd/system/container-vaultwarden.service
 $ systemctl --user start container-vaultwarden.service
 ```
@@ -45,7 +45,7 @@ $ systemctl --user start container-vaultwarden.service
 
 如果我们希望每次服务启动时都创建一个新的容器，可以使用 `podman generate systemd --new` 命令生成一个重新创建容器的服务文件：
 
-```systemd
+```shell
 $ podman generate systemd --new --name vaultwarden
 ```
 

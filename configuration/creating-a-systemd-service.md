@@ -65,13 +65,13 @@ WantedBy=multi-user.target
 
 如果必须更改现有（而不是像上面那样新建）的 systemd 文件（您安装的软件包提供给您的），可以使用下面的命令来添加更改：
 
-```systemd
+```shell
 $ sudo systemctl edit vaultwarden.service
 ```
 
 请运行以下命令，以让 systemd 知道您的新文件或您所做的任何更改：
 
-```systemd
+```shell
 $ sudo systemctl daemon-reload
 ```
 
@@ -79,13 +79,13 @@ $ sudo systemctl daemon-reload
 
 要启动此「服务」，请运行：
 
-```systemd
+```shell
 $ sudo systemctl start vaultwarden.service
 ```
 
 要启用自动启动，请运行：
 
-```systemd
+```shell
 $ sudo systemctl enable vaultwarden.service
 ```
 
@@ -95,7 +95,7 @@ $ sudo systemctl enable vaultwarden.service
 
 编译新版本的 Vaultwarden 之后，您可以复制已编译的（新的）二进制文件并替换现有的（旧的）二进制文件，然后重新启动服务：
 
-```systemd
+```shell
 $ sudo systemctl restart vaultwarden.service
 ```
 
@@ -103,7 +103,7 @@ $ sudo systemctl restart vaultwarden.service
 
 在执行其他操作之前，应先停止并禁用该服务：
 
-```systemd
+```shell
 $ sudo systemctl disable --now vaultwarden.service
 ```
 
@@ -111,7 +111,7 @@ $ sudo systemctl disable --now vaultwarden.service
 
 删除 systemd 文件后，您应该通过下面的方式使 systemd 意识到这一点：
 
-```systemd
+```shell
 $ sudo systemctl daemon-reload
 ```
 
@@ -119,13 +119,13 @@ $ sudo systemctl daemon-reload
 
 如果要查看日志输出，请运行：
 
-```systemd
+```shell
 $ journalctl -u vaultwarden.service
 ```
 
 或查看此服务的更简洁的状态，请运行：
 
-```systemd
+```shell
 $ systemctl status vaultwarden.service
 ```
 
@@ -147,7 +147,7 @@ Failed to parse protect system value
 
 要解决这一点，你可以在包含有 `PrivateTmp`、`PrivateDevices`、`ProtectHome`、`ProtectSystem` 和 `ReadWriteDirectories` 的部分或全部行前面放置 `#` 符号来将其注释掉。尽管将所有这些行注释掉可能会起作用，但不建议这样做，因为这些都是很好的安全措施。要查看您的 systemd 支持哪些选项，请运行以下命令来查看其输出：
 
-```systemd
+```shell
 $ systemctl --version
 ```
 
@@ -155,7 +155,7 @@ $ systemctl --version
 
 编辑 `.service` 文件后，请不要忘记在启动（或重启）服务之前运行如下命令：
 
-```systemd
+```shell
 $ sudo systemctl daemon-reload
 ```
 
@@ -175,7 +175,7 @@ Feb 18 05:29:10 staging-bitwarden systemd[1]: vaultwarden.service: Failed with r
 
 **注意**：systemd 覆盖文件不起作用，必须注释/删除该行。最简单的方法是通过
 
-```systemd
+```shell
 # systemctl edit --full vaultwarden.service
 ```
 
