@@ -8,7 +8,7 @@ Vaultwarden 是一个使用 Rust 编写的非官方 Bitwarden 服务器实现，
 
 Vaultwarden 面向个人、家庭和小型组织。尽管开发主要对大型组织有用的功能（例如，单点登录、目录同步等）并不是优先事项，但欢迎实现此类功能的高质量 PR。
 
-> **\[译者注]**：PR 指 GitHub 中的 [pull requests](https://docs.github.com/cn/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)（拉取请求）。
+> \[**译者注**]：PR 指 GitHub 中的 [pull requests](https://docs.github.com/cn/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)（拉取请求）。
 
 ## 支持的特性 <a href="#supported-features" id="supported-features"></a>
 
