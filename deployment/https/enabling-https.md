@@ -54,7 +54,7 @@ ROCKET_TLS={certs="/path/to/certs.pem",key="/path/to/key.pem"}
     （环境变量本身的格式没有错误；只是因为 Rocket 无法解析证书/密钥的内容。）
 * 如果在 Docker 下运行，请记住，Vaultwarden 在容器内部运行时将解析 `ROCKET_TLS` 值 ，所以请确保 `certs` 和 `key` 路径是容器内部呈现的样子（可能与 Docker 主机系统上的路径不同）。
 
-```shell
+```docker
 docker run -d --name vaultwarden \
   -e ROCKET_TLS='{certs="/ssl/certs.pem",key="/ssl/key.pem"}' \
   -v /ssl/keys/:/ssl/ \
@@ -79,7 +79,7 @@ docker run -d --name vaultwarden \
 
 因此，从 Vaultwarden 容器中使用，应像这样：
 
-```shell
+```docker
 docker run -d --name vaultwarden \
   -e ROCKET_TLS='{certs="/ssl/live/mydomain/fullchain.pem",key="/ssl/live/mydomain/privkey.pem"}' \
   -v /etc/letsencrypt/:/ssl/ \

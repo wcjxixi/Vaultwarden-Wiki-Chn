@@ -12,7 +12,7 @@
 
 要设置令牌，请使用 `ADMIN_TOKEN` 变量：
 
-```shell
+```docker
 docker run -d --name vaultwarden \
   -e ADMIN_TOKEN=some_random_token_as_per_above_explanation \
   -v /vw-data/:/data/ \

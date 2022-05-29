@@ -26,7 +26,7 @@ Vaultwarden 最初设计时仅使用 SQLite，但当时 MariaDB (MySQL) 和 Post
 
 现在运行以下单行程序并将 `<dbhost>`、`<dbuser>` 以及 `<database>` 调整为您用于 MariaDB 连接的实际内容：
 
-```shell
+```sql
 mysqldump \
   --host=<dbhost> \
   --user=<dbuser> --password \
@@ -49,7 +49,7 @@ mysqldump \
 
 这一步将生成一个用于保存你的数据库的 `mysql-to-sqlite.sql` 文件。现在查找上一步中在您第一次使用 SQLite 作为数据库启动 Vaultwarden 时由 Vaultwarden 创建的 db.sqlite3 文件。复制或移动 `mysql-to-sqlite.sql`，让 db.sqlite3 和导出位于同一目录中。现在您可以执行以下命令：
 
-```shell
+```sql
 sqlite3 db_new.sqlite3 < mysql-to-sqlite.sql
 ```
 

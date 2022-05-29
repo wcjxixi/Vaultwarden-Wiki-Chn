@@ -49,7 +49,7 @@ delete
 
 要关闭 WAL，你需要通过将 `ENABLE_DB_WAL` 变量的值设置为 `false` 来启动 `vaultwarden`。
 
-```shell
+```docker
 docker run -d --name vaultwarden \
   -e ENABLE_DB_WAL=false \
   -v /vw-data/:/data/ \

@@ -6,17 +6,17 @@
 
 这个页面主要是给那些对 Vaultwarden 开发感兴趣，或者有特殊原因想要构建自己的二进制的用户。
 
-普通用户应该使用从基于 Alpine 的 Docker 镜像中[提取的预构建二进制](pre-built-binaries.md)文件，[通过 Docker 部署](../container-image-usage/which-container-image-to-use.md)，或者[寻找第三方包](third-party-packages.md)。
+普通用户应该使用从基于 Alpine 的 Docker 镜像中[提取的预构建二进制](pre-built-binaries.md)文件，[通过 Docker 部署](../container-image-usage/which-container-image-to-use.md)，或者[寻找第三方软件包](third-party-packages.md)。
 
 ## 依赖 <a href="#dependencies" id="dependencies"></a>
 
 * `Rust nightly`（强烈建议使用 [rustup](https://rustup.rs/)）
-* 在基于 Debian 的发行版上，请安装以下包：`build-essential`、`git`，这些通用包可确保构建能正常进行
+* 在基于 Debian 的发行版上，请安装以下软件包：`build-essential`、`git`，这些通用软件包可确保构建能正常进行
 * `OpenSSL`（应在路径中是可用的，请参阅 [openssl crate 文档](https://docs.rs/openssl/0.10.16/openssl/#automatic)）。在基于 Debian 的发行版上，需要安装 `pkg-config` 和 `libssl-dev`
 * 对于基于 Debian 发行版上的 SQLite3 后端，需要安装 `libsqlite3-dev`
 * 对于基于 Debian 发行版上的 MySQL 后端，需要安装 `libmariadb-dev-compat` 和`libmariadb-dev`
 * 对于基于 Debian 发行版上的 PostgreSQL 后端，需要安装 `libpq-dev` 和 `pkg-config`
-* `NodeJS`（仅当编译网页密码库时使用。使用[预构建的二进制](https://nodejs.org/en/download/)，通过系统的包管理器安装）或 [nodesource 二进制发行版](https://github.com/nodesource/distributions)。_备注：web-vault 当前使用的基本包（例如，node-sass < v4.12），要求 NodeJS v11_
+* `NodeJS`（仅当编译网页密码库时使用。使用[预构建的二进制](https://nodejs.org/en/download/)，通过系统的包管理器安装）或 [nodesource 二进制发行版](https://github.com/nodesource/distributions)。_备注：web-vault 当前使用的基本程序包（例如，node-sass < v4.12），要求 NodeJS v11_
 
 ## 运行/编译 <a href="#run-compile" id="run-compile"></a>
 
@@ -106,7 +106,7 @@ npm run dist:oss:selfhost
 ```
 
 {% hint style="warning" %}
-可能会要求您运行 `npm audit fix` 以修复漏洞。这将自动尝试将包升级到较新的版本，该版本可能不兼容并破坏网页密码库功能。如果知道自己在做什么，请自行承担风险。顺便一提，我们会在自己的发行版中使用它！
+可能会要求您运行 `npm audit fix` 以修复漏洞。这将自动尝试将软件包升级到较新的版本，该版本可能不兼容并破坏网页密码库功能。如果知道自己在做什么，请自行承担风险。顺便一提，我们会在自己的发行版中使用它！
 {% endhint %}
 
 5、最后将 `build` 文件夹的内容复制到目标文件夹中：

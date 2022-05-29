@@ -6,7 +6,7 @@
 
 更新非常简单，你只需确保保留了已挂载的卷。如果您使用[此处](starting-a-container.md)示例中的 bind-mounted 路径（绑定挂载路径）的方式，则只需使用 `pull` 拉取最新版的镜像，使用 `stop` 和 `rm` 停止和移除当前容器，然后与之前相同的方式启动一个新的容器即可：
 
-```shell
+```docker
 # 拉取最新版本的镜像
 docker pull vaultwarden/server:latest
 
@@ -22,7 +22,7 @@ docker run -d --name vaultwarden -v /vw-data/:/data/ -p 80:80 vaultwarden/server
 
 如果您没有为持久性数据绑定挂载卷，则多一个中间步骤，就是使用中间容器来保留数据：
 
-```shell
+```docker
 # 拉取最新版本的镜像
 docker pull vaultwarden/server:latest
 
@@ -78,7 +78,7 @@ docker images
 
 如果需要，可以将它们放入 cronjob 中以计划任务自动运行（根据您的需要修改时间）：
 
-```shell
+```python
 $ sudo crontab -e
 0 2 * * * sudo systemctl restart vaultwarden.service
 
