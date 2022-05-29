@@ -19,7 +19,7 @@
 
 您可以配置 Vaultwarden 通过 SMTP 代理来发送电子邮件：
 
-```docker
+```shell
 docker run -d --name vaultwarden \
   -e SMTP_HOST=<smtp.domain.tld> \
   -e SMTP_FROM=<vaultwarden@domain.tld> \
@@ -36,7 +36,7 @@ docker run -d --name vaultwarden \
 
 请注意，如果启用了 SMTP 和邀请，邀请将通过电子邮件发送给新用户。您必须使用 Vaultwarden 实例的基础 URL 来设置 `DOMAIN` 配置项，以生成正确的邀请链接：
 
-```docker
+```shell
 docker run -d --name vaultwarden \
 ...
 -e DOMAIN=https://vault.example.com \

@@ -10,7 +10,7 @@
 
 在下面的示例中，我们设置为 20 个 worker：
 
-```docker
+```shell
 docker run -d --name vaultwarden \
   -e ROCKET_WORKERS=20 \
   -v /vw-data/:/data/ \

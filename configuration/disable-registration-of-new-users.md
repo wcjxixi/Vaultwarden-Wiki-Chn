@@ -6,7 +6,7 @@
 
 默认情况下，可以访问实例的任何人均可以注册新的账户。要禁用该功能，请将 `SIGNUPS_ALLOWED` 环境变量设置为 `false`：
 
-```docker
+```shell
 docker run -d --name vaultwarden \
   -e SIGNUPS_ALLOWED=false \
   -v /vw-data/:/data/ \

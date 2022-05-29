@@ -18,7 +18,7 @@ WebSocket 通知用于将发生的一些相关事件通告给 Bitwarden 的浏�
 
 然后，您需要通过将 `WEBSOCKET_ENABLED` 变量设置为 `true` 以在 Vaultwarden 端启用 WebSocket 协商：
 
-```docker
+```shell
 docker run -d --name vaultwarden \
   -e WEBSOCKET_ENABLED=true \
   -v /vw-data/:/data/ \

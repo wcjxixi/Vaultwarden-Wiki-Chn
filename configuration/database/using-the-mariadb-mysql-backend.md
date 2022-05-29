@@ -113,7 +113,7 @@ volumes:
 
 1、为 Vaultwarden 创建一个新的（空）数据库（确保字符集和排序规则正确！）：
 
-```shell
+```sql
 CREATE DATABASE vaultwarden CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 

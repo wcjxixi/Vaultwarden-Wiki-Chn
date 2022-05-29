@@ -13,7 +13,7 @@
   * [1.构建你自己的镜像](deployment/building-your-own-docker-image.md)
   * [2.构建二进制](deployment/building-binary.md)
   * [3.预构建二进制](deployment/pre-built-binaries.md)
-  * [4.第三方软件包](deployment/third-party-packages.md)
+  * [4.第三方包](deployment/third-party-packages.md)
   * [5.部署示例](deployment/deployment-examples.md)
   * [6.代理示例](deployment/proxy-examples.md)
   * [7.转储示例](deployment/logrotate-example.md)

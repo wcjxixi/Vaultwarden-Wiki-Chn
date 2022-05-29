@@ -8,7 +8,7 @@
 
 要设置限制，可以使用 `ROCKET_LIMITS` 变量。此处的示例设置限制为 10MB（这是默认设置）：
 
-```docker
+```shell
 docker run -d --name vaultwarden \
   -e ROCKET_LIMITS={json=10485760} \
   -v /vw-data/:/data/ \

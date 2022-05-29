@@ -1,16 +1,16 @@
-# 4.第三方软件包
+# 4.第三方包
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Third-party-packages)
 {% endhint %}
 
 {% hint style="danger" %}
-本页面是一个第三方 Vaultwarden 软件包的索引。
+本页面是一个第三方 Vaultwarden 包的索引。
 
-由于这些软件包不是由 Vaultwarden 维护或控制的，因此它们可能会比官方的发行版本滞后，有时甚至会明显滞后。如果你依赖这些软件包，你可能需要为新的 Vaultwarden 发行版本[启用监视](https://docs.github.com/en/github/managing-subscriptions-and-notifications-on-github/viewing-your-subscriptions#configuring-your-watch-settings-for-an-individual-repository)功能，并让维护者知道该软件包未保持更新。
+由于这些包不是由 Vaultwarden 维护或控制的，因此它们可能会比官方的发行版本滞后，有时甚至会明显滞后。如果你依赖这些包，你可能需要为新的 Vaultwarden 发行版本[启用监视](https://docs.github.com/en/github/managing-subscriptions-and-notifications-on-github/viewing-your-subscriptions#configuring-your-watch-settings-for-an-individual-repository)功能，并让维护者知道该包未保持更新。
 {% endhint %}
 
-## 非官方软件包状态
+## 非官方包状态
 
 | Server                                                                                                                                 | Web-Vault                                                                                                                                      |
 | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -22,7 +22,7 @@
 
 ## Debian
 
-一个基于 docker 的工具链，可用于构建 debian 软件包：[https://github.com/greizgh/bitwarden\_rs-debian](https://github.com/greizgh/bitwarden\_rs-debian)。它捆绑了服务器和网页版密码库。
+一个基于 docker 的工具链，可用于构建 debian 包：[https://github.com/greizgh/bitwarden\_rs-debian](https://github.com/greizgh/bitwarden\_rs-debian)。它捆绑了服务器和网页版密码库。
 
 ## CentOS7 / RHEL7
 
@@ -46,7 +46,7 @@ Vaultwarden 被同时打包用于 mysql、sqlite、postgresql，以及用于 Vau
 
 [Cloudron](https://cloudron.io/) 是一个帮助你在服务器上运行 Web 应用程序的平台。使用 Cloudron，你可以从 [App Library](https://cloudron.io/store/com.github.bitwardenrs.html) 中轻松地安装自定义域名的 Vaultwarden。该应用包与上游网页密码库捆绑在一起，安装后不需要任何进一步的配置即可开始使用。Cloudron 团队会保持发行版跟踪并提供自动更新。
 
-软件包代码和话题跟踪器可以在这里找到：[https://git.cloudron.io/cloudron/bitwardenrs-app](https://git.cloudron.io/cloudron/vaultwarden-app)。
+包代码和话题跟踪器可以在这里找到：[https://git.cloudron.io/cloudron/bitwardenrs-app](https://git.cloudron.io/cloudron/vaultwarden-app)。
 
 ## Home Assistant <a href="#home-assistant" id="home-assistant"></a>
 
@@ -64,8 +64,8 @@ Dinger1986 创建了一个在 Ubuntu 20.04 上从源代码安装 Vaultwarden 的
 
 openSUSE 构建的服务项目，支持 CentOS、Debian、Fedora、RHEL、SUSE、Ubuntu。
 
-您可以直接下载软件包或使用可用的仓库。
+您可以直接下载包或使用可用的仓库。
 
-**警告**：目前这些软件包包含预构建的二进制文件，无法使用此构建服务构建 rust-nightly 包。
+**警告**：目前这些包包含预构建的二进制文件，无法使用此构建服务构建 rust-nightly 包。
 
 [vaultwarden](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden) [vaultwarden-webvault](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden-webvault)
