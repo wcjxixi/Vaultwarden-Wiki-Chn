@@ -18,7 +18,7 @@ docker cp vm:/web-vault .
 docker rm vm
 ```
 
-如果您想获取不同平台的二进制文件（例如，你的 x86-64 机器上只安装了 Docker，但您想在 Raspberry Pi 上运行 Vaultwarden）， 将 `--platform` 选项添加到 `docker pull` 命令中：
+如果您想获取不同平台的二进制文件（例如，您的 x86-64 机器上只安装了 Docker，但您想在 Raspberry Pi 上运行 Vaultwarden）， 将 `--platform` 选项添加到 `docker pull` 命令中：
 
 ```shell
 docker pull --platform linux/arm/v7 vaultwarden/server:alpine

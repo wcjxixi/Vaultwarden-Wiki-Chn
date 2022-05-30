@@ -8,7 +8,7 @@
 
 默认情况下，Vaultwarden 在端口 80 上监听网页 (REST API) 流量，在端口 3012 上监听 WebSocket 流量（若启用了 [WebSocket](../configuration/enabling-websocket-notifications.md) 通知）。反向代理应该被配置为终止 SSL/TLS 连接（最好是在 HTTPS 的标准端口 443 上）。然后，反向代理将传入的客户端请求在端口 80 或 3012（视情况而定）上传递给 Vaultwarden，并在收到 Vaultwarden 的响应后，将该响应传回客户端。
 
-注意，当你把 Vaultwarden 放在反向代理后面时，反向代理和 Vaultwarden 之间的连接通常被认为是通过安全的私有网络进行的，因此不需要加密。下面的例子假设你是在这种配置下运行的，在这种情况下，不应该启用 Vaultwarden 中内置的 HTTPS 功能（也就是说，不应该设置 `ROCKET_TLS` 环境变量）。如果你这样做了，连接就会失败，因为反向代理使用 HTTP 连接到 Vaultwarden，但你配置的 Vaultwarden 却希望使用 HTTPS。
+注意，当您把 Vaultwarden 放在反向代理后面时，反向代理和 Vaultwarden 之间的连接通常被认为是通过安全的私有网络进行的，因此不需要加密。下面的例子假设您是在这种配置下运行的，在这种情况下，不应该启用 Vaultwarden 中内置的 HTTPS 功能（也就是说，不应该设置 `ROCKET_TLS` 环境变量）。如果您这样做了，连接就会失败，因为反向代理使用 HTTP 连接到 Vaultwarden，但您配置的 Vaultwarden 却希望使用 HTTPS。
 
 通常使用 [Docker Compose](https://docs.docker.com/compose/) 将容器化的服务（例如，Vaultwarden 与反向代理）链接在一起。请参阅[使用 Docker Compose](../container-image-usage/using-docker-compose.md) 来了解这方面的示例。
 
@@ -20,7 +20,7 @@
 
 在大多数情况下 Caddy 2 会自动启用 HTTPS，参考[此文档](https://caddyserver.com/docs/automatic-https#activation)。
 
-在 Caddyfile 语法中，`{$VAR}` 表示环境变量 `VAR` 的值。如果你喜欢，你也可以直接指定一个值，而不是用一个环境变量的值来代替。
+在 Caddyfile 语法中，`{$VAR}` 表示环境变量 `VAR` 的值。如果您喜欢，也可以直接指定一个值，而不是用一个环境变量的值来代替。
 
 ```nginx
 {$DOMAIN} {
@@ -35,15 +35,15 @@
   # 如果你想通过 ACME（Let's Encrypt 或 ZeroSSL）获获取证书，请取消注释
   # tls {$EMAIL}
 
-  # 或者如果你提供自己的证书，请取消注释
-  # 如果你在 Cloudflare 后面运行，你也会使用此选项
+  # 或者如果您提供自己的证书，请取消注释
+  # 如果您在 Cloudflare 后面运行，您也会使用此选项
   # tls {$SSL_CERT_PATH} {$SSL_KEY_PATH}
 
   # 此设置可能会在某些浏览器上出现兼容性问题（例如，在 Firefox 上下载附件）
   # 如果遇到问题，请尝试禁用此功能
   encode gzip
   
-  # 取消注释以提高安全性（警告：只有在你了解其影响的情况下才能使用！）
+  # 取消注释以提高安全性（警告：只有在您了解其影响的情况下才能使用！）
   # header {
   #      # 启用 HTTP Strict Transport Security (HSTS)
   #      Strict-Transport-Security "max-age=31536000;"
@@ -339,7 +339,7 @@ server {
 
 <summary>Nginx (by ypid)</summary>
 
-使用 DebOps 配置 nginx 作为 Vaultwarden 的反向代理的清单示例。 我选择在 URL 中使用 PSK 以获得额外的安全性，从而不会将 API 公开给 Internet 上的每个人，因为客户端应用程序尚不支持客户端证书（我对其进行了测试）。 注意：使用 subpath/PSK 需要修补源代码并重新编译，请参考：[https://github.com/dani-garcia/vaultwarden/issues/241#issuecomment-436376497](https://github.com/dani-garcia/bitwarden\_rs/issues/241#issuecomment-436376497)。 /admin 未经测试。 有关安全性子路径托管的一般讨论，请参阅：[https://github.com/debops/debops/issues/1233](https://github.com/debops/debops/issues/1233)
+使用 DebOps 配置 nginx 作为 Vaultwarden 的反向代理的清单示例。我选择在 URL 中使用 PSK 以获得额外的安全性，从而不会将 API 公开给 Internet 上的每个人，因为客户端应用程序尚不支持客户端证书（我对其进行了测试）。 注意：使用 subpath/PSK 需要修补源代码并重新编译，请参考：[https://github.com/dani-garcia/vaultwarden/issues/241#issuecomment-436376497](https://github.com/dani-garcia/bitwarden\_rs/issues/241#issuecomment-436376497)。 /admin 未经测试。 有关安全性子路径托管的一般讨论，请参阅：[https://github.com/debops/debops/issues/1233](https://github.com/debops/debops/issues/1233)
 
 ```nginx
 bitwarden__fqdn: 'vault.example.org'

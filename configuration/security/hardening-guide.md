@@ -24,11 +24,11 @@ Vaultwarden 在登录页面上显示密码提示，以适应没有配置 SMTP �
 
 ### 严格 SNI <a href="#strict-sni" id="strict-sni"></a>
 
-[SNI](https://zh.wikipedia.org/wiki/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8D%E7%A7%B0%E6%8C%87%E7%A4%BA) 是网络浏览器请求 HTTPS 服务器为特定网站（如 `vaultwarden.example.com`）提供 SSL/TLS 证书的方式。假设`vaultwarden.example.com` 的 IP 地址是 `1.2.3.4`。理想情况下，你希望你的实例只能通过 https://vaultwarden.example.com ，并且不能通过 https://1.2.3.4 进行访问。这是因为 IP 地址会因为各种原因被不断扫描，如果能通过这种方式检测到你的 Vaultwarden 实例，就会成为一个更明显的目标。例如，一个简单的 [Shodan 搜索](https://www.shodan.io/search?query=bitwarden)就会发现一些通过 IP 地址访问的 Bitwarden 实例。
+[SNI](https://zh.wikipedia.org/wiki/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8D%E7%A7%B0%E6%8C%87%E7%A4%BA) 是网络浏览器请求 HTTPS 服务器为特定网站（如 `vaultwarden.example.com`）提供 SSL/TLS 证书的方式。假设`vaultwarden.example.com` 的 IP 地址是 `1.2.3.4`。理想情况下，您希望您的实例只能通过 https://vaultwarden.example.com 访问，并且不能通过 https://1.2.3.4 进行访问。这是因为 IP 地址会因为各种原因被不断扫描，如果能通过这种方式检测到您的 Vaultwarden 实例，就会成为一个更明显的目标。例如，一个简单的 [Shodan 搜索](https://www.shodan.io/search?query=bitwarden)就会发现一些通过 IP 地址访问的 Bitwarden 实例。
 
 ### 反向代理 <a href="#reverse-proxying" id="reverse-proxying"></a>
 
-一般来说，你应该避免通过 Vaultwarden 内置的 [Rocket TLS 支持](../../deployment/https/enabling-https.md)启用 HTTPS，特别是当你的实例是公开访问的时候。Rocket 本身列出了如下[警告](https://rocket.rs/v0.4/guide/configuration/#configuring-tls)：
+一般来说，您应该避免通过 Vaultwarden 内置的 [Rocket TLS 支持](../../deployment/https/enabling-https.md)启用 HTTPS，特别是当您的实例是公开访问的时候。Rocket 本身列出了如下[警告](https://rocket.rs/v0.4/guide/configuration/#configuring-tls)：
 
 > Rocket's built-in TLS is not considered ready for production use. It is intended for development use only. （Rocket 内置的 TLS 还不能用于生产。它只用于开发用途。）
 
@@ -52,9 +52,9 @@ docker run -u 1000:1000 -e ROCKET_PORT=8080 -p <host-port>:8080 \
        vaultwarden/server:latest
 ```
 
-在许多 Linux 发行版中，默认用户的 uid/gid 为 1000（运行 `id` 命令进行验证），所以如果你想在不换成其他用户的情况下轻松地访问你的 Vaultwarden 数据，这是一个很好的值，但你可以根据需要调整 uid/gid。请注意，你很可能需要指定一个数字 uid/gid，因为 Vaultwarden 容器不共享用户/组名到 uid/gid 的相同映射（例如，将容器中的 `/etc/passwd` 和 `/etc/group` 文件与 Docker 主机上的文件对比）。
+在许多 Linux 发行版中，默认用户的 uid/gid 为 1000（运行 `id` 命令进行验证），所以如果您想在不换成其他用户的情况下轻松地访问您的 Vaultwarden 数据，这是一个很好的值，但你可以根据需要调整 uid/gid。请注意，您很可能需要指定一个数字 uid/gid，因为 Vaultwarden 容器不共享用户/组名到 uid/gid 的相同映射（例如，将容器中的 `/etc/passwd` 和 `/etc/group` 文件与 Docker 主机上的文件对比）。
 
-`ROCKET_PORT` 默认为 80，这是一个[特权端口](https://www.w3.org/Daemon/User/Installation/PrivilegedPorts.html)；当以非 root 用户身份运行时，它需要是 1024 或更高，否则当 Vaultwarden 试图在该端口上绑定和监听连接时，你会得到一个权限拒绝的错误。
+`ROCKET_PORT` 默认为 80，这是一个[特权端口](https://www.w3.org/Daemon/User/Installation/PrivilegedPorts.html)；当以非 root 用户身份运行时，它需要是 1024 或更高，否则当 Vaultwarden 试图在该端口上绑定和监听连接时，您会得到一个权限拒绝的错误。
 
 要在 `docker-compose` 中进行同样的操作：
 
@@ -70,13 +70,13 @@ services:
     ... other configuration ...
 ```
 
-由于这里修改的是 `ROCKET_PORT`，所以一定要更新你的反向代理配置，将 Vaultwarden 的流量代理到 8080 端口（或者你选择的任何更高的端口），而不是 80。
+由于这里修改的是 `ROCKET_PORT`，所以一定要更新您的反向代理配置，将 Vaultwarden 的流量代理到 8080 端口（或者您选择的任何更高的端口），而不是 80。
 
 ### 挂载数据到容器中 <a href="#mounting-data-into-the-container" id="mounting-data-into-the-container"></a>
 
-一般来说，只有 Vaultwarden 正常运行所需要的数据才应该被挂载到 Vaultwarden 容器中（通常情况下，这只是你的数据目录，也许还有一个包含 SSL/TLS 证书和私钥的目录）。不要挂载你的整个主目录，例如，`/var/run/docker.sock` 等，除非你有特定的原因，并且知道你在做什么。
+一般来说，只有 Vaultwarden 正常运行所需要的数据才应该被挂载到 Vaultwarden 容器中（通常情况下，这只是您的数据目录，也许还有一个包含 SSL/TLS 证书和私钥的目录）。不要挂载您的整个主目录，例如，`/var/run/docker.sock` 等，除非您有特定的原因，并且知道您在做什么。
 
-另外，如果你不希望 Vaultwarden 修改你挂载的数据（例如，certs），可以通过在卷规范中添加 `:ro` 来[只读挂载它](https://docs.docker.com/storage/bind-mounts/#use-a-read-only-bind-mount)（例如，`docker run -v /home/username/vaultwarden-ssl:/ssl:ro`）。
+另外，如果您不希望 Vaultwarden 修改您挂载的数据（例如，certs），可以通过在卷规范中添加 `:ro` 来[只读挂载它](https://docs.docker.com/storage/bind-mounts/#use-a-read-only-bind-mount)（例如，`docker run -v /home/username/vaultwarden-ssl:/ssl:ro`）。
 
 ## 杂项 <a href="#miscellaneous" id="miscellaneous"></a>
 
@@ -86,4 +86,4 @@ services:
 
 ### 隐藏在子目录下 <a href="#hiding-under-a-subdir" id="hiding-under-a-subdir"></a>
 
-通常，Bitwarden 实例驻留在子域的根目录下（即 `bitwarden.example.com`，而不是 `bitwarden.example.com/some/path`）。上游的 Bitwarden 服务器目前只支持子域根目录，而 Vaultwarden 则增加了对[备用基本目录](../using-an-alternate-base-dir-subdir-subpath.md)的支持。对于某些用户来说，这很有用，因为他们只能访问一个子域，并希望在不同的目录下运行多个服务。在这种情况下，他们通常可以做一些显而易见的选择，比如使用 `mysubdomain.example.com/bitwarden`。然而，你也可以通过把 Vaultwarden 放在类似 `mysubdomain.example.com/vaultwarden/<mysecretstring>` 这样的目录下来提供额外的保护，其中 `<mysecretstring>` 有效地充当一个密码。也许有人会说这是[通过隐藏实现安全](https://en.wikipedia.org/wiki/Security\_through\_obscurity)，但实际上这是深度防御 -- 子目录的隐蔽性只是额外的一层安全保护，而不是为了成为主要的安全手段（用户主密码的强度仍然是主要的安全手段）。
+通常，Bitwarden 实例驻留在子域的根目录下（即 `bitwarden.example.com`，而不是 `bitwarden.example.com/some/path`）。上游的 Bitwarden 服务器目前只支持子域根目录，而 Vaultwarden 则增加了对[备用基本目录](../using-an-alternate-base-dir-subdir-subpath.md)的支持。对于某些用户来说，这很有用，因为他们只能访问一个子域，并希望在不同的目录下运行多个服务。在这种情况下，他们通常可以做一些显而易见的选择，比如使用 `mysubdomain.example.com/bitwarden`。然而，您也可以通过把 Vaultwarden 放在类似 `mysubdomain.example.com/vaultwarden/<mysecretstring>` 这样的目录下来提供额外的保护，其中 `<mysecretstring>` 有效地充当一个密码。也许有人会说这是[通过隐藏实现安全](https://en.wikipedia.org/wiki/Security\_through\_obscurity)，但实际上这是深度防御 -- 子目录的隐蔽性只是额外的一层安全保护，而不是为了成为主要的安全手段（用户主密码的强度仍然是主要的安全手段）。

@@ -14,9 +14,9 @@
 [Unit]
 Description=Vaultwarden Server (Rust Edition)
 Documentation=https://github.com/dani-garcia/vaultwarden
-# 如果你使用 mariadb、mysql 或 postgresql 数据库， 
-# 你必须像下面这样添加它们，并去掉前面的 # 以取消注释。
-# 这将确保你的数据库服务器在 Vaultwarden 之前启动 ("After")，
+# 如果您使用 mariadb、mysql 或 postgresql 数据库， 
+# 您必须像下面这样添加它们，并去掉前面的 # 以取消注释。
+# 这将确保您的数据库服务器在 Vaultwarden 之前启动 ("After")，
 # 并且在启动 Vaultwarden 之前成功启动 ("Requires")。
 
 # 仅 sqlite
@@ -89,7 +89,7 @@ $ sudo systemctl start vaultwarden.service
 $ sudo systemctl enable vaultwarden.service
 ```
 
-同理，你可以使用 `stop`、`restart` 和 `disable` 来停止、重启或禁用此服务。
+同理，您可以使用 `stop`、`restart` 和 `disable` 来停止、重启或禁用此服务。
 
 ### 更新 Vaultwarden <a href="#updating-bitwarden_rs" id="updating-bitwarden_rs"></a>
 
@@ -145,7 +145,7 @@ Failed at step NAMESPACE spawning /home/vaultwarden/vaultwarden: Permission deni
 Failed to parse protect system value
 ```
 
-要解决这一点，你可以在包含有 `PrivateTmp`、`PrivateDevices`、`ProtectHome`、`ProtectSystem` 和 `ReadWriteDirectories` 的部分或全部行前面放置 `#` 符号来将其注释掉。尽管将所有这些行注释掉可能会起作用，但不建议这样做，因为这些都是很好的安全措施。要查看您的 systemd 支持哪些选项，请运行以下命令来查看其输出：
+要解决这一点，您可以在包含有 `PrivateTmp`、`PrivateDevices`、`ProtectHome`、`ProtectSystem` 和 `ReadWriteDirectories` 的部分或全部行前面放置 `#` 符号来将其注释掉。尽管将所有这些行注释掉可能会起作用，但不建议这样做，因为这些都是很好的安全措施。要查看您的 systemd 支持哪些选项，请运行以下命令来查看其输出：
 
 ```shell
 $ systemctl --version

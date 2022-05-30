@@ -20,7 +20,7 @@
 
 ## 从文件加载环境变量 <a href="#loading-environment-variables-from-a-file" id="loading-environment-variables-from-a-file"></a>
 
-如果你将这些环境变量保存在一个名为 `.env` 的文件中，你可以按照以下方式加载它们：
+如果您将这些环境变量保存在一个名为 `.env` 的文件中，您可以按照以下方式加载它们：
 
 * 对于独立版的 Vaultwarden，将 `.env` 放到当前工作目录中，Vaultwarden 会在启动时尝试加载这个文件。请注意，Vaultwarden 仅查找名为 `.env` 的环境文件；而不会查找具有其他名称的环境文件。
 * 对于 Docker，使用 `docker run --env-file <env-file> ...`（让 Docker 加载 `.env` 文件）或 `docker run -v /path/to/.env:/.env`（让 Vaultwarden 从容器内部加载 `.env` 文件）。请注意，如果使用 `--env-file`，Docker 不会取消引用值，因此请确保使用 `key=val` 而不是 `key="val"` 或 `key='val'`。
@@ -34,7 +34,7 @@
 
 倘若有错误或遗漏，源代码在这里：[https://github.com/dani-garcia/vaultwarden/blob/master/src/config.rs](https://github.com/dani-garcia/bitwarden\_rs/blob/master/src/config.rs%20)（检索 `make_config! {`）
 
-或者，如果您的（基于 Chromium）浏览器支持文本片段，则可以直接参考此链接：[https://github.com/dani-garcia/vaultwarden/blob/master/src/config.rs#LC290:\~:text=make\_config!%20%7B,-folders](https://github.com/dani-garcia/bitwarden\_rs/blob/master/src/config.rs#LC290:\~:text=make\_config!%20%7B,-folders)
+或者，如果您的（基于 Chromium）浏览器支持文本片段，则可以直接参考此链接：[https://github.com/dani-garcia/vaultwarden/blob/master/src/config.rs#LC290:\~:text=make\_config!%20%7B,-folders](https://github.com/dani-garcia/bitwarden\_rs/blob/master/src/config.rs#LC290)
 
 ## 设置域名 URL <a href="#setting-the-domain-url" id="setting-the-domain-url"></a>
 

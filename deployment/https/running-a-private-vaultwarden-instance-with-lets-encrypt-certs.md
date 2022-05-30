@@ -4,9 +4,9 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Running-a-private-vaultwarden-instance-with-Let's-Encrypt-certs)
 {% endhint %}
 
-假设你希望运行一个只能从本地网络访问的 Vaultwarden 实例，但你又希望此实例启用由一个被广泛接受的 CA 而不是你自己的[私有 CA](../../other-information/private-ca-and-self-signed-certs-that-work-with-chrome.md) 来签署的 HTTPS（以避免将专用 CA 证书加载到所有设备中的麻烦）。
+假设您希望运行一个只能从本地网络访问的 Vaultwarden 实例，但您又希望此实例启用由一个被广泛接受的 CA 而不是你自己的[私有 CA](../../other-information/private-ca-and-self-signed-certs-that-work-with-chrome.md) 来签署的 HTTPS（以避免将专用 CA 证书加载到所有设备中的麻烦）。
 
-本文将演示如何使用 [Caddy](https://caddyserver.com/) Web 服务器创建这样的设置，Caddy 内置了对诸多 DNS 提供商的 ACME 支持。我们将通过 ACME [DNS 验证方式](https://letsencrypt.org/docs/challenge-types/#dns-01-challenge)获取 Let's Encrypt 证书来配置 Caddy -- 在这里使用通常的 HTTP 验证方式的话会有问题，因为它依赖于 Let's Encrypt 服务器能够访问到你的内部 Web 服务器。
+本文将演示如何使用 [Caddy](https://caddyserver.com/) Web 服务器创建这样的设置，Caddy 内置了对诸多 DNS 提供商的 ACME 支持。我们将通过 ACME [DNS 验证方式](https://letsencrypt.org/docs/challenge-types/#dns-01-challenge)获取 Let's Encrypt 证书来配置 Caddy -- 在这里使用通常的 HTTP 验证方式的话会有问题，因为它依赖于 Let's Encrypt 服务器能够访问到您的内部 Web 服务器。
 
 {% hint style="warning" %}
 本文涵盖了更通用的 DNS 验证设置，但许多用户可能会发现使用 Docker Compose 来集成 Caddy 和 Vaultwarden 是最简单的。具体的例子请参见[使用 Docker Compose](../../container-image-usage/using-docker-compose.md#caddy-with-dns-challenge)。
@@ -14,10 +14,10 @@
 
 涵盖了两个 DNS 提供商：
 
-* [Duck DNS](https://www.duckdns.org/) -- 为你提供一个 `duckdns.org` 下的子域名（例如 `my-bwrs.duckdns.org`）。如果你没有自己的域名，此选项是最简单的。
-* [Cloudflare](https://www.cloudflare.com/) -- 这可以让你把你的 Vaultwarden 实例放在你拥有或控制的域名下。请注意，Cloudflare 可以只作为一个 DNS 提供商使用（即不使用 Cloudflare 最著名的代理功能）。如果你目前没有自己的域名，你也许可以在 [Freenom](https://www.freenom.com/) 获得一个免费的域名。
+* [Duck DNS](https://www.duckdns.org/) -- 为你提供一个 `duckdns.org` 下的子域名（例如 `my-bwrs.duckdns.org`）。如果您没有自己的域名，此选项是最简单的。
+* [Cloudflare](https://www.cloudflare.com/) -- 这可以让您把您的 Vaultwarden 实例放在您拥有或控制的域名下。请注意，Cloudflare 可以只作为一个 DNS 提供商使用（即不使用 Cloudflare 最著名的代理功能）。如果您目前没有自己的域名，您也许可以在 [Freenom](https://www.freenom.com/) 获得一个免费的域名。
 
-当然也可以使用其他的网络服务器、[ACME 客户端](https://letsencrypt.org/docs/client-options/)和 DNS 提供商的组合来创建类似的设置，但你必须解决细节上的差异。
+当然也可以使用其他的网络服务器、[ACME 客户端](https://letsencrypt.org/docs/client-options/)和 DNS 提供商的组合来创建类似的设置，但您必须解决细节上的差异。
 
 ## 获取自定义 Caddy 构建 <a href="#getting-a-custom-caddy-build" id="getting-a-custom-caddy-build"></a>
 
@@ -25,7 +25,7 @@
 
 最简单的方式是通过 [https://caddyserver.com/download](https://caddyserver.com/download) 获取带有 DNS 验证模块的 Caddy 版本。选择您的平台，选中 `github.com/caddy-dns/cloudflare`（用于 Cloudflare）和/或 `github.com/caddy-dns/duckdns`（用于 Duck DNS），然后点击下载。
 
-如果你喜欢从源代码构建，你可以使用 [`xcaddy`](https://caddyserver.com/docs/build#xcaddy)。例如，要创建一个包含 Cloudflare 和 Duck DNS 支持的构建：
+如果您喜欢从源代码构建，可以使用 [`xcaddy`](https://caddyserver.com/docs/build#xcaddy)。例如，要创建一个包含 Cloudflare 和 Duck DNS 支持的构建：
 
 ```shell
 xcaddy build --with github.com/caddy-dns/cloudflare --with github.com/caddy-dns/duckdns
@@ -35,7 +35,7 @@ xcaddy build --with github.com/caddy-dns/cloudflare --with github.com/caddy-dns/
 
 ## Duck DNS 设置 <a href="#duck-dns-setup" id="duck-dns-setup"></a>
 
-如果您还没有账户，请在 [https://www.duckdns.org/](https://www.duckdns.org/) 创建一个。给您的 Vaultwarden 实例创建一个子域名（例如，`my-vw.duckdns.org`），将其 IP 地址设置为你的 Vaultwarden 主机的私有 IP（例如，192.168.1.100）。记下你的账户的 token 值（[UUID](https://en.wikipedia.org/wiki/UUID) 格式的字符串）。Caddy 将需要此 token 来完成 DNS 验证。
+如果您还没有账户，请在 [https://www.duckdns.org/](https://www.duckdns.org/) 创建一个。给您的 Vaultwarden 实例创建一个子域名（例如，`my-vw.duckdns.org`），将其 IP 地址设置为您的 Vaultwarden 主机的私有 IP（例如，192.168.1.100）。记下您的账户的 token 值（[UUID](https://en.wikipedia.org/wiki/UUID) 格式的字符串）。Caddy 将需要此 token 来完成 DNS 验证。
 
 创建一个名为 `Caddyfile` 的文件，内容如下：
 
@@ -140,14 +140,14 @@ export WEBSOCKET_ENABLED=true
 下面是一个如何做到这一点的例子。
 
 1. 从 [https://github.com/go-acme/lego/releases](https://github.com/go-acme/lego/releases) 下载预建的 `lego` 二进制文件到您的系统中。将其解压到某个目录，比如 `/usr/local/lego`。
-2. 从那个目录中，运行 `DUCKDNS_TOKEN=<token> ./lego -a --dns duckdns -d my-vm.duckdns.org -m me@example.com run`（用合适的值替换令牌、域名和电子邮件地址）。这将使你在 Let's Encrypt 注册，并为你的域名获取一个证书。
+2. 从那个目录中，运行 `DUCKDNS_TOKEN=<token> ./lego -a --dns duckdns -d my-vm.duckdns.org -m me@example.com run`（用合适的值替换令牌、域名和电子邮件地址）。这将使您在 Let's Encrypt 注册，并为您的域名获取一个证书。
 3. 设置一个每周的 cron 作业来运行 `DUCKDNS_TOKEN=<token> ./lego --dns duckdns -d my-vw.duckdns.org -m me@example.com renew`。这将在你的证书即将到期时更新它。
 
 {% hint style="warning" %}
-`lego` 默认请求 ECC/ECDSA 证书。如果你使用 Vaultwarden 中内置的 [Rocket HTTPS 服务器](enabling-https.md#via-rocket)，你需要请求 RSA 证书。在上面的 `lego` 命令中，添加选项 `--key-type rsa2048`。
+`lego` 默认请求 ECC/ECDSA 证书。如果您使用 Vaultwarden 中内置的 [Rocket HTTPS 服务器](enabling-https.md#via-rocket)，您需要请求 RSA 证书。在上面的 `lego` 命令中，添加选项 `--key-type rsa2048`。
 {% endhint %}
 
-在这个例子中，你需要用生成的输出来配置你的反向代理：
+在这个例子中，您需要用生成的输出来配置您的反向代理：
 
 * `/usr/local/lego/.lego/certificates/my-vw.duckdns.org.crt` （证书）
 * `/usr/local/lego/.lego/certificates/my-vw.duckdns.org.key` （私钥）
@@ -156,7 +156,7 @@ export WEBSOCKET_ENABLED=true
 
 ### DNS 问题 <a href="#dns-issues" id="dns-issues"></a>
 
-如果你的子域名出现 DNS 解析错误（例如，`DNS_PROBE_FINISHED_NXDOMAIN` 或 `ERR_NAME_NOT_RESOLVED`），可能是你的 DNS 解析器阻止了解析，有以下原因：
+如果您的子域名出现 DNS 解析错误（例如，`DNS_PROBE_FINISHED_NXDOMAIN` 或 `ERR_NAME_NOT_RESOLVED`），可能是您的 DNS 解析器阻止了解析，有以下原因：
 
 1. 出于安全原因，它会阻止动态 DNS 服务。
 2. 为防止 [DNS 重新绑定](https://en.wikipedia.org/wiki/DNS\_rebinding)攻击，或出于其他一些原因，它会阻止域名解析到私有 (RFC 1918) IP 地址。

@@ -19,7 +19,7 @@
 
 您可以配置 Vaultwarden 通过 SMTP 代理来发送电子邮件：
 
-```docker
+```shell
 docker run -d --name vaultwarden \
   -e SMTP_HOST=<smtp.domain.tld> \
   -e SMTP_FROM=<vaultwarden@domain.tld> \
@@ -36,7 +36,7 @@ docker run -d --name vaultwarden \
 
 请注意，如果启用了 SMTP 和邀请，邀请将通过电子邮件发送给新用户。您必须使用 Vaultwarden 实例的基础 URL 来设置 `DOMAIN` 配置项，以生成正确的邀请链接：
 
-```docker
+```shell
 docker run -d --name vaultwarden \
 ...
 -e DOMAIN=https://vault.example.com \
@@ -47,7 +47,7 @@ docker run -d --name vaultwarden \
 
 ## SMTP 服务器 <a href="#smtp-servers" id="smtp-servers"></a>
 
-正确配置 SMTP 服务器/中继并不是一件容易的事。Vaultwarden 使用的邮件程序库也不是最容易排除故障的。所以，除非你对自己设置这个特别感兴趣，否则使用外部服务可能更简单。
+正确配置 SMTP 服务器/中继并不是一件容易的事。Vaultwarden 使用的邮件程序库也不是最容易排除故障的。所以，除非您对自己设置这个特别感兴趣，否则使用外部服务可能更简单。
 
 这里有几个对于大部分使用场景来说已经足够的免费服务：
 
@@ -93,7 +93,7 @@ SMTP_EXPLICIT_TLS=false
 
 ### Google/Gmail
 
-您需要为 Vaultwarden 生成应用专用密码才能使用 Gmail。按照此处的步骤操作：[使用应用专用密码登录](https://support.google.com/accounts/answer/185833?hl=zh-Hans\&ref\_topic=7189145)。最后你会得到一个密码（为了方便输入，中间没有空格），使用这个密码。
+您需要为 Vaultwarden 生成应用专用密码才能使用 Gmail。按照此处的步骤操作：[使用应用专用密码登录](https://support.google.com/accounts/answer/185833?hl=zh-Hans\&ref\_topic=7189145)。最后您会得到一个密码（为了方便输入，中间没有空格），使用这个密码。
 
 严格 SSL：
 

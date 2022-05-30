@@ -10,7 +10,7 @@
 
 持久性数据存储在容器内的 `/data` 下，因此使用 Docker 进行持久性部署的唯一要求是在路径上挂载持久性卷：
 
-```docker
+```shell
 # 使用 Docker
 docker run -d --name vaultwarden -v /vw-data/:/data/ -p 80:80 vaultwarden/server:latest
 # 使用 Podman as non-root
@@ -27,7 +27,7 @@ sudo podman run -d --name vaultwarden -v /vw-data:/data/:Z -p 80:80 vaultwarden/
 
 如果您的 docker/vaultwarden 运行在具有固定 IP 的设备上，则可以将主机端口绑定到该 IP 地址，从而避免将主机端口暴露到网络上。如下所示，将 IP 地址（例如 192.168.0.2）添加到主机端口和容器端口前面：
 
-```docker
+```shell
 # 使用 Docker
 docker run -d --name vaultwarden -v /vw-data/:/data/ -p 192.168.0.2:80:80 vaultwarden/server:latest
 ```
@@ -42,13 +42,13 @@ docker start vaultwarden
 
 ## 自定义容器启动 <a href="#customizing-container-startup" id="customizing-container-startup"></a>
 
-如果你想在容器启动时运行自定义启动脚本，你可以将 `/etc/vaultwarden.sh` 作为单个脚本和/或将 `/etc/vaultwarden.d` 作为脚本目录挂载到容器中。对于后一种情况，只有扩展名为 `.sh` 的文件才会运行，因此具有其他扩展名的文件（例如，data/config 文件）则可以驻留在同一个目录中（具体的工作方式请参见 [start.sh](https://github.com/dani-garcia/vaultwarden/blob/main/docker/start.sh)）。
+如果您想在容器启动时运行自定义启动脚本，您可以将 `/etc/vaultwarden.sh` 作为单个脚本和/或将 `/etc/vaultwarden.d` 作为脚本目录挂载到容器中。对于后一种情况，只有扩展名为 `.sh` 的文件才会运行，因此具有其他扩展名的文件（例如，data/config 文件）则可以驻留在同一个目录中（具体的工作方式请参见 [start.sh](https://github.com/dani-garcia/vaultwarden/blob/main/docker/start.sh)）。
 
 自定义启动脚本对于修补网页密码库文件或安装额外的包、CA 证书等非常有用，因为可以让您不必构建和维护您自己的 Docker 镜像。
 
 ### 示例 <a href="#example" id="example"></a>
 
-假设你的脚本名为 `init.sh`，其包含以下内容：
+假设您的脚本名为 `init.sh`，其包含以下内容：
 
 ```shell
 echo "starting up"
@@ -56,13 +56,13 @@ echo "starting up"
 
 您可以像这样在启动时运行此脚本：
 
-```docker
+```shell
 docker run -d --name vaultwarden -v $(pwd)/init.sh:/etc/vaultwarden.sh <other docker args...> vaultwarden/server:latest
 ```
 
-如果你运行 `docker logs vaultwarden`，现在你应该能看到 `starting up` 作为输出的第一行。
+如果您运行 `docker logs vaultwarden`，现在您应该能看到 `starting up` 作为输出的第一行。
 
-请注意，每次容器启动时都会运行初始化脚本（而不仅仅是第一次），所以这些脚本通常应该是幂等的（即，你可以多次运行这些脚本而不会出现不良/异常）。如果你的脚本天然没有此属性，你可以这样做：
+请注意，每次容器启动时都会运行初始化脚本（而不仅仅是第一次），所以这些脚本通常应该是幂等的（即，您可以多次运行这些脚本而不会出现不良/异常）。如果您的脚本天然没有此属性，你可以这样做：
 
 ```shell
 if [ ! -e /.init ]; then

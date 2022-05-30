@@ -36,7 +36,7 @@ data
         └── <random_id>
 ```
 
-当使用 MySQL 或 PostgreSQL 后端运行时，目录结构是一样的，只是没有 SQLite 文件。你仍然需要备份数据目录中的文件，以及 MySQL 或 PostgreSQL 表的转储。
+当使用 MySQL 或 PostgreSQL 后端运行时，目录结构是一样的，只是没有 SQLite 文件。您仍然需要备份数据目录中的文件，以及 MySQL 或 PostgreSQL 表的转储。
 
 接下来详细讨论每一组文件。
 
@@ -46,9 +46,9 @@ _**需要备份。**_
 
 SQLite 数据库文件 (`db.sqlite3`) 存储了几乎所有重要的 Vaultwarden 数据/状态（数据库条目、用户/组织/设备元数据等），主要的例外是附件，附件作为单独的文件存储在文件系统中。
 
-你通常应使用 SQLite CLI (`sqlite3`) 中的 `.backup` 命令来备份数据库文件。该命令使用 [Online Backup API](https://www.sqlite.org/backup.html)，它是备份可能正在被使用的数据库文件的[最佳方式](https://www.sqlite.org/howtocorrupt.html#\_backup\_or\_restore\_while\_a\_transaction\_is\_active)。如果你能确保数据库在备份运行时未被使用，你也可以使用其他方式，例如 `.dump` 命令，或者简单地复制所有 SQLite 数据库文件（包括 `-wal` 文件，如果存在的话）。
+您通常应使用 SQLite CLI (`sqlite3`) 中的 `.backup` 命令来备份数据库文件。该命令使用 [Online Backup API](https://www.sqlite.org/backup.html)，它是备份可能正在被使用的数据库文件的[最佳方式](https://www.sqlite.org/howtocorrupt.html#\_backup\_or\_restore\_while\_a\_transaction\_is\_active)。如果您能确保数据库在备份运行时未被使用，您也可以使用其他方式，例如 `.dump` 命令，或者简单地复制所有 SQLite 数据库文件（包括 `-wal` 文件，如果存在的话）。
 
-假设你的数据文件夹是 `data`（默认），一个基本的备份命令看起来像这样：
+假设您的数据文件夹是 `data`（默认），一个基本的备份命令看起来像这样：
 
 ```shell
 sqlite3 data/db.sqlite3 ".backup '/path/to/backups/db-$(date '+%Y%m%d-%H%M').sqlite3'"
@@ -62,7 +62,7 @@ sqlite3 data/db.sqlite3 "VACUUM INTO '/path/to/backups/db-$(date '+%Y%m%d-%H%M')
 
 假设在 2021 年 1 月 1 日中午 12:34（当地时间）运行此命令，这将备份你的 SQLite 数据库文件到 `/path/to/backups/db-20210101-1234.sqlite3`。
 
-你可以通过一个 cron 作业定期运行这个命令（最好每天至少一次）。如果你通过 Docker 运行，请注意 Docker 映像不包含 sqlite3 二进制文件或 cron 守护程序，因此通常会将它们安装在 Docker 主机本身上并在容器外运行 cron 作业。如果你出于某种原因确实想从容器内运行备份，你可以在[容器启动](../container-image-usage/starting-a-container.md#customizing-container-startup)期间安装任何必要的包，或者使用你首选的 `vaultwarden/server:<tag>` 镜像作为父镜像创建你自己的自定义 Docker 镜像。
+您可以通过一个 cron 作业定期运行这个命令（最好每天至少一次）。如果您通过 Docker 运行，请注意 Docker 映像不包含 sqlite3 二进制文件或 cron 守护程序，因此通常会将它们安装在 Docker 主机本身上并在容器外运行 cron 作业。如果您出于某种原因确实想从容器内运行备份，您可以在[容器启动](../container-image-usage/starting-a-container.md#customizing-container-startup)期间安装任何必要的包，或者使用您首选的 `vaultwarden/server:<tag>` 镜像作为父镜像创建您自己的自定义 Docker 镜像。
 
 如果你想把备份数据复制到云存储上，[Rclone](https://rclone.org/) 是一个有用的工具，可以与各种云存储系统进行对接。[restic](https://restic.net/) 是另一个不错的选择，特别是如果你有较大的附件，并想避免每次都将其作为备份的一部分的时候。
 
@@ -78,7 +78,7 @@ _**可选备份。**_
 
 与常规文件附件一样，Send 文件附件也不存储在数据库表中（但 Send 的文本注释存储在数据库中）。
 
-与常规附件不同，Send 附件的目的是短暂的。因此，如果要尽量减小备份的大小，则可以选择不备份此目录。另一方面，如果还原后保持现有 Send 的功能正常对您很重要，那么你应该备份此目录。
+与常规附件不同，Send 附件的目的是短暂的。因此，如果要尽量减小备份的大小，则可以选择不备份此目录。另一方面，如果要在还原后保持现有 Send 功能的正常性对您很重要，那么您应该备份此目录。
 
 如果未创建任何 Send 附件，则该目录将不存在。
 
@@ -86,9 +86,9 @@ _**可选备份。**_
 
 _**建议备份。**_
 
-如果你使用管理页面来配置你的 Vaultwarden 实例，并且没有使用其他方式来备份你的配置，那么你可能需要备份此文件，这样你以后就不必重新配置你想要的配置了。
+如果您使用管理页面来配置你的 Vaultwarden 实例，并且没有使用其他方式来备份您的配置，那么你可能需要备份此文件，这样您以后就不必重新配置您想要的配置了。
 
-请记住，这个文件确实包含了一些可能被认为是敏感的明文数据（管理员令牌、SMTP 凭据等），所以如果你担心别人可能会访问到这些数据（例如，上传到云存储时），一定要对这些数据进行加密。
+请记住，这个文件确实包含了一些可能被认为是敏感的明文数据（管理员令牌、SMTP 凭据等），所以如果您担心别人可能会访问到这些数据（例如，上传到云存储时），一定要对这些数据进行加密。
 
 ### `rsa_key*` 文件 <a href="#the-rsa_key-files" id="the-rsa_key-files"></a>
 
@@ -102,19 +102,19 @@ _**建议备份。**_
 
 _**可选备份。**_
 
-图标缓存用于存储[网站图标](https://help.ppgg.in/security/privacy-when-using-website-icons)，这样就不需要从登录项目相关的站点反复获取图标了。这可能不值得备份，除非你真的想避免重新获取大量的图标缓存。
+图标缓存用于存储[网站图标](https://help.ppgg.in/security/privacy-when-using-website-icons)，这样就不需要从登录项目相关的站点反复获取图标了。这一般不值得去备份，除非您真的想避免重新获取大量的图标缓存。
 
 ## 恢复备份数据 <a href="#restoring-backup-data" id="restoring-backup-data"></a>
 
 确保 Vaultwarden 已经停止，然后简单地将 `data` 文件夹中的每个文件或目录替换为它的备份版本即可。
 
-当恢复使用 `.backup` 或 `VACUUM INTO` 创建的备份时，确保首先删除任何已存在的 `db.sqlite3-wal` 文件，因为当 SQLite 试图使用陈旧/不匹配的 WAL 文件恢复 `db.sqlite3` 时，有可能导致数据库损坏。然而，如果你直接拷贝 `db.sqlite3` 文件和其匹配的 `db.sqlite3-wal` 文件的方式来备份数据库，那么你必须将两个文件作为一对来恢复。不需要备份或恢复 `db.sqlite3-shm` 文件。
+当恢复使用 `.backup` 或 `VACUUM INTO` 创建的备份时，确保首先删除任何已存在的 `db.sqlite3-wal` 文件，因为当 SQLite 试图使用陈旧/不匹配的 WAL 文件恢复 `db.sqlite3` 时，有可能导致数据库损坏。然而，如果您直接拷贝 `db.sqlite3` 文件和其匹配的 `db.sqlite3-wal` 文件的方式来备份数据库，那么您必须将两个文件作为一对来恢复。不需要备份或恢复 `db.sqlite3-shm` 文件。
 
-为了验证你的备份是否能正常工作，定期运行从备份中恢复的过程是个好主意。这样做的时候，请确保移动或保留原始数据的副本，以防备份实际上不能正常工作。
+为了验证您的备份是否能正常工作，定期运行从备份中恢复的过程是个好主意。这样做的时候，请确保移动或保留原始数据的副本，以防备份实际上不能正常工作。
 
 ## 示例 <a href="#examples" id="examples"></a>
 
-本部分是第三方备份示例的索引。在使用某个示例之前，你应该彻底审阅此示例并了解其工作方式。
+本部分是第三方备份示例的索引。在使用某个示例之前，您应该彻底审阅此示例并了解其工作方式。
 
 * [https://github.com/ttionya/vaultwarden-backup](https://github.com/ttionya/vaultwarden-backup)
 * [https://github.com/shivpatel/bitwarden\_rs-local-backup](https://github.com/shivpatel/bitwarden\_rs-local-backup)

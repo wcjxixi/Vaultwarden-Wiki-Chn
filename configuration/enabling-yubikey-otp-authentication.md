@@ -10,10 +10,10 @@
 
 备注：
 
-* 为了生成 API 密钥或在 OTP 服务器上使用 YubiKey，必须对其进行注册。在 [YubiKey 个性化工具](https://www.yubico.com/products/services-software/personalization-tools/use/)（或 [YubiKey Manager](https://www.yubico.com/support/download/yubikey-manager/)）中配置好你的密钥后，然后在[这里](https://upload.yubico.com/)使用默认服务器注册。
+* 为了生成 API 密钥或在 OTP 服务器上使用 YubiKey，必须对其进行注册。在 [YubiKey 个性化工具](https://www.yubico.com/products/services-software/personalization-tools/use/)（或 [YubiKey Manager](https://www.yubico.com/support/download/yubikey-manager/)）中配置好您的密钥后，然后在[这里](https://upload.yubico.com/)使用默认服务器注册。
 * 由于上游的问题，服务器版本为 1.6.0 或更低的 aarch64 不支持 YubiKey 功能（请参阅 [＃262](https://github.com/dani-garcia/bitwarden\_rs/issues/262)）。
 
-```docker
+```shell
 docker run -d --name vaultwarden \
   -e YUBICO_CLIENT_ID=12345 \
   -e YUBICO_SECRET_KEY=ABCDEABCDEABCDEABCDE \

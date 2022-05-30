@@ -14,7 +14,7 @@
 
 Vaultwarden 最初设计时仅使用 SQLite，但当时 MariaDB (MySQL) 和 PostgreSQL 也被同时添加到了组合中。对于 SQLite，您不必运行单独的服务器或容器，而对于其他两个，您确实需要运行一些额外的东西。
 
-如果您一开始使用的是 MariaDB 并想回到 SQLite，现在该怎么办？嗯，这是可能的，但是使用以下步骤可能会出现一些我们不知道的奇怪故障。如果您遇到任何奇怪的问题然后需要帮助，或者您解决了这些问题，请在此处开启一个新的讨论：[https://github.com/dani-garcia/vaultwarden/discussions](https://github.com/dani-garcia/vaultwarden/discussions)，以帮助您和其他人。
+如果您一开始使用的是 MariaDB 并想回到 SQLite，现在该怎么办呢？嗯，这是可能的，但是使用以下步骤可能会出现一些我们不知道的奇怪故障。如果您遇到任何奇怪的问题然后需要帮助，或者您解决了这些问题，请在此处开启一个新的讨论：[https://github.com/dani-garcia/vaultwarden/discussions](https://github.com/dani-garcia/vaultwarden/discussions)，以帮助您和其他人。
 
 ## 如何从 MariaDB 迁移到 SQLite <a href="#how-to-migrate-from-mariadb-to-sqlite" id="how-to-migrate-from-mariadb-to-sqlite"></a>
 
@@ -26,7 +26,7 @@ Vaultwarden 最初设计时仅使用 SQLite，但当时 MariaDB (MySQL) 和 Post
 
 现在运行以下单行程序并将 `<dbhost>`、`<dbuser>` 以及 `<database>` 调整为您用于 MariaDB 连接的实际内容：
 
-```sql
+```shell
 mysqldump \
   --host=<dbhost> \
   --user=<dbuser> --password \
@@ -47,9 +47,9 @@ mysqldump \
 
 系统会提示您输入密码，输入密码然后按回车键。
 
-这一步将生成一个用于保存你的数据库的 `mysql-to-sqlite.sql` 文件。现在查找上一步中在您第一次使用 SQLite 作为数据库启动 Vaultwarden 时由 Vaultwarden 创建的 db.sqlite3 文件。复制或移动 `mysql-to-sqlite.sql`，让 db.sqlite3 和导出位于同一目录中。现在您可以执行以下命令：
+这一步将生成一个用于保存您的数据库的 `mysql-to-sqlite.sql` 文件。现在查找上一步中在您第一次使用 SQLite 作为数据库启动 Vaultwarden 时由 Vaultwarden 创建的 db.sqlite3 文件。复制或移动 `mysql-to-sqlite.sql`，让 db.sqlite3 和导出位于同一目录中。现在您可以执行以下命令：
 
-```sql
+```shell
 sqlite3 db_new.sqlite3 < mysql-to-sqlite.sql
 ```
 

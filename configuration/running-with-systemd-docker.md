@@ -4,13 +4,13 @@
 对应的官方页面地址（Vaultwarden WiKi 已移除此页面）
 {% endhint %}
 
-这部分的内容允许您使用 systemd 来管理 Docker 容器的生命周期，若你喜欢的话。
+这部分的内容允许您使用 systemd 来管理 Docker 容器的生命周期，若您喜欢的话。
 
 首先，使用系统包管理器安装 `systemd-docker` 包。这是一个用于改进 docker 与 systemd 集成的封装器。
 
 有关完整介绍和配置选项，请参阅 [Github 仓库](https://github.com/ibuildthecloud/systemd-docker)。
 
-以 root 身份，使用你喜欢的编辑器用以下内容创建 `/etc/systemd/system/vaultwarden.service` 文件：
+以 root 身份，使用您喜欢的编辑器用以下内容创建 `/etc/systemd/system/vaultwarden.service` 文件：
 
 ```systemd
 [Unit]
@@ -70,7 +70,7 @@ Key="Value"
 
 但是，systemd 项目并没有规定该文件的存储位置。有关此文件的最佳存储位置，请查阅发行版文档。例如，基于 RedHat 的发行版通常将这些文件放在 `/etc/sysconfig/` 中。
 
-如果你不确定，只需使用 root 权限在 `/etc/` 中创建一个文件即可，比如 `/etc/vaultwarden.service.conf`。
+如果您不确定，只需使用 root 权限在 `/etc/` 中创建一个文件即可，比如 `/etc/vaultwarden.service.conf`。
 
 在您的单元文件中的 `[Service]` 块中添加一个 `EnvironmentFile` 指令，其值是上面创建的文件的完整路径。例如：
 

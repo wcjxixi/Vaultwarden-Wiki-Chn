@@ -6,7 +6,7 @@
 
 默认情况下，可以访问实例的任何人均可以注册新的账户。要禁用该功能，请将 `SIGNUPS_ALLOWED` 环境变量设置为 `false`：
 
-```docker
+```shell
 docker run -d --name vaultwarden \
   -e SIGNUPS_ALLOWED=false \
   -v /vw-data/:/data/ \
@@ -29,7 +29,7 @@ docker run -d --name vaultwarden \
 如果设置了 `SIGNUPS_DOMAINS_WHITELIST`，`SIGNUPS_ALLOWED=false`的值将被忽略。
 {% endhint %}
 
-你可能还想设置 `SIGNUPS_VERIFY=true`，这要求新注册的用户在成功登录前进行电子邮件验证。这可以防止有人用一个拥有正确域名的假电子邮件地址注册。
+您可能还想设置 `SIGNUPS_VERIFY=true`，这要求新注册的用户在成功登录前进行电子邮件验证。这可以防止有人用一个拥有正确域名的假电子邮件地址注册。
 
 ## 通过管理页面发出邀请 <a href="#invitations-via-the-admin-page" id="invitations-via-the-admin-page"></a>
 

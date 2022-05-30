@@ -5,7 +5,7 @@
 {% endhint %}
 
 {% hint style="warning" %}
-此方法仅用于测试和开发。绝大多数用户不应该使用这种方法，因为它需要在你的每台设备上加载证书，这既容易出错，又需要后期的维护。相反，应把精力集中在通过 [Let's Encrypt](https://letsencrypt.org/getting-started/) 获取的真实证书上。如果你的 Vaultwarden 实例不处于公共互联网中，此方法甚至也可以工作（[示例](../deployment/https/running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md)）。
+此方法仅用于测试和开发。绝大多数用户不应该使用这种方法，因为它需要在您的每台设备上加载证书，这既容易出错，又需要后期的维护。相反，应把精力集中在通过 [Let's Encrypt](https://letsencrypt.org/getting-started/) 获取的真实证书上。如果您的 Vaultwarden 实例不处于公共互联网中，此方法甚至也可以工作（[示例](../deployment/https/running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md)）。
 {% endhint %}
 
 {% hint style="danger" %}

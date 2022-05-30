@@ -10,7 +10,7 @@
 
 从 1.5.0 版本开始支持记录到文件。您可以使用 `LOG_FILE` 环境变量来指定日志文件的路径：
 
-```docker
+```shell
 docker run -d --name vaultwarden \
 ...
   -e LOG_FILE=/data/vaultwarden.log \
@@ -25,7 +25,7 @@ docker run -d --name vaultwarden \
 
 `LOG_LEVEL` 选项包括：trace、debug、info、warn、error 以及 off。
 
-```docker
+```shell
 docker run -d --name vaultwarden \
 ...
   -e LOG_LEVEL=warn -e EXTENDED_LOGGING=true \
@@ -36,6 +36,6 @@ docker run -d --name vaultwarden \
 
 如果在 Docker 中运行：`docker logs <container-name>`
 
-如果使用 `systemd` 运行：`journalctl -u vaultwarden.service`（或你的服务名称）
+如果使用 `systemd` 运行：`journalctl -u vaultwarden.service`（或您的服务名称）
 
 否则，请检查标准输出被重定向到的位置，或设置 `LOG_FILE` 环境变量并查看该文件。

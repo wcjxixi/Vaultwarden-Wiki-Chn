@@ -12,7 +12,7 @@
 如果您坚持使用 MySQLv8 而不是 MariaDB，请使用旧的密码散列方法而不是默认方法创建用户！
 {% endhint %}
 
-要使用 MySQL 后端，你可以使用[官方 Docker 镜像](https://hub.docker.com/r/bitwardenrs/server-mysql)，也可以构建你自己的[启用了 MySQL](../../deployment/building-binary.md#mysql-backend) 的二进制。
+要使用 MySQL 后端，你可以使用[官方 Docker 镜像](https://hub.docker.com/r/bitwardenrs/server-mysql)，也可以构建您自己的[启用了 MySQL](../../deployment/building-binary.md#mysql-backend) 的二进制。
 
 要运行二进制或容器，请确保已设置 `DATABASE_URL` 环境变量（即 `DATABASE_URL='mysql://<user>:<password>@mysql/vaultwarden'`）。
 
@@ -158,13 +158,13 @@ FLUSH PRIVILEGES;
 
 3、停止 Vaultwarden。
 
-4、使用下面的命令转储你现有的 SQLite 数据库。再次检查你的 sqlite 数据库的名称，默认应该是 db.sqlite。
+4、使用下面的命令转储您现有的 SQLite 数据库。再次检查您的 sqlite 数据库的名称，默认应该是 `db.sqlite`。
 
 **注意**：在您的 Linux 系统上需要已经安装了 sqlite3 命令。
 
 我们需要从 sqlite 转储的输出中移除一些查询，如创建表等，我们将在这里进行。
 
-你可以使用以下单行命令：
+您可以使用以下单行命令：
 
 ```sql
 sqlite3 db.sqlite3 .dump | grep "^INSERT INTO" | grep -v "__diesel_schema_migrations" > sqlitedump.sql ; echo -ne "SET FOREIGN_KEY_CHECKS=0;\n$(cat sqlitedump.sql)" > mysqldump.sql

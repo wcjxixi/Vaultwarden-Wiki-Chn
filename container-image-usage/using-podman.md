@@ -69,7 +69,7 @@ PIDFile=/%t/%n-pid
 WantedBy=multi-user.target default.target
 ```
 
-环境文件 `vaultwarden.conf` 可以包含你需要的容器的所有环境值，比如：
+环境文件 `vaultwarden.conf` 可以包含您需要的容器的所有环境值，比如：
 
 ```systemd
 ROCKET_PORT=8080

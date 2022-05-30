@@ -4,9 +4,9 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Updating-the-vaultwarden-image)
 {% endhint %}
 
-更新非常简单，你只需确保保留了已挂载的卷。如果您使用[此处](starting-a-container.md)示例中的 bind-mounted 路径（绑定挂载路径）的方式，则只需使用 `pull` 拉取最新版的镜像，使用 `stop` 和 `rm` 停止和移除当前容器，然后与之前相同的方式启动一个新的容器即可：
+更新非常简单，您只需确保保留了已挂载的卷。如果您使用[此处](starting-a-container.md)示例中的 bind-mounted 路径（绑定挂载路径）的方式，则只需使用 `pull` 拉取最新版的镜像，使用 `stop` 和 `rm` 停止和移除当前容器，然后与之前相同的方式启动一个新的容器即可：
 
-```docker
+```shell
 # 拉取最新版本的镜像
 docker pull vaultwarden/server:latest
 
@@ -22,7 +22,7 @@ docker run -d --name vaultwarden -v /vw-data/:/data/ -p 80:80 vaultwarden/server
 
 如果您没有为持久性数据绑定挂载卷，则多一个中间步骤，就是使用中间容器来保留数据：
 
-```docker
+```shell
 # 拉取最新版本的镜像
 docker pull vaultwarden/server:latest
 
@@ -42,7 +42,7 @@ docker rm vaultwarden_data
 # 您可以保留数据容器以用于将来的更新，这样的话，可以跳过最后的移除中间容器这一步。
 ```
 
-你也可以使用 [Watchtower](https://containrrr.dev/watchtower/) 这样的工具来自动化更新过程。Watchtower 可以定期检查 Docker 镜像的更新，拉取更新后的镜像，并使用更新后的镜像重新创建容器。
+您也可以使用 [Watchtower](https://containrrr.dev/watchtower/) 这样的工具来自动化更新过程。Watchtower 可以定期检查 Docker 镜像的更新，拉取更新后的镜像，并使用更新后的镜像重新创建容器。
 
 ## 使用 docker-compose 时的更新 <a href="#updating-when-using-docker-compose" id="updating-when-using-docker-compose"></a>
 
@@ -70,7 +70,7 @@ docker ps -a
 #        - all dangling build cache
 # 使用以下命令列出所有 Docker 镜像
 docker images
-# 这里你将看到所有未使用的镜像
+# 这里您将看到所有未使用的镜像
 #
 ```
 
@@ -78,7 +78,7 @@ docker images
 
 如果需要，可以将它们放入 cronjob 中以计划任务自动运行（根据您的需要修改时间）：
 
-```python
+```shell
 $ sudo crontab -e
 0 2 * * * sudo systemctl restart vaultwarden.service
 

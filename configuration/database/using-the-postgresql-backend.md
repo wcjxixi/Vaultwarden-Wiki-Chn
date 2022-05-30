@@ -4,7 +4,7 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Using-the-PostgreSQL-Backend)
 {% endhint %}
 
-要使用 PostgreSQ 后端，你可以使用[官方 Docker 镜像](https://hub.docker.com/r/bitwardenrs/server-postgresql)，也可以构建您自己的[启用了 PostgreSQL](../../deployment/building-binary.md#postgresql-backend) 的二进制。
+要使用 PostgreSQ 后端，您可以使用[官方 Docker 镜像](https://hub.docker.com/r/bitwardenrs/server-postgresql)，也可以构建您自己的[启用了 PostgreSQL](../../deployment/building-binary.md#postgresql-backend) 的二进制。
 
 要运行二进制或容器，请确保已设置 `DATABASE_URL` 环境变量（即 `DATABASE_URL='postgresql://<user>:<password>@postgresql/bitwarden'`）。
 
@@ -16,7 +16,7 @@ DATABASE_URL=postgresql://[[user]:[password]@]host[:port][/database]
 
 docker 运行环境变量的一个示例：`-e 'DATABASE_URL=postgresql://user_name:user_password@db_host:5432/vaultwarden'`。
 
-如果您要使用自定义架构/搜索路径，则需要使用以下连接字符串（注意其中的 `%3D` 是`=` 符号的 URL 编码）：
+如果您要使用自定义架构/搜索路径，则需要使用以下连接字符串（注意其中的 `%3D` 是 `=` 符号的 URL 编码）：
 
 ```systemd
 DATABASE_URL=postgresql://user_name:user_password@db_host:5432/vaultwarden?application_name=vaultwarden&options=-c search_path%3Ddb_schema
@@ -65,7 +65,7 @@ load database
 ;
 ```
 
-7、运行 `pgloader vaultwarden.load` 命令，你可能会看到一些警告，（不用理会）迁移会成功完成。
+7、运行 `pgloader vaultwarden.load` 命令，您可能会看到一些警告，（不用理会）迁移会成功完成。
 
 8、重新启动 Vaultwarden。
 
@@ -92,7 +92,7 @@ GRANT all privileges ON database vaultwarden TO vaultwarden;
 
 4、停止 Vaultwarden。
 
-5、安装 [pgloader](http://pgloader.io/) 。确保你使用的是最新版本的 pgloader，官方的 Ubuntu 存储库有一个过时的版本，它不能与新版本的 PostgreSQL 一起正常工作。最新版本可以从 [PostgreSQL Apt 存储库](https://www.postgresql.org/download/linux/ubuntu/)获取。
+5、安装 [pgloader](http://pgloader.io/)。确保您使用的是最新版本的 pgloader，官方的 Ubuntu 存储库有一个过时的版本，它不能与新版本的 PostgreSQL 一起正常工作。最新版本可以从 [PostgreSQL Apt 存储库](https://www.postgresql.org/download/linux/ubuntu/)获取。
 
 6、使用如下内容创建 vaultwarden.load 文件：
 
@@ -108,6 +108,6 @@ load database
 
 _如果您的连接需要 SSL，可以选择将 `?sslmode=require` 添加到 PostgreSQL 连接字符串中。_
 
-7、运行 `pgloader vaultwarden.load` 命令，你可能会看到一些警告，（不用理会）迁移会成功完成。如果有错误，很可能是你的 pgloader 版本过时了！
+7、运行 `pgloader vaultwarden.load` 命令，您可能会看到一些警告，（不用理会）迁移会成功完成。如果有错误，很可能是您的 pgloader 版本过时了！
 
 8、重新启动 Vaultwarden。

@@ -20,7 +20,7 @@ Vaultwarden 仅提供 API（服务器）端实现，用户仍依赖来自上游�
 
 ## 测试并报告客户端中的 bug <a href="#testing-reporting-bugs-in-clients" id="testing-reporting-bugs-in-clients"></a>
 
-**请始终先在这里报告发现的 bug。**这有可能不是上游的 bug，而是我们的实现或者您的配置中的 bug。[我们不想浪费 Kyle 的时间](https://github.com/dani-garcia/vaultwarden/issues/336)来排除第三方服务器上的 bug。在极少数情况下，上游会存在 bug，但是在此阶段，我们将排除其他可能的原因，以及确认上游服务器也存在该 bug。因此，重点是**不要**在上游报告 bug，而是在这里报告它，即使您认为这是客户端问题。我们可以一起查看问题出在哪里。
+**请始终先在这里报告发现的 bug。**这有可能不是上游的 bug，而是我们的实现或者您的配置中的 bug。[我们不想浪费 Kyle 的时间](https://github.com/dani-garcia/vaultwarden/issues/336)来排除第三方服务器上的 bug。在极少数情况下，上游会存在 bug，但是在此阶段，我们将排除其他可能的原因，以及确认上游服务器也存在该 bug。因此，重点是**不要**在上游报告 bug，而是在这里报告它，即使您认为这是客户端问题。我们可以一起查查找问题出在哪里。
 
 ## 帮助社区中的其他用户 <a href="#helping-other-users-in-the-community" id="helping-other-users-in-the-community"></a>
 
