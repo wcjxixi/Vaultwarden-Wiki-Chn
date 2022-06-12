@@ -48,7 +48,7 @@
     * [4.从 MariaDB (MySQL) 迁移到 SQLite](configuration/database/migrating-from-mariadb-mysql-to-sqlite.md)
   * [安全](configuration/security/README.md)
     * [1.强化指南](configuration/security/hardening-guide.md)
-    * [2.Fail2Ban 设置](configuration/security/fail2ban-setup.md)
+    * [2.Fail2ban 设置](configuration/security/fail2ban-setup.md)
 * [备份](backup/README.md)
   * [通用（非 docker）](backup/general-not-docker.md)
 * [其他](other-information/README.md)

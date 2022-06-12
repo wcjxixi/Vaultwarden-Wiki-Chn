@@ -1,10 +1,10 @@
-# 2.Fail2Ban 设置
+# 2.Fail2ban 设置
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Fail2Ban-Setup)
 {% endhint %}
 
-设置 Fail2Ban 可以阻止攻击者暴力破解您的密码库登录。如果您的实例是公开的，这一点尤其重要。
+设置 Fail2ban 可以阻止攻击者暴力破解您的密码库登录。如果您的实例是公开的，这一点尤其重要。
 
 ## 目录 <a href="#table-of-contents" id="table-of-contents"></a>
 
@@ -19,7 +19,7 @@
 * [为管理页面设置](fail2ban-setup.md#setup-for-admin-page)
   * [Filter](fail2ban-setup.md#filter-1)
   * [Jail](fail2ban-setup.md#jail-1)
-* [测试 Fail2Ban](fail2ban-setup.md#testing-fail-2-ban)
+* [测试 Fail2ban](fail2ban-setup.md#testing-fail-2-ban)
 * [SELinux 中的问题](fail2ban-setup.md#selinux-problems)
 
 ## 预先说明 <a href="#pre-requisite" id="pre-requisite"></a>
@@ -126,7 +126,7 @@ docker-compose up -d
 
 ## 为网页密码库设置 <a href="#setup-for-web-vault" id="setup-for-web-vault"></a>
 
-按照惯例，`path_f2b` 代表 Fail2Ban 工作所需的路径。这取决于您的系统，例如在 Synology 上是 `/volumeX/docker/fail2ban/`，但在其他系统上是 `/etc/fail2ban/`。
+按照惯例，`path_f2b` 代表 Fail2ban 工作所需的路径。这取决于您的系统，例如在 Synology 上是 `/volumeX/docker/fail2ban/`，但在其他系统上是 `/etc/fail2ban/`。
 
 ### Filter <a href="#filter" id="filter"></a>
 
@@ -147,7 +147,7 @@ ignoreregex =
 `fail2ban.filter [5291]: ERROR No 'host' group in '^.*Username or password is incorrect\. Try again\. IP: <ADDR>\. Username:.*$'`\
 请将 `vaultwarden.local` 中的 `<ADDR>` 改为 `<HOST>`。
 
-**提示**：如果您在 `vaultwarden.log` 中看到 127.0.0.1 是登录失败的 IP 地址，那么您可能正在使用反向代理，而 Fail2Ban 无法正常工作：
+**提示**：如果您在 `vaultwarden.log` 中看到 127.0.0.1 是登录失败的 IP 地址，那么您可能正在使用反向代理，而 Fail2ban 无法正常工作：
 
 ```
 [YYYY-MM-DD hh:mm:ss][vaultwarden::api::identity][ERROR] Username or password is incorrect. Try again. IP: 127.0.0.1. Username: email@example.com.
@@ -188,7 +188,7 @@ action = iptables-allports[name=vaultwarden, chain=FORWARD]
 在使用 Caddy 作为反向代理的 Docker (CentOS 7) 上运行时，上面的说法是不正确的。当用 Caddy 作为反向代理时，可以使用 `chain = FORWARD` 。
 
 {% hint style="info" %}
-如果您使用 systemd 来管理 Vaultwarden，您可以为 Fail2Ban 使用 systemd-journal：
+如果您使用 systemd 来管理 Vaultwarden，您可以为 Fail2ban 使用 systemd-journal：
 
 ```
 backend = systemd
@@ -202,7 +202,7 @@ filter = vaultwarden[journalmatch='_SYSTEMD_UNIT=your_vaultwarden.service']
 
 如果您使用 Cloudflare 代理，您需要将 Cloudflare 添加到您的操作列表中，如[本指南](https://niksec.com/using-fail2ban-with-cloudflare/)中所示。
 
-重新加载 Fail2Ban 使更改生效：
+重新加载 Fail2ban 使更改生效：
 
 ```shell
 sudo systemctl reload fail2ban
@@ -212,7 +212,7 @@ sudo systemctl reload fail2ban
 
 ## 为管理页面设置 <a href="#setup-for-admin-page" id="setup-for-admin-page"></a>
 
-如果您通过设置 `ADMIN_TOKEN` 环境变量启用了管理控制台，则可以使用 Fail2Ban 来阻止攻击者暴力破解您的管理令牌。该过程与网页密码库相同。
+如果您通过设置 `ADMIN_TOKEN` 环境变量启用了管理控制台，则可以使用 Fail2ban 来阻止攻击者暴力破解您的管理令牌。该过程与网页密码库相同。
 
 ### Filter <a href="#filter" id="filter"></a>
 
@@ -259,13 +259,13 @@ action = iptables-allports[name=vaultwarden, chain=FORWARD]
 
 如果您使用 Cloudflare 代理，您需要将 Cloudflare 添加到您的操作列表中，如[本指南](https://niksec.com/using-fail2ban-with-cloudflare/)中所示。
 
-重新加载 Fail2Ban 使更改生效：
+重新加载 Fail2ban 使更改生效：
 
 ```shell
 sudo systemctl reload fail2ban
 ```
 
-## 测试 Fail2Ban <a href="#testing-fail-2-ban" id="testing-fail-2-ban"></a>
+## 测试 Fail2ban <a href="#testing-fail-2-ban" id="testing-fail-2-ban"></a>
 
 现在，尝试使用任何电子邮件地址登录 Vaultwarden（不必是有效电子邮件，只需是电子邮件格式即可）。如果它可以正常工作，您的 IP 将被阻止。运行以下命令来取消阻止的 IP：
 
@@ -276,20 +276,20 @@ sudo docker exec -t fail2ban fail2ban-client set vaultwarden unbanip XX.XX.XX.XX
 sudo fail2ban-client set vaultwarden unbanip XX.XX.XX.XX
 ```
 
-如果 Fail2Ban 无法正常运行，请检查 Vaultwarden 日志文件的路径是否正确。对于 Docker：如果指定的日志文件未生成和/或更新，请确保将 `EXTENDED_LOGGING` 变量设置为 `true`（默认值），并且确保日志文件的路径是 Docker 内部的路径（当您使用 `/vw-data/:/data/` 时，日志文件应位于容器外部的 `/data/...` 中）。
+如果 Fail2ban 无法正常运行，请检查 Vaultwarden 日志文件的路径是否正确。对于 Docker：如果指定的日志文件未生成和/或更新，请确保将 `EXTENDED_LOGGING` 变量设置为 `true`（默认值），并且确保日志文件的路径是 Docker 内部的路径（当您使用 `/vw-data/:/data/` 时，日志文件应位于容器外部的 `/data/...` 中）。
 
 还要确认 Docker 容器的时区与主机的时区是否一致。通过将日志文件中显示的时间与主机操作系统的时间进行比较来进行检查。如果它们不一致，则有多种解决方法。一种是使用 `-e "TZ = <timezone>"` 选项启动 Docker 。可用的时区（比如 `-e TZ = "Australia/Melbourne"`）列表在[这里](https://en.wikipedia.org/wiki/List\_of\_tz\_database\_time\_zones)查看。
 
-如果您使用的是 podman 而不是 docker，则无法通过 `-e "TZ = <timezone>"` 来设置时区。可以按照以下指南解决此问题（当使用 alpine 镜像时）：[https://wiki.alpinelinux.org/wiki/Setting\_the\_timezone](https://wiki.alpinelinux.org/wiki/Setting\_the\_timezone)。
+如果您使用的是 podman 而不是 Docker，则无法通过 `-e "TZ = <timezone>"` 来设置时区。可以按照以下指南解决此问题（当使用 alpine 镜像时）：[https://wiki.alpinelinux.org/wiki/Setting\_the\_timezone](https://wiki.alpinelinux.org/wiki/Setting\_the\_timezone)。
 
 ## SELinux 中的问题 <a href="#selinux-problems" id="selinux-problems"></a>
 
-当使用 SELinux 时，SELinux 可能会阻止 Fail2Ban 读取日志。如果是这样，请运行此命令： `sudo tail /var/log/audit/audit.log`。您应该会看到如下类似内容（当然，实际的审核 ID (pid) 会因您的情况而不一样）：
+当使用 SELinux 时，SELinux 可能会阻止 Fail2ban 读取日志。如果是这样，请运行此命令： `sudo tail /var/log/audit/audit.log`。您应该会看到如下类似内容（当然，实际的审核 ID (pid) 会因您的情况而不一样）：
 
 ```
 type=AVC msg=audit(1571777936.719:2193): avc:  denied  { search } for  pid=5853 comm="fail2ban-server" name="containers" dev="dm-0" ino=1144588 scontext=system_u:system_r:fail2ban_t:s0 tcontext=unconfined_u:object_r:container_var_lib_t:s0 tclass=dir permissive=0
 ```
 
-您可以使用 `grep 'type=AVC msg=audit(1571777936.719:2193)' /var/log/audit/audit.log | audit2why` 来找出真正的原因。`audit2allow -a` 将为您提供有关如何创建模块并允许 Fail2Ban 访问日志的具体说明。
+您可以使用 `grep 'type=AVC msg=audit(1571777936.719:2193)' /var/log/audit/audit.log | audit2why` 来找出真正的原因。`audit2allow -a` 将为您提供有关如何创建模块并允许 Fail2ban 访问日志的具体说明。
 
-按照这些步骤操作后就结束了！Fail2Ban 现在应该可以正常工作了。
+按照这些步骤操作后就结束了！Fail2ban 现在应该可以正常工作了。
