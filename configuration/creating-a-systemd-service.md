@@ -36,7 +36,7 @@ After=network.target
 
 
 [Service]
-# 设置 bitwarden_rs 用户/群组。此用户/群组对工作目录（见下文）允许有读写权限
+# 设置 Vaultwarden 用户/群组。此用户/群组对工作目录（见下文）允许有读写权限
 User=vaultwarden
 Group=vaultwarden
 # 用作配置作用的 .env 文件的位置
