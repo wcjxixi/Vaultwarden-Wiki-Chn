@@ -187,6 +187,17 @@ action = iptables-allports[name=vaultwarden, chain=FORWARD]
 **上面注意中的注意**：\
 在使用 caddy 作为反向代理的 Docker (CentOS 7) 上运行时，上面的说法是不正确的。当用 caddy 作为反向代理时，可以使用 `chain = FORWARD` 。
 
+{% hint style="info" %}
+如果您使用 systemd 来管理 vaultwarden，您可以为 fail2ban 使用 systemd-journal：
+
+```
+backend = systemd
+filter = vaultwarden[journalmatch='_SYSTEMD_UNIT=your_vaultwarden.service']
+```
+
+使用它来代替 `logpath =` 变量。
+{% endhint %}
+
 **Cloudflare 用户请注意：**
 
 如果您使用 Cloudflare 代理，您需要将 Cloudflare 添加到您的操作列表中，如[本指南](https://niksec.com/using-fail2ban-with-cloudflare/)中所示。
