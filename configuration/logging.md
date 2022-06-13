@@ -36,7 +36,7 @@ docker run -d --name vaultwarden \
 
 为了减少日志消息的数量，您可以将日志级别设置为 warn（默认为 info）。[日志级别](https://docs.rs/log/0.4.7/log/enum.Level.html#variants)可使用 `LOG_LEVEL` 环境变量进行调整，同时还需要设置 `EXTENDED_LOGGING=true`。注意：使用日志级别 warn 或 error 仍然可以让 [Fail2Ban](security/fail2ban-setup.md) 正常工作。
 
-`LOG_LEVEL` 选项包括：trace、debug、info、warn、error 以及 off。
+`LOG_LEVEL` 选项包括：`trace`、`debug`、`info`、`warn`、`error` 以及 `off`。
 
 ```shell
 docker run -d --name vaultwarden \

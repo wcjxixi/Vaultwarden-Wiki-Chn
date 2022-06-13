@@ -133,7 +133,7 @@ $ systemctl status vaultwarden.service
 
 ### 旧版 systemd 的沙盒选项 <a href="#sandboxing-options-with-older-systemd-versions" id="sandboxing-options-with-older-systemd-versions"></a>
 
-在 RHEL 7（以及 debian 8）中，使用的 systemd 不支持某些隔离选项 ([#445](https://github.com/dani-garcia/bitwarden\_rs/issues/445)，[#363](https://github.com/dani-garcia/bitwarden\_rs/issues/363))。这可能导致出现如下错误：
+在 RHEL 7（以及 debian 8）中，使用的 systemd 不支持某些隔离选项 ([#445](https://github.com/dani-garcia/bitwarden\_rs/issues/445), [#363](https://github.com/dani-garcia/bitwarden\_rs/issues/363))。这可能导致出现如下错误：
 
 ```
 Failed at step NAMESPACE spawning /home/vaultwarden/vaultwarden: Permission denied
