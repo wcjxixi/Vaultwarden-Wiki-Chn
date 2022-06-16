@@ -5,7 +5,7 @@
 {% endhint %}
 
 {% hint style="warning" %}
-**注意**：v1.25.0 版本之前的 Vaultwarden 有一个关于 SSL 和 TLS 的漏洞/错误标记的配置设置项。这已在测试版和新发布的版本中得到修复。
+**注意**：v1.25.0 版本之前的 Vaultwarden 有一个关于 SSL 和 TLS 的漏洞/误导性的配置设置项。这已在测试版和新发布的版本中得到修复。
 
 旧设置项是 `SMTP_SSL` 和 `SMTP_EXPLICIT_TLS`。
 
@@ -13,8 +13,6 @@
 
 * `SMTP_SECURITY=starttls` 等同于 `SMTP_SSL=true`
 * `SMTP_SECURITY=force_tls` 等同于 `SMTP_EXPLICIT_TLS=true`
-
-下面的示例仍基于 v1.24.0 版本。
 {% endhint %}
 
 您可以配置 Vaultwarden 通过 SMTP 代理来发送电子邮件：
@@ -24,7 +22,7 @@ docker run -d --name vaultwarden \
   -e SMTP_HOST=<smtp.domain.tld> \
   -e SMTP_FROM=<vaultwarden@domain.tld> \
   -e SMTP_PORT=587 \
-  -e SMTP_SSL=true \
+  -e SMTP_SECURITY=starttls \
   -e SMTP_USERNAME=<username> \
   -e SMTP_PASSWORD=<password> \
   -v /vw-data/:/data/ \
@@ -32,7 +30,7 @@ docker run -d --name vaultwarden \
   vaultwarden/server:latest
 ```
 
-当 `SMTP_SSL` 设置为 `true` 时（这是默认值），将仅接受 TLSv1.1 和 TLSv1.2 协议，并且 `SMTP_PORT` 默认为`587`。如果设置为 `false`，`SMTP_PORT` 则默认设置为 `25` 并将尝试加密（2020 年 3 月 12 日之前的代码不会尝试加密）。这是非常不安全的，仅在您知道您在做什么时才使用此设置。要以隐式模式（强制 TLS）运行 SMTP，请将 `SMTP_EXPLICIT_TLS` 设置为 `true`（提示：环境变量错误标记，请参阅[错误 #851](https://github.com/dani-garcia/vaultwarden/issues/851)）。想要不登录也可以发送电子邮件，简单地将 `SMTP_USERNAME` 和 `SMTP_PASSWORD` 设置为空即可。
+从 v1.25.0 开始，用于 SMTP SSL/TLS 配置的环境变量已更新为 `SMTP_SECURITY`（之前的有误导性，参阅[错误 #851](https://github.com/dani-garcia/vaultwarden/issues/851)）。当 `SMTP_SECURIT` 设置为 `starttls` 时（这是默认值），将仅接受 TLSv1.1 和 TLSv1.2 协议，并且 `SMTP_PORT` 默认为`587`。如果设置为 `off`，`SMTP_PORT` 则默认设置为 `25` 并将尝试加密（2020 年 3 月 12 日之前的代码不会尝试加密）。这是非常不安全的，仅在您知道您在做什么时才使用此设置。要以隐式模式（强制 TLS）运行 SMTP，请将 `SMTP_SECURITY` 设置为 `force_tls`。如果您不登录也可以发送电子邮件，简单地将 `SMTP_USERNAME` 和 `SMTP_PASSWORD` 设置为空即可。
 
 请注意，如果启用了 SMTP 和邀请，邀请将通过电子邮件发送给新用户。您必须使用 Vaultwarden 实例的基础 URL 来设置 `DOMAIN` 配置项，以生成正确的邀请链接：
 
@@ -67,24 +65,21 @@ docker run -d --name vaultwarden \
 
 ```systemd
 SMTP_PORT=465
-SMTP_SSL=false
-SMTP_EXPLICIT_TLS=true
+SMTP_SECURITY=force_tls
 ```
 
 * 对于使用端口 587（有时候是 25）的邮件服务器
 
 ```systemd
 SMTP_PORT=587
-SMTP_SSL=true
-SMTP_EXPLICIT_TLS=false
+SMTP_SECURITY=starttls
 ```
 
 * 对于根本不支持加密的邮件服务器
 
 ```systemd
 SMTP_PORT=25
-SMTP_SSL=false
-SMTP_EXPLICIT_TLS=false
+SMTP_SECURITY=off
 ```
 
 ### HELO 主机名 <a href="#helo-hostname" id="helo-hostname"></a>
@@ -101,8 +96,7 @@ SMTP_EXPLICIT_TLS=false
  # Domains: gmail.com, googlemail.com
   SMTP_HOST=smtp.gmail.com
   SMTP_PORT=465
-  SMTP_SSL=false
-  SMTP_EXPLICIT_TLS=true
+  SMTP_SECURITY=force_tls
   SMTP_USERNAME=<mail-address>
   SMTP_PASSWORD=<less-secure-app-password>
 ```
@@ -113,8 +107,7 @@ StartTLS：
   # Domains: gmail.com, googlemail.com
   SMTP_HOST=smtp.gmail.com
   SMTP_PORT=587
-  SMTP_SSL=true
-  SMTP_EXPLICIT_TLS=false
+  SMTP_SECURITY=starttls
   SMTP_USERNAME=<mail-address>
   SMTP_PASSWORD=<less-secure-app-password>
 ```
@@ -127,8 +120,7 @@ StartTLS：
   # Domains: hotmail.com, outlook.com, office365.com
   SMTP_HOST=smtp-mail.outlook.com
   SMTP_PORT=587
-  SMTP_SSL=true
-  SMTP_EXPLICIT_TLS=false
+  SMTP_SECURITY=starttls
   SMTP_USERNAME=<mail-address>
   SMTP_PASSWORD=<password>
   SMTP_AUTH_MECHANISM="Login"
@@ -143,8 +135,7 @@ StartTLS：
 ```systemd
   SMTP_HOST=smtp.sendgrid.net
   SMTP_PORT=587
-  SMTP_SSL=true
-  SMTP_EXPLICIT_TLS=false
+  SMTP_SECURITY=starttls
   SMTP_USERNAME=apikey
   SMTP_PASSWORD=<full-api-key>
   SMTP_AUTH_MECHANISM="Login"
@@ -155,8 +146,7 @@ StartTLS：
 ```systemd
   SMTP_HOST=smtp.sendgrid.net
   SMTP_PORT=465
-  SMTP_SSL=false
-  SMTP_EXPLICIT_TLS=true
+  SMTP_SECURITY=force_tls
   SMTP_USERNAME=apikey
   SMTP_PASSWORD=<full-api-key>
   SMTP_AUTH_MECHANISM="Login"
@@ -171,3 +161,24 @@ StartTLS：
 我们以下面这个密码为例：`~^",a.%\,'}b&@|/c!1(#}`
 
 它包含了一些可能会破坏环境变量解析的字符，比如 `\`、`'` 和 `"`。单个 `\` 通常用于转义其他字符，因此如果您想使用单个 `\`，则需要键入 `\\`。 此外，引号 `'` 和 `"` 可能会引起一些问题，因此让我们将此密码括在单引号中并转义特殊字符。为了让上面的密码起作用，我们需要输入 `'~^",a.%\\,\'}b&@|/c!1(#}'`，在这里你看到我们转义了 `\` 和 `'` 字符并使用单引号将整个密码括了起来。所以：`~^",a.%\,'}b&@|/c!1(#}` 变成了 `'~^",a.%\\,\'}b&@|/c!1(#}'`。
+
+## 使用已弃用的 `SMTP_SSL` 和 `SMTP_EXPLICIT_TLS` SMTP 环境变量（适用于 v1.24.0 及更低版本） <a href="#using-deprecated-smtp-environment-variable-smtp_ssl-and-smtp_explicit_tls-for-v1.24.0-and-lower" id="using-deprecated-smtp-environment-variable-smtp_ssl-and-smtp_explicit_tls-for-v1.24.0-and-lower"></a>
+
+您可以配置 Vaultwarden 通过 SMTP 代理来发送电子邮件：
+
+```shell
+docker run -d --name vaultwarden \
+  -e SMTP_HOST=<smtp.domain.tld> \
+  -e SMTP_FROM=<vaultwarden@domain.tld> \
+  -e SMTP_PORT=587 \
+  -e SMTP_SSL=true \
+  -e SMTP_USERNAME=<username> \
+  -e SMTP_PASSWORD=<password> \
+  -v /vw-data/:/data/ \
+  -p 80:80 \
+  vaultwarden/server:latest
+```
+
+当 `SMTP_SSL` 设置为 `true` 时（这是默认值），将仅接受 TLSv1.1 和 TLSv1.2 协议，并且 `SMTP_PORT` 默认为`587`（等同于 `SMTP_SECURITY=starttls`）。如果设置为 `false`，`SMTP_PORT` 则默认设置为 `25` 并将尝试加密（2020 年 3 月 12 日之前的代码不会尝试加密）（等同于 `SMTP_SECURITY=off`）。这是非常不安全的，仅在您知道您在做什么时才使用此设置。要以隐式模式（强制 TLS）运行 SMTP，请将 `SMTP_EXPLICIT_TLS` 设置为 `true`（等同于 `SMTP_SECURITY=force_tls`）。如果您不登录也可以发送电子邮件，简单地将 `SMTP_USERNAME` 和 `SMTP_PASSWORD` 设置为空即可。
+
+**注意**：如果您在 v1.25.0 及更高版本上使用 `SMTP_SSL` 和 `SMTP_EXPLICIT_TLS` 设置，Vaultwarden 会对已弃用的设置产生的错误进行忽略。
