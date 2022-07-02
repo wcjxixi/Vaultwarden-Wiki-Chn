@@ -12,6 +12,12 @@
 
 针对 Google Cloud 的「永远免费」的 f1-micro 计算实例进行了优化的 Vaultwarden 安装。
 
+## Heroku
+
+* [https://github.com/davidjameshowell/vaultwarden\_heroku](https://github.com/davidjameshowell/vaultwarden\_heroku)
+
+使用全部免费的插件在 Heroku 上安装 Vaultwarden。安装大约需要 15 分钟。
+
 ## Kubernetes
 
 * [https://github.com/icicimov/kubernetes-bitwarden\_rs](https://github.com/icicimov/kubernetes-bitwarden\_rs)
