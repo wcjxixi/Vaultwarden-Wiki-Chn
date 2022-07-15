@@ -60,6 +60,8 @@ Dinger1986 创建了一个在 Ubuntu 20.04 上从源代码安装 Vaultwarden 的
 
 在 [FreeBSD 端口树](https://www.freshports.org/security/vaultwarden/)中可用，并在 FreeBSD pkg 仓库中作为二进制包提供：`pkg install vaultwarden`
 
+`/usr/local/etc/rc.conf.d/vaultwarden.sample` 是示例配置文件。将此文件复制到 `/usr/local/etc/rc.conf.d/vaultwarden` 并编辑其内容以[配置 Vaultwarden](../configuration/configuration-overview.md#configuration-options)。然后就可以像平常那样（`service(8)` 等）启动 `vaultwarden` 服务了。
+
 ## 多个 RPM 和 DEB 发行版 <a href="#multiple-rpm-and-deb-distributions" id="multiple-rpm-and-deb-distributions"></a>
 
 openSUSE 构建的服务项目，支持 CentOS、Debian、Fedora、RHEL、SUSE、Ubuntu。
