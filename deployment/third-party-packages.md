@@ -34,9 +34,9 @@
 
 ## CentOS 8 / RHEL 8
 
-仓库的一个分支，它构建一个 RPM 并使用 Docker 将其推送到 COPR。
+一个使用 SQLite 的 hacky 包。它还不包含密码库，并且在很明显的地方仍然使用旧的名称。
 
-[https://github.com/alexpdp7/bitwarden\_rs/tree/rpm/packages/centos8](https://github.com/alexpdp7/bitwarden\_rs/tree/rpm/packages/centos8) [https://copr.fedorainfracloud.org/coprs/koalillo/bitwarden\_rs/](https://copr.fedorainfracloud.org/coprs/koalillo/bitwarden\_rs/)
+[https://github.com/alexpdp7/vaultwarden-rpm](https://github.com/alexpdp7/vaultwarden-rpm)
 
 ## Nix (OS)
 
