@@ -7,7 +7,7 @@
 {% hint style="danger" %}
 本页面是一个第三方 Vaultwarden 包的索引。
 
-由于这些包不是由 Vaultwarden 维护或控制的，因此它们可能会比官方的发行版本滞后，有时甚至会明显滞后。如果您依赖这些包，您可能需要为新的 Vaultwarden 发行版本[启用监视](https://docs.github.com/en/github/managing-subscriptions-and-notifications-on-github/viewing-your-subscriptions#configuring-your-watch-settings-for-an-individual-repository)功能，并让维护者知道该包未保持更新。
+由于这些包不是由 Vaultwarden 维护或控制的，因此它们可能会比官方的发行版本滞后，有时甚至会明显滞后。如果您依赖这些包，您可能需要为新的 Vaultwarden 发行版本[启用监视](https://docs.github.com/en/github/managing-subscriptions-and-notifications-on-github/viewing-your-subscriptions#configuring-your-watch-settings-for-an-individual-repository)功能，并告诉维护者该包未保持最新。
 {% endhint %}
 
 ## 非官方包状态
