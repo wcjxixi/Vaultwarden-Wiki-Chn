@@ -473,6 +473,8 @@ NixOS Nginx 配置示例。关于 NixOS 部署的更多信息，请参阅[部署
     ProxyPreserveHost On
     ProxyRequests Off
     RequestHeader set X-Real-IP %{REMOTE_ADDR}s
+    # 如果您的 url 属性报告为 http://... ，请添加此行：
+    # RequestHeader add X-Forwarded-Proto https
 </VirtualHost>
 ```
 

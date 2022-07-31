@@ -26,11 +26,12 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 * [Bitwarden 验证器（TOTP）](https://help.ppgg.in/your-vault/bitwarden-authenticator-totp)
 * [Bitwarden Send](https://help.ppgg.in/bitwarden-send/about-send)
 * [紧急访问](https://help.ppgg.in/security/emergency-access)
-* 用于桌面端/浏览器客户端/扩展的[实时同步](https://bitwarden.com/blog/post/live-sync/)（仅 WebSocket）
+* 用于桌面端/浏览器客户端/扩展的[实时同步](https://bitwarden.com/blog/live-sync/)（仅 WebSocket）
 * [回收站](https://help.ppgg.in/your-vault/vault-items#items-in-the-trash)（软删除）
 * [主密码重新提示](https://help.ppgg.in/your-vault/vault-items#protect-individual-items)
 * [个人 API 密钥](https://help.ppgg.in/miscellaneous/personal-api-key-for-cli-authentication)
 * [电子邮件](https://help.ppgg.in/two-step-login/two-step-login-via-email)、[Duo](https://help.ppgg.in/two-step-login/two-step-login-via-duo)、[Yubikey](https://help.ppgg.in/two-step-login/two-step-login-via-yubikey) 和 [FIDO2 WebAuthn](https://help.ppgg.in/two-step-login/two-step-login-via-fido2-webauthn)（包括 Nitrokeys 和 Solokeys）方式的两步登录
+* 使用 SimpleLogin、AnonAddy 或 Firefox Relay 的用户名生成器集成
 * [目录连接器支持](https://help.ppgg.in/directory-connector/about-directory-connector)（基本实现，但不支持群组）\
   仅支持 [v2.9.2](https://github.com/bitwarden/directory-connector/releases/tag/v2.9.2) 及更低版本，v2.9.3 及更高版本使用不同的登录方式，因此尚未被支持。
 * 某些企业策略：
@@ -52,7 +53,7 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 
 * [Bitwarden 公共 API](https://help.ppgg.in/organizations/bitwarden-public-api) / [组织 API 密钥](https://help.ppgg.in/organizations/bitwarden-public-api#authentication)
 * [事件日志](https://help.ppgg.in/organizations/event-logs)
-* 用于移动客户端 (Android/iOS) 的[实时同步](https://bitwarden.com/blog/post/live-sync/)（推送通知）
+* 用于移动客户端 (Android/iOS) 的[实时同步](https://bitwarden.com/blog/live-sync/)（推送通知）
 * [管理员密码重置](https://help.ppgg.in/organizations/admin-password-reset)
 * 某些企业策略：
   * [主密码重置](https://help.ppgg.in/organizations/enterprise-policies#master-password-reset)
@@ -62,7 +63,7 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 * [单点登录 (SSO)](https://help.ppgg.in/login-with-sso/about-login-with-sso)
 * [群组](https://help.ppgg.in/organizations/groups)
 * [自定义角色](https://help.ppgg.in/organizations/user-types-and-access-control#custom-role)
-* 某些企业策略（[UI 不是开源的](https://github.com/bitwarden/web/tree/master/bitwarden\_license/src/app/policies)，可能需要通过管理页面进行配置）：
+* 某些企业策略（[UI 不是开源的](https://github.com/bitwarden/clients/tree/master/bitwarden\_license/bit-web/src/app/policies)，可能需要通过管理页面进行配置）：
   * [密码库超时](https://help.ppgg.in/organizations/enterprise-policies#vault-timeout)
   * [禁用个人密码库导出](https://help.ppgg.in/organizations/enterprise-policies#disable-personal-vault-export)
 
