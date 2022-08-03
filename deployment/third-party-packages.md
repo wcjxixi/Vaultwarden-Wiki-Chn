@@ -68,14 +68,14 @@ openSUSE 构建的服务项目，支持：
 
 
 
-| RPM    |                                   |
+| RPM    | 版本                                |
 | ------ | --------------------------------- |
 | SUSE   | <p>15.3<br>15.4<br>Tumbleweed</p> |
 | RHEL   | 7                                 |
 | CentOS | <p>7<br>8<br>8_Stream</p>         |
 | Fedora | <p>34<br>35<br>36<br>Rawhide</p>  |
 
-| DEB    |                                |
+| DEB    | 版本                             |
 | ------ | ------------------------------ |
 | Debian | <p>10<br>11<br>Testing</p>     |
 | Ubuntu | <p>18.04<br>20.04<br>22.04</p> |
