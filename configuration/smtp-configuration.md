@@ -51,6 +51,7 @@ docker run -d --name vaultwarden \
 
 * [SendGrid](https://sendgrid.com)（每天 100 封电子邮件）
 * [MailJet](https://www.mailjet.com)（每天 200 封电子邮件）
+* [SendinBlue](https://www.sendinblue.com/)（每天 200 封电子邮件）
 * [SMTP2GO](https://www.smtp2go.com/)（每月 1000 封电子邮件）
 
 ## 一些知名服务的默认设置 <a href="#here-some-sane-defaults-for-well-known-services" id="here-some-sane-defaults-for-well-known-services"></a>

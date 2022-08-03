@@ -62,12 +62,24 @@ Dinger1986 创建了一个在 Ubuntu 20.04 上从源代码安装 Vaultwarden 的
 
 `/usr/local/etc/rc.conf.d/vaultwarden.sample` 是示例配置文件。将此文件复制到 `/usr/local/etc/rc.conf.d/vaultwarden` 并编辑其内容以[配置 Vaultwarden](../configuration/configuration-overview.md#configuration-options)。然后就可以像平常那样（`service(8)` 等）启动 `vaultwarden` 服务了。
 
-## 多个 RPM 和 DEB 发行版 <a href="#multiple-rpm-and-deb-distributions" id="multiple-rpm-and-deb-distributions"></a>
+## 用于最常见发行版的 RPM 和 DEB 包 <a href="#rpm-and-deb-packages-for-most-common-distributions" id="rpm-and-deb-packages-for-most-common-distributions"></a>
 
-openSUSE 构建的服务项目，支持 CentOS、Debian、Fedora、RHEL、SUSE、Ubuntu。
+openSUSE 构建的服务项目，支持：
+
+
+
+| RPM    |                                   |
+| ------ | --------------------------------- |
+| SUSE   | <p>15.3<br>15.4<br>Tumbleweed</p> |
+| RHEL   | 7                                 |
+| CentOS | <p>7<br>8<br>8_Stream</p>         |
+| Fedora | <p>34<br>35<br>36<br>Rawhide</p>  |
+
+| DEB    |                                |
+| ------ | ------------------------------ |
+| Debian | <p>10<br>11<br>Testing</p>     |
+| Ubuntu | <p>18.04<br>20.04<br>22.04</p> |
 
 您可以直接下载包或使用可用的仓库。
 
-**警告**：目前这些包包含预构建的二进制文件，无法使用此构建服务构建 rust-nightly 包。
-
-[vaultwarden](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden) [vaultwarden-webvault](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden-webvault)
+[vaultwarden](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden) [vaultwarden-webvault](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden-webvault) [vaultwarden-webvault-dark](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden-webvault-dark)

@@ -33,4 +33,4 @@
 
 ### 数据库备份 <a href="#database-backups" id="database-backups"></a>
 
-参阅 [MariaDB - 备份和还原概述](https://mariadb.com/kb/en/backup-and-restore-overview/)，
+参阅 [MariaDB - 备份和还原概述](https://mariadb.com/kb/en/backup-and-restore-overview/)，[如何备份sqlite数据库](https://stackoverflow.com/questions/25675314/how-to-backup-sqlite-database)
