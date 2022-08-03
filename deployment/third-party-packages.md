@@ -66,19 +66,17 @@ Dinger1986 创建了一个在 Ubuntu 20.04 上从源代码安装 Vaultwarden 的
 
 openSUSE 构建的服务项目，支持：
 
+| RPM    | 版本                   |
+| ------ | -------------------- |
+| SUSE   | 15.3；15.4；Tumbleweed |
+| RHEL   | 7                    |
+| CentOS | 7；8；8\_Stream        |
+| Fedora | 34；35；36；Rawhide     |
 
-
-| RPM    | 版本                                |
-| ------ | --------------------------------- |
-| SUSE   | <p>15.3<br>15.4<br>Tumbleweed</p> |
-| RHEL   | 7                                 |
-| CentOS | <p>7<br>8<br>8_Stream</p>         |
-| Fedora | <p>34<br>35<br>36<br>Rawhide</p>  |
-
-| DEB    | 版本                             |
-| ------ | ------------------------------ |
-| Debian | <p>10<br>11<br>Testing</p>     |
-| Ubuntu | <p>18.04<br>20.04<br>22.04</p> |
+| DEB    | 版本                |
+| ------ | ----------------- |
+| Debian | 10；11；Testing     |
+| Ubuntu | 18.04；20.04；22.04 |
 
 您可以直接下载包或使用可用的仓库。
 
