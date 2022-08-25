@@ -12,6 +12,10 @@
 
 ## 配置方式 <a href="#configuration-methods" id="configuration-methods"></a>
 
+{% hint style="warning" %}
+**注意：**`config.json` 文件不是配置您的设置的推荐方式！要么使用环境变量，您可以通过多种方式为您的容器环境（Docker、Docker-Compose、K8s 等）进行配置；或者，如果使用独立的二进制文件（其不是由 Vaultwarden 本身分发的），请使用位于当前工作目录下的 `.env` 文件。在管理界面中保存设置时会创建并覆盖 `config.json` 文件！
+{% endhint %}
+
 在 Vaultwarden 中，您可以通过环境变量或[管理页面](enabling-admin-page.md)（将设置写入数据目录下的 `config.json` 文件中）执行配置。但请务必注意，`config.json` 文件中的每个设置都会覆盖相应的环境变量设置。例如，如果您设置环境变量为 `DOMAIN=https://vaultwarden.example.com`，但您的 `config.json` 文件中已经包含 `"domain": "https://vw.example.com"`，则 Vaultwarden 将基于配置文件中的内容 (`https://vw.example.com`) 生成各种链接。
 
 造成这种混乱的一个常见原因就是因为启用了管理页面（创建了 `config.json` 文件），通过管理页面更改了某些设置（在 `config.json` 文件中设置相应的值），然后又尝试通过环境变量更改这些设置（此操作无效，因为 `config.json` 会覆盖环境变量）。为避免这种混乱，强烈建议您采用其中一种配置方式。也就是说，完全通过环境变量或完全通过 `config.json`（无论是使用管理页面还是直接编辑 `config.json`）进行配置。
