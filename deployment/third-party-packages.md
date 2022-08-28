@@ -64,7 +64,9 @@ Dinger1986 创建了一个在 Ubuntu 20.04 上从源代码安装 Vaultwarden 的
 
 ## 用于最常见发行版的 RPM 和 DEB 包 <a href="#rpm-and-deb-packages-for-most-common-distributions" id="rpm-and-deb-packages-for-most-common-distributions"></a>
 
-openSUSE 构建的服务项目，支持：
+openSUSE 构建服务项目，支持：
+
+> \[**译者注**]：[什么是 openSUSE 构建服务](https://zh.wikipedia.org/wiki/Open\_Build\_Service)
 
 | RPM    | 版本                   |
 | ------ | -------------------- |
@@ -80,4 +82,4 @@ openSUSE 构建的服务项目，支持：
 
 您可以直接下载包或使用可用的仓库。
 
-[vaultwarden](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden) [vaultwarden-webvault](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden-webvault) [vaultwarden-webvault-dark](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden-webvault-dark)
+[vaultwarden](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden)、[vaultwarden-webvault](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden-webvault)、[vaultwarden-webvault-dark](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden-webvault-dark)
