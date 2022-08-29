@@ -4,7 +4,7 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Docker---Traefik---ModSecurity-Setup)
 {% endhint %}
 
-设置 ModSecurity 将通过 Web 应用程序防火墙 (WAF) 将所有请求代理到 Vaultwarden。这可能有助于通过过滤可疑请求（例如注入尝试）来缓解 Vaultwarden 中的未知漏洞。
+设置 ModSecurity 将通过 Web 应用程序防火墙 (WAF) 将所有请求代理到 Vaultwarden。这可能有助于过滤可疑请求（例如注入尝试）以减缓 Vaultwarden 中的未知漏洞（带来的威胁）。
 
 ## 前提条件 <a href="#pre-reqs" id="pre-reqs"></a>
 
@@ -148,9 +148,9 @@ findtime = 14400
 
 ## 备注 <a href="#note" id="note"></a>
 
-将 Fail2Ban 与 ModSecurity 集成将减缓/阻止对手的进一步利用/探测。这是设置为在第一次 ModSecurity 干预时禁止。
+将 Fail2Ban 与 ModSecurity 集成将减缓/阻止攻击者的进一步利用/探测。这是设置为在第一次 ModSecurity 干预时禁止。
 
-为了增加 ModSecurity 的攻击性，可以增加 `PARANOIA`（[在这里了解更多](https://coreruleset.org/20211028/working-with-paranoia-levels/)）和/或减少 `ANOMALY_INBOUND`（[了解更多](https://coreruleset.org/docs/concepts/anomaly\_scoring/)）的值。
+要增加 ModSecurity 的攻击性，可以增加 `PARANOIA`（[在这里了解更多](https://coreruleset.org/20211028/working-with-paranoia-levels/)）和/或减少 `ANOMALY_INBOUND`（[了解更多](https://coreruleset.org/docs/concepts/anomaly\_scoring/)）的值。
 
 准备好在 PARANOIA > 2 的情况下对 ModSecurity 进行严格的调整，以便在不禁用大量规则的情况下使 UI 能勉强工作。
 
@@ -163,4 +163,4 @@ findtime = 14400
 
 ☁️ 值得深思 ☁️
 
-如果您的数据非常敏感，以至于您正在考虑设置 `PARANOIA` > 1，那么请考虑不在公共端点上托管 Vaultwarden，并通过防火墙限制对主机本身的访问，并仅通过 VPN 连接授予用户访问权限。请记住，这并不能内部威胁，而内部威胁往往被低估，所以请记住这一点！
+如果您的数据非常敏感，以至于您正在考虑设置 `PARANOIA` > 1，那么请考虑不要在公共端点上托管 Vaultwarden，并通过防火墙限制对主机本身的访问，并授予用户仅能通过 VPN 连接访问。请记住，这并不能降低来自内部的威胁，而内部威胁往往被低估，所以请记住这一点！
