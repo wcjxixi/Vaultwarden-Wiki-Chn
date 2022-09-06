@@ -105,3 +105,46 @@ raspberry pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 * [https://github.com/umireon/vaultwarden-qnap](https://github.com/umireon/vaultwarden-qnap)
 
 您可以使用 Let's Encrypt 将 Vaultwarden 安装到您的安全网络附加存储 (NAS) 中。但由于 QNAP 内置的 HTTP(S) 服务器，您不能在标准的 HTTP(S) 端口 (80/443) 上发布 Vaultwarden。
+
+## Dokku
+
+这是一个脚本，使用上传到 DockerHub 的 docker 镜像自动设置 Vaultwarden，并创建一个 Dokku 应用程序。该脚本假设您已经设置了一个全局域名（即存在 `/home/dokku/VHOST` 文件）。遵循提示进行设置。
+
+```batch
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+APPNAME=""
+
+read -rp "Enter the name of the app: " APPNAME
+
+# 检查应用名称是否为孔控空
+if [ -z "$APPNAME" ]; then
+    echo "App name empty. Using default name: vaultwarden"
+    APPNAME="vaultwarden"
+fi
+
+# check if dokku plugin exists
+if ! dokku plugin:list | grep letsencrypt; then
+    sudo dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
+fi
+# check if global email for letsencrypt is set
+if ! dokku config:get --global DOKKU_LETSENCRYPT_EMAIL; then
+    read -rp "Enter email address for letsencrypt: " EMAIL
+    dokku config:set --global DOKKU_LETSENCRYPT_EMAIL="$EMAIL"
+fi
+
+dokku apps:create "$APPNAME"
+dokku storage:ensure-directory "$APPNAME"
+dokku storage:mount "$APPNAME" /var/lib/dokku/data/storage/"$APPNAME":/data
+dokku domains:add $APPNAME $APPNAME."$(cat /home/dokku/VHOST)"
+dokku letsencrypt:enable "$APPNAME"
+dokku proxy:ports-add "$APPNAME" http:80:80
+dokku proxy:ports-add "$APPNAME" https:443:80
+dokku proxy:ports-remove "$APPNAME" http:80:5000
+dokku proxy:ports-remove "$APPNAME" https:443:5000
+dokku git:from-image "$APPNAME" vaultwarden/server:latest
+```
+
+将上述脚本复制到您的 dokku 主机并运行它。脚本运行成功后，即可通过 `https://$APPNAME.dokku.me` 访问网络密码库。
