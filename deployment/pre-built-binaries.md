@@ -63,8 +63,20 @@ $ ls -ld output/{vaultwarden,web-vault}
 drwx------ 8 user user     4096 Feb  6 21:46 output/web-vault/
 ```
 
-要下载其他平台的镜像：
+如果你想获取 ARMv7 镜像，目前必须通过摘要下载。
 
-* ARMv6：`./docker-image-extract -p linux/arm/v6 vaultwarden/server:alpine`
-* ARMv7：`./docker-image-extract -p linux/arm/v7 vaultwarden/server:alpine`
-* ARMv8 / AArch64：`./docker-image-extract -p linux/arm64 vaultwarden/server:alpine`
+转到 [https://hub.docker.com/r/vaultwarden/server/tags?name=alpine](https://hub.docker.com/r/bitwardenrs/server/tags?name=alpine)，找到 `alpine` 标签的条目，点击 `linux/arm/v7` 镜像的摘要：
+
+![](https://camo.githubusercontent.com/6731521b884406abc6bcae6a32cc7f09d7901be0ebbae538dfb434dbeea5ba61/68747470733a2f2f692e696d6775722e636f6d2f543557647774532e706e67)
+
+将带您到显示完整摘要的页面：
+
+![](https://camo.githubusercontent.com/c56fef083414382e866e2155b16cc9a4d8abb21b0685dc71d10067167761bb70/68747470733a2f2f692e696d6775722e636f6d2f48737a38764a342e706e67)
+
+复制完整的摘要，然后将上面的 `docker-image-extract vaultwarden/server:alpine` 命令替换为 `docker-image-extract vaultwarden/server:<full_digset>`。
+
+例如：
+
+```
+$ ./docker-image-extract vaultwarden/server:sha256:ef129de113bec3409b6370c37a6e5573a1dacc051a3aae2a8a3339323ae63623
+```

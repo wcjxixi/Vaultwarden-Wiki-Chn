@@ -119,17 +119,17 @@ APPNAME=""
 
 read -rp "Enter the name of the app: " APPNAME
 
-# 检查应用名称是否为孔控空
+# 检查应用名称是否为空
 if [ -z "$APPNAME" ]; then
     echo "App name empty. Using default name: vaultwarden"
     APPNAME="vaultwarden"
 fi
 
-# check if dokku plugin exists
+# 检查 dokku 插件是否存在
 if ! dokku plugin:list | grep letsencrypt; then
     sudo dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
 fi
-# check if global email for letsencrypt is set
+# 检查是否设置了用于 letsencrypt 的全局电子邮件
 if ! dokku config:get --global DOKKU_LETSENCRYPT_EMAIL; then
     read -rp "Enter email address for letsencrypt: " EMAIL
     dokku config:set --global DOKKU_LETSENCRYPT_EMAIL="$EMAIL"
@@ -147,4 +147,4 @@ dokku proxy:ports-remove "$APPNAME" https:443:5000
 dokku git:from-image "$APPNAME" vaultwarden/server:latest
 ```
 
-将上述脚本复制到您的 dokku 主机并运行它。脚本运行成功后，即可通过 `https://$APPNAME.dokku.me` 访问网络密码库。
+将上述脚本复制到您的 Dokku 主机并运行它。脚本运行成功后，即可通过 `https://$APPNAME.dokku.me` 访问网络密码库。

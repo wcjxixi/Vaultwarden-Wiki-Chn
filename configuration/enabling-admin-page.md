@@ -27,5 +27,3 @@ docker run -d --name vaultwarden \
 需要注意的是，在您点击 `Save` 按钮之前，管理页面中的配置更改是不会生效的。例如，如果您正在测试 SMTP 设置，您更改了 `SMTP Auth mechanism` 设置，然后点击 `Send test email` 来测试更改，这将不会像预期的那样工作 -- 因为您没有点击 `Save`，`SMTP Auth mechanism` 的更改不会生效。
 
 **注意**：更改 `ADMIN_TOKEN` 后，当前已登录管理页面的人仍可以使用旧的登录令牌[长达 20 分钟时间](https://github.com/dani-garcia/vaultwarden/blob/main/src/api/admin.rs#L87)。
-
-**注意**：如果环境变量 `ADMIN_TOKEN` 的值持续保留在上述的 `config.json` 文件中，则移除环境变量 `ADMIN_TOKEN` 并不会禁用管理页面。**要禁用管理页面**，请确保没有设置 `ADMIN_TOKEN` 环境变量，并且 `config.json`（如果该文件存在）中不存在 `"admin_token"` 键。
