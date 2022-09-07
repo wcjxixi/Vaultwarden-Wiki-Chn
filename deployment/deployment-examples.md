@@ -147,4 +147,4 @@ dokku proxy:ports-remove "$APPNAME" https:443:5000
 dokku git:from-image "$APPNAME" vaultwarden/server:latest
 ```
 
-将上面的脚本复制到您的 Dokku 主机然后运行它。脚本运行成功后，即可通过 `https://$APPNAME.dokku.me` 访问网络密码库。
+将上面的脚本复制到您的 Dokku 主机然后运行它。脚本运行成功后，即可通过 `https://$APPNAME.dokku.me` 访问网页密码库。
