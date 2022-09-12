@@ -4,7 +4,7 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Updating-the-vaultwarden-image)
 {% endhint %}
 
-更新非常简单，您只需确保保留了已挂载的卷。如果您使用[此处](starting-a-container.md)示例中的 bind-mounted 路径（绑定挂载路径）的方式，则只需使用 `pull` 拉取最新版的镜像，使用 `stop` 和 `rm` 停止和移除当前容器，然后与之前相同的方式启动一个新的容器即可：
+更新非常简单，您只需确保保留了已挂载的卷。如果您使用[此处](starting-a-container.md)示例中的 bind-mounted 路径（绑定挂载路径）的方式，则只需使用 `pull` 拉取最新版本的镜像，再使用 `stop` 和 `rm` 停止和移除当前容器，然后与之前相同的方式启动一个新的容器即可：
 
 ```shell
 # 拉取最新版本的镜像
@@ -58,7 +58,7 @@ docker-compose up -d
 sudo systemctl restart vaultwarden.service
 sudo docker system prune -f
 # 警告！这将删除已停止或未使用的容器，例如与 Vaultwarden 无关的容器
-# 请仔细查看哪个容器是你需要的
+# 请仔细查看哪个容器是您需要的
 
 docker ps -a
 # 查看已停止的容器
