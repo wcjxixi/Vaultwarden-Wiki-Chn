@@ -142,7 +142,7 @@ StartTLS：
   SMTP_AUTH_MECHANISM="Login"
 ```
 
-严格 SSL：
+Full SSL：
 
 ```systemd
   SMTP_HOST=smtp.sendgrid.net
@@ -183,3 +183,36 @@ docker run -d --name vaultwarden \
 当 `SMTP_SSL` 设置为 `true` 时（这是默认值），将仅接受 TLSv1.1 和 TLSv1.2 协议，并且 `SMTP_PORT` 默认为`587`（等同于 `SMTP_SECURITY=starttls`）。如果设置为 `false`，`SMTP_PORT` 则默认设置为 `25` 并将尝试加密（2020 年 3 月 12 日之前的代码不会尝试加密）（等同于 `SMTP_SECURITY=off`）。这是非常不安全的，仅在您知道您在做什么时才使用此设置。要以隐式模式（强制 TLS）运行 SMTP，请将 `SMTP_EXPLICIT_TLS` 设置为 `true`（等同于 `SMTP_SECURITY=force_tls`）。如果您不登录也可以发送电子邮件，简单地将 `SMTP_USERNAME` 和 `SMTP_PASSWORD` 设置为空即可。
 
 **注意**：如果您在 v1.25.0 及更高版本上使用 `SMTP_SSL` 和 `SMTP_EXPLICIT_TLS` 设置，Vaultwarden 会对已弃用的设置产生的错误进行忽略。
+
+## 故障排除 <a href="#troubleshooting" id="troubleshooting"></a>
+
+人们经常遇到从 Vaultwarden 连接 SMTP 服务器的问题。大多数情况下，是因为错误的配置或 ISP/主机屏蔽了端口或 IP。
+
+检查您是否可以访问 SMTP 服务器的一些基本步骤是通过在您运行 Vaultwarden（无论是使用 Docker 还是作为一个独立的二进制文件）的主机上运行以下命令来完成。
+
+**注意**：将 `smtp.google.com` 和 `587`、`465` 或 `25` 替换为与您的 SMTP 服务器匹配的主机和端口。
+
+这些命令的输出应该是 `0`，如果它返回的不是 `0`，就意味着连接到服务器时有问题。
+
+```bash
+# 首先通过检查对 google.com 的 HTTPS 访问来确认是否可以使用此检查
+timeout 5 bash -c 'cat < /dev/null > /dev/tcp/www.google.com/443'; echo $?
+
+# 检查 SMTP 提交端口 587
+timeout 5 bash -c 'cat < /dev/null > /dev/tcp/smtp.gmail.com/587'; echo $?
+
+# 检查 SMTP SSL 端口 465
+timeout 5 bash -c 'cat < /dev/null > /dev/tcp/smtp.gmail.com/465'; echo $?
+
+# 检查默认 SMTP 端口 25
+timeout 5 bash -c 'cat < /dev/null > /dev/tcp/smtp.gmail.com/25'; echo $?
+
+# 或者使用一个叫做 nc 的工具（这个工具并不总是在主机或容器内可用）
+nc -vz smtp.gmail.com 587
+```
+
+要从 docker 容器中检查，请首先在 docker 主机上运行以下命令以登录到容器。在下面的示例中，我假设容器名称是 `vaultwarden`，将其更改为您使用的容器名称。运行下面的命令后，再运行上述命令之一以检查容器内的访问。
+
+```docker
+docker exec -it vaultwarden sh
+```
