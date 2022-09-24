@@ -186,13 +186,13 @@ docker run -d --name vaultwarden \
 
 ## 故障排除 <a href="#troubleshooting" id="troubleshooting"></a>
 
-人们经常遇到从 Vaultwarden 连接 SMTP 服务器的问题。大多数情况下，是因为错误的配置或 ISP/主机屏蔽了端口或 IP。
+人们经常遇到 Vaultwarden 连接 SMTP 服务器的问题。大多数情况下，是因为错误的配置或 ISP/主机屏蔽了端口或 IP。
 
 检查您是否可以访问 SMTP 服务器的一些基本步骤是通过在您运行 Vaultwarden（无论是使用 Docker 还是作为一个独立的二进制文件）的主机上运行以下命令来完成。
 
-**注意**：将 `smtp.google.com` 和 `587`、`465` 或 `25` 替换为与您的 SMTP 服务器匹配的主机和端口。
+**注意**：将 `smtp.google.com` 和 `587`、`465` 或 `25` 替换为与您的 SMTP 服务器对应的主机和端口。
 
-这些命令的输出应该是 `0`，如果它返回的不是 `0`，就意味着连接到服务器时有问题。
+这些命令的输出应该是 `0`，如果它返回的不是 `0`，就意味着连接到此服务器时有问题。
 
 ```bash
 # 首先通过检查对 google.com 的 HTTPS 访问来确认是否可以使用此检查
@@ -207,11 +207,11 @@ timeout 5 bash -c 'cat < /dev/null > /dev/tcp/smtp.gmail.com/465'; echo $?
 # 检查默认 SMTP 端口 25
 timeout 5 bash -c 'cat < /dev/null > /dev/tcp/smtp.gmail.com/25'; echo $?
 
-# 或者使用一个叫做 nc 的工具（这个工具并不总是在主机或容器内可用）
+# 或者使用一个叫做 nc 的工具（这个工具并不总是在主机上或容器内可用）
 nc -vz smtp.gmail.com 587
 ```
 
-要从 docker 容器中检查，请首先在 docker 主机上运行以下命令以登录到容器。在下面的示例中，我假设容器名称是 `vaultwarden`，将其更改为您使用的容器名称。运行下面的命令后，再运行上述命令之一以检查容器内的访问。
+要从 docker 容器内部检查，请首先在 docker 主机上运行以下命令以登录到容器。在下面的示例中，我假设容器名称是 `vaultwarden`，将其更改为您使用的容器名称。运行下面的命令后，再运行上述命令之一以从容器内部检查访问性。
 
 ```docker
 docker exec -it vaultwarden sh
