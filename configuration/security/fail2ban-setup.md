@@ -175,17 +175,13 @@ bantime = 14400
 findtime = 14400
 ```
 
-请注意：Docker 使用 FORWARD 链而不是默认的 INPUT 链。因此，当使用 Docker 时，请用下面的 `action` 行替换 `banaction` 行：
+**Docker 用户注意：**
+
+Docker 使用 FORWARD 链而不是默认的 INPUT 链。如果接收请求的机器将他们直接映射到 Docker 容器，那么无论容器里有什么（反向代理、Vaultwarden 等），都需要适当地设置链。`action` 默认被设置为 `banaction`，然后我们将其设置为 `banaction_allports`，这已经将链考虑在内。因此，只需设置链即可。请看[这个类似的问题](https://forum.openwrt.org/t/resolved-fail2ban-and-iptables-ip-bans-not-blocked/90057)。
 
 ```systemd
-action = iptables-allports[name=vaultwarden, chain=FORWARD]
+chain = FORWARD
 ```
-
-**注意**：\
-如果在 Docker 容器之前使用了反向代理，请不要做此操作。如果使用了 Apache2 或 Nginx 之类的代理，请使用代理的端口而不要使用 `chain = FORWARD`。仅当在**无**代理的 Docker 时使用！
-
-**上面注意中的注意**：\
-在使用 Caddy 作为反向代理的 Docker (CentOS 7) 上运行时，上面的说法是不正确的。当用 Caddy 作为反向代理时，可以使用 `chain = FORWARD` 。
 
 {% hint style="info" %}
 如果您使用 systemd 来管理 Vaultwarden，您可以为 Fail2ban 使用 systemd-journal：
@@ -198,9 +194,9 @@ filter = vaultwarden[journalmatch='_SYSTEMD_UNIT=your_vaultwarden.service']
 使用它来代替 `logpath =` 变量。
 {% endhint %}
 
-**Cloudflare 用户请注意：**
+**Cloudflare 用户注意：**
 
-如果您使用 Cloudflare 代理，您需要将 Cloudflare 添加到您的操作列表中，如[本指南](https://niksec.com/using-fail2ban-with-cloudflare/)中所示。
+如果您使用 Cloudflare 代理，您需要将 Cloudflare 添加到您的操作列表中，如[这个指南](https://niksec.com/using-fail2ban-with-cloudflare/)中所示。
 
 重新加载 Fail2ban 使更改生效：
 
