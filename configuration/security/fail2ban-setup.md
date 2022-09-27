@@ -177,7 +177,7 @@ findtime = 14400
 
 **Docker 用户注意：**
 
-Docker 使用 FORWARD 链而不是默认的 INPUT 链。如果接收请求的机器将他们直接映射到 Docker 容器，那么无论容器里有什么（反向代理、Vaultwarden 等），都需要适当地设置链。`action` 默认被设置为 `banaction`，然后我们将其设置为 `banaction_allports`，这已经将链考虑在内。因此，只需设置链即可。请看[这个类似的问题](https://forum.openwrt.org/t/resolved-fail2ban-and-iptables-ip-bans-not-blocked/90057)。
+Docker 使用 FORWARD 链而不是默认的 INPUT 链。如果接收请求的机器将他们直接映射到 Docker 容器，那么无论容器里有什么（反向代理、Vaultwarden 等），链都需要适当地设置。默认的 `action` 被设置为`action_`（它使用 `banaction`，其别名我们设置为 `banaction_allports`），`action_` 已经考虑了链的问题，因此，只需设置 `chain` 即可。参阅[这个类似的问题](https://forum.openwrt.org/t/resolved-fail2ban-and-iptables-ip-bans-not-blocked/90057)。
 
 ```systemd
 chain = FORWARD
