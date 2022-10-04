@@ -83,3 +83,8 @@ openSUSE 构建服务项目，支持：
 您可以直接下载包或使用可用的仓库。
 
 [vaultwarden](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden)、[vaultwarden-webvault](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden-webvault)、[vaultwarden-webvault-dark](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden-webvault-dark)
+
+## Void Linux
+
+在 void-packages 中作为 [vaultwarden](https://github.com/void-linux/void-packages/tree/master/srcpkgs/vaultwarden) 可用：`xbps-install vaultwarden`\
+还可以选择安装网页密码库 ([vaultwarden-web](https://github.com/void-linux/void-packages/tree/master/srcpkgs/vaultwarden-web))：`xbps-install vaultwarden-web`
