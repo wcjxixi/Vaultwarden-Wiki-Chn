@@ -76,13 +76,13 @@ services:
 运行以下命令创建并启动容器。这将为 `docker-compose.yml` 文件中的服务创建私有网络，这样就只有 Caddy 暴露在外面了：
 
 ```shell
-docker compose up -d
+docker-compose up -d
 ```
 
 停止并销毁容器：
 
 ```shell
-docker compose down
+docker-compose down
 ```
 
 [此处](https://github.com/sosandroid/docker-bitwarden\_rs-caddy-synology)提供了一个类似的基于 Caddy 的适用于 Synology 的示例。
@@ -159,5 +159,5 @@ services:
 与 HTTP 挑战的示例一样，运行下面的命令以创建并启动容器：
 
 ```shell
-docker compose up -d
+docker-compose up -d
 ```

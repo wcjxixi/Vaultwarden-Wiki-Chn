@@ -34,7 +34,7 @@ PIDFile=/run/user/1000/overlay-containers/54502f309f3092d32b4c496ef3d099b270b2af
 WantedBy=multi-user.target default.target
 ```
 
-您可以提供 `--files` 标志告诉 podman 将 systemd 服务放到一个文件中。这样，我们就可以像任何正常的服务文件一样启用和启动容器了。
+您可以提供 `--files` 标志告诉 podman 将 systemd 服务放到一个文件中，或使用 `podman generate systemd --name vaultwarden > /etc/systemd/system/container-vaultwarden.service`。这样，我们就可以像任何正常的服务文件一样启用和启动容器了。
 
 ```shell
 $ systemctl --user enable /etc/systemd/system/container-vaultwarden.service
