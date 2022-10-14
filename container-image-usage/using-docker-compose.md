@@ -11,7 +11,7 @@
 本示例假定您已[安装](https://docs.docker.com/compose/install/) Docker Compose，并且您的 Vaultwarden 实例具有一个可以公开访问的域名（例如 `vaultwarden.example.com`）。
 
 {% hint style="warning" %}
-Docker Compose 可能以 `docker-compose <command> ...`（带破折号）或 `docker compose <command> ...`（带空格）运行，具体取决于您安装 Docker Compose 的方式。当 Docker Compose 作为独立的可执行文件分发时，`docker-compose` 是原始语法。您也可以选择进行[独立](https://docs.docker.com/compose/install/other/#install-compose-standalone)安装，在这种情况下将继续使用此语法。但是，Docker 目前建议将 Docker Compose 作为 Docker 插件安装，其中 `compose` 作为 `docker` 的子命令，其语法为 `docker-compose <command> ...`。
+Docker Compose 可能以 `docker-compose <command> ...`（带破折号）或 `docker compose <command> ...`（带空格）运行，具体取决于您安装 Docker Compose 的方式。当 Docker Compose 作为独立的可执行文件分发时，`docker-compose` 是原始语法。您也可以选择进行[独立](https://docs.docker.com/compose/install/other/#install-compose-standalone)安装，在这种情况下将继续使用此语法。但是，Docker 目前建议将 Docker Compose 作为 Docker 插件安装，其中 `compose` 作为 `docker` 的子命令，其语法为 `docker compose <command> ...`。
 {% endhint %}
 
 首先创建一个新的目录，然后切换到该目录下。接下来，创建如下的 `docker-compose.yml` 文件，确保将 `DOMAIN` 和 `EMAIL` 变量替换为实际的值。
