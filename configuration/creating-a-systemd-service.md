@@ -190,7 +190,7 @@ ROCKET_PORT=8080
 WEBSOCKET_ENABLED=true # enable websocket
 ```
 
-来源：[#1607](https://github.com/dani-garcia/vaultwarden/issues/1607)
+如果您想要使用同行注释，请考虑改用 `/var/lib/vaultwarden/.env`（这也将避免启动时提示 [.env 文件缺失](https://github.com/dani-garcia/vaultwarden/wiki/FAQs#why-does-vaultwarden-say-info-no-env-file-found-even-though-i-provided-one)的 INFO 错误）。
 
 ## 更多信息 <a href="#more-information" id="more-information"></a>
 
