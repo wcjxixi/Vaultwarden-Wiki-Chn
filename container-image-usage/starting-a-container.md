@@ -8,7 +8,18 @@
 
 ## 创建容器 <a href="#creating-the-container" id="creating-the-container"></a>
 
-持久性数据存储在容器内的 `/data` 下，因此使用 Docker 进行持久性部署的唯一要求是在路径上挂载持久性卷：
+持久性数据存储在容器内的 `/data` 下，因此使用 Docker 进行持久性部署的唯一要求是挂载持久性卷。创建一个本地目录来映射容器的持久存储：
+
+```shell
+mkdir /vw-data
+```
+
+如果你碰巧使用 SELinux (RHEL & Clones / Fedora)，你必须设置持久存储的上下文，以便容器可以写入它：
+
+```shell
+semanage fcontext -a -t svirt_sandbox_file_t '/vw-data(/.*)?'
+restorecon -Rv /vw-data
+```
 
 ```shell
 # 使用 Docker
