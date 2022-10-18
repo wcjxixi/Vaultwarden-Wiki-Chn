@@ -16,6 +16,10 @@
 | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | [![Packaging status](https://repology.org/badge/vertical-allrepos/vaultwarden.svg)](https://repology.org/project/vaultwarden/versions) | [![Packaging status](https://repology.org/badge/vertical-allrepos/vaultwarden-web.svg)](https://repology.org/project/vaultwarden-web/versions) |
 
+{% hint style="warning" %}
+请注意，最新的 Vaultwarden 版本并不总是与最新的 web-vault 版本前向兼容，因此您可能需要使[用旧版本](https://github.com/dani-garcia/bw\_web\_builds/releases)的 vaultwarden-web 以确保兼容性。
+{% endhint %}
+
 ## Arch Linux
 
 可在[官方仓库](https://archlinux.org/packages/community/x86\_64/vaultwarden/)中获取，同时包含了[网页版密码库](https://archlinux.org/packages/community/any/vaultwarden-web/)。
@@ -38,9 +42,18 @@
 
 [https://github.com/alexpdp7/vaultwarden-rpm](https://github.com/alexpdp7/vaultwarden-rpm)
 
+## Fedora (current release, x86\_64)
+
+此 Vaultwarden 包被构建为一个通用二进制文件，其用于 MySQL、SQLite 和 PostgreSQL。它还创建一个 `vaultwarden` 用户/组和一个 systemd 服务。
+
+```bash
+dnf config-manager --add-repo https://evermeet.cx/pub/repo/fedora/evermeet.repo
+dnf install vaultwarden vaultwarden-webvault
+```
+
 ## Nix (OS)
 
-Vaultwarden 被同时打包用于 mysql、sqlite、postgresql，以及用于 Vault。还有一个用于声明式配置的 NixOS 模块（请参阅 `services.vaultwarden`）
+此 Vaultwarden 被同时打包用于 mysql、sqlite、postgresql，以及 Vault。还有一个用于声明式配置的 NixOS 模块（请参阅 `services.vaultwarden`）
 
 ## Cloudron
 
