@@ -135,6 +135,11 @@ if ! dokku config:get --global DOKKU_LETSENCRYPT_EMAIL; then
     dokku config:set --global DOKKU_LETSENCRYPT_EMAIL="$EMAIL"
 fi
 
+# pull the latest image
+IMAGE_NAME="vaultwarden/server"
+docker pull $IMAGE_NAME
+image_sha="$(docker inspect --format='{{index .RepoDigests 0}}' $IMAGE_NAME)"
+echo "Calculated image sha: $image_sha"
 dokku apps:create "$APPNAME"
 dokku storage:ensure-directory "$APPNAME"
 dokku storage:mount "$APPNAME" /var/lib/dokku/data/storage/"$APPNAME":/data
@@ -144,7 +149,9 @@ dokku proxy:ports-add "$APPNAME" http:80:80
 dokku proxy:ports-add "$APPNAME" https:443:80
 dokku proxy:ports-remove "$APPNAME" http:80:5000
 dokku proxy:ports-remove "$APPNAME" https:443:5000
-dokku git:from-image "$APPNAME" vaultwarden/server:latest
+dokku git:from-image "$APPNAME" "$image_sha"
 ```
 
 将上面的脚本复制到您的 Dokku 主机然后运行它。脚本运行成功后，即可通过 `https://$APPNAME.dokku.me` 访问网页密码库。
+
+要更新您的 Vaultwarden 服务器，请运行以下命令（记住将 $APP\_NAME 替换为您的应用名称）：
