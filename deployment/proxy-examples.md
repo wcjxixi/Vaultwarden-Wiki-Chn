@@ -910,3 +910,58 @@ spec:
 ```
 
 </details>
+
+<details>
+
+<summary>relayd on openbsd (by olliestrickland)</summary>
+
+经测试可正常运行（包括 websockets） - /etc/relayd.conf - 在 openbsd 7.2 上使用来自 OpenBSD Ports 的 Vaultwarden - [https://openports.se/security/vaultwarden](https://openports.se/security/vaultwarden)
+
+此配置取决于 tls 的正确设置 - 我使用了 [https://man.openbsd.org/acme-client](https://man.openbsd.org/acme-client)
+
+```nginx
+table <vaultwarden-default-host> { localhost }
+table <vaultwarden-websocket-host> { localhost }
+
+# 带有 tls 的 Vaultwarden 协议定义
+
+http protocol vaultwarden-https {
+        # 添加 Vaultwarden 所需要的标头
+        match request header append "X-Real-IP" value "$REMOTE_ADDR"
+
+        # 添加一些 Vaultwarden 可能不需要的标头
+        match request header append "Host" value "$HOST"
+        match request header append "X-Forwarded-For" value "$REMOTE_ADDR"
+        match request header append "X-Forwarded-By" value "$SERVER_ADDR:$SERVER_PORT"
+
+        # 最普通的规则 - 转发到 Vaultwarden Rocket
+        match request path "/*" forward to <vaultwarden-default-host>
+
+        # 将用于 websocket 的路径转发到 Vaultwarden websocket 端口
+        match request path "/notifications/hub" forward to <vaultwarden-websocket-host>
+
+        # 将最具体的路径保存在最后 - 此路径不应转发到 websocket 服务器
+        match request path "/notifications/hub/negotiate" forward to <vaultwarden-default-host>
+
+        # 各种 TCP 选项
+        tcp { nodelay, sack, backlog 128 }
+
+        # tls 配置
+        tls keypair bitwarden.example.tld
+        tls { no tlsv1.0, ciphers HIGH }
+
+        # 允许 websockets - 这很好，它可以处理连接升级，而无需手动编辑标头
+        http websockets
+}
+
+# Vaultwarden 的中继定义 - 将出口接口上的入站 443 tls 转发到默认 8000 端口上的 rocket 和 3012 上的 websocket
+
+relay vaultwarden-https-relay {
+        listen on egress port 443 tls
+        protocol vaultwarden-https
+        forward to <vaultwarden-default-host> port 8000
+        forward to <vaultwarden-websocket-host> port 3012
+}
+```
+
+</details>
