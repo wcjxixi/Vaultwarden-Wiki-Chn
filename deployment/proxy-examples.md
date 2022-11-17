@@ -917,7 +917,7 @@ spec:
 
 经测试可正常运行（包括 websockets） - /etc/relayd.conf - 在 openbsd 7.2 上使用来自 OpenBSD Ports 的 Vaultwarden - [https://openports.se/security/vaultwarden](https://openports.se/security/vaultwarden)
 
-此配置取决于 tls 的正确设置 - 我使用了 [https://man.openbsd.org/acme-client](https://man.openbsd.org/acme-client)
+此配置取决于 tls 的正确设置 - 我使用 [https://man.openbsd.org/acme-client](https://man.openbsd.org/acme-client)
 
 ```nginx
 table <vaultwarden-default-host> { localhost }
