@@ -1,7 +1,7 @@
 # Table of contents
 
 * [关于](README.md)
-* [主页](home.md)
+* [首页](home.md)
 * [FAQ](faqs.md)
 * [容器镜像的使用](container-image-usage/README.md)
   * [1.容器镜像的选择](container-image-usage/which-container-image-to-use.md)
