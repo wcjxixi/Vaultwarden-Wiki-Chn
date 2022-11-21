@@ -4,7 +4,9 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Syncing-users-from-LDAP)
 {% endhint %}
 
-LDAP 集成使用小型服务来执行，该小型服务用于查询 LDAP 并邀请用户加入您的 Vaultwarden 实例。该服务的名称被非正式地命名为 [bitwarden\_rs\_ldap](https://github.com/ViViDboarder/bitwarden\_rs\_ldap)。
+LDAP 集成使用一个小型服务来执行，该小型服务用于查询 LDAP 并邀请用户加入您的 Vaultwarden 实例。该服务的名称被非正式地命名为 [bitwarden\_rs\_ldap](https://github.com/ViViDboarder/bitwarden\_rs\_ldap)。
+
+由于 Vaultwarden 的零信任架构，此服务不提供密码同步，只提供对新 LDAP 成员的邀请。
 
 它尚未以二进制形式分发，但是有可用的 Docker 镜像 [vividboarder/vaultwarden\_ldap](https://hub.docker.com/r/vividboarder/vaultwarden\_ldap)。
 
