@@ -65,20 +65,22 @@ services:
       - traefik.enable=true
       - traefik.http.middlewares.redirect-https.redirectScheme.scheme=https
       - traefik.http.middlewares.redirect-https.redirectScheme.permanent=true
-      - traefik.http.routers.vw-ui-https.rule=Host(`sub.domain.tld`)
+      - traefik.http.routers.vw-ui-https.rule=Host(`ui-sub.domain.tld`)
       - traefik.http.routers.vw-ui-https.entrypoints=websecure
       - traefik.http.routers.vw-ui-https.tls=true
+      - traefik.http.routers.vw-ui-https.tls.certresolver=myresolver
       - traefik.http.routers.vw-ui-https.service=vw-ui
-      - traefik.http.routers.vw-ui-http.rule=Host(`sub.domain.tld`)
+      - traefik.http.routers.vw-ui-http.rule=Host(`ui-sub.domain.tld`)
       - traefik.http.routers.vw-ui-http.entrypoints=web
       - traefik.http.routers.vw-ui-http.middlewares=redirect-https
       - traefik.http.routers.vw-ui-http.service=vw-ui
       - traefik.http.services.vw-ui.loadbalancer.server.port=80
-      - traefik.http.routers.vw-websocket-https.rule=Host(`sub.domain.tld`) && Path(`/notifications/hub`)
+      - traefik.http.routers.vw-websocket-https.rule=Host(`websocket-sub.domain.tld`) && Path(`/notifications/hub`)
       - traefik.http.routers.vw-websocket-https.entrypoints=websecure
       - traefik.http.routers.vw-websocket-https.tls=true
+      - traefik.http.routers.vw-websocket-https.tls.certresolver=myresolver
       - traefik.http.routers.vw-websocket-https.service=vw-websocket
-      - traefik.http.routers.vw-websocket-http.rule=Host(`sub.domain.tld`) && Path(`/notifications/hub`)
+      - traefik.http.routers.vw-websocket-http.rule=Host(`websocket-sub.domain.tld`) && Path(`/notifications/hub`)
       - traefik.http.routers.vw-websocket-http.entrypoints=web
       - traefik.http.routers.vw-websocket-http.middlewares=redirect-https
       - traefik.http.routers.vw-websocket-http.service=vw-websocket
@@ -163,4 +165,4 @@ findtime = 14400
 
 ☁️ 值得深思 ☁️
 
-如果您的数据非常敏感，以至于您正在考虑设置 `PARANOIA` > 1，那么请考虑不要在公共端点上托管 Vaultwarden，并通过防火墙限制对主机本身的访问，并授予用户仅能通过 VPN 连接访问。请记住，这并不能降低来自内部的威胁，而内部威胁往往被低估，所以请记住这一点！
+如果您的数据非常敏感，以至于您正在考虑设置 `PARANOIA` > 1，那么请考虑不要在公共端点上托管 Vaultwarden，并通过防火墙限制对主机本身的访问，以及授予用户仅能通过 VPN 连接访问。请记住，这并不能降低来自内部的威胁，而内部威胁往往被低估，所以请记住这一点！
