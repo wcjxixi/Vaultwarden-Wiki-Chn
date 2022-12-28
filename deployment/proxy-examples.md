@@ -338,37 +338,27 @@ server {
 
 <details>
 
-<summary>Nginx configured by Ansible/DebOps (by ypid)</summary>
+<summary>Nginx (by ypid)</summary>
 
-使用 [DebOps](https://debops.org) 配置 nginx 作为 Vaultwarden 的反向代理的清单示例。我选择在 URL 中使用 PSK 以获得额外的安全性，从而不会将 API 暴露给 Internet 上的每个人，因为客户端应用程序尚不支持客户端证书（我测试过）。 参考[强化指南 - 隐藏在子目录下](../configuration/security/hardening-guide.md#hiding-under-a-subdir)
+使用 DebOps 配置 nginx 作为 Vaultwarden 的反向代理的清单示例。我选择在 URL 中使用 PSK 以获得额外的安全性，从而不会将 API 公开给 Internet 上的每个人，因为客户端应用程序尚不支持客户端证书（我对其进行了测试）。 注意：使用 subpath/PSK 需要修补源代码并重新编译，请参考：[https://github.com/dani-garcia/vaultwarden/issues/241#issuecomment-436376497](https://github.com/dani-garcia/bitwarden\_rs/issues/241#issuecomment-436376497)。 /admin 未经测试。 有关安全性子路径托管的一般讨论，请参阅：[https://github.com/debops/debops/issues/1233](https://github.com/debops/debops/issues/1233)
 
 ```nginx
-vaultwarden__fqdn: 'vault.example.org'
-vaultwarden__http_psk_subpath_enabled: True
-vaultwarden__http_psk_subpath: '{{ lookup("password", secret + "/vaultwarden/" +
-                                     inventory_hostname + "/config/subpath chars=ascii_letters,digits length=23")
-                                   if vaultwarden__http_psk_subpath_enabled | bool
-                                   else "" }}'
+bitwarden__fqdn: 'vault.example.org'
 
 nginx__upstreams:
 
-  - name: 'vaultwarden-default'
+  - name: 'bitwarden'
     type: 'default'
     enabled: True
     server: 'localhost:8000'
 
-  - name: 'vaultwarden-ws'
-    type: 'default'
-    enabled: True
-    server: 'localhost:3012'
-
 nginx__servers:
 
-  - name: '{{ vaultwarden__fqdn }}'
-    filename: 'debops.vaultwarden'
-    by_role: 'debops.vaultwarden'
+  - name: '{{ bitwarden__fqdn }}'
+    filename: 'debops.bitwarden'
+    by_role: 'debops.bitwarden'
     favicon: False
-    # root: '/usr/share/vaultwarden/web-vault'
+    root: '/usr/share/vaultwarden/web-vault'
 
     location_list:
 
@@ -376,52 +366,27 @@ nginx__servers:
         options: |-
           deny all;
 
-      - pattern: '= /{{ vaultwarden__http_psk_subpath }}'
+      - pattern: '= /ekkP9wtJ_psk_changeme_Hr9CCTud'
         options: |-
           return 307 $scheme://$host$request_uri/;
 
-      ## All the security HTTP headers would then need to be set by nginx as well.
-      # - pattern: '/{{ vaultwarden__http_psk_subpath }}/'
+      ## 所有的安全 HTTP 头也需要由 nginx 来设置
+      # - pattern: '/ekkP9wtJ_psk_changeme_Hr9CCTud/'
       #   options: |-
       #     alias /usr/share/vaultwarden/web-vault/;
 
-      - pattern: '/{{ vaultwarden__http_psk_subpath }}/'
+      - pattern: '/ekkP9wtJ_psk_changeme_Hr9CCTud/'
         options: |-
           proxy_set_header Host              $host;
-          proxy_set_header X-Real-IP         $remote_addr;
-          proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+          # proxy_set_header X-Real-IP         $remote_addr;
+          # proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
           proxy_set_header X-Forwarded-Proto $scheme;
           proxy_set_header X-Forwarded-Port  443;
 
-          proxy_pass http://vaultwarden-default;
+          proxy_pass http://bitwarden;
 
-      - pattern: '/{{ vaultwarden__http_psk_subpath }}/notifications/hub/negotiate'
-        options: |-
-          proxy_set_header Host              $host;
-          proxy_set_header X-Real-IP         $remote_addr;
-          proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          proxy_set_header X-Forwarded-Port  443;
-
-          proxy_pass http://vaultwarden-default;
-
-      - pattern: '/{{ vaultwarden__http_psk_subpath }}/notifications/hub'
-        options: |-
-          proxy_http_version 1.1;
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection $connection_upgrade;
-
-          proxy_set_header Host              $host;
-          proxy_set_header X-Real-IP         $remote_addr;
-          proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          proxy_set_header X-Forwarded-Port  443;
-
-          proxy_pass http://vaultwarden-ws;
-
-      # Do not use the icons features as long as it reveals all domains from
-      # our credentials to the server.
-      - pattern: '/{{ vaultwarden__http_psk_subpath }}/icons/'
+      ## 只要能显示出从我们的凭证到服务器的所有域名，就不要使用图标功能
+      - pattern: '/ekkP9wtJ_psk_changeme_Hr9CCTud/icons/'
         options: |-
           access_log off;
           log_not_found off;

@@ -103,19 +103,21 @@ git -c advice.detachedHead=false checkout web-v2022.6.0
 git -c advice.detachedHead=false checkout bb5f9311a776b94a33bcf0a7bff44cd87a2fcc92
 ```
 
-2、从 [dani-garcia/bw\_web\_builds](https://github.com/dani-garcia/bw\_web\_builds/tree/master/patches) 下载补丁文件并将其复制到 `web-vault` 文件夹。补丁文件版本（假设网页密码库版本为 `vXXXX.Y.Z`）的选择：
+2、根据 [apply\_patches script](https://github.com/dani-garcia/bw\_web\_builds/blob/master/scripts/apply\_patches.sh) 中的说明修补[资源](https://github.com/dani-garcia/bw\_web\_builds/tree/master/resources)中的所有镜像
+
+3、从 [dani-garcia/bw\_web\_builds](https://github.com/dani-garcia/bw\_web\_builds/tree/master/patches) 下载补丁文件并将其复制到 `web-vault` 文件夹。补丁文件版本（假设网页密码库版本为 `vXXXX.Y.Z`）的选择：
 
 * 如果有版本为 `vXXXX.Y.Z` 的补丁，则使用该版本
 * 否则，选择小于 `vXXXX.Y.Z` 的最大的那一个版本
 
-3、应用补丁：
+4、应用补丁：
 
 ```shell
 # 在 web-vault 目录中
 git apply vXXXX.Y.Z.patch
 ```
 
-4、然后，构建密码库：
+5、然后，构建密码库：
 
 ```shell
 npm ci

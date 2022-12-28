@@ -10,8 +10,7 @@
 
 要使 Vaultwarden 在系统启动的时候启动并使用 systemd 的其他功能（例如，隔离、日志记录等），则需要一个 `.service` 文件。以下是一个可行的起点：
 
-```systemd
-[Unit]
+<pre class="language-systemd"><code class="lang-systemd">[Unit]
 Description=Vaultwarden Server (Rust Edition)
 Documentation=https://github.com/dani-garcia/vaultwarden
 # 如果您使用 mariadb、mysql 或 postgresql 数据库， 
@@ -39,7 +38,7 @@ After=network.target
 # 设置 Vaultwarden 用户/群组。此用户/群组对工作目录（见下文）允许有读写权限
 User=vaultwarden
 Group=vaultwarden
-# 用作配置作用的 .env 文件的位置
+# 使用环境文件进行配置
 EnvironmentFile=/etc/vaultwarden.env
 # 已编译的二进制的位置
 ExecStart=/usr/bin/vaultwarden
@@ -54,12 +53,12 @@ ProtectSystem=strict
 # 仅允许对以下目录进行写入，并将其设置为工作目录（用户和密码数据存储在这里）
 WorkingDirectory=/var/lib/vaultwarden
 ReadWriteDirectories=/var/lib/vaultwarden
-# 允许 bitwarden_rs 绑定 0-1024 范围内的端口
-AmbientCapabilities=CAP_NET_BIND_SERVICE
+<strong># 允许 bitwarden_rs 绑定 0-1024 范围内的端口
+</strong># AmbientCapabilities=CAP_NET_BIND_SERVICE
 
 [Install]
 WantedBy=multi-user.target
-```
+</code></pre>
 
 更改以上所有路径以匹配您的安装（`WorkingDirectory` 与 `ReadWriteDirectory` 应相同），将此文件命名为 `vaultwarden.service` 并将其放入 `/etc/systemd/system` 中。
 
@@ -107,7 +106,7 @@ $ sudo systemctl restart vaultwarden.service
 $ sudo systemctl disable --now vaultwarden.service
 ```
 
-然后，您可以删除二进制、`.env` 文件、web-vault 文件夹（如果已安装）以及用户数据（如果需要）。请记住，还要删除专门创建的用户、群组和防火墙规则（如果需要）和 systemd 文件。
+然后，您可以删除二进制、环境文件、web-vault 文件夹（如果已安装）以及用户数据（如果需要）。请记住，还要删除专门创建的用户、群组和防火墙规则（如果需要）和 systemd 文件。
 
 删除 systemd 文件后，您应该通过下面的方式使 systemd 意识到这一点：
 
@@ -183,14 +182,14 @@ Feb 18 05:29:10 staging-bitwarden systemd[1]: vaultwarden.service: Failed with r
 
 ### 环境变量未被加载 <a href="#environment-variable-its-not-loaded" id="environment-variable-its-not-loaded"></a>
 
-请注意，systemd 不支持环境文件中的注释与变量在同一行中。比如下面这个 `.env` 文件示例中，变量 `WEBSOCKET_ENABLED` 将不会被加载：
+请注意，systemd 不支持 `EnvironmentFile=/etc/vaultwarden.env` 文件中的注释与变量在同一行中（参阅 [#1607](https://github.com/dani-garcia/vaultwarden/issues/1607)）。比如下面这个环境文件示例中，变量 `WEBSOCKET_ENABLED` 将不会被加载：
 
 ```systemd
-ROCKET_PORT=XXXX
+ROCKET_PORT=8080
 WEBSOCKET_ENABLED=true # enable websocket
 ```
 
-来源：[#1607](https://github.com/dani-garcia/vaultwarden/issues/1607)
+如果您想要使用同行注释，请考虑改用 `/var/lib/vaultwarden/.env`（这也将避免启动时提示 [.env 文件缺失](https://github.com/dani-garcia/vaultwarden/wiki/FAQs#why-does-vaultwarden-say-info-no-env-file-found-even-though-i-provided-one)的 INFO 错误）。
 
 ## 更多信息 <a href="#more-information" id="more-information"></a>
 

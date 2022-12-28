@@ -36,7 +36,7 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
   仅支持 [v2.9.2](https://github.com/bitwarden/directory-connector/releases/tag/v2.9.2) 及更低版本，v2.9.3 及更高版本使用不同的登录方式，因此尚未被支持。
 * 某些企业策略：
   * [要求两步登录](https://help.ppgg.in/organizations/enterprise-policies#require-two-step-login)
-  * [主密码](https://help.ppgg.in/organizations/enterprise-policies#two-step-login)
+  * [主密码要求](https://help.ppgg.in/organizations/enterprise-policies#master-password-requirements)
   * [密码生成器](https://help.ppgg.in/organizations/enterprise-policies#password-generator)
   * [移除个人密码库](https://help.ppgg.in/organizations/enterprise-policies#remove-individual-vault)
   * [禁用 Send](https://help.ppgg.in/organizations/enterprise-policies#disable-send)
