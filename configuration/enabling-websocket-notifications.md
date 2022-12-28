@@ -18,7 +18,7 @@ WebSocket 通知用于将发生的一些相关事件通告给 Bitwarden 的浏�
 
 然后，您需要通过将 `WEBSOCKET_ENABLED` 变量设置为 `true` 以在 Vaultwarden 端启用 WebSocket 协商：
 
-```docker
+```shell
 docker run -d --name vaultwarden \
   -e WEBSOCKET_ENABLED=true \
   -v /vw-data/:/data/ \
@@ -28,3 +28,10 @@ docker run -d --name vaultwarden \
 ```
 
 注意：有此解决方案的原因是由于 Rocket 缺乏对 WebSockets 的支持（尽管[这是计划的功能](https://github.com/SergioBenitez/Rocket/issues/90)），这迫使我们在另外的端口上启动辅助服务器。
+
+## 测试 WebSocket 连接 <a href="#test-the-websockets-connection" id="test-the-websockets-connection"></a>
+
+有两种方式可以测试连接是否正常工作：
+
+1. 打开浏览器的开发人员工具，转到网络选项卡然后筛选 `WS`/`WebSockets`。注销或刷新页面并再次登录，您应该会看到升级后的 WebSocket 连接的 101 响应。如果您单击该行，您应该能够看到消息。如果您没有在 `/notifications/hub` 上获得状态代码 101，则表示某些配置不正确。
+2. 打开两个不同的浏览器或隐身/隐私窗口。在两个浏览器上登录您的帐户。创建一个新的条目，或者重命名一个条目，在另一个浏览器中应该会立即收到更改。

@@ -1,4 +1,4 @@
-# 主页
+# 首页
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki)
@@ -35,10 +35,10 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 * [目录连接器支持](https://help.ppgg.in/directory-connector/about-directory-connector)（基本实现，但不支持群组）\
   仅支持 [v2.9.2](https://github.com/bitwarden/directory-connector/releases/tag/v2.9.2) 及更低版本，v2.9.3 及更高版本使用不同的登录方式，因此尚未被支持。
 * 某些企业策略：
-  * [两步登录](https://help.ppgg.in/organizations/enterprise-policies#two-step-login)
+  * [要求两步登录](https://help.ppgg.in/organizations/enterprise-policies#require-two-step-login)
   * [主密码](https://help.ppgg.in/organizations/enterprise-policies#two-step-login)
   * [密码生成器](https://help.ppgg.in/organizations/enterprise-policies#password-generator)
-  * [个人所有权](https://help.ppgg.in/organizations/enterprise-policies#personal-ownership)
+  * [移除个人密码库](https://help.ppgg.in/organizations/enterprise-policies#remove-individual-vault)
   * [禁用 Send](https://help.ppgg.in/organizations/enterprise-policies#disable-send)
   * [Send 选项](https://help.ppgg.in/organizations/enterprise-policies#send-options)
   * [单一组织](https://help.ppgg.in/organizations/enterprise-policies#single-organization)
