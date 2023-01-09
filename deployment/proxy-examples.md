@@ -486,6 +486,120 @@ NixOS Nginx 配置示例。关于 NixOS 部署的更多信息，请参阅[部署
 
 <details>
 
+<summary>Nginx with proxy_protocol in front (by dionysius)</summary>
+
+在这个例子中，有一个下游代理在[这个 nginx 前面的 proxy\_protocol](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/) 中进行通信（例如，[启用了 proxy\_protocol 的 LXD 代理设备](https://linuxcontainers.org/lxd/docs/master/reference/devices\_proxy/)）。Nginx 需要从这里设置正确使用协议和要转发的标头。标有 `# <---` 的行与 blackdex 示例的内容不同。
+
+参考这个 LXD 下游代理设备配置：
+
+```nginx
+devices:
+  http:
+    connect: tcp:[::1]:80
+    listen: tcp:[::]:80
+    proxy_protocol: "true"
+    type: proxy
+  https:
+    connect: tcp:[::1]:443
+    listen: tcp:[::]:443
+    proxy_protocol: "true"
+    type: proxy
+```
+
+```nginx
+# proxy_protocol 相关:
+
+set_real_ip_from ::1; # which downstream proxy to trust, enter address of your proxy in front
+real_ip_header proxy_protocol; # optional, if you want nginx to override remote_addr with info from proxy_protocol. depends on which variables you use regarding remote addr in log template and in server or stream blocks.
+
+# 以下基于 blackdex 示例:
+
+# The `upstream` directives ensure that you have a http/1.1 connection
+# This enables the keepalive option and better performance
+#
+# 这里定义服务器 IP 和端口.
+upstream vaultwarden-default {
+  zone vaultwarden-default 64k;
+  server 127.0.0.1:8080;
+  keepalive 2;
+}
+upstream vaultwarden-ws {
+  zone vaultwarden-ws 64k;
+  server 127.0.0.1:3012;
+  keepalive 2;
+}
+
+# HTTP 重定向到 HTTPS
+server {
+    if ($host = bitwarden.example.tld) {
+        return 301 https://$host$request_uri;
+    }
+
+    listen 80 proxy_protocol; # <---
+    listen [::]:80 proxy_protocol; # <---
+    server_name bitwarden.example.tld;
+    return 404;
+}
+
+server {
+    listen 443 ssl http2 proxy_protocol; # <---
+    listen [::]:443 ssl http2 proxy_protocol; # <---
+    server_name vaultwarden.example.tld;
+
+    # Specify SSL Config when needed
+    #ssl_certificate /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/fullchain.pem;
+    #ssl_certificate_key /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/privkey.pem;
+    #ssl_trusted_certificate /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/fullchain.pem;
+
+    client_max_body_size 128M;
+
+    ## Using a Sub Path Config
+    # Path to the root of your installation
+    # Be sure to add the trailing /, else you could have issues
+    location /vault/ {
+      proxy_http_version 1.1;
+      proxy_set_header "Connection" "";
+
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr; # <--- or if real_ip_header not set above: $proxy_forwarded_for
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # <-- or if real_ip_header not set above: $proxy_forwarded_for
+      proxy_set_header X-Forwarded-Proto $scheme;
+
+      proxy_pass http://vaultwarden-default;
+    }
+
+    location /vault/notifications/hub/negotiate {
+      proxy_http_version 1.1;
+      proxy_set_header "Connection" "";
+
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr; # <--- or if real_ip_header not set above: $proxy_forwarded_for
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # <-- or if real_ip_header not set above: $proxy_forwarded_for
+      proxy_set_header X-Forwarded-Proto $scheme;
+
+      proxy_pass http://vaultwarden-default;
+    }
+
+    location /vault/notifications/hub {
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr; # <--- or if real_ip_header not set above: $proxy_forwarded_for
+      proxy_set_header Forwarded $remote_addr; # <--- [sic] this is not correct [RFC 7239](https://datatracker.ietf.org/doc/html/rfc7239)
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # <-- or if real_ip_header not set above: $proxy_forwarded_for
+      proxy_set_header X-Forwarded-Proto $scheme;
+
+      proxy_pass http://vaultwarden-ws;
+    }
+}
+```
+
+</details>
+
+<details>
+
 <summary>Apache (by fbartels)</summary>
 
 记得启用 `mod_proxy_wstunnel` 和 `mod_proxy_http`，例如：`a2enmod proxy_wstunnel` 和 `a2enmod proxy_http`。
