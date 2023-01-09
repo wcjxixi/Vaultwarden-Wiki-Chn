@@ -134,7 +134,7 @@ npm run dist:oss:selfhost
 可能会要求您运行 `npm audit fix` 以修复漏洞。这将自动尝试将包升级到较新的版本，该版本可能不兼容并破坏网页密码库功能。如果知道自己在做什么，请自行承担风险。顺便一提，我们会在自己的发行版中使用它！
 {% endhint %}
 
-5、最后将 `build` 文件夹的内容复制到目标文件夹中：
+6、最后将 `build` 文件夹的内容复制到目标文件夹中：
 
 * 如果与 `cargo run --release` 一起运行，则目标文件夹为 `vaultwarden/web-vault`。
 * 如果直接运行已编译的二进制，则它位于二进制旁，为 `vaultwarden/target/release/web-vault`。

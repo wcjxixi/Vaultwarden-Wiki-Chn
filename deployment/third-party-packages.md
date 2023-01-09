@@ -26,7 +26,9 @@
 
 ## Debian
 
-一个基于 docker 的工具链，可用于构建 debian 包：[https://github.com/greizgh/bitwarden\_rs-debian](https://github.com/greizgh/bitwarden\_rs-debian)。它捆绑了服务器和网页版密码库。
+一个基于 docker 的工具链，可用于构建 debian 包：[https://github.com/greizgh/vaultwarden-debian](https://github.com/greizgh/vaultwarden-debian)。它捆绑了服务器和网页版密码库。
+
+带有纯编译工具链的 Debian 源代码（无 docker）：[https://github.com/dionysius/vaultwarden-deb](https://github.com/dionysius/vaultwarden-deb) 和 [https://github.com/dionysius/vaultwarden-web-vault-deb](https://github.com/dionysius/vaultwarden-web-vault-deb)，
 
 ## CentOS7 / RHEL7
 
