@@ -39,7 +39,7 @@ mysqldump \
   --no-create-info \
   --hex-blob \
   --skip-quote-names <database> \
-  | grep "^INSERT INTO" | grep -v "__diesel_schema_migrations" \
+  | grep -a "^INSERT INTO" | grep -a -v "__diesel_schema_migrations" \
   | sed 's#\\"#"#gm' \
   | sed -sE "s#,0x([^,]*)#,X'\L\1'#gm" \
    > mysql-to-sqlite.sql

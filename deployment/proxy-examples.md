@@ -509,13 +509,13 @@ devices:
 ```nginx
 # proxy_protocol 相关:
 
-set_real_ip_from ::1; # which downstream proxy to trust, enter address of your proxy in front
-real_ip_header proxy_protocol; # optional, if you want nginx to override remote_addr with info from proxy_protocol. depends on which variables you use regarding remote addr in log template and in server or stream blocks.
+set_real_ip_from ::1; # 要信任哪个下游代理，请在前面输入您的代理地址
+real_ip_header proxy_protocol; # 可选，如果您希望 nginx 使用来自 proxy_protocol 的信息覆盖 remote_addr。 取决于您在日志模板和服务器或流块中使用的关于远程地址的变量。
 
 # 以下基于 blackdex 示例:
 
-# The `upstream` directives ensure that you have a http/1.1 connection
-# This enables the keepalive option and better performance
+# `upstream` 指令确保你有一个 http/1.1 连接
+# 这启用了 keepalive 选项和更好的性能
 #
 # 这里定义服务器 IP 和端口.
 upstream vaultwarden-default {
@@ -546,23 +546,23 @@ server {
     listen [::]:443 ssl http2 proxy_protocol; # <---
     server_name vaultwarden.example.tld;
 
-    # Specify SSL Config when needed
+    # 需要时指定 SSL Config
     #ssl_certificate /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/fullchain.pem;
     #ssl_certificate_key /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/privkey.pem;
     #ssl_trusted_certificate /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/fullchain.pem;
 
     client_max_body_size 128M;
 
-    ## Using a Sub Path Config
-    # Path to the root of your installation
-    # Be sure to add the trailing /, else you could have issues
+    ## 使用子路径 Config
+    # 您的安装的根目录路径
+    # 请务必添加尾随 /，否则您可能会遇到问题
     location /vault/ {
       proxy_http_version 1.1;
       proxy_set_header "Connection" "";
 
       proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr; # <--- or if real_ip_header not set above: $proxy_forwarded_for
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # <-- or if real_ip_header not set above: $proxy_forwarded_for
+      proxy_set_header X-Real-IP $remote_addr; # <--- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # <-- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
       proxy_set_header X-Forwarded-Proto $scheme;
 
       proxy_pass http://vaultwarden-default;
@@ -573,8 +573,8 @@ server {
       proxy_set_header "Connection" "";
 
       proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr; # <--- or if real_ip_header not set above: $proxy_forwarded_for
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # <-- or if real_ip_header not set above: $proxy_forwarded_for
+      proxy_set_header X-Real-IP $remote_addr; # <--- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # <-- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
       proxy_set_header X-Forwarded-Proto $scheme;
 
       proxy_pass http://vaultwarden-default;
@@ -586,9 +586,9 @@ server {
       proxy_set_header Connection "upgrade";
 
       proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr; # <--- or if real_ip_header not set above: $proxy_forwarded_for
-      proxy_set_header Forwarded $remote_addr; # <--- [sic] this is not correct [RFC 7239](https://datatracker.ietf.org/doc/html/rfc7239)
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # <-- or if real_ip_header not set above: $proxy_forwarded_for
+      proxy_set_header X-Real-IP $remote_addr; # <--- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
+      proxy_set_header Forwarded $remote_addr; # <--- [sic] 这是不正确的 [RFC 7239](https://datatracker.ietf.org/doc/html/rfc7239)
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # <-- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
       proxy_set_header X-Forwarded-Proto $scheme;
 
       proxy_pass http://vaultwarden-ws;

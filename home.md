@@ -17,6 +17,8 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 * 网页界面（等效于 [https://vault.bitwarden.com/](https://vault.bitwarden.com/\))）
 * 个人密码库支持
 * [组织](https://help.ppgg.in/getting-started/getting-started-with-organizations)密码库支持
+* [群组](https://help.ppgg.in/organizations/groups)（不稳定，需要设置[环境变量](https://github.com/dani-garcia/vaultwarden/blob/main/.env.template#L98)才能启用它）
+* [事件日志](https://help.ppgg.in/organizations/event-logs)
 * [密码共享](https://help.ppgg.in/organizations/sharing)和[访问控制](https://help.ppgg.in/organizations/user-types-and-access-control)
 * [集合](https://help.ppgg.in/organizations/collections)
 * [文件附件](https://help.ppgg.in/your-vault/file-attachments)
@@ -52,7 +54,6 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 在时间允许的情况下，可能会添加的功能（欢迎贡献）：
 
 * [Bitwarden 公共 API](https://help.ppgg.in/organizations/bitwarden-public-api) / [组织 API 密钥](https://help.ppgg.in/organizations/bitwarden-public-api#authentication)
-* [事件日志](https://help.ppgg.in/organizations/event-logs)
 * 用于移动客户端 (Android/iOS) 的[实时同步](https://bitwarden.com/blog/live-sync/)（推送通知）
 * [管理员密码重置](https://help.ppgg.in/organizations/admin-password-reset)
 * 某些企业策略：
@@ -61,7 +62,6 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 除非做出贡献，否则可能不会添加的功能：
 
 * [单点登录 (SSO)](https://help.ppgg.in/login-with-sso/about-login-with-sso)
-* [群组](https://help.ppgg.in/organizations/groups)
 * [自定义角色](https://help.ppgg.in/organizations/user-types-and-access-control#custom-role)
 * 某些企业策略（[UI 不是开源的](https://github.com/bitwarden/clients/tree/master/bitwarden\_license/bit-web/src/app/policies)，可能需要通过管理页面进行配置）：
   * [密码库超时](https://help.ppgg.in/organizations/enterprise-policies#vault-timeout)
