@@ -93,8 +93,24 @@ services:
 如果进行此更改，您可能还必须更改反向代理以将此路径添加到 /notifications/hub。例如，在 Caddy v2 中：
 
 ```nginx
-vaultwarden.example.com {
+mysubdomain.example.com {
 	reverse_proxy /my-custom-path/notifications/hub 10.0.0.150:3012
         reverse_proxy 10.0.0.150:8083
+}
+```
+
+或者，如果你想让 Caddy 断开除 vaultwarden 之外的所有连接：
+
+```nginx
+mysubdomain.example.com {
+	route {
+		reverse_proxy /my-custom-path/notifications/hub 10.0.0.150:3012
+		reverse_proxy /my-custom-path/* 10.0.0.150:8083 {
+			header_up X-Real-IP {remote_host}
+		}
+		handle /* {
+			abort
+		}
+	}
 }
 ```
