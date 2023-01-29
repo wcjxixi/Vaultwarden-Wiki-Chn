@@ -51,23 +51,7 @@
 ```bash
 dnf config-manager --add-repo https://evermeet.cx/pub/repo/fedora/evermeet.repo
 dnf install vaultwarden vaultwarden-webvault
-# 启用 web GUI 
-sudo  sed -i "s/^#\sWEB_VAULT_ENABLED/WEB_VAULT_ENABLED/" /etc/vaultwarden/vaultwarden.cfg
-# 监听 0.0.0.0:8000，而不是默认的本地主机 (127.0.0.1)
-sudo  sed -i "s/^#\sROCKET_ADDRESS/ROCKET_ADDRESS/" /etc/vaultwarden/vaultwarden.cfg
-# 启用管理 GUI，使用 vaultwarden.cfg 中的长令牌登录
-sudo  sed -i "s/^#\sADMIN_TOKEN/ADMIN_TOKEN/" /etc/vaultwarden/vaultwarden.cfg
-sudo systemctl enable --now vaultwarden
-sudo systemctl status -l  vaultwarden
 ```
-
-然后你应该得到如下的位于 [http://yourIP:8000/](http://yourip:8000/) 的 web GUI：
-
-{% embed url="https://user-images.githubusercontent.com/378638/210675481-9e088200-ee5d-4dc8-bef9-8002d5ae730b.png" %}
-
-这是位于 [http://yourIP:8000/admin](http://yourip:8000/admin) 的管理 GUI：
-
-{% embed url="https://user-images.githubusercontent.com/378638/210676217-8300b754-0bc2-49f1-8499-7ab3f0557254.png" %}
 
 ## Nix (OS)
 

@@ -56,6 +56,7 @@ services:
       BACKEND: "http://vaultwarden:80"
       BACKEND_WS: "ws://vaultwarden:80/notifications/hub"
       ERRORLOG: "/var/log/waf/waf.log"
+      PROXY_ERROR_OVERRIDE: "off"
     volumes:
      - /opt/docker/waf:/var/log/waf
      - /opt/docker/waf-rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf:/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf
