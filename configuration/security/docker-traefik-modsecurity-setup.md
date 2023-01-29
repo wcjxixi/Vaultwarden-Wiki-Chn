@@ -51,7 +51,6 @@ services:
       PARANOIA: 1
       ANOMALY_INBOUND: 10
       ANOMALY_OUTBOUND: 5
-      ALLOWED_METHODS: "GET POST PUT DELETE OPTIONS PATCH HEAD"
       PROXY: 1
       REMOTEIP_INT_PROXY: "172.20.0.1/16"
       BACKEND: "http://vaultwarden:80"
@@ -68,7 +67,6 @@ services:
       - traefik.http.routers.vw-ui-https.rule=Host(`sub.domain.tld`)
       - traefik.http.routers.vw-ui-https.entrypoints=websecure
       - traefik.http.routers.vw-ui-https.tls=true
-      - traefik.http.routers.vw-ui-https.tls.certresolver=myresolver
       - traefik.http.routers.vw-ui-https.service=vw-ui
       - traefik.http.routers.vw-ui-http.rule=Host(`sub.domain.tld`)
       - traefik.http.routers.vw-ui-http.entrypoints=web
@@ -78,7 +76,6 @@ services:
       - traefik.http.routers.vw-websocket-https.rule=Host(`sub.domain.tld`) && Path(`/notifications/hub`)
       - traefik.http.routers.vw-websocket-https.entrypoints=websecure
       - traefik.http.routers.vw-websocket-https.tls=true
-      - traefik.http.routers.vw-websocket-https.tls.certresolver=myresolver
       - traefik.http.routers.vw-websocket-https.service=vw-websocket
       - traefik.http.routers.vw-websocket-http.rule=Host(`sub.domain.tld`) && Path(`/notifications/hub`)
       - traefik.http.routers.vw-websocket-http.entrypoints=web

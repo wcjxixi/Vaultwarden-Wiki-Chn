@@ -18,12 +18,6 @@
 
 使用全部免费的插件在 Heroku 上安装 Vaultwarden。安装大约需要 15 分钟。
 
-## Fly.io
-
-* [https://github.com/nosovk/vaultwarden-fly-io/blob/main/fly.toml](https://github.com/nosovk/vaultwarden-fly-io/blob/main/fly.toml)
-
-使用 SQLite 数据库安装 vaultwarden。但是你需要为数据库创建卷 `flyctl volumes create vaultwarden_data -a [your app name] -s 1`
-
 ## Kubernetes
 
 * [https://github.com/icicimov/kubernetes-bitwarden\_rs](https://github.com/icicimov/kubernetes-bitwarden\_rs)
@@ -42,7 +36,7 @@
 
 * [https://github.com/martient/vaultwarden-ansible](https://github.com/martient/vaultwarden-ansible)
 
-raspberry pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，请遵循页面上链接的指南进行操作。
+raspberry pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，请遵循本指南 [https://martient.medium.com/migrate-from-bitwarden-rs-to-vaultwarden-199aeb6927a3](https://martient.medium.com/migrate-from-bitwarden-rs-to-vaultwarden-199aeb6927a3)
 
 * [https://dietpi.com/](https://dietpi.com/)
 
@@ -168,9 +162,3 @@ docker pull vaultwarden/server:latest
 image_sha="$(docker inspect --format='{{index .RepoDigests 0}}' vaultwarden/server)"
 dokku git:from-image $APP_NAME $image_sha
 ```
-
-## Azure
-
-* [https://github.com/adamhnat/vaultwarden-azure](https://github.com/adamhnat/vaultwarden-azure)
-
-针对具有数据文件共享的 Azure 容器应用程序服务进行了优化的 Vaultwarden 安装。
