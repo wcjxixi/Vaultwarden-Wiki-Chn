@@ -36,6 +36,7 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 * 使用 SimpleLogin、AnonAddy 或 Firefox Relay 的用户名生成器集成
 * [目录连接器支持](https://help.ppgg.in/directory-connector/about-directory-connector)（基本实现，但不支持群组）\
   仅支持 [v2.9.2](https://github.com/bitwarden/directory-connector/releases/tag/v2.9.2) 及更低版本，v2.9.3 及更高版本使用不同的登录方式，因此尚未被支持。
+* [管理员密码重置](https://help.ppgg.in/organizations/admin-password-reset)
 * 某些企业策略：
   * [要求两步登录](https://help.ppgg.in/organizations/enterprise-policies#require-two-step-login)
   * [主密码要求](https://help.ppgg.in/organizations/enterprise-policies#master-password-requirements)
@@ -44,6 +45,7 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
   * [禁用 Send](https://help.ppgg.in/organizations/enterprise-policies#disable-send)
   * [Send 选项](https://help.ppgg.in/organizations/enterprise-policies#send-options)
   * [单一组织](https://help.ppgg.in/organizations/enterprise-policies#single-organization)
+  * [主密码重置](https://help.ppgg.in/organizations/enterprise-policies#master-password-reset)
 
 ## 缺少的特性 <a href="#missing-features" id="missing-features"></a>
 
@@ -55,9 +57,6 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 
 * [Bitwarden 公共 API](https://help.ppgg.in/organizations/bitwarden-public-api) / [组织 API 密钥](https://help.ppgg.in/organizations/bitwarden-public-api#authentication)
 * 用于移动客户端 (Android/iOS) 的[实时同步](https://bitwarden.com/blog/live-sync/)（推送通知）
-* [管理员密码重置](https://help.ppgg.in/organizations/admin-password-reset)
-* 某些企业策略：
-  * [主密码重置](https://help.ppgg.in/organizations/enterprise-policies#master-password-reset)
 
 除非做出贡献，否则可能不会添加的功能：
 

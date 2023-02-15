@@ -19,9 +19,9 @@ SQLite 后端是最广泛被使用/测试的后端，除非有特殊需要使用
 * `x.y.z` (例如 `1.16.0`) -- 代表一个特定的发布版本。
 * `alpine` -- 除了少数例外，该镜像功能上与 `latest` 相同，但它是基于 Alpine 而非 Debian，因此镜像更小。选择 `latest` 或 `alpine` 主要是一个喜好问题，但请注意 `alpine` 标签目前只支持 `amd64` 和 `arm32v7` 架构，并且仅支持 SQLite 和 PostgreSQL 数据库后端。
 * `x.y.z-alpine` (例如 `1.16.0-alpine`) -- 与 `alpine` 类似，但它代表一个特定的发布版本。
-* `latest-arm32v6` -- 与 `latest` 相同，但明确表示为 `arm32v6` 镜像。目前，对于使用 Armv6 板卡（如 Raspberry Pi 1 和 Zero）的用户来说，需要使用此标签。否则，Docker 会尝试拉取 `arm32v7` 镜像，这将无法正常工作（参阅 [moby/moby#41017](https://github.com/moby/moby/issues/41017)）。
-* `testing-arm32v6` -- 与 `testing` 相同，但明确表示为 `arm32v6` 镜像。
-* `x.y.z-arm32v6` (例如 `1.16.0-arm32v6`) -- 与 `latest-arm32v6` 类似，但它代表一个特定的发布版本。
+* ~~`latest-arm32v6` -- 与 `latest` 相同，但明确表示为 `arm32v6` 镜像。目前，对于使用 Armv6 板卡（如 Raspberry Pi 1 和 Zero）的用户来说，需要使用此标签。否则，Docker 会尝试拉取 `arm32v7` 镜像，这将无法正常工作（参阅~~ [~~moby/moby#41017~~](https://github.com/moby/moby/issues/41017)~~）。~~
+* ~~`testing-arm32v6` -- 与 `testing` 相同，但明确表示为 `arm32v6` 镜像。~~
+* ~~`x.y.z-arm32v6` (例如 `1.16.0-arm32v6`) -- 与 `latest-arm32v6` 类似，但它代表一个特定的发布版本。~~
 
 ## 镜像更新 <a href="#image-updates" id="image-updates"></a>
 
