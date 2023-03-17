@@ -40,12 +40,12 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 * 某些企业策略：
   * [要求两步登录](https://help.ppgg.in/organizations/enterprise-policies#require-two-step-login)
   * [主密码要求](https://help.ppgg.in/organizations/enterprise-policies#master-password-requirements)
+  * [主密码重置](https://help.ppgg.in/organizations/enterprise-policies#master-password-reset)
   * [密码生成器](https://help.ppgg.in/organizations/enterprise-policies#password-generator)
+  * [单一组织](https://help.ppgg.in/organizations/enterprise-policies#single-organization)
   * [移除个人密码库](https://help.ppgg.in/organizations/enterprise-policies#remove-individual-vault)
   * [禁用 Send](https://help.ppgg.in/organizations/enterprise-policies#disable-send)
   * [Send 选项](https://help.ppgg.in/organizations/enterprise-policies#send-options)
-  * [单一组织](https://help.ppgg.in/organizations/enterprise-policies#single-organization)
-  * [主密码重置](https://help.ppgg.in/organizations/enterprise-policies#master-password-reset)
 
 ## 缺少的特性 <a href="#missing-features" id="missing-features"></a>
 
@@ -63,6 +63,7 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 * [单点登录 (SSO)](https://help.ppgg.in/login-with-sso/about-login-with-sso)
 * [自定义角色](https://help.ppgg.in/organizations/user-types-and-access-control#custom-role)
 * 某些企业策略（[UI 不是开源的](https://github.com/bitwarden/clients/tree/master/bitwarden\_license/bit-web/src/app/policies)，可能需要通过管理页面进行配置）：
+  * [要求单点登录验证](https://help.ppgg.in/organizations/enterprise-policies#require-single-sign-on-authentication)
   * [密码库超时](https://help.ppgg.in/organizations/enterprise-policies#vault-timeout)
   * [禁用个人密码库导出](https://help.ppgg.in/organizations/enterprise-policies#disable-personal-vault-export)
 

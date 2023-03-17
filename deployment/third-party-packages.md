@@ -53,6 +53,12 @@ dnf config-manager --add-repo https://evermeet.cx/pub/repo/fedora/evermeet.repo
 dnf install vaultwarden vaultwarden-webvault
 ```
 
+## DietPi（高度优化的最小化 Debian 操作系统） <a href="#dietpi-highly-optimised-minimal-debian-os" id="dietpi-highly-optimised-minimal-debian-os"></a>
+
+[DietPi](https://dietpi.com/) 是一个基于 Debian 的轻量级发行版（镜像），适用于各种设备，如 Raspberry Pi、Odroid、NanoPi 等。它提供了一个用于安装包括 Vaultwarden 在内的各种程序的软件脚本。这使用户无需了解安装命令。
+
+要在 DietPi 上安装 Vaultwarden，只需在命令行中键入 `dietpi-software install 183`。有关安装过程和首次访问 DietPi 上的 Vaultwarden 的更多信息，请访问 [https://dietpi.com/docs/software/cloud/#vaultwarden](https://dietpi.com/docs/software/cloud/#vaultwarden)。
+
 ## Nix (OS)
 
 此 Vaultwarden 被同时打包用于 mysql、sqlite、postgresql，以及 Vault。还有一个用于声明式配置的 NixOS 模块（请参阅 `services.vaultwarden`）

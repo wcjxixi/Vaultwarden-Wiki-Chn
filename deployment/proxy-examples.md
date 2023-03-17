@@ -51,7 +51,7 @@
   #      # 启用 cross-site filter (XSS) 并告诉浏览器阻止检测到的攻击
   #      X-XSS-Protection "1; mode=block"
   #      # 禁止在框架内呈现网站（clickjacking protection）
-  #      X-Frame-Options "DENY"
+  #      X-Frame-Options "SAMEORIGIN"
   #      # 防止搜索引擎编制索引（可选）
   #      X-Robots-Tag "none"
   #      # 服务器名称移除
