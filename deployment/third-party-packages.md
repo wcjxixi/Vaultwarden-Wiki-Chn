@@ -30,13 +30,11 @@
 
 带有纯编译工具链的 Debian 源代码（无 docker）：[https://github.com/dionysius/vaultwarden-deb](https://github.com/dionysius/vaultwarden-deb) 和 [https://github.com/dionysius/vaultwarden-web-vault-deb](https://github.com/dionysius/vaultwarden-web-vault-deb)，它为最新的 Ubuntu LTS 提供预构建包。
 
-## CentOS7 / RHEL7
+## DietPi（高度优化的最小化 Debian 操作系统） <a href="#dietpi-highly-optimised-minimal-debian-os" id="dietpi-highly-optimised-minimal-debian-os"></a>
 
-由 @MrMEEE 打包的一个 RPM 仓库：[https://copr.fedorainfracloud.org/coprs/mrmeee/bitwarden\_rs/](https://copr.fedorainfracloud.org/coprs/mrmeee/bitwarden\_rs/) ... 在附加包里同样包含有网页界面。
+[DietPi](https://dietpi.com/) 是一个基于 Debian 的轻量级发行版（镜像），适用于各种设备，如 Raspberry Pi、Odroid、NanoPi 等。它提供了一个用于安装包括 Vaultwarden 在内的各种程序的软件脚本。这使用户无需了解安装命令。
 
-安装说明：[https://github.com/MrMEEE/bitwarden\_rs\_rpm/blob/master/README.md](https://github.com/MrMEEE/bitwarden\_rs\_rpm/blob/master/README.md)
-
-任何 RPM 话题可以提交到这里：[https://github.com/MrMEEE/bitwarden\_rs\_rpm/issues](https://github.com/MrMEEE/bitwarden\_rs\_rpm/issues)
+要在 DietPi 上安装 Vaultwarden，只需在命令行中键入 `dietpi-software install 183`。有关安装过程和首次访问 DietPi 上的 Vaultwarden 的更多信息，请访问 [https://dietpi.com/docs/software/cloud/#vaultwarden](https://dietpi.com/docs/software/cloud/#vaultwarden)。
 
 ## CentOS 8 / RHEL 8
 
@@ -52,12 +50,6 @@
 dnf config-manager --add-repo https://evermeet.cx/pub/repo/fedora/evermeet.repo
 dnf install vaultwarden vaultwarden-webvault
 ```
-
-## DietPi（高度优化的最小化 Debian 操作系统） <a href="#dietpi-highly-optimised-minimal-debian-os" id="dietpi-highly-optimised-minimal-debian-os"></a>
-
-[DietPi](https://dietpi.com/) 是一个基于 Debian 的轻量级发行版（镜像），适用于各种设备，如 Raspberry Pi、Odroid、NanoPi 等。它提供了一个用于安装包括 Vaultwarden 在内的各种程序的软件脚本。这使用户无需了解安装命令。
-
-要在 DietPi 上安装 Vaultwarden，只需在命令行中键入 `dietpi-software install 183`。有关安装过程和首次访问 DietPi 上的 Vaultwarden 的更多信息，请访问 [https://dietpi.com/docs/software/cloud/#vaultwarden](https://dietpi.com/docs/software/cloud/#vaultwarden)。
 
 ## Nix (OS)
 
@@ -110,6 +102,14 @@ openSUSE 构建服务项目，支持：
 您可以直接下载包或使用可用的仓库。
 
 [vaultwarden](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden)、[vaultwarden-webvault](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden-webvault)、[vaultwarden-webvault-dark](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden-webvault-dark)
+
+## CentOS9 / RHEL9
+
+从 Masgalor 包中为 EL9 构建的包：
+
+[https://rpm.awx.wiki/vaultwarden/](https://rpm.awx.wiki/vaultwarden/)
+
+每晚自动构建新版本。
 
 ## Void Linux
 
