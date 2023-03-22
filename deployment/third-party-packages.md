@@ -103,7 +103,7 @@ openSUSE 构建服务项目，支持：
 
 [vaultwarden](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden)、[vaultwarden-webvault](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden-webvault)、[vaultwarden-webvault-dark](https://build.opensuse.org/package/show/home:Masgalor:Vaultwarden/vaultwarden-webvault-dark)
 
-## CentOS9 / RHEL9
+## CentOS 9 / RHEL 9
 
 从 Masgalor 包中为 EL9 构建的包：
 
