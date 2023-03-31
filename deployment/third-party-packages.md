@@ -87,12 +87,12 @@ openSUSE 构建服务项目，支持：
 
 > \[**译者注**]：[什么是 openSUSE 构建服务](https://zh.wikipedia.org/wiki/Open\_Build\_Service)
 
-| RPM    | 版本                   |
-| ------ | -------------------- |
-| SUSE   | 15.3；15.4；Tumbleweed |
-| RHEL   | 7                    |
-| CentOS | 7；8；8\_Stream        |
-| Fedora | 34；35；36；Rawhide     |
+| RPM    | 版本              |
+| ------ | --------------- |
+| SUSE   | 15.4；Tumbleweed |
+| RHEL   | 7               |
+| CentOS | 7；8；8\_Stream   |
+| Fedora | 36；37；Rawhide   |
 
 | DEB    | 版本                |
 | ------ | ----------------- |

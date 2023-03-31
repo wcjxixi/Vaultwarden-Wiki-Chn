@@ -37,7 +37,7 @@ docker run -d --name vaultwarden \
 ## 保护 ADMIN\_TOKEN <a href="#secure-the-admin_token" id="secure-the-admin_token"></a>
 
 {% hint style="warning" %}
-此功能尚未在最新的 `latest` 镜像中发布，但很快就会提供！它目前在 `testing` 镜像中可用。
+此功能发布在 [1.28.0+](https://github.com/dani-garcia/vaultwarden/releases/tag/1.28.0) 版本中。之前的版本不支持 Argon2 哈希。
 {% endhint %}
 
 以前 `ADMIN_TOKEN` 只能是纯文本格式。您现在可以通过生成 [PHC 字符串](https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md)来使用 Argon2 对 `ADMIN_TOKEN` 进行哈希处理。这可以通过使用 Vaultwarden 中的内置 `hash` 命令或使用 `argon2` CLI 工具生成。在 Vaultwarden 应用程序中，有两个预设，一个使用 [Bitwarden 默认](https://github.com/bitwarden/clients/blob/04d1fbb716bc7676c60a009906e183bb3cbb6047/libs/common/src/enums/kdfType.ts#L8-L10)的，一个使用 [OWASP 推荐](https://cheatsheetseries.owasp.org/cheatsheets/Password\_Storage\_Cheat\_Sheet.html#argon2id)。
@@ -90,12 +90,14 @@ echo -n "MySecretPassword" | argon2 "$(openssl rand -base64 32)" -e -id -k 19456
 
 ### 如何防止 `docker-compose.yml` 中的变量插值 <a href="#how-to-prevent-variable-interpolation-in-docker-compose.yml" id="how-to-prevent-variable-interpolation-in-docker-compose.yml"></a>
 
-当[使用 Docker Compose](../container-image-usage/using-docker-compose.md) 并通过 `environment` 指令配置 `ADMIN_TOKEN` 时，您需要使用两个美元符号 `$$` 来转义已生成的 argon2 PHC 字符串中出现的所有五个美元符号 `$` 以防止变量插值，例如：
+当[使用 Docker Compose](../container-image-usage/using-docker-compose.md) 并通过 `environment` 指令配置 `ADMIN_TOKEN` 时，您需要使用两个美元符号 `$$` 来转义已生成的 argon2 PHC 字符串中出现的所有五个美元符号 `$` 以防止[变量插值](https://docs.docker.com/compose/compose-file/#interpolation)，例如：
 
 ```
   environment:
     ADMIN_TOKEN: $$argon2id$$v=19$$m=19456,t=2,p=1$$UUZxK1FZMkZoRHFQRlVrTXZvS0E3bHpNQW55c2dBN2NORzdsa0Nxd1JhND0$$cUoId+JBUsJutlG4rfDZayExfjq4TCt48aBc9qsc3UI
 ```
+
+这可以自动完成，例如通过添加 `| sed 's#$#$$#g'` 到上面的 `argon2` 命令行的末尾。
 
 否则您将收到警告消息并且变量将无法正确设置：
 
@@ -104,4 +106,33 @@ WARNING: The argon2id variable is not set. Defaulting to a blank string.
 WARNING: The v variable is not set. Defaulting to a blank string.
 WARNING: The m variable is not set. Defaulting to a blank string.
 ...
+```
+
+**注意：**单为 `docker-compose.yaml` 使用 `.env` 文件时情况并非如此。如下所示。在这种情况下，只需使用单个 `$` 变量。与使用 `-e ADMIN_TOKEN` 的 docker/podman cli 相同。
+
+```
+/docker-data
+├── .env
+├── docker-compose.yaml
+├── vaultwarden/data
+```
+
+**.env：**
+
+```
+VAULTWARDEN_ADMIN_TOKEN='$argon2id$v=19$m=65540,t=3,p=4$MmeK.....`
+```
+
+**docker-compose.yaml：**
+
+```docker
+services:
+  vaultwarden:
+    image: ghcr.io/dani-garcia/vaultwarden
+    container_name: vaultwarden
+    restart: unless-stopped
+    volumes:
+      - /path/to/vaultwarden/data/:/data/
+    environment:
+      - ADMIN_TOKEN=${VAULTWARDEN_ADMIN_TOKEN}
 ```
