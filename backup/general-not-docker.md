@@ -1,4 +1,4 @@
-# 通用（非 docker）
+# 1.通用（非 docker）
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/General-\(not-docker\))
@@ -33,4 +33,4 @@
 
 ### 数据库备份 <a href="#database-backups" id="database-backups"></a>
 
-参阅 [MariaDB - 备份和还原概述](https://mariadb.com/kb/en/backup-and-restore-overview/)，[如何备份sqlite数据库](https://stackoverflow.com/questions/25675314/how-to-backup-sqlite-database)
+参阅 [MariaDB - Backup and Restore Overview](https://mariadb.com/kb/en/backup-and-restore-overview/)、[How to Backup SQLite Database](https://stackoverflow.com/questions/25675314/how-to-backup-sqlite-database)。
