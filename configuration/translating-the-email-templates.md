@@ -17,3 +17,11 @@
 3. 重新启动 Vaultwarden 以加载新的（覆盖）模板。
 
 **注意**：为确保兼容性，您应该首先下载适合您的版本的模板，并且如果它们发生变化（或添加了新的模板），您还必须自行更新它们。
+
+## 翻译 <a href="#translations" id="translations"></a>
+
+* 德语 by @kennymc-c：[https://github.com/kennymc-c/vaultwarden-lang-de](https://github.com/kennymc-c/vaultwarden-lang-de)
+
+{% hint style="warning" %}
+翻译由社区成员按原样提供，我们尚未对其进行测试。因此，使用它们需要您自担风险。如果发生重大变化（例如，由 Vaultwarden 的新版本引起），请通知维护者和/或在此处做一个注释。
+{% endhint %}
