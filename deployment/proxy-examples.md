@@ -23,6 +23,15 @@
 在 Caddyfile 语法中，`{$VAR}` 表示环境变量 `VAR` 的值。如果您喜欢，也可以直接指定一个值，而不是用一个环境变量的值来代替。
 
 ```nginx
+# 取消注释以下语句以及取消注释 import admin_redir 语句，以仅允许从本地网络访问管理界面
+# (admin_redir) {
+#        @admin {
+#                path /admin*
+#                not remote_ip private_ranges
+#        }
+#        redir @admin /
+# }
+
 {$DOMAIN} {
   log {
     level INFO
@@ -59,11 +68,7 @@
   # }
   
   # 取消注释以仅允许从本地网络访问管理界面
-  # @insecureadmin {
-  #   not remote_ip 192.168.0.0/16 172.16.0.0/12 10.0.0.0/8
-  #   path /admin*
-  # }
-  # redir @insecureadmin /
+  # import admin_redir
   
   # Notifications 重定向到 websockets 服务器
   reverse_proxy /notifications/hub <SERVER>:3012
