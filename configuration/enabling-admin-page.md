@@ -37,7 +37,15 @@ docker run -d --name vaultwarden \
 ## 保护 ADMIN\_TOKEN <a href="#secure-the-admin_token" id="secure-the-admin_token"></a>
 
 {% hint style="warning" %}
-此功能发布在 [1.28.0+](https://github.com/dani-garcia/vaultwarden/releases/tag/1.28.0) 版本中。之前的版本不支持 Argon2 哈希。
+此功能自 [1.28.0+](https://github.com/dani-garcia/vaultwarden/releases/tag/1.28.0) 起可用。
+{% endhint %}
+
+{% hint style="danger" %}
+优先使用环境变量。
+
+但是，如果您通过管理界面更新设置，则需要通过相同的 Web 界面更新管理令牌！
+
+请**不要**手动编辑 `config.json`，因为如果操作不当可能会引起故障！
 {% endhint %}
 
 以前 `ADMIN_TOKEN` 只能是纯文本格式。您现在可以通过生成 [PHC 字符串](https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md)来使用 Argon2 对 `ADMIN_TOKEN` 进行哈希处理。这可以通过使用 Vaultwarden 中的内置 `hash` 命令或使用 `argon2` CLI 工具生成。在 Vaultwarden 应用程序中，有两个预设，一个使用 [Bitwarden 默认](https://github.com/bitwarden/clients/blob/04d1fbb716bc7676c60a009906e183bb3cbb6047/libs/common/src/enums/kdfType.ts#L8-L10)的，一个使用 [OWASP 推荐](https://cheatsheetseries.owasp.org/cheatsheets/Password\_Storage\_Cheat\_Sheet.html#argon2id)。
@@ -88,6 +96,8 @@ echo -n "MySecretPassword" | argon2 "$(openssl rand -base64 32)" -e -id -k 19456
 # Output: $argon2id$v=19$m=19456,t=2,p=1$cXpKdUxHSWhlaUs1QVVsSStkbTRPQVFPSmdpamFCMHdvYjVkWTVKaDdpYz0$E1UgBKjUCD2Roy0jdHAJvXihugpG+N9WcAaR8P6Qn/8
 ```
 
+请在您的 docker/podman CLI 命令中使用这些字符串。对于 `docker-compose.yml` 文件，请按照以下说明操作。如果您使用的是已有的设置，请不要忘记通过管理界面更新您的密码/令牌。
+
 ### 如何防止 `docker-compose.yml` 中的变量插值 <a href="#how-to-prevent-variable-interpolation-in-docker-compose.yml" id="how-to-prevent-variable-interpolation-in-docker-compose.yml"></a>
 
 当[使用 Docker Compose](../container-image-usage/using-docker-compose.md) 并通过 `environment` 指令配置 `ADMIN_TOKEN` 时，您需要使用两个美元符号 `$$` 来转义已生成的 argon2 PHC 字符串中出现的所有五个美元符号 `$` 以防止[变量插值](https://docs.docker.com/compose/compose-file/#interpolation)，例如：
@@ -108,7 +118,7 @@ WARNING: The m variable is not set. Defaulting to a blank string.
 ...
 ```
 
-**注意：**单为 `docker-compose.yaml` 使用 `.env` 文件时情况并非如此。如下所示。在这种情况下，只需使用单个 `$` 变量。与使用 `-e ADMIN_TOKEN` 的 docker/podman cli 相同。
+**注意：**为 `docker-compose.yaml` 使用 `.env` 文件时情况并非如此。如下所示。在这种情况下，只需使用单个 `$` 变量。与使用 `-e ADMIN_TOKEN` 的 docker/podman cli 相同。
 
 ```
 /docker-data

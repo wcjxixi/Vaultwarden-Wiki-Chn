@@ -38,8 +38,8 @@ https://[YOUR-DOMAIN]:443 {
        X-XSS-Protection "0"
        # 禁止在框架内呈现网站 (clickjacking protection)
        X-Frame-Options "DENY"
-       # 防止搜索引擎编制索引（可选）
-       X-Robots-Tag "none"
+       # 阻止搜索引擎编制索引（可选）
+       X-Robots-Tag "noindex, nofollow"
        # 禁止嗅探 X-Content-Type-Options
        X-Content-Type-Options "nosniff"
        # 服务器名称移除
