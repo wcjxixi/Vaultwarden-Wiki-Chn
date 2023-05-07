@@ -238,8 +238,7 @@ server {
 DOMAIN=https://vaultwarden.example.tld/vault/
 ```
 
-```nginx
-# 'upstream' 指令确保你有一个 http/1.1 连接
+<pre class="language-nginx"><code class="lang-nginx"># 'upstream' 指令确保你有一个 http/1.1 连接
 # 这里启用了 keepalive 选项并拥有更好的性能
 #
 # 此处定义服务器的 IP 和端口。
@@ -281,7 +280,8 @@ server {
 
     ## 使用子路径配置
     # 您的安装的 root 目录路径
-    # 确保在尾部添加 /，否则可能会有问题
+    # 确保在尾部添加 /，否则会遇到问题
+    # 但仅针对此位置，所有其他位置无需添加
     location /vault/ {
       proxy_http_version 1.1;
       proxy_set_header "Connection" "";
@@ -294,7 +294,8 @@ server {
       proxy_pass http://vaultwarden-default;
     }
 
-    location /vault/notifications/hub/negotiate {
+<strong>    # 不要在尾部添加 /，否则会遇到问题
+</strong>    location /vault/notifications/hub/negotiate {
       proxy_http_version 1.1;
       proxy_set_header "Connection" "";
 
@@ -306,6 +307,7 @@ server {
       proxy_pass http://vaultwarden-default;
     }
 
+    # 不要在尾部添加 /，否则会遇到问题
     location /vault/notifications/hub {
       proxy_http_version 1.1;
       proxy_set_header Upgrade $http_upgrade;
@@ -323,6 +325,7 @@ server {
     # 除了 ADMIN_TOKEN 之外，还可以选择添加额外的身份验证
     # 删除下面的 '#' 注释并创建 htpasswd_file 以使其处于活动状态
     #
+    # 不要在尾部添加 /，否则会遇到问题
     #location /vault/admin {
     #  # 参阅: https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/
     #  auth_basic "Private";
@@ -339,7 +342,7 @@ server {
     #  proxy_pass http://vaultwarden-default;
     #}
 }
-```
+</code></pre>
 
 </details>
 
