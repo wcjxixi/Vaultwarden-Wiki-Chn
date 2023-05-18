@@ -21,6 +21,7 @@
 ## 翻译 <a href="#translations" id="translations"></a>
 
 * 德语 by @kennymc-c：[https://github.com/kennymc-c/vaultwarden-lang-de](https://github.com/kennymc-c/vaultwarden-lang-de)
+* 法语 by @YoanSimco：[https://github.com/YoanSimco/vaultwarden-lang-fr](https://github.com/YoanSimco/vaultwarden-lang-fr)
 
 {% hint style="warning" %}
 翻译由社区成员按原样提供，我们尚未对其进行测试。因此，使用它们需要您自担风险。如果发生重大变化（例如，由 Vaultwarden 的新版本引起），请通知维护者和/或在此处做一个注释。
