@@ -56,29 +56,29 @@ docker run -d --name vaultwarden \
 
 Vaultwarden 中内置了一个 PHC 生成器，您可以通过 CLI `vaultwarden hash` 运行它。这可以通过已经运行的实例上的 `docker exec` 来完成，或者通过在您自己的系统上的 docker 在本地运行它。
 
-我使用 `vwcontainer` 作为下面的容器名称，请将其替换为您的实例的正确容器名称。Vaultwarden CLI 会要求输入两次密码，如果两次相同，它将输出已生成的 PHC 字符串。
+下面使用 `vwcontainer` 作为容器名称，请将其替换为您的实例的正确容器名称。Vaultwarden CLI 会要求输入两次密码，如果两次相同，它将输出已生成的 PHC 字符串。
 
 示例：
 
 ```sh
-# Using the Bitwarden defaults (default preset)
+# 使用 Bitwarden 默认（默认的预设值）
 # Via docker on a running container
 docker exec -it vwcontainer /vaultwarden hash
 
-# Via docker and creating a temporary container
+# 通过 docker 并创建一个临时容器
 docker run --rm -it vaultwarden/server /vaultwarden hash
 
-# Using the vaultwarden binary directly
+# 直接使用 vaultwarden 二进制文件
 ./vaultwarden hash
 
-# Using the OWASP minimum recommended settings
+# 使用 OWASP 最低的推荐设置
 # Via docker on a running container
 docker exec -it vwcontainer /vaultwarden hash --preset owasp
 
-# Via docker and creating a temporary container
+# 通过 docker 并创建一个临时容器
 docker run --rm -it vaultwarden/server /vaultwarden hash --preset owasp
 
-# Using the vaultwarden binary directly
+# 直接使用 vaultwarden 二进制文件
 ./vaultwarden hash --preset owasp
 ```
 
@@ -87,13 +87,13 @@ docker run --rm -it vaultwarden/server /vaultwarden hash --preset owasp
 您还可以使用大多数 Linux 发行版上提供的 `argon2` CLI。
 
 ```bash
-# Using the Bitwarden defaults
+# 使用 Bitwarden 默认
 echo -n "MySecretPassword" | argon2 "$(openssl rand -base64 32)" -e -id -k 65540 -t 3 -p 4
-# Output: $argon2id$v=19$m=65540,t=3,p=4$bXBGMENBZUVzT3VUSFErTzQzK25Jck1BN2Z0amFuWjdSdVlIQVZqYzAzYz0$T9m73OdD2mz9+aJKLuOAdbvoARdaKxtOZ+jZcSL9/N0
+# 输出：$argon2id$v=19$m=65540,t=3,p=4$bXBGMENBZUVzT3VUSFErTzQzK25Jck1BN2Z0amFuWjdSdVlIQVZqYzAzYz0$T9m73OdD2mz9+aJKLuOAdbvoARdaKxtOZ+jZcSL9/N0
 
-# Using the OWASP minimum recommended settings
+# 使用 OWASP 最低的推荐设置
 echo -n "MySecretPassword" | argon2 "$(openssl rand -base64 32)" -e -id -k 19456 -t 2 -p 1
-# Output: $argon2id$v=19$m=19456,t=2,p=1$cXpKdUxHSWhlaUs1QVVsSStkbTRPQVFPSmdpamFCMHdvYjVkWTVKaDdpYz0$E1UgBKjUCD2Roy0jdHAJvXihugpG+N9WcAaR8P6Qn/8
+# 输出：$argon2id$v=19$m=19456,t=2,p=1$cXpKdUxHSWhlaUs1QVVsSStkbTRPQVFPSmdpamFCMHdvYjVkWTVKaDdpYz0$E1UgBKjUCD2Roy0jdHAJvXihugpG+N9WcAaR8P6Qn/8
 ```
 
 请在您的 docker/podman CLI 命令中使用这些字符串。对于 `docker-compose.yml` 文件，请按照以下说明操作。如果您使用的是已有的设置，请不要忘记通过管理界面更新您的密码/令牌。
@@ -130,8 +130,12 @@ WARNING: The m variable is not set. Defaulting to a blank string.
 **.env：**
 
 ```
-VAULTWARDEN_ADMIN_TOKEN='$argon2id$v=19$m=65540,t=3,p=4$MmeK.....`
+VAULTWARDEN_ADMIN_TOKEN=$argon2id$v=19$m=65540,t=3,p=4$MmeK.....
 ```
+
+{% hint style="warning" %}
+Compose 按字面解释 `.env` 文件中等号后的每个字符。所以这里需要省略单引号。
+{% endhint %}
 
 **docker-compose.yaml：**
 

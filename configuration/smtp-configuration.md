@@ -89,9 +89,9 @@ SMTP_SECURITY=off
 
 ### Google/Gmail
 
-您需要为 Vaultwarden 生成应用专用密码才能使用 Gmail。按照此处的步骤操作：[使用应用专用密码登录](https://support.google.com/accounts/answer/185833?hl=zh-Hans\&ref\_topic=7189145)。最后您会得到一个密码（为了方便输入，中间没有空格），使用这个密码。
+您需要为 Vaultwarden 生成应用专用密码才能使用 Gmail。按照此处的步骤操作：[使用应用专用密码登录](https://support.google.com/accounts/answer/185833?hl=zh-Hans\&ref\_topic=7189145)（自 2022 年 5 月 30 日起不可用），最后您会得到一个密码（中间有空格但无需使用，只是为了方便输入），使用这个密码。
 
-严格 SSL：
+Full SSL：
 
 ```systemd
  # Domains: gmail.com, googlemail.com
@@ -122,6 +122,7 @@ StartTLS：
   SMTP_HOST=smtp-mail.outlook.com
   SMTP_PORT=587
   SMTP_SECURITY=starttls
+  SMTP_FROM=<mail-address>
   SMTP_USERNAME=<mail-address>
   SMTP_PASSWORD=<password>
   SMTP_AUTH_MECHANISM="Login"
