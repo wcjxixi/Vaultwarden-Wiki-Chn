@@ -24,9 +24,7 @@ DATABASE_URL=mysql://[[user]:[password]@]host[:port][/database]
 
 如果密码包含特殊字符，则需要使用百分号编码。
 
-| !   | #   | $   | %   | &   | '   | (   | )   | \*  | +   | ,   | /   | :   | ;   | =   | ?   | @   | \[  | ]   |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| %21 | %23 | %24 | %25 | %26 | %27 | %28 | %29 | %2A | %2B | %2C | %2F | %3A | %3B | %3D | %3F | %40 | %5B | %5D |
+<table><thead><tr><th width="150">!</th><th width="150">#</th><th width="150">$</th><th width="150">%</th><th width="150">&#x26;</th><th width="150">'</th><th width="150">(</th><th width="150">)</th><th width="150">*</th><th width="150">+</th><th width="150">,</th><th width="150">/</th><th width="150">:</th><th width="150">;</th><th width="150">=</th><th width="150">?</th><th width="150">@</th><th width="150">[</th><th>]</th></tr></thead><tbody><tr><td>%21</td><td>%23</td><td>%24</td><td>%25</td><td>%26</td><td>%27</td><td>%28</td><td>%29</td><td>%2A</td><td>%2B</td><td>%2C</td><td>%2F</td><td>%3A</td><td>%3B</td><td>%3D</td><td>%3F</td><td>%40</td><td>%5B</td><td>%5D</td></tr></tbody></table>
 
 完整的代码列表可以在 [Wikipedia 的百分号编码页面](https://zh.wikipedia.org/wiki/%E7%99%BE%E5%88%86%E5%8F%B7%E7%BC%96%E7%A0%81)上找到。
 
@@ -227,6 +225,15 @@ ERROR 1136 (21S01) at line ###: Column count doesn't match value count at row 1
 要解决此问题，您需要更新/更改整个数据库及其包含的表的排序规则和字符集。您可以通过您喜欢的 SQL 工具或使用 CLI 跟踪和执行以下设置来完成此操作。
 
 在下面的示例中，我将使用数据库名称 `vaultwarden`，如果您使用不同的名称，请更改它。
+
+在开始之前，通过运行以下两个查询来验证是否存在任何问题。它应该返回 `utf8mb4` 和 `utf8mb4_general_ci`。
+
+同样要在下面的查询末尾运行这些查询以验证它是否有效！
+
+```sql
+SELECT DEFAULT_CHARACTER_SET_NAME, DEFAULT_COLLATION_NAME FROM information_schema.SCHEMATA WHERE SCHEMA_NAME = "vaultwarden";
+SELECT CHARACTER_SET_NAME, COLLATION_NAME FROM information_schema.`COLUMNS` WHERE TABLE_SCHEMA = "vaultwarden" AND CHARACTER_SET_NAME IS NOT NULL;
+```
 
 首先更改数据库本身的排序规则和字符集：
 
