@@ -8,7 +8,9 @@
 
 该页面允许服务器管理员查看并删除所有已注册的用户。它也允许邀请新用户，即使禁用了注册功能。
 
-要启用管理页面，您需要设置一组身份验证令牌。该令牌可以是任何字符，但建议使用随机生成的长字符串，比如运行 `openssl rand -base64 48` 命令生成。**此令牌是您访问服务器管理区域的密码！请将其保存在安全的地方。**
+要启用管理页面，您需要设置一组身份验证令牌。该令牌可以是任何字符，但建议使用随机生成的长字符串，比如运行 `openssl rand -base64 48` 命令生成。
+
+**此令牌是您访问服务器管理区域的密码！请确保其安全性。**您该如何[确保管理令牌的安全](enabling-admin-page.md#secure-the-admin\_token)。
 
 要设置令牌，请使用 `ADMIN_TOKEN` 变量：
 
@@ -37,15 +39,17 @@ docker run -d --name vaultwarden \
 ## 保护 ADMIN\_TOKEN <a href="#secure-the-admin_token" id="secure-the-admin_token"></a>
 
 {% hint style="warning" %}
-此功能自 [1.28.0+](https://github.com/dani-garcia/vaultwarden/releases/tag/1.28.0) 起可用。
+此功能自 [1.28.0+](https://github.com/dani-garcia/vaultwarden/releases/tag/1.28.0) 后可用。
 {% endhint %}
 
 {% hint style="danger" %}
 优先使用环境变量。
 
-但是，如果您通过管理界面更新设置，则需要通过相同的 Web 界面更新管理令牌！
+但是，如果您通过管理界面更新了设置，则需要通过相同的 Web 界面更新管理令牌！
 
-请**不要**手动编辑 `config.json`，因为如果操作不当可能会引起故障！
+请**不要**手动编辑 `config.json` 文件，因为如果操作不当可能会引起故障！
+
+要在保护令牌后登录管理页面，您可以使用令牌创建期间提供的密码。
 {% endhint %}
 
 以前 `ADMIN_TOKEN` 只能是纯文本格式。您现在可以通过生成 [PHC 字符串](https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md)来使用 Argon2 对 `ADMIN_TOKEN` 进行哈希处理。这可以通过使用 Vaultwarden 中的内置 `hash` 命令或使用 `argon2` CLI 工具生成。在 Vaultwarden 应用程序中，有两个预设，一个使用 [Bitwarden 默认](https://github.com/bitwarden/clients/blob/04d1fbb716bc7676c60a009906e183bb3cbb6047/libs/common/src/enums/kdfType.ts#L8-L10)的，一个使用 [OWASP 推荐](https://cheatsheetseries.owasp.org/cheatsheets/Password\_Storage\_Cheat\_Sheet.html#argon2id)。
