@@ -48,8 +48,10 @@ docker run -d --name vaultwarden \
 但是，如果您通过管理界面更新了设置，则需要通过相同的 Web 界面更新管理令牌！
 
 请**不要**手动编辑 `config.json` 文件，因为如果操作不当可能会引起故障！
+{% endhint %}
 
-要在保护令牌后登录管理页面，您可以使用令牌创建期间提供的密码。
+{% hint style="info" %}
+要在保护令牌后登录管理页面，您需要使用令牌创建期间提供的密码（而不是令牌本身）。
 {% endhint %}
 
 以前 `ADMIN_TOKEN` 只能是纯文本格式。您现在可以通过生成 [PHC 字符串](https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md)来使用 Argon2 对 `ADMIN_TOKEN` 进行哈希处理。这可以通过使用 Vaultwarden 中的内置 `hash` 命令或使用 `argon2` CLI 工具生成。在 Vaultwarden 应用程序中，有两个预设，一个使用 [Bitwarden 默认](https://github.com/bitwarden/clients/blob/04d1fbb716bc7676c60a009906e183bb3cbb6047/libs/common/src/enums/kdfType.ts#L8-L10)的，一个使用 [OWASP 推荐](https://cheatsheetseries.owasp.org/cheatsheets/Password\_Storage\_Cheat\_Sheet.html#argon2id)。
