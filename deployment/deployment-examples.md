@@ -12,6 +12,10 @@
 
 针对 Google Cloud 的「永远免费」的 f1-micro 计算实例进行了优化的 Vaultwarden 安装。
 
+* [https://medium.com/@sreafterhours/terraform-helm-external-dns-cert-manager-nginx-and-vaultwarden-on-gke-5080f3b4909f](https://medium.com/@sreafterhours/terraform-helm-external-dns-cert-manager-nginx-and-vaultwarden-on-gke-5080f3b4909f)
+
+针对 Google Kubernetes Engine 的详细的 Vaultwarden 安装，包括基础设施和集群配置。
+
 ## Heroku
 
 * [https://github.com/davidjameshowell/vaultwarden\_heroku](https://github.com/davidjameshowell/vaultwarden\_heroku)
@@ -46,7 +50,7 @@ raspberry pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 
 * [https://dietpi.com/](https://dietpi.com/)
 
-[DietPi](https://dietpi.com/) 是一个轻量级的基于 Debian 的发行版（镜像），适用于各种设备，例如 Raspberry Pi、Odroid、NanoPi 等。它提供了一个软件脚本，用于安装包括 Vaultwarden 在内的各种程序。这样可以让用户免去对安装命令的烦恼。
+[DietPi](https://dietpi.com/) 是一个轻量级的基于 Debian 的发行版（镜像），适用于各种设备，例如 Raspberry Pi、Odroid、NanoPi 等。它提供了一个软件脚本，用于安装包括 Vaultwarden 在内的各种程序。这样可以让用户免去对安装命令的苦恼。
 
 要在 DietPi 上安装 Vaultwarden，只需在命令行中键入 `dietpi-software install 183` 即可。有关在 DietPi 上的安装步骤和首次访问 Vaultwarden 的更多信息，请访问 [https://dietpi.com/docs/software/cloud/#vaultwarden](https://dietpi.com/docs/software/cloud/#vaultwarden)
 
