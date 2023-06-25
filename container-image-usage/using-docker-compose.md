@@ -26,7 +26,7 @@ services:
     restart: always
     environment:
       WEBSOCKET_ENABLED: "true"  # 启用 WebSocket 通知
-      DOMAIN: "https://vaultwarden.example.com"  # 您的域名； Vaultwarden 需要知道它是 https 才能正确处理附件
+      DOMAIN: "https://vaultwarden.example.com"  # 您的域名；Vaultwarden 需要知道它是 https 才能正确处理附件
     volumes:
       - ./vw-data:/data
 
@@ -108,7 +108,7 @@ services:
     restart: always
     environment:
        WEBSOCKET_ENABLED: "true"  # 启用 WebSocket 通知
-       DOMAIN: "https://vaultwarden.example.com"  # 您的域名； Vaultwarden 需要知道它是 https 才能正确处理附件
+       DOMAIN: "https://vaultwarden.example.com"  # 您的域名；Vaultwarden 需要知道它是 https 才能正确处理附件
     volumes:
        - ./vw-data:/data
 
