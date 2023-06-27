@@ -147,7 +147,7 @@ ignoreregex =
 `fail2ban.filter [5291]: ERROR No 'host' group in '^.*Username or password is incorrect\. Try again\. IP: <ADDR>\. Username:.*$'`\
 请将 `vaultwarden.local` 中的 `<ADDR>` 改为 `<HOST>`。
 
-**提示**：对于 Cloudflare 用户，请确保在管理面板 -> 高级设置 -> 客户端 IP 标头中将客户端 IP 标头设置为 `CF-Connecting-IP`，否则客户端的真实 IP 将不会被识别和阻止。
+**提示**：对于 Cloudflare 用户，请确保在**管理面板** -> **高级设置** -> **客户端 IP 标头**中将客户端 IP 标头设置为 `CF-Connecting-IP`，否则客户端的真实 IP 将不会被识别和阻止。
 
 **提示**：如果您在 `vaultwarden.log` 中看到 127.0.0.1 是登录失败的 IP 地址，那么您可能正在使用反向代理，而 Fail2ban 无法正常工作：
 
@@ -193,7 +193,7 @@ backend = systemd
 filter = vaultwarden[journalmatch='_SYSTEMD_UNIT=your_vaultwarden.service']
 ```
 
-使用它来代替 `logpath =` 变量。
+使用它们来代替 `logpath =` 和 `filter =` 变量。
 {% endhint %}
 
 **Cloudflare 用户注意：**
@@ -252,6 +252,17 @@ findtime = 14400
 ```systemd
 action = iptables-allports[name=vaultwarden, chain=FORWARD]
 ```
+
+{% hint style="info" %}
+如果您使用 systemd 来管理 Vaultwarden，您同样可以在这里为 Fail2ban 使用 systemd-journal：
+
+```
+backend = systemd
+filter = vaultwarden-admin[journalmatch='_SYSTEMD_UNIT=your_vaultwarden.service']
+```
+
+使用它们来代替 `logpath =` 和 `filter =` 变量。
+{% endhint %}
 
 **Cloudflare 用户请注意：**
 
