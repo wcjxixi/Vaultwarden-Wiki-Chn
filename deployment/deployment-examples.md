@@ -44,7 +44,7 @@
 
 * [https://github.com/guerzon/vaultwarden](https://github.com/guerzon/vaultwarden)
 
-使用 [Helm](https://helm.sh/zh/docs/) 将 Vaultwarden 部署到 Kubernetes 集群。它支持重要的自定义，例如提供图像标签和自定义注册表值、使用​​外部 MySQL 或 PostgreSQL 数据库、使用入口控制器（如 [nginx-ingress](https://kubernetes.github.io/ingress-nginx/deploy/) 和 [AWS LB 入口控制器](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/deploy/installation/)）、使用服务帐户、配置 SMTP，以及配置存储选项。它拥有充分的记录，未来将继续引入更多配置选项。
+使用 [Helm](https://helm.sh/zh/docs/) 将 Vaultwarden 部署到 Kubernetes 集群。它支持重要的自定义，例如提供图像标签和自定义注册表值、使用​​外部 MySQL 或 PostgreSQL 数据库、使用入口控制器（如 [nginx-ingress](https://kubernetes.github.io/ingress-nginx/deploy/) 和 [AWS LB 入口控制器](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/deploy/installation/)）、使用服务账户、配置 SMTP，以及配置存储选项。它拥有完美的文档记录，未来将继续引入更多配置选项。
 
 ## Raspberry Pi
 
