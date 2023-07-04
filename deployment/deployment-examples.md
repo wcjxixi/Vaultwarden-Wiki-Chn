@@ -26,7 +26,11 @@
 
 * [https://github.com/nosovk/vaultwarden-fly-io/blob/main/fly.toml](https://github.com/nosovk/vaultwarden-fly-io/blob/main/fly.toml)
 
-使用 SQLite 数据库安装 vaultwarden。但是你需要为数据库创建卷 `flyctl volumes create vaultwarden_data -a [your app name] -s 1`
+使用 SQLite 数据库安装 Vaultwarden。但是你需要为数据库创建卷：`flyctl volumes create vaultwarden_data -a [your app name] -s 1`
+
+* [https://github.com/arthurgeek/vaultwarden-fly-template](https://github.com/arthurgeek/vaultwarden-fly-template)
+
+在 Fly.io 上部署 Vaultwarden 的模板，具有 websockets 支持（带有 caddy）和使用 Restic 的 sqlite 每小时备份功能。
 
 ## Kubernetes
 
