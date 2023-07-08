@@ -167,18 +167,7 @@ server {
       proxy_pass http://vaultwarden-default;
     }
 
-    location /notifications/hub/negotiate {
-      proxy_http_version 1.1;
-      proxy_set_header "Connection" "";
-
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-Proto $scheme;
-
-      proxy_pass http://vaultwarden-default;
-    }
-
+    # 不要添加尾随 /，否则您会遇到问题
     location /notifications/hub {
       proxy_http_version 1.1;
       proxy_set_header Upgrade $http_upgrade;
@@ -1122,5 +1111,15 @@ relay vaultwarden-https-relay {
         forward to <vaultwarden-websocket-host> port 3012
 }
 ```
+
+</details>
+
+<details>
+
+<summary>CloudFlare (by <a href="https://github.com/williamdes">@williamdes</a>)</summary>
+
+按照下面的截图创建新的规则。用于查找此设置的示例仪表板 URL：`https://dash.cloudflare.com/xxxxxx/example.org/rules/origin-rules/new`
+
+<img src="https://user-images.githubusercontent.com/7784660/251004005-e27d9152-219b-4b6a-bf96-dcfce30ebd73.png" alt="" data-size="original">
 
 </details>
