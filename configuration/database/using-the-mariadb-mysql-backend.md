@@ -226,7 +226,7 @@ ERROR 1136 (21S01) at line ###: Column count doesn't match value count at row 1
 
 在下面的示例中，我将使用数据库名称 `vaultwarden`，如果您使用不同的名称，请更改它。
 
-在开始之前，通过运行以下两个查询来验证是否存在任何问题。它应该返回 `utf8mb4` 和 `utf8mb4_general_ci`。
+在开始之前，通过运行以下两个查询来验证是否存在任何问题。它应该返回 `utf8mb4` 和 `utf8mb4_unicode_ci`。
 
 同样要在下面的查询末尾运行这些查询以验证它是否有效！
 

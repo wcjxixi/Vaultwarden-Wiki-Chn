@@ -69,11 +69,8 @@
   
   # 取消注释以仅允许从本地网络访问管理界面
   # import admin_redir
-  
-  # Notifications 重定向到 websockets 服务器
-  reverse_proxy /notifications/hub <SERVER>:3012
 
-  # 将其他所有代理到 Rocket
+  # 将所有代理到 Rocket
   # 如果位于子路径中，则 reverse_proxy 行将如下所示：
   # reverse_proxy /subpath/* <server>:80
   reverse_proxy <SERVER>:80 {
@@ -152,7 +149,7 @@ server {
 }
 
 server {
-    # 对于旧版本的 nginx，在 ssl 后面的 listen 行中加入 http2，并移除 'http2 on'。
+    # 对于旧版本的 nginx，在 ssl 后面的 listen 行中加入 http2，并移除 'http2 on;'。
     listen 443 ssl;
     listen [::]:443 ssl;
     http2 on;
@@ -234,16 +231,17 @@ upstream vaultwarden-default {
   server 127.0.0.1:8080;
   keepalive 2;
 }
-# Needed to support websocket connections
-# See: https://nginx.org/en/docs/http/websocket.html
-# Instead of "close" as stated in the above link we send an empty value.
-# Else all keepalive connections will not work.
+
+# 要支持 websocket 连接的话才需要
+# 参阅：https://nginx.org/en/docs/http/websocket.html
+# 我们不发送上述链接中所说的 "close"，而是发送一个空值。
+# 否则所有的 keepalive 连接都将无法工作。
 map $http_upgrade $connection_upgrade {
     default upgrade;
     ''      "";
 }
 
-# Redirect HTTP to HTTPS
+# 将 HTTP 重定向到 HTTPS
 server {
     listen 80;
     listen [::]:80;
@@ -256,23 +254,23 @@ server {
 }
 
 server {
-    # For older versions of nginx appened `http2` to the listen line after ssl and remove `http2 on;`
+    # 对于旧版本的 nginx，在 ssl 后面的 listen 行中加入 http2，并移除 'http2 on;'
     listen 443 ssl;
     listen [::]:443 ssl;
     http2 on;
     server_name vaultwarden.example.tld;
 
-    # Specify SSL Config when needed
+    # 根据需要指定 SSL 配置
     #ssl_certificate /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/fullchain.pem;
     #ssl_certificate_key /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/privkey.pem;
     #ssl_trusted_certificate /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/fullchain.pem;
 
     client_max_body_size 525M;
 
-    ## Using a Sub Path Config
-    # Path to the root of your installation
-    # Be sure to DO ADD a trailing /, else you will experience issues 
-    # But only for this location, all other locations should NOT add this.
+    ## 使用子路径配置
+    # 到你的安装的 root 目录的路径
+    # 一定要加上尾部的 /，否则您会遇到问题
+    # 但仅限于这个位置，所有其他位置都不应该添加这个。
     location /vault/ {
       proxy_http_version 1.1;
       proxy_set_header Upgrade $http_upgrade;
@@ -286,12 +284,12 @@ server {
       proxy_pass http://vaultwarden-default;
     }
 
-    # Optionally add extra authentication besides the ADMIN_TOKEN
-    # Remove the comments below `#` and create the htpasswd_file to have it active
+    # 除了 ADMIN_TOKEN 之外，还可以选择添加额外的身份验证
+    # 删除下面的 '#' 注释并创建 htpasswd_file 以使其处于活动状态
     #
-    # DO NOT add a trailing /, else you will experience issues
+    # 不要添加尾部的/，否则您会遇到问题
     #location /vault/admin {
-    #  # See: https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/
+    #  # 参阅：https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/
     #  auth_basic "Private";
     #  auth_basic_user_file /path/to/htpasswd_file;
     #
@@ -590,10 +588,7 @@ server {
     ErrorLog \${APACHE_LOG_DIR}/vaultwarden-error.log
     CustomLog \${APACHE_LOG_DIR}/vaultwarden-access.log combined
 
-    RewriteEngine On
-    RewriteCond %{HTTP:Upgrade} =websocket [NC]
-    RewriteRule /notifications/hub(.*) ws://<SERVER>:3012/$1 [P,L]
-    ProxyPass / http://<SERVER>:80/
+    ProxyPass / http://<SERVER>:80/ upgrade=websocket
 
     ProxyPreserveHost On
     ProxyRequests Off

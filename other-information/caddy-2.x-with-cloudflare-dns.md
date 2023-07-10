@@ -49,13 +49,7 @@ https://[YOUR-DOMAIN]:443 {
        # 移除 Last-Modified 因为 etag 具有相同的效果
        -Last-Modified
    }
-  # 协商端点也代理到 Rocket
-  reverse_proxy /notifications/hub/negotiate vaultwarden:80
-
-  # 通知重定向到 websockets 服务器
-  reverse_proxy /notifications/hub vaultwarden:3012
-
-  # 将 Root 目录代理到 Rocket
+  # 代理到 Rocket
   reverse_proxy vaultwarden:80 {
        # 将真正的远程 IP 发送给 Rocket，以便 vaultwarden 可以将其
        # 放入日志，以便 fail2ban 可以禁止正确的 IP。
@@ -76,7 +70,6 @@ services:
     volumes:
       - $PWD/vw-data:/data
     environment:
-      WEBSOCKET_ENABLED: 'true' # 启用 websockets
       SIGNUPS_ALLOWED: 'false'   # 设置为 false 以禁用注册
       DOMAIN: 'https://[DOMAIN]'
       SMTP_HOST: '[MAIL-SERVER]'

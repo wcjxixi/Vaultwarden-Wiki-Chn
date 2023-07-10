@@ -25,7 +25,6 @@ services:
     container_name: vaultwarden
     restart: always
     environment:
-      WEBSOCKET_ENABLED: "true"  # 启用 WebSocket 通知
       DOMAIN: "https://vaultwarden.example.com"  # 您的域名；Vaultwarden 需要知道它是 https 才能正确处理附件
     volumes:
       - ./vw-data:/data
@@ -66,10 +65,7 @@ services:
   # 如果遇到问题，请尝试禁用此功能
   encode gzip
 
-  # Notifications 重定向到 WebSocket 服务器
-  reverse_proxy /notifications/hub vaultwarden:3012
-
-  # 将任何其他东西代理到 Rocket
+  # 将所有代理到 Rocket
   reverse_proxy vaultwarden:80 {
        # 把真实的远程 IP 发送给 Rocket，让 Vaultwarden 把其放在日志中
        # 这样 fail2ban 就可以阻止正确的 IP 了
@@ -107,7 +103,6 @@ services:
     container_name: vaultwarden
     restart: always
     environment:
-       WEBSOCKET_ENABLED: "true"  # 启用 WebSocket 通知
        DOMAIN: "https://vaultwarden.example.com"  # 您的域名；Vaultwarden 需要知道它是 https 才能正确处理附件
     volumes:
        - ./vw-data:/data
@@ -154,10 +149,7 @@ services:
   # 如果遇到问题，请尝试禁用此功能
   encode gzip
 
-  # Notifications 重定向到 WebSocket 服务器
-  reverse_proxy /notifications/hub vaultwarden:3012
-
-  # 代理除 Rocket 外的所有
+  # 将所有代理到 Rocket
   reverse_proxy vaultwarden:80
 }
 ```
