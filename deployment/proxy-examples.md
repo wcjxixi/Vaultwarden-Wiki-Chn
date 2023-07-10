@@ -117,7 +117,7 @@ $HTTP["host"] == "vault.example.net" {
 
 <details>
 
-<summary>Nginx (by blackdex)</summary>
+<summary>Nginx - v1.29.0 (by BlackDex)</summary>
 
 ```nginx
 # 'upstream' 指令确保你有一个 http/1.1 连接
@@ -129,10 +129,14 @@ upstream vaultwarden-default {
   server 127.0.0.1:8080;
   keepalive 2;
 }
-upstream vaultwarden-ws {
-  zone vaultwarden-ws 64k;
-  server 127.0.0.1:3012;
-  keepalive 2;
+
+# 要支持 websocket 连接的话才需要
+# 参阅：https://nginx.org/en/docs/http/websocket.html
+# 我们不发送上述链接中所说的 "close"，而是发送一个空值。
+# 否则所有的 keepalive 连接都将无法工作。
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      "";
 }
 
 # 将 HTTP 重定向到 HTTPS
@@ -140,12 +144,18 @@ server {
     listen 80;
     listen [::]:80;
     server_name vaultwarden.example.tld;
-    return 301 https://$host$request_uri;
+
+    if ($host = vaultwarden.example.tld) {
+        return 301 https://$host$request_uri;
+    }
+    return 404;
 }
 
 server {
-    listen 443 ssl http2;
-    listen [::]:443 ssl http2;
+    # 对于旧版本的 nginx，在 ssl 后面的 listen 行中加入 http2，并移除 'http2 on'。
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    http2 on;
     server_name vaultwarden.example.tld;
 
     # 根据需要指定 SSL 配置
@@ -153,11 +163,12 @@ server {
     #ssl_certificate_key /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/privkey.pem;
     #ssl_trusted_certificate /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/fullchain.pem;
 
-    client_max_body_size 128M;
+    client_max_body_size 525M;
 
     location / {
       proxy_http_version 1.1;
-      proxy_set_header "Connection" "";
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection $connection_upgrade;
 
       proxy_set_header Host $host;
       proxy_set_header X-Real-IP $remote_addr;
@@ -167,31 +178,17 @@ server {
       proxy_pass http://vaultwarden-default;
     }
 
-    # 不要添加尾随 /，否则您会遇到问题
-    location /notifications/hub {
-      proxy_http_version 1.1;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection "upgrade";
-
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header Forwarded $remote_addr;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-Proto $scheme;
-
-      proxy_pass http://vaultwarden-ws;
-    }
-
     # 除了 ADMIN_TOKEN 之外，还可以选择添加额外的身份验证
     # 删除下面的 '#' 注释并创建 htpasswd_file 以使其处于活动状态
     #
     #location /admin {
-    #  # 参阅: https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/
+    #  # 参阅：https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/
     #  auth_basic "Private";
     #  auth_basic_user_file /path/to/htpasswd_file;
     #
     #  proxy_http_version 1.1;
-    #  proxy_set_header "Connection" "";
+    #  proxy_set_header Upgrade $http_upgrade;
+    #  proxy_set_header Connection $connection_upgrade;
     #
     #  proxy_set_header Host $host;
     #  proxy_set_header X-Real-IP $remote_addr;
@@ -216,7 +213,7 @@ server {
 
 <details>
 
-<summary>Nginx with sub-path (by BlackDex)</summary>
+<summary>Nginx with sub-path - v1.29.0 (by BlackDex)</summary>
 
 在这个示例中，Vaultwarden 的访问地址为 `https://vaultwarden.example.tld/vault/`，如果您想使用任何其他的子路径，比如 `vaultwarden` 或 `secret-vault`，您需要更改下面示例中相应的地方。
 
@@ -227,7 +224,8 @@ server {
 DOMAIN=https://vaultwarden.example.tld/vault/
 ```
 
-<pre class="language-nginx"><code class="lang-nginx"># 'upstream' 指令确保你有一个 http/1.1 连接
+```nginx
+# 'upstream' 指令确保你有一个 http/1.1 连接
 # 这里启用了 keepalive 选项并拥有更好的性能
 #
 # 此处定义服务器的 IP 和端口。
@@ -236,92 +234,70 @@ upstream vaultwarden-default {
   server 127.0.0.1:8080;
   keepalive 2;
 }
-upstream vaultwarden-ws {
-  zone vaultwarden-ws 64k;
-  server 127.0.0.1:3012;
-  keepalive 2;
+# Needed to support websocket connections
+# See: https://nginx.org/en/docs/http/websocket.html
+# Instead of "close" as stated in the above link we send an empty value.
+# Else all keepalive connections will not work.
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      "";
 }
 
-# 将 HTTP 重定向到 HTTPS
+# Redirect HTTP to HTTPS
 server {
-    if ($host = vaultwarden.example.tld) {
-        return 301 https://$host$request_uri;
-    }
-
     listen 80;
     listen [::]:80;
     server_name vaultwarden.example.tld;
-    return 404;
 
+    if ($host = vaultwarden.example.tld) {
+        return 301 https://$host$request_uri;
+    }
+    return 404;
 }
 
 server {
-    listen 443 ssl http2;
-    listen [::]:443 ssl http2;
+    # For older versions of nginx appened `http2` to the listen line after ssl and remove `http2 on;`
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    http2 on;
     server_name vaultwarden.example.tld;
 
-    # 根据需要指定 SSL 配置
+    # Specify SSL Config when needed
     #ssl_certificate /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/fullchain.pem;
     #ssl_certificate_key /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/privkey.pem;
     #ssl_trusted_certificate /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/fullchain.pem;
 
-    client_max_body_size 128M;
+    client_max_body_size 525M;
 
-    ## 使用子路径配置
-    # 您的安装的 root 目录路径
-    # 确保在尾部添加 /，否则会遇到问题
-    # 但仅针对此位置，所有其他位置无需添加
+    ## Using a Sub Path Config
+    # Path to the root of your installation
+    # Be sure to DO ADD a trailing /, else you will experience issues 
+    # But only for this location, all other locations should NOT add this.
     location /vault/ {
       proxy_http_version 1.1;
-      proxy_set_header "Connection" "";
-
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-Proto $scheme;
-
-      proxy_pass http://vaultwarden-default;
-    }
-
-<strong>    # 不要在尾部添加 /，否则会遇到问题
-</strong>    location /vault/notifications/hub/negotiate {
-      proxy_http_version 1.1;
-      proxy_set_header "Connection" "";
-
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-Proto $scheme;
-
-      proxy_pass http://vaultwarden-default;
-    }
-
-    # 不要在尾部添加 /，否则会遇到问题
-    location /vault/notifications/hub {
-      proxy_http_version 1.1;
       proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection "upgrade";
+      proxy_set_header Connection $connection_upgrade;
 
       proxy_set_header Host $host;
       proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header Forwarded $remote_addr;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto $scheme;
 
-      proxy_pass http://vaultwarden-ws;
+      proxy_pass http://vaultwarden-default;
     }
 
-    # 除了 ADMIN_TOKEN 之外，还可以选择添加额外的身份验证
-    # 删除下面的 '#' 注释并创建 htpasswd_file 以使其处于活动状态
+    # Optionally add extra authentication besides the ADMIN_TOKEN
+    # Remove the comments below `#` and create the htpasswd_file to have it active
     #
-    # 不要在尾部添加 /，否则会遇到问题
+    # DO NOT add a trailing /, else you will experience issues
     #location /vault/admin {
-    #  # 参阅: https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/
+    #  # See: https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/
     #  auth_basic "Private";
     #  auth_basic_user_file /path/to/htpasswd_file;
     #
     #  proxy_http_version 1.1;
-    #  proxy_set_header "Connection" "";
+    #  proxy_set_header Upgrade $http_upgrade;
+    #  proxy_set_header Connection $connection_upgrade;
     #
     #  proxy_set_header Host $host;
     #  proxy_set_header X-Real-IP $remote_addr;
@@ -331,7 +307,7 @@ server {
     #  proxy_pass http://vaultwarden-default;
     #}
 }
-</code></pre>
+```
 
 </details>
 
