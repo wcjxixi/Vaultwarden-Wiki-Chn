@@ -44,7 +44,7 @@
 
 ## Fedora (current release, x86\_64)
 
-此 Vaultwarden 包被构建为一个通用二进制文件，其用于 SQLite（默认）、MySQL 和 PostgreSQL。它还创建一个 `vaultwarden` 用户/组和一个 systemd 服务。
+此 Vaultwarden 包被构建为一个通用二进制文件，其用于 SQLite、MySQL 和 PostgreSQL。它还创建一个 `vaultwarden` 用户/组和一个 systemd 服务。
 
 ```bash
 dnf config-manager --add-repo https://evermeet.cx/pub/repo/fedora/evermeet.repo
