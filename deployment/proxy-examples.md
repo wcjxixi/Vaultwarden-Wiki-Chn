@@ -114,7 +114,7 @@ $HTTP["host"] == "vault.example.net" {
 
 <details>
 
-<summary>Nginx - v1.29.0 (by BlackDex)</summary>
+<summary>Nginx - v1.29.0+ (by BlackDex)</summary>
 
 ```nginx
 # 'upstream' 指令确保你有一个 http/1.1 连接
@@ -210,7 +210,7 @@ server {
 
 <details>
 
-<summary>Nginx with sub-path - v1.29.0 (by BlackDex)</summary>
+<summary>Nginx with sub-path - v1.29.0+ (by BlackDex)</summary>
 
 在这个示例中，Vaultwarden 的访问地址为 `https://vaultwarden.example.tld/vault/`，如果您想使用任何其他的子路径，比如 `vaultwarden` 或 `secret-vault`，您需要更改下面示例中相应的地方。
 
@@ -717,7 +717,7 @@ labels:
 
 <details>
 
-<summary>HAproxy (by BlackDex)</summary>
+<summary>HAproxy - v1.29.0+ (by BlackDex)</summary>
 
 将这些行添加到您的 HAproxy 配置中。
 
@@ -727,23 +727,19 @@ frontend vaultwarden
     option forwardfor header X-Real-IP
     http-request set-header X-Real-IP %[src]
     default_backend vaultwarden_http
-    use_backend vaultwarden_ws if { path_beg /notifications/hub } !{ path_beg /notifications/hub/negotiate }
 
 backend vaultwarden_http
     # 启用压缩（如果您需要）
     # 压缩算法 gzip
     # 压缩类型 text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript
-    server vwhttp 0.0.0.0:8080
-
-backend vaultwarden_ws
-    server vwws 0.0.0.0:3012
+    server vwhttp 0.0.0.0:8080 alpn http/1.1
 ```
 
 </details>
 
 <details>
 
-<summary>HAproxy (by <a href="https://github.com/williamdes">@williamdes</a>)</summary>
+<summary>HAproxy - v1.29.0+ (by <a href="https://github.com/williamdes">@williamdes</a>)</summary>
 
 将这些行添加到您的 HAproxy 配置中。
 
@@ -754,8 +750,7 @@ backend static-success-default
   errorfile 200 /usr/local/etc/haproxy/static/index.static.default.html
 
 frontend http-in
-    bind *:80
-    bind *:443 ssl crt /acme.sh/domain.tld/domain.tld.pem
+    bind *:443 ssl crt /acme.sh/domain.tld/domain.tld.pem alpn h2,http/1.1
     option forwardfor header X-Real-IP
     http-request set-header X-Real-IP %[src]
     default_backend static-success-default
@@ -763,20 +758,15 @@ frontend http-in
     # 定义主机
     acl host_vaultwarden_domain_tld hdr(Host) -i vaultwarden.domain.tld
 
-    ## 找出要使用哪一个
-    use_backend vaultwarden_http if host_vaultwarden_domain_tld !{ path_beg /notifications/hub } or { path_beg /notifications/hub/negotiate }
-    use_backend vaultwarden_ws if host_vaultwarden_domain_tld { path_beg /notifications/hub } !{ path_beg /notifications/hub/negotiate }
+    ## 谋划要使用哪一个
+    use_backend vaultwarden_http if host_bitwarden_domain_tld
 
 backend vaultwarden_http
     # 启用压缩（如果您需要）
     # 压缩算法 gzip
     # 压缩类型 text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript
     # 如果您在 docker-compose 中使用 haproxy，则可以使用容器主机名
-    server vw_http 0.0.0.0:8080
-
-backend vaultwarden_ws
-    # 如果您在 docker-compose 中使用 haproxy，则可以使用容器主机名
-    server vw_ws 0.0.0.0:3012
+    server vw_http 0.0.0.0:8080 alpn http/1.1
 ```
 
 </details>
