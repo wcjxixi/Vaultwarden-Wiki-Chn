@@ -15,7 +15,7 @@ Vaultwarden 的 SSO 支持目前[正在开发中](https://github.com/dani-garcia
 * 查看 SSO 分支
 *   使用以下内容创建 `docker-compose.yml`：
 
-    ```yaml
+    ```bash
     services:
       vaultwarden:
         build: .
