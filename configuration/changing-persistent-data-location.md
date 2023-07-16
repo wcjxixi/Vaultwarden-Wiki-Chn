@@ -1,4 +1,4 @@
-# 9.更改持久性数据位置
+# 10.更改持久性数据位置
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Changing-persistent-data-location)
@@ -8,7 +8,7 @@
 
 默认情况下，所有持久性数据都保存在 `/data` 下，您可以通过设置 `DATA_FOLDER` 环境变量来覆盖此路径：
 
-```docker
+```shell
 docker run -d --name vaultwarden \
   -e DATA_FOLDER=/persistent \
   -v /vw-data/:/persistent/ \
@@ -22,7 +22,7 @@ docker run -d --name vaultwarden \
 
 默认值为 `$DATA_FOLDER/db.sqlite3`，您可以使用 `DATABASE_URL` 变量专门为数据库更改路径：
 
-```docker
+```shell
 docker run -d --name vaultwarden \
   -e DATABASE_URL=/database/vaultwarden.sqlite3 \
   -v /vw-data/:/data/ \
@@ -37,7 +37,7 @@ docker run -d --name vaultwarden \
 
 默认值为 `$DATA_FOLDER/attachments`，您可以使用 `ATTACHMENTS_FOLDER` 变量更改路径：
 
-```docker
+```shell
 docker run -d --name vaultwarden \
   -e ATTACHMENTS_FOLDER=/attachments \
   -v /vw-data/:/data/ \
@@ -52,7 +52,7 @@ docker run -d --name vaultwarden \
 
 默认值为 `$DATA_FOLDER/icon_cache`，您可以使用 `ICON_CACHE_FOLDER` 变量更改路径：
 
-```docker
+```shell
 docker run -d --name vaultwarden \
   -e ICON_CACHE_FOLDER=/icon_cache \
   -v /vw-data/:/data/ \

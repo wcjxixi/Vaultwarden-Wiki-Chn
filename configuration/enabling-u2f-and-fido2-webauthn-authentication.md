@@ -1,4 +1,4 @@
-# 7.启用 U2F 和 FIDO2 WebAuthn 身份验证
+# 8.启用 U2F 和 FIDO2 WebAuthn 身份验证
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-U2F-\(and-FIDO2-WebAuthn\)-authentication)
@@ -8,7 +8,7 @@
 
 之后，您需要将 `DOMAIN` 环境变量设置为与访问 Vaultwarden 相同的地址：
 
-```docker
+```shell
 docker run -d --name vaultwarden \
   -e DOMAIN=https://vw.domain.tld \
   -v /vw-data/:/data/ \

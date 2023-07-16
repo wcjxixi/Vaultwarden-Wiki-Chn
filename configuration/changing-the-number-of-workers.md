@@ -1,4 +1,4 @@
-# 11.更改 worker 数量
+# 12.更改 worker 数量
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Changing-the-number-of-workers)
@@ -10,7 +10,7 @@
 
 在下面的示例中，我们设置为 20 个 worker：
 
-```docker
+```shell
 docker run -d --name vaultwarden \
   -e ROCKET_WORKERS=20 \
   -v /vw-data/:/data/ \
