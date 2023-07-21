@@ -6,7 +6,7 @@
 
 在此文档中，`<SERVER>` 是指用于访问 Vaultwarden 的 IP 或域名，如果代理和 Vaultwarden 两者在同一系统中运行，简单地使用 `localhost` 即可。
 
-默认情况下，Vaultwarden 在端口 80 上监听网页 (REST API) 流量，在端口 3012 上监听 WebSocket 流量（若启用了 [WebSocket](../configuration/enabling-websocket-notifications.md) 通知）。反向代理应该被配置为终止 SSL/TLS 连接（最好是在 HTTPS 的标准端口 443 上）。然后，反向代理将传入的客户端请求在端口 80 或 3012（视情况而定）上传递给 Vaultwarden，并在收到 Vaultwarden 的响应后，将该响应传回客户端。
+默认情况下，Vaultwarden 在端口 80 上监听网页 (REST API) 流量和 [WebSocket 流量](../configuration/enabling-websocket-notifications.md)。反向代理应该被配置为终止 SSL/TLS 连接（最好是在 HTTPS 的标准端口 443 上）。然后，反向代理将传入的客户端请求在端口 80 或 3012（视情况而定）上传递给 Vaultwarden，并在收到 Vaultwarden 的响应后，将该响应传回客户端。
 
 注意，当您把 Vaultwarden 放在反向代理后面时，反向代理和 Vaultwarden 之间的连接通常被认为是通过安全的私有网络进行的，因此不需要加密。下面的例子假设您是在这种配置下运行的，在这种情况下，不应该启用 Vaultwarden 中内置的 HTTPS 功能（也就是说，不应该设置 `ROCKET_TLS` 环境变量）。如果您这样做了，连接就会失败，因为反向代理使用 HTTP 连接到 Vaultwarden，但您配置的 Vaultwarden 却希望使用 HTTPS。
 
@@ -477,13 +477,12 @@ devices:
     type: proxy
 ```
 
-```nginx
-# proxy_protocol 相关:
+<pre class="language-nginx"><code class="lang-nginx"># proxy_protocol 相关:
 
 set_real_ip_from ::1; # 要信任哪个下游代理，请在前面输入您的代理地址
 real_ip_header proxy_protocol; # 可选，如果您希望 nginx 使用来自 proxy_protocol 的信息覆盖 remote_addr。 取决于您在日志模板和服务器或流块中使用的关于远程地址的变量。
 
-# 以下基于 blackdex 示例:
+# 以下基于 @blackdex 的示例:
 
 # `upstream` 指令确保你有一个 http/1.1 连接
 # 这启用了 keepalive 选项和更好的性能
@@ -494,27 +493,31 @@ upstream vaultwarden-default {
   server 127.0.0.1:8080;
   keepalive 2;
 }
-upstream vaultwarden-ws {
-  zone vaultwarden-ws 64k;
-  server 127.0.0.1:3012;
-  keepalive 2;
+# Needed to support websocket connections
+# See: https://nginx.org/en/docs/http/websocket.html
+# Instead of "close" as stated in the above link we send an empty value.
+# Else all keepalive connections will not work.
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      "";
 }
 
 # HTTP 重定向到 HTTPS
 server {
-    if ($host = bitwarden.example.tld) {
+    if ($host = vaultwarden.example.tld) {
         return 301 https://$host$request_uri;
     }
 
-    listen 80 proxy_protocol; # <---
-    listen [::]:80 proxy_protocol; # <---
-    server_name bitwarden.example.tld;
+    listen 80 proxy_protocol; # &#x3C;---
+    listen [::]:80 proxy_protocol; # &#x3C;---
+    server_name vaultwarden.example.tld;
     return 404;
 }
 
 server {
-    listen 443 ssl http2 proxy_protocol; # <---
-    listen [::]:443 ssl http2 proxy_protocol; # <---
+<strong>    listen 443 ssl proxy_protocol; # &#x3C;---
+</strong>    listen [::]:443 ssl proxy_protocol; # &#x3C;---
+    http2 on;
     server_name vaultwarden.example.tld;
 
     # 需要时指定 SSL Config
@@ -522,18 +525,19 @@ server {
     #ssl_certificate_key /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/privkey.pem;
     #ssl_trusted_certificate /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/fullchain.pem;
 
-    client_max_body_size 128M;
+    client_max_body_size 525M;
 
     ## 使用子路径 Config
     # 您的安装的根目录路径
     # 请务必添加尾随 /，否则您可能会遇到问题
+    # 但仅限于此位置，所有其他位置不应添加这些内容
     location /vault/ {
       proxy_http_version 1.1;
       proxy_set_header "Connection" "";
 
       proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr; # <--- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # <-- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
+      proxy_set_header X-Real-IP $remote_addr; # &#x3C;--- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # &#x3C;-- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
       proxy_set_header X-Forwarded-Proto $scheme;
 
       proxy_pass http://vaultwarden-default;
@@ -544,8 +548,8 @@ server {
       proxy_set_header "Connection" "";
 
       proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr; # <--- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # <-- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
+      proxy_set_header X-Real-IP $remote_addr; # &#x3C;--- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # &#x3C;-- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
       proxy_set_header X-Forwarded-Proto $scheme;
 
       proxy_pass http://vaultwarden-default;
@@ -557,15 +561,15 @@ server {
       proxy_set_header Connection "upgrade";
 
       proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr; # <--- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
-      proxy_set_header Forwarded $remote_addr; # <--- [sic] 这是不正确的 [RFC 7239](https://datatracker.ietf.org/doc/html/rfc7239)
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # <-- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
+      proxy_set_header X-Real-IP $remote_addr; # &#x3C;--- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
+      proxy_set_header Forwarded $remote_addr; # &#x3C;--- [sic] 这是不正确的 [RFC 7239](https://datatracker.ietf.org/doc/html/rfc7239)
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # &#x3C;-- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
       proxy_set_header X-Forwarded-Proto $scheme;
 
       proxy_pass http://vaultwarden-ws;
     }
 }
-```
+</code></pre>
 
 </details>
 

@@ -74,10 +74,10 @@ mkdir -p /volumeX/docker/fail2ban/jail.d/
 mkdir -p /volumeX/docker/fail2ban/filter.d/
 ```
 
-3、将 `REJECT` 替换为 `DROP` 块类型
+3、将 blocktype 的 `REJECT` 替换为 `DROP` 块类型
 
 ```systemd
-# /volumeX/docker/fail2ban/action.d/iptables-common.local
+# /volumeX/docker/fail2ban/action.d/iptables.local
 
 [Init]
 blocktype = DROP

@@ -4,30 +4,23 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-WebSocket-notifications)
 {% endhint %}
 
-WebSocket 通知用于将发生的一些相关事件通告给 Bitwarden 的浏览器和桌面客户端，例如密码数据库中有条目被修改了或被删除了。收到通知后，客户端可以采取适当的操作，例如重新获取修改的条目，或从其本地数据库副本中移除已删除的条目。在此通知方案中，Bitwarden 客户端与 Bitwarden 服务器（在本案例中为 Vaultwarden）建立持久的 WebSocket 连接。每当服务器有需要报告的事件时，它都会通过此持久连接将其发送给客户端。
+WebSocket 通知用于将发生的一些相关事件通告给浏览器、Bitwarden 的桌面和浏览器扩展客户端，例如密码数据库中有条目被修改了或被删除了。收到通知后，客户端可以采取适当的操作，例如刷新已修改的条目，或从其本地缓存中移除已删除的条目。在此通知方案中，Bitwarden 客户端与 Bitwarden 服务器（在本案例中为 Vaultwarden）建立持久的 WebSocket 连接。每当服务器有需要报告的事件时，它都会通过此持久连接将其发送给客户端。
 
-请注意，WebSocket 通知不适用于移动 (Android/iOS) Bitwarden 客户端。这些客户端使用原生推送通知服务（Android 为 [FCM](https://firebase.google.com/docs/cloud-messaging)，iOS 为 [APN](https://developer.apple.com/go/?id=push-notifications)）。这些必须使用 Bitwarden 云服务的推送证书单独配置。
+请注意，WebSocket 通知不适用于移动 (Android/iOS) Bitwarden 客户端。这些客户端使用原生推送通知服务（Android 为 [FCM](https://firebase.google.com/docs/cloud-messaging)，iOS 为 [APN](https://developer.apple.com/go/?id=push-notifications)）。这些必须使用 Bitwarden 云服务的推送证书单独配置。同样也适用于 v1.29.0。
 
-要启用 WebSockets 通知，必须使用外部反向代理，并且必须执行以下配置操作：
+自 Vaultwarden v1.29.0 起，WebSocket 默认启用。以前的版本需要反向代理，因为 WebSocket 运行在与默认的 HTTPS 端口不同的端口上。
 
-* 将 `/notifications/hub` 端点路由到 WebSocket 服务器，默认在 `3012` 端口，确保传递 `Connection` 和 `Upgrade` 头。（提示：可以使用 `WEBSOCKET_PORT` 变量来更改端口）
-* 将所有其他（包括 `/notifications/hub/negotiate`）路由到标准 Rocket 服务器，默认在 `80` 端口上。
-* 如果使用 Docker，则可能还需要使用 `-p` 标识来映射两个端口。
+旧的实现在 v1.29.0 中仍然可用，暂时不会在更新期间中断。但将来这将被移除。
 
-在[代理示例](../deployment/proxy-examples.md)页面查看配置示例。
+如果您确实使用像 nginx 或 Apache HTTPd 这样的反向代理，那么您需要确保正确配置它以传递 WebSocket `Upgrade` 和 `Connection` 标头。一些反向代理默认执行此操作，例如 Traefik。
 
-然后，您需要通过将 `WEBSOCKET_ENABLED` 变量设置为 `true` 以在 Vaultwarden 端启用 WebSocket 协商：
+自 Vaultwarden v1.29.0 起，旧的 `WEBSOCKET_ENABLED` 和 `WEBSOCKET_PORT` 不再需要，可以忽略。&#x20;
 
-```shell
-docker run -d --name vaultwarden \
-  -e WEBSOCKET_ENABLED=true \
-  -v /vw-data/:/data/ \
-  -p 80:80 \
-  -p 3012:3012 \
-  vaultwarden/server:latest
-```
+事实上，如果您使用原生实现设置 `WEBSOCKET_ENABLED` 回到默认的 `false` 值，将会减少 Vaultwarden 使用的资源（尽管不会那么多）。
 
-注意：仅当使用旧的反向代理配置时才需要端口 3012。从版本 1.29.0 开始，Vaultwarden 支持通过端口 80 进行 WebSocket 通知。
+示例配置包含在[代理示例](../deployment/proxy-examples.md)中。&#x20;
+
+**请注意，某些示例尚未针对 v1.29.0 进行更新。**
 
 ## 测试 WebSocket 连接 <a href="#test-the-websockets-connection" id="test-the-websockets-connection"></a>
 
