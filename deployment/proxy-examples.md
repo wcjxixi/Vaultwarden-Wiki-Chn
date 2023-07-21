@@ -114,7 +114,7 @@ $HTTP["host"] == "vault.example.net" {
 
 <details>
 
-<summary>Nginx - v1.29.0+ (by BlackDex)</summary>
+<summary>Nginx - v1.29.0+ (by @<a href="https://github.com/BlackDex">BlackDex</a>)</summary>
 
 ```nginx
 # 'upstream' 指令确保你有一个 http/1.1 连接
@@ -457,7 +457,7 @@ NixOS Nginx 配置示例。关于 NixOS 部署的更多信息，请参阅[部署
 
 <details>
 
-<summary>Nginx with proxy_protocol in front (by dionysius)</summary>
+<summary>Nginx with proxy_protocol in front - v1.29.0+ (by dionysius)</summary>
 
 在这个例子中，有一个下游代理在[这个 nginx 前面的 proxy\_protocol](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/) 中进行通信（例如，[启用了 proxy\_protocol 的 LXD 代理设备](https://linuxcontainers.org/lxd/docs/master/reference/devices\_proxy/)）。Nginx 需要从这里设置正确使用协议和要转发的标头。标有 `# <---` 的行与 blackdex 示例的内容不同。
 
@@ -493,10 +493,10 @@ upstream vaultwarden-default {
   server 127.0.0.1:8080;
   keepalive 2;
 }
-# Needed to support websocket connections
-# See: https://nginx.org/en/docs/http/websocket.html
-# Instead of "close" as stated in the above link we send an empty value.
-# Else all keepalive connections will not work.
+# 需要这些以支持 websocket 连接
+# 参阅：https://nginx.org/en/docs/http/websocket.html
+# 我们发送的是空值，而不是上述链接中的 'close'
+# 否则所有 keepalive 连接都将失效
 map $http_upgrade $connection_upgrade {
     default upgrade;
     ''      "";
@@ -532,28 +532,6 @@ server {
     # 请务必添加尾随 /，否则您可能会遇到问题
     # 但仅限于此位置，所有其他位置不应添加这些内容
     location /vault/ {
-     
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr; # &#x3C;--- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # &#x3C;-- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
-      proxy_set_header X-Forwarded-Proto $scheme;
-
-      proxy_pass http://vaultwarden-default;
-    }
-
-    location /vault/notifications/hub/negotiate {
-      proxy_http_version 1.1;
-      proxy_set_header "Connection" "";
-
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr; # &#x3C;--- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # &#x3C;-- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
-      proxy_set_header X-Forwarded-Proto $scheme;
-
-      proxy_pass http://vaultwarden-default;
-    }
-
-    location /vault/notifications/hub {
       proxy_http_version 1.1;
       proxy_set_header Upgrade $http_upgrade;
       proxy_set_header Connection $connection_upgrade;
@@ -562,7 +540,7 @@ server {
       proxy_set_header X-Real-IP $remote_addr;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto $scheme;
-  
+
       proxy_pass http://vaultwarden-default;
     }
 }
