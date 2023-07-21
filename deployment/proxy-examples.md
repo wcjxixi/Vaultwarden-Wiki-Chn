@@ -532,9 +532,7 @@ server {
     # 请务必添加尾随 /，否则您可能会遇到问题
     # 但仅限于此位置，所有其他位置不应添加这些内容
     location /vault/ {
-      proxy_http_version 1.1;
-      proxy_set_header "Connection" "";
-
+     
       proxy_set_header Host $host;
       proxy_set_header X-Real-IP $remote_addr; # &#x3C;--- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # &#x3C;-- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
@@ -558,15 +556,14 @@ server {
     location /vault/notifications/hub {
       proxy_http_version 1.1;
       proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection "upgrade";
+      proxy_set_header Connection $connection_upgrade;
 
       proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr; # &#x3C;--- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
-      proxy_set_header Forwarded $remote_addr; # &#x3C;--- [sic] 这是不正确的 [RFC 7239](https://datatracker.ietf.org/doc/html/rfc7239)
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; # &#x3C;-- 或者如果上面没有设置 real_ip_header：$proxy_forwarded_for
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto $scheme;
-
-      proxy_pass http://vaultwarden-ws;
+  
+      proxy_pass http://vaultwarden-default;
     }
 }
 </code></pre>
