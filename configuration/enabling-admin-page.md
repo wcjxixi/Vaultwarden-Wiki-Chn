@@ -136,12 +136,8 @@ WARNING: The m variable is not set. Defaulting to a blank string.
 **.env：**
 
 ```
-VAULTWARDEN_ADMIN_TOKEN=$argon2id$v=19$m=65540,t=3,p=4$MmeK.....
+VAULTWARDEN_ADMIN_TOKEN='$argon2id$v=19$m=65540,t=3,p=4$MmeK.....'
 ```
-
-{% hint style="warning" %}
-Compose 按字面解释 `.env` 文件中等号后的每个字符。所以这里需要省略单引号。
-{% endhint %}
 
 **docker-compose.yaml：**
 

@@ -114,7 +114,7 @@ $HTTP["host"] == "vault.example.net" {
 
 <details>
 
-<summary>Nginx - v1.29.0+ (by @<a href="https://github.com/BlackDex">BlackDex</a>)</summary>
+<summary>Nginx - v1.29.0+ (by <a href="https://github.com/BlackDex">@BlackDex</a>)</summary>
 
 ```nginx
 # 'upstream' 指令确保你有一个 http/1.1 连接
@@ -210,7 +210,7 @@ server {
 
 <details>
 
-<summary>Nginx with sub-path - v1.29.0+ (by BlackDex)</summary>
+<summary>Nginx with sub-path - v1.29.0+ (by <a href="https://github.com/BlackDex">@BlackDex</a>)</summary>
 
 在这个示例中，Vaultwarden 的访问地址为 `https://vaultwarden.example.tld/vault/`，如果您想使用任何其他的子路径，比如 `vaultwarden` 或 `secret-vault`，您需要更改下面示例中相应的地方。
 
@@ -459,7 +459,7 @@ NixOS Nginx 配置示例。关于 NixOS 部署的更多信息，请参阅[部署
 
 <summary>Nginx with proxy_protocol in front - v1.29.0+ (by dionysius)</summary>
 
-在这个例子中，有一个下游代理在[这个 nginx 前面的 proxy\_protocol](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/) 中进行通信（例如，[启用了 proxy\_protocol 的 LXD 代理设备](https://linuxcontainers.org/lxd/docs/master/reference/devices\_proxy/)）。Nginx 需要从这里设置正确使用协议和要转发的标头。标有 `# <---` 的行与 blackdex 示例的内容不同。
+在这个例子中，有一个下游代理在[这个 nginx 前面的 proxy\_protocol](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/) 中进行通信（例如，[启用了 proxy\_protocol 的 LXD 代理设备](https://linuxcontainers.org/lxd/docs/master/reference/devices\_proxy/)）。Nginx 需要从这里设置正确使用协议和要转发的标头。标有 `# <---` 的行与 blackdex 的示例内容不同。
 
 参考这个 LXD 下游代理设备配置：
 
@@ -482,7 +482,7 @@ devices:
 set_real_ip_from ::1; # 要信任哪个下游代理，请在前面输入您的代理地址
 real_ip_header proxy_protocol; # 可选，如果您希望 nginx 使用来自 proxy_protocol 的信息覆盖 remote_addr。 取决于您在日志模板和服务器或流块中使用的关于远程地址的变量。
 
-# 以下基于 @blackdex 的示例:
+# 以下基于 blackdex 的示例:
 
 # `upstream` 指令确保你有一个 http/1.1 连接
 # 这启用了 keepalive 选项和更好的性能
@@ -696,7 +696,7 @@ labels:
 
 <details>
 
-<summary>HAproxy - v1.29.0+ (by BlackDex)</summary>
+<summary>HAproxy - v1.29.0+ (by <a href="https://github.com/BlackDex">@BlackDex</a>)</summary>
 
 将这些行添加到您的 HAproxy 配置中。
 
