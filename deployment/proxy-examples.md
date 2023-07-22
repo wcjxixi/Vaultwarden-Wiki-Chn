@@ -484,7 +484,7 @@ real_ip_header proxy_protocol; # 可选，如果您希望 nginx 使用来自 pro
 
 # 以下基于 blackdex 的示例:
 
-# `upstream` 指令确保你有一个 http/1.1 连接
+# `upstream` 指令确保您有一个 http/1.1 连接
 # 这启用了 keepalive 选项和更好的性能
 #
 # 这里定义服务器 IP 和端口.
@@ -495,7 +495,7 @@ upstream vaultwarden-default {
 }
 # 需要这些以支持 websocket 连接
 # 参阅：https://nginx.org/en/docs/http/websocket.html
-# 我们发送的是空值，而不是上述链接中的 'close'
+# 我们发送的是空值，而不是上述链接中的 "close"
 # 否则所有 keepalive 连接都将失效
 map $http_upgrade $connection_upgrade {
     default upgrade;

@@ -9,7 +9,7 @@
 启用 HTTPS 的几种方式：
 
 * （推荐）把 Vaultwarden 放在一个[反向代理](https://en.wikipedia.org/wiki/Reverse\_proxy)后面，代替 Vaultwarden 处理 HTTPS 连接。
-* （不推荐）启用 Vaultwarden 内置的 HTTPS 功能（通过 [Rocket](https://rocket.rs/) 网络框架）。Rocket 的 HTTPS 实现相对不成熟且有限。此方式也不支持 [WebSocket 通知](../../configuration/enabling-websocket-notifications.md)。
+* （不推荐）启用 Vaultwarden 内置的 HTTPS 功能（通过 [Rocket](https://rocket.rs/) 网络框架）。Rocket 的 HTTPS 实现相对不成熟且有限。
 
 有关这些选项的更多细节，请参阅[启用 HTTPS](enabling-https.md#enabling-https) 部分。
 
@@ -147,7 +147,7 @@ OCSP Response Status: successful (0x0)
 
 [Let's Encrypt](https://letsencrypt.org/) 免费发放 SSL/TLS 证书。
 
-为了使之工作，您的 Vaultwarden 实例必须拥有一个 DNS 名称（即您不能简单地使用 IP 地址）。如果您的 vaultwarden 可以在公共互联网上访问，那么设置 Let's Encrypt 就比较容易，但即使您的实例是私有的（即只能在您的局域网内访问），也可以通过 [DNS 挑战](running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md)获取 Let's Encrypt 证书。
+为了使之工作，您的 Vaultwarden 实例必须拥有一个 DNS 名称（即您不能简单地使用 IP 地址）。如果您的 Vaultwarden 可以在公共互联网上访问，那么设置 Let's Encrypt 就比较容易，但即使您的实例是私有的（即只能在您的局域网内访问），也可以通过 [DNS 挑战](running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md)获取 Let's Encrypt 证书。
 
 如果您已经拥有或控制了一个域名，那么只需为您的 Vaultwarden 实例的 IP 地址添加一个 DNS 名称即可。如果您没有，可以购买一个域名，尝试在 [Freenom](https://www.freenom.com/) 免费获得一个，或者使用像 [Duck DNS](https://www.duckdns.org/) 这样的服务来获取一个现有域名下的名称（例如，`my-bitwarden.duckdns.org`）。
 
