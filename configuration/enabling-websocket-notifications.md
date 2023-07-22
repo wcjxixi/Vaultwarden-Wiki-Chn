@@ -16,7 +16,7 @@ WebSocket 通知用于将发生的一些相关事件通告给浏览器、Bitward
 
 自 Vaultwarden v1.29.0 起，旧的 `WEBSOCKET_ENABLED` 和 `WEBSOCKET_PORT` 不再需要，可以忽略。&#x20;
 
-事实上，如果您使用原生实现设置 `WEBSOCKET_ENABLED` 回到默认的 `false` 值，将会减少 Vaultwarden 使用的资源（尽管不会那么多）。
+事实上，如果您使用原生实现设置 `WEBSOCKET_ENABLED` 为默认的 `false` 值，将会减少 Vaultwarden 使用的资源（尽管不会那么多）。
 
 示例配置包含在[代理示例](../deployment/proxy-examples.md)中。&#x20;
 
