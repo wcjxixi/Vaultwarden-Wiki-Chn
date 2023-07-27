@@ -25,5 +25,5 @@ docker compose up -d vaultwarden
 ```
 
 {% hint style="danger" %}
-刚开始时，同步无法在移动应用程序上正常使用，除非您使用的是最新安装的 Bitwarden 应用程序。您必须重新安装应用程序并重新登录 Vaultwarden 才能使推送通知正常工作。
+除非您使用的是最新安装的 Bitwarden 应用程序，否则推送通知无法立即在移动应用程序上正常使用。您必须重新安装应用程序并重新登录 Vaultwarden 才能使推送通知正常工作。
 {% endhint %}
