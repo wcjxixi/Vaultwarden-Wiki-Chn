@@ -8,7 +8,7 @@
 
 ### 启用移动客户端推送通知 <a href="#enable-mobile-client-push-notification" id="enable-mobile-client-push-notification"></a>
 
-编辑您的 Vaultwarden docker compose 文件，在环境部分加入以下行：
+编辑您的 Vaultwarden docker compose 文件，在 environnement 部分加入以下行：
 
 ```
       - PUSH_ENABLED=true
