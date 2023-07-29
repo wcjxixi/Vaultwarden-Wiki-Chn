@@ -114,7 +114,7 @@ CLOUDFLARE_API_TOKEN=<your-api-token>
 运行命令以启动 `caddy`：
 
 ```shell
-caddy run -envfile caddy.env
+caddy run --envfile caddy.env
 ```
 
 运行命令以启动 `vaultwarden`：
@@ -122,7 +122,7 @@ caddy run -envfile caddy.env
 ```shell
 export ROCKET_PORT=8080
 
-./bitwarden_rs
+./vaultwarden
 ```
 
 您现在应该可以通过 `https://vw.example.com` 访问到您的实例了。
