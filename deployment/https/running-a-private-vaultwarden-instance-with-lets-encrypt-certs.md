@@ -58,7 +58,7 @@ DUCKDNS_TOKEN=00112233-4455-6677-8899-aabbccddeeff
 运行命令以启动 `caddy`：
 
 ```shell
-caddy run -envfile caddy.env
+caddy run --envfile caddy.env
 ```
 
 运行命令以启动 `vaultwarden`：
