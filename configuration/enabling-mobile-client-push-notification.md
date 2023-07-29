@@ -16,7 +16,7 @@
       - PUSH_INSTALLATION_KEY=
 ```
 
-要获取 PUSH\_INSTALLATION\_ID 和 PUSH\_INSTALLATION\_KEY，请访问 [https://bitwarden.com/host/](https://bitwarden.com/host/)，输入电子邮件地址，然后您将获得您的 ID 和 KEY。
+要获取 PUSH\_INSTALLATION\_ID 和 PUSH\_INSTALLATION\_KEY，请访问 [https://bitwarden.com/host/](https://bitwarden.com/host/)，输入电子邮件地址，然后您将获得您的 ID 和 KEY。确保只选择 US 地区，EU 地区好像还不行。
 
 完成后，重新启动 docker 容器：
 
@@ -26,4 +26,8 @@ docker compose up -d vaultwarden
 
 {% hint style="danger" %}
 除非您使用的是最新安装的 Bitwarden 应用程序，否则推送通知无法立即在移动应用程序上正常使用。您必须重新安装应用程序并重新登录 Vaultwarden 才能使推送通知正常工作。
+{% endhint %}
+
+{% hint style="danger" %}
+Vaultwarden 推送当前不支持 EU 数据区域。如果您为 EU 数据区域请求了 INSTALLATION\_ID 和 -KEY，则需要为美国数据区域请求一个新的 INSTALLATION\_ID 和 -KEY，并在 Vaultwarden 配置中使用它们来成功启用推送。
 {% endhint %}
