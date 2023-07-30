@@ -24,10 +24,14 @@
 docker compose up -d vaultwarden
 ```
 
-{% hint style="danger" %}
+{% hint style="warning" %}
 除非您使用的是最新安装的 Bitwarden 应用程序，否则推送通知无法立即在移动应用程序上正常使用。您必须重新安装应用程序并重新登录 Vaultwarden 才能使推送通知正常工作。
 {% endhint %}
 
-{% hint style="danger" %}
+{% hint style="warning" %}
+推送通知仅适用于从官方移动商店（App Store、Google Play 商店）或使用 Google Play 商店的替代客户端（如 Aurora 商店）安装的 Bitwarden 应用程序。推送通知不适用于从 F-Droid、NeoStore 或其他替代商店安装的 Bitwarden。
+{% endhint %}
+
+{% hint style="warning" %}
 Vaultwarden 推送当前不支持 EU 数据区域。如果您为 EU 数据区域请求了 INSTALLATION\_ID 和 INSTALLATION\_KEY，则需要为美国数据区域请求一个新的 INSTALLATION\_ID 和 INSTALLATION\_KEY，并在 Vaultwarden 配置中使用它们才能成功启用推送。
 {% endhint %}
