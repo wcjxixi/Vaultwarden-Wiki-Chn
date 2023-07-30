@@ -16,7 +16,7 @@
       - PUSH_INSTALLATION_KEY=
 ```
 
-要获取 PUSH\_INSTALLATION\_ID 和 PUSH\_INSTALLATION\_KEY，请访问 [https://bitwarden.com/host/](https://bitwarden.com/host/)，输入电子邮件地址，然后您将获得您的 ID 和 KEY。确保只选择 US 区域，EU 区域好像还不行。
+要获取 `PUSH_INSTALLATION_ID` 和 `PUSH_INSTALLATION_KEY`，请访问 [https://bitwarden.com/host/](https://bitwarden.com/host/)，输入电子邮件地址后获取您的 ID 和 KEY。确保只选择 US 区域，EU 区域好像还不行。
 
 完成后，重新启动 docker 容器：
 
