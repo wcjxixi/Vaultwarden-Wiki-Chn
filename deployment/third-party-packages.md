@@ -87,19 +87,19 @@ openSUSE 构建服务项目，支持：
 
 > \[**译者注**]：[什么是 openSUSE 构建服务](https://zh.wikipedia.org/wiki/Open\_Build\_Service)
 
-| RPM    | 版本                        |
-| ------ | ------------------------- |
-| SUSE   | 15.4；Tumbleweed           |
-| RHEL   | 7\*；8                     |
-| CentOS | 7\*；8；8\_Stream；9\_Stream |
-| Fedora | 36；37；Rawhide             |
+| RPM    | 版本                           |
+| ------ | ---------------------------- |
+| SUSE   | 15.4; 15.5; Tumbleweed       |
+| RHEL   | 7\*; 8                       |
+| CentOS | 7\*; 8; 8\_Stream; 9\_Stream |
+| Fedora | 36; 37; 38; Rawhide          |
 
 _（\* 仅限 vaultwarden-1.28.0，因为 GCC-4.9 不可用。）_
 
-| DEB    | 版本                |
-| ------ | ----------------- |
-| Debian | 10；11；Testing     |
-| Ubuntu | 18.04；20.04；22.04 |
+| DEB    | 版本                         |
+| ------ | -------------------------- |
+| Debian | 10; 11; 12; Testing        |
+| Ubuntu | 18.04; 20.04; 22.04; 23.04 |
 
 您可以直接下载包或使用可用的仓库。
 
