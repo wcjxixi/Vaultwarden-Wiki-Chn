@@ -31,20 +31,20 @@
 xcaddy build --with github.com/caddy-dns/cloudflare --with github.com/caddy-dns/duckdns
 ```
 
-将 `caddy` 二进制 移动到 `/usr/local/bin/caddy` 或其他合适的目录中。（可选）运行语句 `sudo setcap cap_net_bind_service=+ep /usr/local/bin/caddy` 以允许 `caddy` 而在特权端口 (< 1024) 上监听，而无须以 root 身份运行。
+将 `caddy` 二进制 移动到 `/usr/local/bin/caddy` 或其他合适的目录中。使文件可执行。（可选）运行语句 `sudo setcap cap_net_bind_service=+ep /usr/local/bin/caddy` 以允许 `caddy` 在特权端口 (< 1024) 上监听，而无须以 root 身份运行。
 
 ## Duck DNS 设置 <a href="#duck-dns-setup" id="duck-dns-setup"></a>
 
 如果您还没有账户，请在 [https://www.duckdns.org/](https://www.duckdns.org/) 创建一个。给您的 Vaultwarden 实例创建一个子域名（例如，`my-vw.duckdns.org`），将其 IP 地址设置为您的 Vaultwarden 主机的私有 IP（例如，192.168.1.100）。记下您的账户的 token 值（[UUID](https://en.wikipedia.org/wiki/UUID) 格式的字符串）。Caddy 将需要此 token 来完成 DNS 验证。
 
-创建一个名为 `Caddyfile` 的文件，内容如下：
+在 caddy 可执行文件所在的同一目录中创建一个名为 `Caddyfile`（大写 C，无文件扩展名）的文件，其中包含以下内容，并将 `localhost:` 端口替换为 Vaultwarden 在其 `ROCKET_PORT=` 指令中使用的端口（Vaultwarden 的默认 Rocket\_port 为 8001）：
 
 ```yaml
 {$DOMAIN}:443 {
     tls {
         dns duckdns {$DUCKDNS_TOKEN}
     }
-    reverse_proxy localhost:8080
+    reverse_proxy localhost:8001
 }
 ```
 
@@ -55,23 +55,35 @@ DOMAIN=my-vw.duckdns.org
 DUCKDNS_TOKEN=00112233-4455-6677-8899-aabbccddeeff
 ```
 
-运行命令以启动 `caddy`：
+切换到 caddy 所在目录然后运行以下命令以首次启动 `caddy`：
 
-```shell
+```bash
 caddy run --envfile caddy.env
 ```
+
+Duck DNS 域名（例如 my-vw.duckns.org）的 caddy 首次启动需要几秒钟的时间来解决 DNS 挑战和获取 HTTPS 证书。Caddy 通常将它们存储在 `/root/.local/share/caddy` 中，以及 caddy 的配置会自动保存到 `/root/.config/caddy`。
 
 运行命令以启动 `vaultwarden`：
 
 ```shell
-export ROCKET_PORT=8080
+export ROCKET_PORT=8001
 
 ./vaultwarden
 ```
 
-您现在应该可以通过 `https://my-vw.duckdns.org` 访问到您的 Vaultwarden 实例了。
+{% hint style="info" %}
+在设置 Caddy 之前，Vaultwarden 是否已运行并不重要。
+{% endhint %}
 
-**重要提示：**如有必要，在某些路由器（例如 FritzBox）中，由于 DNS 重新绑定保护，必须为域名（例如 `my-vw.example.com`）设置例外。
+您现在应该可以通过 `https://my-vw.duckdns.org` 访问到您的 Vaultwarden 实例了。如果没有，请检查 caddy 的输出。
+
+您可以使用 \[STRG]-\[C] 来停止 caddy。接下来通过以下命令在后台启动 caddy：
+
+```
+caddy start --envfile caddy.env
+```
+
+**重要提示：**如有必要，在某些路由器（例如 FritzBox）或 DNS 解析器（例如 unbound）中，由于 DNS 重新绑定保护，必须为域名（例如 `my-vw.example.com`）设置例外。
 
 ## Cloudflare 设置 <a href="#cloudflare-setup" id="cloudflare-setup"></a>
 
@@ -157,7 +169,27 @@ export ROCKET_PORT=8080
 1. 出于安全原因，它会阻止动态 DNS 服务。
 2. 为防止 [DNS 重新绑定](https://en.wikipedia.org/wiki/DNS\_rebinding)攻击，或出于其他一些原因，它会阻止域名解析到私有 (RFC 1918) IP 地址。
 
-无论哪种情况，您都可以尝试使用其他 DNS 解析器，例如 Google 的 `8.8.8.8` 或 Cloudflare 的 `1.1.1.1`。对于第二种情况，如果您在 dnsmasq 或 Unbound 等本地 DNS 服务器后面运行，则可以将其配置为完全禁用 DNS 重新绑定保护，或允许某些域名返回私有地址。
+无论哪种情况，您都可以尝试使用其他 DNS 解析器，例如 Google 的 `8.8.8.8` 或 Cloudflare 的 `1.1.1.1`。对于第二种情况，如果您在 dnsmasq 或 Unbound 等本地 DNS 服务器后面运行，则可以将其配置为完全禁用 DNS 重新绑定保护，或允许某些域名返回私有地址。关于 Unbound，您可以通过将以下指令添加到其配置文件中来实现（使用您自己的 Duck DNS 域名替换该域名）：
+
+```bash
+private-domain: "my-vw.duckdns.org"
+```
+
+然后通过 `unbound-control reload` 或 `systemctl restart unbound` 重新启动 unbound 以使其加载新配置。
+
+此外，请确保关闭您之前为 Vaultwarden 设置的 HTTPS 设置，特别是通过 Rocket TLS 使用您自己的（自签名）证书的私有 CA，因为这会干扰您新的 Let's Encrypt 受保护的域名。只需在 Vaultwarden 的环境文件中注释掉（# 符号）`ROCKET_TLS` 指令即可：
+
+```bash
+# ROCKET_TLS={certs="./cert.pem",key="./privkey.pem"}
+```
+
+### Vaultwarden 登录问题 <a href="#vaultwarden-login-issues" id="vaultwarden-login-issues"></a>
+
+更改域名后不要忘记更新 Vaultwarden 的环境文件：
+
+```bash
+DOMAIN=https://my-vw.duckdns.org
+```
 
 ## 参考 <a href="#references" id="references"></a>
 
@@ -169,6 +201,7 @@ export ROCKET_PORT=8080
 ### Caddy Cloudflare 组件 <a href="#caddy-cloudflare-module" id="caddy-cloudflare-module"></a>
 
 * [https://github.com/caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare)
+* [https://go-acme.github.io/lego/dns/cloudflare/](https://go-acme.github.io/lego/dns/cloudflare/)
 
 ### Caddy Duck DNS 组件 <a href="#caddy-duck-dns-module" id="caddy-duck-dns-module"></a>
 
