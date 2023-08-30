@@ -42,4 +42,4 @@ docker compose up -d vaultwarden
 推送通知仅适用于从官方移动商店（App Store、Google Play 商店）或使用 Google Play 商店的替代客户端（如 Aurora 商店）安装的 Bitwarden 应用程序。从 [F-Droid](https://mobileapp.bitwarden.com/fdroid/)、NeoStore 或其他替代商店安装的 Bitwarden，推送通知将不起作用。因为这些应用程序是在不支持 Firebase Messaging 的情况下构建的。
 {% endhint %}
 
-5、测试移动端的推送通知是否正常工作，例如通过重命名网页密码库中的文件夹，然会查看移动应用程序中的文件夹在几秒钟后是否发生变化。
+5、测试移动端的推送通知是否正常工作，例如通过重命名网页密码库中的文件夹，然后查看移动应用程序中的文件夹在几秒钟后是否发生变化。
