@@ -12,9 +12,7 @@
 
 ## 非官方包状态
 
-| Server                                                                                                                                 | Web-Vault                                                                                                                                      |
-| -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| [![Packaging status](https://repology.org/badge/vertical-allrepos/vaultwarden.svg)](https://repology.org/project/vaultwarden/versions) | [![Packaging status](https://repology.org/badge/vertical-allrepos/vaultwarden-web.svg)](https://repology.org/project/vaultwarden-web/versions) |
+<table data-full-width="false"><thead><tr><th>Server</th><th>Web-Vault</th></tr></thead><tbody><tr><td><a href="https://repology.org/project/vaultwarden/versions"><img src="https://repology.org/badge/vertical-allrepos/vaultwarden.svg" alt="Packaging status"></a></td><td><a href="https://repology.org/project/vaultwarden-web/versions"><img src="https://repology.org/badge/vertical-allrepos/vaultwarden-web.svg" alt="Packaging status" data-size="original"></a></td></tr></tbody></table>
 
 {% hint style="warning" %}
 请注意，最新的 Vaultwarden 版本并不总是与最新的 web-vault 版本前向兼容，因此您可能需要使[用旧版本](https://github.com/dani-garcia/bw\_web\_builds/releases)的 vaultwarden-web 以确保兼容性。
