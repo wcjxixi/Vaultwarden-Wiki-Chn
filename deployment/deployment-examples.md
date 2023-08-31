@@ -4,7 +4,7 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Deployment-examples)
 {% endhint %}
 
-本页面是独立部署示例的索引。如果要添加新的示例，请在适当的时候创建一个新的类别，并在总体上保持有序。
+本页面是独立部署示例的索引。如果要添加新的示例，请酌情创建一个新的类别，并保持总体有序。
 
 ## Sealos
 
@@ -26,7 +26,7 @@
 
 * [https://github.com/davidjameshowell/vaultwarden\_heroku](https://github.com/davidjameshowell/vaultwarden\_heroku)
 
-使用全部免费的插件在 Heroku 上安装 Vaultwarden。安装大约需要 15 分钟。
+使用完全免费的插件在 Heroku 上安装 Vaultwarden。安装大约需要 15 分钟。
 
 ## Fly.io
 
@@ -56,7 +56,7 @@
 
 * [https://github.com/martient/vaultwarden-ansible](https://github.com/martient/vaultwarden-ansible)
 
-raspberry pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，请遵循页面上链接的指南进行操作。
+Raspberry Pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，请按照页面上链接的指南进行操作。
 
 * [https://dietpi.com/](https://dietpi.com/)
 
