@@ -6,6 +6,16 @@
 
 本页面是独立部署示例的索引。如果要添加新的示例，请在适当的时候创建一个新的类别，并在总体上保持有序。
 
+## Sealos
+
+<div align="left">
+
+<figure><img src="https://raw.githubusercontent.com/labring-actions/templates/main/Deploy-on-Sealos.svg" alt="Deploy on Sealos"><figcaption></figcaption></figure>
+
+</div>
+
+使用完全免费的插件在 Sealos 上安装 Vaultwarden。安装大约需要 1 分钟。优雅地处理高并发并提供动态可扩展性。
+
 ## Google Cloud
 
 * [https://github.com/dadatuputi/bitwarden\_gcloud](https://github.com/dadatuputi/bitwarden\_gcloud)
