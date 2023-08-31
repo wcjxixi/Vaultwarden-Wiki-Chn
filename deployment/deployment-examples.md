@@ -8,11 +8,7 @@
 
 ## Sealos
 
-<div align="left">
-
-<figure><img src="https://raw.githubusercontent.com/labring-actions/templates/main/Deploy-on-Sealos.svg" alt="Deploy on Sealos"><figcaption></figcaption></figure>
-
-</div>
+[![Deploy on Sealos](https://raw.githubusercontent.com/labring-actions/templates/main/Deploy-on-Sealos.svg)](https://cloud.sealos.io/?openapp=system-fastdeploy%3FtemplateName%3Dvaultwarden)
 
 使用完全免费的插件在 Sealos 上安装 Vaultwarden。安装大约需要 1 分钟。优雅地处理高并发并提供动态可扩展性。
 
