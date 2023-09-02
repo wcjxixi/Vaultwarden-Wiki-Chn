@@ -136,8 +136,12 @@ WARNING: The m variable is not set. Defaulting to a blank string.
 **.env：**
 
 ```
-VAULTWARDEN_ADMIN_TOKEN='$argon2id$v=19$m=65540,t=3,p=4$MmeK.....'
+VAULTWARDEN_ADMIN_TOKEN=$argon2id$v=19$m=65540,t=3,p=4$MmeK.....
 ```
+
+{% hint style="warning" %}
+确保不要在 `.env` 文件中使用引号。
+{% endhint %}
 
 **docker-compose.yaml：**
 
@@ -152,3 +156,5 @@ services:
     environment:
       - ADMIN_TOKEN=${VAULTWARDEN_ADMIN_TOKEN}
 ```
+
+您可以通过调用 `docker compose config` 来检查您的配置，您应该会看到转义的 -sign as double-。
