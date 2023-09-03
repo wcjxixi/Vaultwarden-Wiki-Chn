@@ -157,4 +157,4 @@ services:
       - ADMIN_TOKEN=${VAULTWARDEN_ADMIN_TOKEN}
 ```
 
-您可以通过调用 `docker compose config` 来检查您的配置，您应该会看到转义的 $ 符号变为双 $。
+您可以通过调用 `docker compose config` 来检查您的配置，您应该会看到 `$` 符号转义成了两个 `$$`。
