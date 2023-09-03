@@ -26,7 +26,7 @@
 
 * 文件名位于每个代码块的顶部。
 * 从 1.5.0 版开始，Vaultwarden 支持记录到文件。请设置[日志记录](../logging.md)。
-* 尝试使用错误的帐户信息登录到网页版密码库，并检查日志文件中如下格式的记录项：
+* 尝试使用错误的账户信息登录到网页版密码库，并检查日志文件中如下格式的记录项：
 
 ```
 [YYYY-MM-DD hh:mm:ss][vaultwarden::api::identity][ERROR] Username or password is incorrect. Try again. IP: XXX.XXX.XXX.XXX. Username: email@domain.com.

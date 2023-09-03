@@ -108,7 +108,7 @@ echo -n "MySecretPassword" | argon2 "$(openssl rand -base64 32)" -e -id -k 19456
 
 当[使用 Docker Compose](../container-image-usage/using-docker-compose.md) 并通过 `environment` 指令配置 `ADMIN_TOKEN` 时，您需要使用两个美元符号 `$$` 来转义已生成的 argon2 PHC 字符串中出现的所有五个美元符号 `$` 以防止[变量插值](https://docs.docker.com/compose/compose-file/#interpolation)，例如：
 
-```
+```yaml
   environment:
     ADMIN_TOKEN: $$argon2id$$v=19$$m=19456,t=2,p=1$$UUZxK1FZMkZoRHFQRlVrTXZvS0E3bHpNQW55c2dBN2NORzdsa0Nxd1JhND0$$cUoId+JBUsJutlG4rfDZayExfjq4TCt48aBc9qsc3UI
 ```
@@ -145,7 +145,7 @@ VAULTWARDEN_ADMIN_TOKEN=$argon2id$v=19$m=65540,t=3,p=4$MmeK.....
 
 **docker-compose.yaml：**
 
-```docker
+```yaml
 services:
   vaultwarden:
     image: ghcr.io/dani-garcia/vaultwarden

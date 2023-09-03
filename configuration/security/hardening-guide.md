@@ -10,9 +10,9 @@
 
 ### 禁用注册和（可选）邀请 <a href="#disable-registration-and-optionally-invitations" id="disable-registration-and-optionally-invitations"></a>
 
-默认情况下，Vaultwarden 允许任何匿名用户在未被邀请的情况下在服务器上注册新帐户。这是在服务器上创建第一个用户所必需的，但建议您在管理面板中（如果启用了管理面板的话）或[使用环境变量](../disable-registration-of-new-users.md)将其禁用，以防止攻击者在 Vaultwarden 服务器上创建帐户。
+默认情况下，Vaultwarden 允许任何匿名用户在未被邀请的情况下在服务器上注册新账户。这是在服务器上创建第一个用户所必需的，但建议您在管理面板中（如果启用了管理面板的话）或[使用环境变量](../disable-registration-of-new-users.md)将其禁用，以防止攻击者在 Vaultwarden 服务器上创建账户。
 
-Vaultwarden 还允许注册用户邀请其他新用户在服务器上创建帐户并加入其组织。只要您信任您的用户，这不会带来直接风险，但是可以在管理面板或[使用环境变量](../disable-registration-of-new-users.md)将其禁用。
+Vaultwarden 还允许注册用户邀请其他新用户在服务器上创建账户并加入其组织。只要您信任您的用户，这不会带来直接风险，但是可以在管理面板或[使用环境变量](../disable-registration-of-new-users.md)将其禁用。
 
 ### 禁用显示密码提示 <a href="#disable-password-hint-display" id="disable-password-hint-display"></a>
 
@@ -77,7 +77,7 @@ Vaultwarden Docker 镜像的设置使得 `vaultwarden` 可执行文件绑定到�
 
 ### 暴力破解 <a href="#brute-force-mitigation" id="brute-force-mitigation"></a>
 
-当不使用双重身份验证时，（理论上）有可能对用户的密码进行暴力破解，从而获得对其帐户的访问权限。缓解此问题的一种相对简单的方法是设置 fail2ban，设置后，在过多的失败登录尝试后将阻止访问者的 IP 地址。但是在许多反向代理（例如 cloudflare）后面使用此功能时，应格外注意。参阅：[Fail2Ban 设置](fail2ban-setup.md)。
+当不使用双重身份验证时，（理论上）有可能对用户的密码进行暴力破解，从而获得对其账户的访问权限。缓解此问题的一种相对简单的方法是设置 fail2ban，设置后，在过多的失败登录尝试后将阻止访问者的 IP 地址。但是在许多反向代理（例如 cloudflare）后面使用此功能时，应格外注意。参阅：[Fail2Ban 设置](fail2ban-setup.md)。
 
 ### 隐藏在子目录下 <a href="#hiding-under-a-subdir" id="hiding-under-a-subdir"></a>
 
