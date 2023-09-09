@@ -9,7 +9,7 @@
 启用 HTTPS 的几种方式：
 
 * （推荐）把 Vaultwarden 放在一个[反向代理](https://en.wikipedia.org/wiki/Reverse\_proxy)后面，代替 Vaultwarden 处理 HTTPS 连接。
-* （不推荐）启用 Vaultwarden 内置的 HTTPS 功能（通过 [Rocket](https://rocket.rs/) 网络框架）。Rocket 的 HTTPS 实现相对不成熟且有限。
+* （不推荐）启用 Vaultwarden 内置的 HTTPS 功能（通过 [Rocket](https://rocket.rs/) 网络框架）。Rocket 的 HTTPS 实现相对不成熟且功能有限。
 
 有关这些选项的更多细节，请参阅[启用 HTTPS](enabling-https.md#enabling-https) 部分。
 
@@ -25,7 +25,7 @@
 
 ### 通过反向代理 <a href="#via-a-reverse-proxy" id="via-a-reverse-proxy"></a>
 
-有很多常用的反向代理；在[代理示例](../proxy-examples.md)中可以找到一些配置的示例。 如果您不熟悉反向代理并且没有特别偏好，请首先考虑使用 [Caddy](https://caddyserver.com/)，因为它内置了对获取 Let's Encrypt 证书的支持。[使用 Docker Compose](../../container-image-usage/using-docker-compose.md) 文章中有一个使用 Caddy 的很好的例子。
+有很多常用的反向代理，在[代理示例](../proxy-examples.md)中可以找到一些配置的示例。如果您不熟悉反向代理并且没有特别偏好，请首先考虑使用 [Caddy](https://caddyserver.com/)，因为它内置了对获取 Let's Encrypt 证书的支持。[使用 Docker Compose](../../container-image-usage/using-docker-compose.md) 文章中有一个使用 Caddy 的很好的例子。
 
 ### 通过 Rocket <a href="#via-rocket" id="via-rocket"></a>
 
@@ -46,7 +46,7 @@ ROCKET_TLS={certs="/path/to/certs.pem",key="/path/to/key.pem"}
 
 说明：
 
-* `ROCKET_TLS` 行中使用的文件_扩展名_不一定非要像示例中那样是 `.PEM`。某些地方可能会使用其他扩展名，例如，`.crt` 作为证书，`.key` 作为私钥。这些文件的_格式_必须是 PEM，即 base64 编码。PEM 是 openssl 的默认格式，因此您可以将 .cert、.cer、.crt 和 .key 文件重命名为 .pem 以作为 `ROCKET_TLS` 行中的文件扩展名，或者使用 .crt 或 .key 作为 `ROCKET_TLS` 行中的文件扩展名。
+* `ROCKET_TLS` 行中使用的文件_**扩展**_名不一定非要像示例中那样是 `.PEM`。某些地方可能会使用其他扩展名，例如，`.crt` 作为证书，`.key` 作为私钥。这些文件的_**格式**_必须是 PEM，即 base64 编码。PEM 是 openssl 的默认格式，因此您可以将 .cert、.cer、.crt 和 .key 文件重命名为 .pem 以作为 `ROCKET_TLS` 行中的文件扩展名，或者使用 .crt 或 .key 作为 `ROCKET_TLS` 行中的文件扩展名。
 *   使用 RSA 证书/密钥。Rocket 目前无法处理 ECC 证书/密钥，会输出类似下面的误导性错误消息：
 
     > `[ERROR] environment variable ROCKET_TLS={certs="/ssl/ecdsa.crt",key="/ssl/ecdsa.key"} could not be parsed`
@@ -65,7 +65,7 @@ docker run -d --name vaultwarden \
 
 您需要挂载 ssl 文件夹（使用 `-v` 参数），同时需要转发合适的端口（使用 `-p` 参数），通常是用于 HTTPS 连接的 443 端口。如果您选择的端口号不是 443，比如是 3456，请记住在连接到服务时需要明确提供该端口号，例如：`https://vaultwarden.local:3456`。
 
-有关如何在本地系统上设置和使用私有 CA 的更多信息，请参阅[此页面](../../other-information/private-ca-and-self-signed-certs-that-work-with-chrome.md)。如果遵循该指南，您的 ROCKET\_TLS 行看起来应该像这样：`-e ROCKET_TLS='{certs="/ssl/vaultwarden.crt",key="/ssl/vaultwarden.key"}' \`
+~~有关如何在本地系统上设置和使用私有 CA 的更多信息，请参阅~~[~~此页面~~](../../other-information/private-ca-and-self-signed-certs-that-work-with-chrome.md)~~。如果遵循该指南，您的 ROCKET\_TLS 行看起来应该像这样：`-e ROCKET_TLS='{certs="/ssl/vaultwarden.crt",key="/ssl/vaultwarden.key"}' \`~~
 
 {% hint style="warning" %}
 确保您的证书文件包含了完整的信任链。对于 certbot，这意味着应使用 `fullchain.pem` 而不是 `cert.pem`。完整的信任链应该包含两个证书：叶证书（与 `cert.pem` 中的内容相同），后面跟随 R3 或 E1 [中间证书](https://letsencrypt.org/certificates/#intermediate-certificates)。例如，Android 默认不在其系统信任存储中包含任何 Let's Encrypt 中间证书，所以如果您不提供完整的证书链，Android 客户端很可能无法连接。
@@ -94,9 +94,9 @@ docker run -d --name vaultwarden \
 
 您可以使用 [Qualys' SSL Labs](https://www.ssllabs.com/ssltest/analyze.html) 检查，但它不支持自定义端口。另外，请记住选中「Do not show the results on the boards」复选框，否则您的系统将在「Recently Seen」列表中可见。
 
-如果您运行的是没有与公共 Internet 连接的本地服务器，则可以使用 `openssl` 命令，[testssl.sh](https://testssl.sh/) 或 [SSLScan](https://github.com/rbsec/sslscan/) 来验证证书的有效性。
+如果您运行的是没有与公共 Internet 连接的本地服务器，则可以使用 `openssl` 命令 [testssl.sh](https://testssl.sh/) 或 [SSLScan](https://github.com/rbsec/sslscan/) 来验证证书的有效性。
 
-执行以下操作以验证证书是否随链安装（注意将 vault.domain.com 改为您自己的域名）：
+执行以下操作以验证证书是否随链安装（注意将 `vault.domain.com` 更改为您自己的域名）：
 
 ```shell
 openssl s_client -showcerts -connect vault.domain.com:443 -servername vault.domain.com
