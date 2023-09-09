@@ -1,4 +1,4 @@
-# \*6.使私有 CA 和自签名证书兼容 Chrome
+# \*使私有 CA 和自签名证书兼容 Chrome
 
 {% hint style="success" %}
 对应的官方页面地址（Vaultwarden WiKi 已移除此页面）
@@ -42,11 +42,11 @@ openssl genpkey -algorithm RSA -out vaultwarden.key -outform PEM -pkeyopt rsa_ke
 openssl req -new -key vaultwarden.key -out vaultwarden.csr
 ```
 
-创建具有以下内容的文本文件 `vaultwarden.ext`，将域名更改为您设置的域名：
+使用以下内容创建文本文件 `vaultwarden.ext`，请将域名更改为您设置的域名：
 
 ```systemd
 authorityKeyIdentifier=keyid,issuer
-basicConstraints=CA:FALSE
+basicConstraints=CA:TRUE
 keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
 extendedKeyUsage = serverAuth
 subjectAltName = @alt_names
@@ -54,6 +54,8 @@ subjectAltName = @alt_names
 [alt_names]
 DNS.1 = vaultwarden.local
 DNS.2 = www.vaultwarden.local
+# 如果不使用 DNS 名称，也可选择添加 IP
+IP.1 = 192.168.1.3
 ```
 
 创建从根 CA 签名的 Vaultwarden 证书：
@@ -62,7 +64,9 @@ DNS.2 = www.vaultwarden.local
 openssl x509 -req -in vaultwarden.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out vaultwarden.crt -days 365 -sha256 -extfile vaultwarden.ext
 ```
 
-注意：自 2019 年 4 月起，iOS 13+ 和 macOS 15+ 的服务器证书的到期日不能超过 825，并且必须包含 ExtendedKeyUsage 扩展。详见 [https://support.apple.com/zh-cn/HT210176](https://support.apple.com/en-us/HT210176)。
+**注意**：自 2019 年 4 月起，iOS 13+ 和 macOS 15+ 的服务器证书的有效期不能大于 825 天，并且必须包含 ExtendedKeyUsage 扩展。详见 [https://support.apple.com/zh-cn/HT210176](https://support.apple.com/zh-cn/HT210176)。
+
+**注意**：从 Android 11 开始，`basicConstraints` 值必须设置为 `CA:TRUE` 才能通过「设置」应用程序导入。
 
 将根证书和 Vaultwarden 证书添加到客户端计算机。
 

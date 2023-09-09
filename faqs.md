@@ -66,7 +66,7 @@ Bitwarden 客户端需要一个安全的连接，才能正常工作且没有任�
 
 ## 可以将 Vaultwarden 作为 Azure WebApp 运行吗？ <a href="#can-i-run-bitwarden_rs-as-an-azure-webapp" id="can-i-run-bitwarden_rs-as-an-azure-webapp"></a>
 
-不幸的是，Azure WebApp 使用 CIFS/Samba 作为卷存储，不支持锁定。这导致 Vaultwarden 不能使用 SQLite 数据库文件。
+不幸的是，Azure WebApp 使用 CIFS/Samba 作为卷存储，而 CIFS/Samba 不支持锁定。这导致 Vaultwarden 不能使用 SQLite 数据库文件。
 
 有两种解决方式：
 
