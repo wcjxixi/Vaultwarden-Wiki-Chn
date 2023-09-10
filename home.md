@@ -25,7 +25,7 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 * [文件夹](https://help.ppgg.in/your-vault/folders)
 * [收藏](https://help.ppgg.in/your-vault/favorites)
 * [网站图标](https://help.ppgg.in/security/privacy-when-using-website-icons)
-* [Bitwarden 验证器（TOTP）](https://help.ppgg.in/your-vault/bitwarden-authenticator-totp)
+* [Bitwarden 验证器 (TOTP)](https://help.ppgg.in/your-vault/bitwarden-authenticator-totp)
 * [Bitwarden Send](https://help.ppgg.in/bitwarden-send/about-send)
 * [紧急访问](https://help.ppgg.in/security/emergency-access)
 * 用于桌面端/浏览器客户端/扩展的[实时同步](https://bitwarden.com/blog/live-sync/)（仅 WebSocket）
@@ -50,7 +50,7 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 
 ## 缺少的特性 <a href="#missing-features" id="missing-features"></a>
 
-话题 [#246](https://github.com/dani-garcia/vaultwarden/issues/246) 包含了完整的功能请求列表，既有官方服务器中缺少的功能，也有 Vaultwarden 中特有的增强功能。
+话题 [#246](https://github.com/dani-garcia/vaultwarden/issues/246) 包含了完整的功能请求列表，其中既有官方服务器在 Vaultwarden 中缺失的功能，也有 Vaultwarden 中特有的增强功能。
 
 为了与官方服务器做简单的比较，本章节总结了官方服务器中已经实现但在 Vaultwarden 中目前还没有实现的功能。
 
@@ -67,10 +67,10 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
   * [密码库超时](https://help.ppgg.in/organizations/enterprise-policies#vault-timeout)
   * [禁用个人密码库导出](https://help.ppgg.in/organizations/enterprise-policies#disable-personal-vault-export)
 
-## 保持联系 <a href="#get-in-touch" id="get-in-touch"></a>
+## 联系我们 <a href="#get-in-touch" id="get-in-touch"></a>
 
 要提出问题、提供建议、请求新功能或获得有关配置或安装软件的帮助，请[使用论坛](https://vaultwarden.discourse.group)。
 
-如果您发现任何与 Vaultwarden 本身有关的 bug 或崩溃，请[创建一个话题](https://github.com/dani-garcia/vaultwarden/issues)。并先确保不存在任何类似的话题！
+如果您发现任何与 Vaultwarden 本身有关的 bug 或崩溃，请[创建一个话题](https://github.com/dani-garcia/vaultwarden/issues)。并确保不存在任何类似的话题！
 
 我们通常在 [#vaultwarden:matrix.org](https://matrix.to/#/#vaultwarden:matrix.org) 房间闲逛，如果您喜欢聊天，欢迎随时加入我们！

@@ -21,7 +21,7 @@
 
 默认情况下，Oracle MySQL v8.x 使用更安全的密码散列方法，这是好事，但我们的构建目前不支持它。
 
-您需要以一种特定的方式创建 Vaultwarden 用户，以便它能使用旧的原生密码散列：
+您需要以一种特定的方法创建 Vaultwarden 用户，以便它能使用旧的原生密码散列：
 
 ```sql
 -- 在 MySQLv8 安装上使用此命令
@@ -48,21 +48,21 @@ Bitwarden 客户端需要一个安全的连接，才能正常工作且没有任�
 * [启用 HTTPS](deployment/https/enabling-https.md)
 * [使用 Let's Encrypt 证书运行私有 Vaultwarden 实例](deployment/https/running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md)
 
-## 为什么我的所有密码库项目都看不到图标？ <a href="#why-do-i-see-no-icons-for-all-my-vault-items" id="why-do-i-see-no-icons-for-all-my-vault-items"></a>
+## 为什么我密码库的所有项目都看不到图标？ <a href="#why-do-i-see-no-icons-for-all-my-vault-items" id="why-do-i-see-no-icons-for-all-my-vault-items"></a>
 
-没有显示图标的原因有很多。如果只是几个密码库项目，可能是我们无法提取它。有些网站启用了一些保护措施，导致我们的实施失败。他们中的大多数需要 Javascript 才能工作。
+没有显示图标的原因有很多种。如果只是某几个密码库项目，可能是我们无法提取它。有些网站启用了一些保护措施，导致我们的实施失败。他们中的大多数需要 Javascript 才能工作。
 
 这也可能是 Vaultwarden 服务器无法访问互联网或未解决 DNS 查询所致。您可以检查 `/admin/diagnostics` 页面（参阅[启用管理页面](configuration/enabling-admin-page.md)），看看您是否能解决 DNS 查询以及是否有连接到互联网。如果都没问题，也有可能是防火墙或外发互联网代理阻止了这些请求。
-
-## 为什么 Vaultwarden 会提示 `[INFO] No .env file found`。即使我已经提供了一个？
-
-启动时，Vaultwarden 将检查进程的当前工作目录中是否存在名为 `.env` 的文件（如果未通过环境变量 `ENV_FIL`E 更改）。如果您没有提供此文件，Vaultwarden 将简单地通知您它没有找到它。此文件与您提供给 docker 的 env 文件无关，该文件在创建容器时加载环境变量或在 [systemd .service](configuration/creating-a-systemd-service.md) 中使用的 EnvironmentFile。
 
 ## Websocket 连接显示错误的 IP 地址。 <a href="#websocket-connections-show-wrong-ip-address" id="websocket-connections-show-wrong-ip-address"></a>
 
 这不是我们可以解决的问题。我们使用的库不支持任何形式的 `X-Forwarded-For` 或 `Forward` 标头。
 
 它会始终显示所使用的反向代理的 IP，除非您在没有任何代理的情况下直接运行 Vaultwarden，或者运行透明代理，这可能会让它显示正确的 IP。这不是一个重要的日志记录部分，并且如果您使用反向代理，您可能还可以在其日志中看到此请求，该请求具有正确的 IP。
+
+## 为什么 Vaultwarden 会提示 `[INFO] No .env file found`。即使我已经提供了一个？
+
+启动时，Vaultwarden 将检查进程的当前工作目录中是否存在名为 `.env` 的文件（如果未通过环境变量 `ENV_FILE` 更改）。如果您没有提供此文件，Vaultwarden 将简单地通知您它没有找到它。此文件与您提供给 docker 的用于在创建容器时加载环境变量的 env 文件无关，也与在 [systemd .service](configuration/creating-a-systemd-service.md) 中使用的环境文件无关。
 
 ## 可以将 Vaultwarden 作为 Azure WebApp 运行吗？ <a href="#can-i-run-bitwarden_rs-as-an-azure-webapp" id="can-i-run-bitwarden_rs-as-an-azure-webapp"></a>
 
