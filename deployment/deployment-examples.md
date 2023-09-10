@@ -100,9 +100,9 @@ Raspberry Pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 
 ## PaaS 托管 <a href="#paas-hosting" id="paas-hosting"></a>
 
-本节介绍了**在云端**或使用平台即服务提供商托管 Vaultwarden 的不同选项。
+本节介绍了**在云端**或使用平台即服务 (PaaS) 提供商托管 Vaultwarden 的不同选项。
 
-> \[**译者注**]：PaaS（Platform as a Service - 平台即服务），是一种云计算服务模型，提供灵活的可扩缩云平台来开发、部署、运行和管理应用。PaaS 为开发者提供了开发应用所需的所有功能，而不必费心考虑操作系统和开发工具更新或者硬件维护。整个 PaaS 环境（或平台）而是由第三方服务提供商通过云提供。[参考 1](https://zh.wikipedia.org/zh-cn/%E5%B9%B3%E5%8F%B0%E5%8D%B3%E6%9C%8D%E5%8A%A1)，[参考 2](https://cloud.google.com/learn/what-is-paas?hl=zh-cn)，[参考 3](https://www.redhat.com/zh/topics/cloud-computing/what-is-paas)。
+> \[**译者注**]：[PaaS](https://cloud.google.com/learn/what-is-paas?hl=zh-cn)：Platform as a Service，平台即服务。PaaS 是一种云计算服务模型，提供灵活的可扩缩云平台来开发、部署、运行和管理应用。PaaS 为开发者提供了开发应用所需的所有功能，而不必费心考虑操作系统和开发工具更新或者硬件维护。整个 PaaS 环境（或平台）而是由第三方服务提供商通过云提供。
 
 ### Sealos
 
