@@ -30,7 +30,7 @@ Vaultwarden 在登录页面上显示密码提示，以适应没有配置 SMTP �
 
 一般来说，您应该避免通过 Vaultwarden 内置的 [Rocket TLS 支持](../../deployment/https/enabling-https.md)启用 HTTPS，特别是当您的实例是公开访问的时候。Rocket 本身列出了如下[警告](https://rocket.rs/v0.4/guide/configuration/#configuring-tls)：
 
-> Rocket's built-in TLS is not considered ready for production use. It is intended for development use only. （Rocket 内置的 TLS 还不能用于生产。它只用于开发用途。）
+> Rocket's built-in TLS is not considered ready for production use. It is intended for development use only.（Rocket 内置的 TLS 还不能用于生产。它只用于开发用途。）
 
 比如，Rocket TLS 不支持严格 SNI 或 ECC 证书（仅 RSA）。
 
