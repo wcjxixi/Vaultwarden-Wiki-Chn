@@ -30,7 +30,6 @@ Vaultwarden 很轻量，对于不希望使用官方的占用大量资源的自�
 
 * 除不支持 Bitwarden 官方企业版的部分功能（详情见[这里](home.md#missing-features)）外，其他大部分功能均**免费**支持。并跟随官方版本保持及时更新。
 * Vaultwarden 比 Bitwarden 官方版更轻量。官方版使用 .Net 开发，使用 MSSQL 数据库，要求至少 2GB 内存；Vaultwarden 使用 Rust 编写，改用 SQLite 数据库（现在也支持 MySQL 和 PostgreSQL），运行时只需要 10M 内存，可以说对硬件基本没有要求。
-* Vaultwarden 只能[自己部署](https://host.ppgg.in/deploying-and-using-of-vaultwarden)；Bitwarden 有自己的服务器，注册账号即可使用。Bitwarden 也支持自托管。
 
 ## 公共实例 <a href="#public-instances" id="public-instances"></a>
 
