@@ -419,7 +419,7 @@ NixOS Nginx 配置示例。关于 NixOS 部署的更多信息，请参阅[部署
     "bw.example.com" = {
       group = "vaultwarden";
       keyType = "rsa2048";
-      allowKeysForGroup = true;
+      # allowKeysForGroup = true; # 已从 NixOS 选项中移除，故这里也移除
     };
   };
 
