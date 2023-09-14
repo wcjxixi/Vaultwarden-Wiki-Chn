@@ -1,4 +1,4 @@
-# 19.使用备用基本目录（子目录/子路径）
+# 20.使用备用基本目录（子目录/子路径）
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Using-an-alternate-base-dir)
@@ -37,7 +37,7 @@ docker run -e DOMAIN="https://vaultwarden.example.com/base-dir" ...
 
 6、使用 `https://vaultwarden.example.com/base-dir` 配置您的应用程序或浏览器扩展。注意：这里如果添加斜杠，则应用程序和浏览器扩展会在保存前自动将其删除。
 
-7、注意对于步骤 **5**。尾部的斜杠 `/` 问题可以通过在路由位置字符串后添加 `/` 来解决。例如，在 nginx 中：
+7、注意对于**步骤 5**。尾部的斜杠 `/` 问题可以通过在路由位置字符串后添加 `/` 来解决。例如，在 nginx 中：
 
 ```nginx
 location /my-base-path {

@@ -1,4 +1,4 @@
-# \*17.使用 systemd docker 运行
+# \*使用 systemd docker 运行
 
 {% hint style="success" %}
 对应的官方页面地址（Vaultwarden WiKi 已移除此页面）
@@ -88,7 +88,7 @@ TimeoutStartSec=0
 
 ## 运行服务 <a href="#running-the-service" id="running-the-service"></a>
 
-完成上述安装和配置后，使用 `sudo systemctl daemon-reload` 命令重新加载systemd 。然后，使用 `sudo systemctl start vaultwarden` 命令启动 Vaultwarden 服务。
+完成上述安装和配置后，使用 `sudo systemctl daemon-reload` 命令重新加载 systemd 。然后，使用 `sudo systemctl start vaultwarden` 命令启动 Vaultwarden 服务。
 
 要使服务跟随系统启动，请使用 `sudo systemctl enable vaultwarden`。
 
