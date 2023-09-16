@@ -8,6 +8,8 @@
 
 `vaultwarden/server` 是一个多架构镜像，这意味着它在一个镜像名下支持多种 CPU 架构。假设您运行的是支持的架构之一，简单地拉取 `vaultwarden/server` 会自动产生适合您的环境的特定架构的镜像。如果您使用的是 ARMv6 开发板，比如 Raspberry Pi 1 和 Zero，您必须使用 Docker 20.10.0 以及更高版本才能使其正常运行（请参阅 [moby/moby#41017](https://github.com/moby/moby/issues/41017)）。
 
+~~运行 Docker 20.10.0 及更高版本的 ARMv6 用户可以像往常一样直接调用 `vaultwarden/server` 多架构镜像。运行早期 Docker 版本的 ARMv6 用户必须在镜像标签中指定 `arm32v6`，例如 `latest-arm32v6`。~~
+
 SQLite 后端是最广泛被使用/测试的后端，除非有特殊需要使用其他数据库后端，否则建议大多数用户使用它。
 
 ## 镜像标签 <a href="#image-tags" id="image-tags"></a>
@@ -16,9 +18,9 @@ SQLite 后端是最广泛被使用/测试的后端，除非有特殊需要使用
 
 * `latest` -- 跟踪最新发布的版本（即标记有版本号）。推荐大多数用户使用这个标签，因为它通常是最稳定的。
 * `testing` -- 跟踪源代码库的最新提交的版本。这个标签推荐给想要提前获取最新功能或增强功能的用户。测试版一般都很稳定，但不可避免它偶尔也会出现一些问题。
-* `x.y.z` (例如 `1.16.0`) -- 代表一个特定的发布版本。
-* `alpine` -- 除了少数例外，该镜像功能上与 `latest` 相同，但它是基于 Alpine 而非 Debian，因此镜像更小。选择 `latest` 或 `alpine` 主要是一个喜好问题，但请注意 `alpine` 标签目前只支持 `amd64` 和 `arm32v7` 架构，并且仅支持 SQLite 和 PostgreSQL 数据库后端。
-* `x.y.z-alpine` (例如 `1.16.0-alpine`) -- 与 `alpine` 类似，但它代表一个特定的发布版本。
+* `x.y.z` (例如 `1.29.2`) -- 代表一个特定的发布版本。
+* `alpine` -- 该镜像功能上与 `latest` 相同，但它是基于 Alpine 而非 Debian，因此镜像更小，基础应用程序更新。选择 `latest` 或 `alpine` 主要是一个喜好问题。（v1.16.0 及之前版本请注意：`alpine` 标签只支持 `amd64` 和 `arm32v7` 架构，并且仅支持 SQLite 和 PostgreSQL 数据库后端。）
+* `x.y.z-alpine` (例如 `1.29.2-alpine`) -- 与 `alpine` 类似，但它代表一个特定的发布版本。
 * ~~`latest-arm32v6` -- 与 `latest` 相同，但明确表示为 `arm32v6` 镜像。目前，对于使用 Armv6 板卡（如 Raspberry Pi 1 和 Zero）的用户来说，需要使用此标签。否则，Docker 会尝试拉取 `arm32v7` 镜像，这将无法正常工作（参阅~~ [~~moby/moby#41017~~](https://github.com/moby/moby/issues/41017)~~）。~~
 * ~~`testing-arm32v6` -- 与 `testing` 相同，但明确表示为 `arm32v6` 镜像。~~
 * ~~`x.y.z-arm32v6` (例如 `1.16.0-arm32v6`) -- 与 `latest-arm32v6` 类似，但它代表一个特定的发布版本。~~
