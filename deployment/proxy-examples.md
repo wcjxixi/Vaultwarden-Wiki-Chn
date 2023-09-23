@@ -644,7 +644,7 @@ labels:
 
 <details>
 
-<summary>Traefik v2 (docker-compose 示例 by hwwilliams)</summary>
+<summary>Traefik v2 - v1.29.0+ (docker-compose 示例 by hwwilliams, gzfrozen)</summary>
 
 #### 将 Traefik v1 标签迁移到 Traefik v2 <a href="#traefik-v-1-labels-migrated-to-traefik-v2" id="traefik-v-1-labels-migrated-to-traefik-v2"></a>
 
@@ -652,12 +652,9 @@ labels:
 labels:
   - traefik.enable=true
   - traefik.docker.network=traefik
-  - traefik.http.routers.vaultwarden-ui.rule=Host(`vaultwarden.domain.tld`)
-  - traefik.http.routers.vaultwarden-ui.service=vaultwarden-ui
-  - traefik.http.services.vaultwarden-ui.loadbalancer.server.port=80
-  - traefik.http.routers.bitwarden-websocket.rule=Host(`bitwarden.domain.tld`)
-  - traefik.http.routers.vaultwarden-websocket.service=vaultwarden-websocket
-  - traefik.http.services.vaultwarden-websocket.loadbalancer.server.port=3012
+  - traefik.http.routers.bitwarden.rule=Host(`bitwarden.domain.tld`)
+  - traefik.http.routers.bitwarden.service=bitwarden
+  - traefik.http.services.bitwarden.loadbalancer.server.port=80
 ```
 
 #### 迁移的标签加上 HTTP 到 HTTPS 重定向 <a href="#migrated-labels-plus-http-to-https-redirect" id="migrated-labels-plus-http-to-https-redirect"></a>
@@ -672,24 +669,15 @@ labels:
   - traefik.docker.network=traefik
   - traefik.http.middlewares.redirect-https.redirectScheme.scheme=https
   - traefik.http.middlewares.redirect-https.redirectScheme.permanent=true
-  - traefik.http.routers.vaultwarden-ui-https.rule=Host(`vaultwarden.domain.tld`)
-  - traefik.http.routers.vaultwarden-ui-https.entrypoints=websecure
-  - traefik.http.routers.vaultwarden-ui-https.tls=true
-  - traefik.http.routers.vaultwarden-ui-https.service=vaultwarden-ui
-  - traefik.http.routers.vaultwarden-ui-http.rule=Host(`vaultwarden.domain.tld`)
-  - traefik.http.routers.vaultwarden-ui-http.entrypoints=web
-  - traefik.http.routers.vaultwarden-ui-http.middlewares=redirect-https
-  - traefik.http.routers.vaultwarden-ui-http.service=bitwarden-ui
-  - traefik.http.services.vaultwarden-ui.loadbalancer.server.port=80
-  - traefik.http.routers.bitwarden-websocket.rule=Host(`bitwarden.domain.tld`) && Path(`/notifications/hub`)
-  - traefik.http.routers.vaultwarden-websocket-https.entrypoints=websecure
-  - traefik.http.routers.vaultwarden-websocket-https.tls=true
-  - traefik.http.routers.vaultwardenarden-websocket-https.service=vaultwarden-websocket
-  - traefik.http.routers.bitwarden-websocket.rule=Host(`bitwarden.domain.tld`) && Path(`/notifications/hub`)
-  - traefik.http.routers.vaultwarden-websocket-http.entrypoints=web
-  - traefik.http.routers.vaultwarden-websocket-http.middlewares=redirect-https
-  - traefik.http.routers.vaultwarden-websocket-http.service=vaultwarden-websocket
-  - traefik.http.services.vaultwarden-websocket.loadbalancer.server.port=3012
+  - traefik.http.routers.bitwarden-https.rule=Host(`bitwarden.domain.tld`)
+  - traefik.http.routers.bitwarden-https.entrypoints=websecure
+  - traefik.http.routers.bitwarden-https.tls=true
+  - traefik.http.routers.bitwarden-https.service=bitwarden
+  - traefik.http.routers.bitwarden-http.rule=Host(`bitwarden.domain.tld`)
+  - traefik.http.routers.bitwarden-http.entrypoints=web
+  - traefik.http.routers.bitwarden-http.middlewares=redirect-https
+  - traefik.http.routers.bitwarden-http.service=bitwarden
+  - traefik.http.services.bitwarden.loadbalancer.server.port=80
 ```
 
 </details>
