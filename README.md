@@ -4,7 +4,7 @@
 [2021-04-27](https://github.com/dani-garcia/vaultwarden/releases/tag/1.21.0)：bitwarden\_rs 项目更名为 Vaultwarden
 {% endhint %}
 
-这里是 [Vaultwarden](https://github.com/dani-garcia/vaultwarden)（以前叫 bitwarden\_rs）[Wiki](https://github.com/dani-garcia/vaultwarden/wiki) 页面的中文翻译版。
+这里是官方 [Vaultwarden](https://github.com/dani-garcia/vaultwarden)（以前叫 bitwarden\_rs）[Wiki](https://github.com/dani-garcia/vaultwarden/wiki) 页面的中文翻译版。
 
 原文有太多口语化内容，翻译起来比较费脑，这里我尽力翻译准确并使之不那么生硬。
 
