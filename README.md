@@ -13,7 +13,7 @@
 致谢 [Google Translate](https://translate.google.com) 以及 [DeepL](https://www.deepl.com) ！
 
 {% hint style="warning" %}
-个人能力有限，具体请以 [Vaultwarden Wiki](https://github.com/dani-garcia/vaultwarden/wiki) 官方页面为准。使用本内容所产生的一切后果，与 @wcjxixi 无关。Use at your own risk！！！
+个人能力有限，具体请以官方 [Vaultwarden Wiki](https://github.com/dani-garcia/vaultwarden/wiki) 页面为准。使用本内容所产生的一切后果，与 @wcjxixi 无关。Use at your own risk！！！
 {% endhint %}
 
 {% hint style="info" %}
