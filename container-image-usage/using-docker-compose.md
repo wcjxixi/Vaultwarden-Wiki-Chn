@@ -16,7 +16,7 @@ Docker Compose 可能以 `docker-compose <command> ...`（带破折号）或 `do
 
 首先创建一个新的目录，然后切换到该目录下。接下来，创建如下的 `docker-compose.yml` 文件，确保将 `DOMAIN` 和 `EMAIL` 变量替换为实际的值。
 
-```yaml
+```javascript
 version: '3'
 
 services:
@@ -94,7 +94,7 @@ docker compose down # 或者 'docker-compose down' 如果使用独立的 Docker 
 
 首先创建一个新的目录，然后切换到该目录下。接下来，创建如下的 `docker-compose.yml` 文件，确保将 `DOMAIN` 和 `EMAIL` 变量替换为实际的值。
 
-```yaml
+```javascript
 version: '3'
 
 services:

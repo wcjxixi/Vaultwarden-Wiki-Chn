@@ -10,7 +10,7 @@
   * [4.使用 Docker Compose](container-image-usage/using-docker-compose.md)
   * [5.使用 Podman](container-image-usage/using-podman.md)
 * [部署](deployment/README.md)
-  * [1.构建你自己的镜像](deployment/building-your-own-docker-image.md)
+  * [1.构建您自己的镜像](deployment/building-your-own-docker-image.md)
   * [2.构建二进制](deployment/building-binary.md)
   * [3.预构建二进制](deployment/pre-built-binaries.md)
   * [4.第三方包](deployment/third-party-packages.md)

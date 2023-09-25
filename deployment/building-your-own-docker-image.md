@@ -1,4 +1,4 @@
-# 1.构建你自己的镜像
+# 1.构建您自己的镜像
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Building-your-own-docker-image)
@@ -27,7 +27,7 @@ docker build -t vaultwarden --build-arg DB=postgresql .
 
 在 docker-compose.yml 中它看起来像这样：
 
-```yaml
+```javascript
   vaultwarden:
     # image: vaultwarden/server-postgresql:latest
     image: vaultwarden

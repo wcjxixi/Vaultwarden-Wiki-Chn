@@ -928,7 +928,7 @@ use_backend VaultWarden-Notifications_ipvANY  if  !ACL4
 
 <summary>Istio k8s (by <a href="https://github.com/dpoke">@dpoke</a>)</summary>
 
-```yaml
+```javascript
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
