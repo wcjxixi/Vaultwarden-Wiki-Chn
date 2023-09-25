@@ -54,7 +54,7 @@ docker run -u 1000:1000 [...other args...] vaultwarden/server:latest
 
 在 `docker-compose` 中类似操作：
 
-```yaml
+```batch
 services:
   vaultwarden:
     image: vaultwarden/server:latest

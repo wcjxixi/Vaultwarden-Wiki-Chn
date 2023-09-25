@@ -6,7 +6,7 @@
 
 Dockerfile（Caddy 构建器）：
 
-```systemd
+```batch
 FROM caddy:builder AS builder
 RUN xcaddy build --with github.com/caddy-dns/cloudflare
 
@@ -60,7 +60,7 @@ https://[YOUR-DOMAIN]:443 {
 
 docker-compose.yml：
 
-```yaml
+```batch
 version: '3'
 
 services:

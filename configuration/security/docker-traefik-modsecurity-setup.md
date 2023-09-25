@@ -16,13 +16,13 @@
 
 bash：
 
-```bash
+```batch
 touch /opt/docker/waf-rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf && touch /opt/docker/waf-rules/RESPONSE-999-EXCLUSION-RULES-AFTER-CRS.conf
 ```
 
 `/opt/docker/docker-compose.yml`：
 
-```yaml
+```batch
 services:
   traefik:
     image: traefik:latest
