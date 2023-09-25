@@ -93,7 +93,7 @@ $ sudo crontab -e
 
 Vaultwarden 的更新必须由用户在 DietPi 上手动启动，没有自动安装方式，运行 `apt update && apt upgrade` 也不会执行更新。要更新之前使用 DietPi 的软件安装脚本安装的 Vautwarden 实例，请在 DietPi 的命令行中输入以下命令：
 
-```
+```batch
 dietpi-software reinstall 183
 ```
 

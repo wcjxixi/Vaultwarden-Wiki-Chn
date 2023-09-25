@@ -135,7 +135,7 @@ WARNING: The m variable is not set. Defaulting to a blank string.
 
 **.env：**
 
-```
+```systemd
 VAULTWARDEN_ADMIN_TOKEN=$argon2id$v=19$m=65540,t=3,p=4$MmeK.....
 ```
 

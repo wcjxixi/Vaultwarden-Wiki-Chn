@@ -27,7 +27,7 @@
 
 如果您喜欢从源代码构建，可以使用 [`xcaddy`](https://caddyserver.com/docs/build#xcaddy)。例如，要创建一个包含 Cloudflare 和 Duck DNS 支持的构建：
 
-```shell
+```batch
 xcaddy build --with github.com/caddy-dns/cloudflare --with github.com/caddy-dns/duckdns
 ```
 
@@ -39,7 +39,7 @@ xcaddy build --with github.com/caddy-dns/cloudflare --with github.com/caddy-dns/
 
 在 caddy 可执行文件所在的同一目录中创建一个名为 `Caddyfile`（大写 C，无文件扩展名）的文件，其中包含以下内容，并将 `localhost:` 端口替换为 Vaultwarden 在其 `ROCKET_PORT=` 指令中使用的端口（Vaultwarden 的默认 Rocket\_port 为 8001）：
 
-```yaml
+```nginx
 {$DOMAIN}:443 {
     tls {
         dns duckdns {$DUCKDNS_TOKEN}
@@ -57,7 +57,7 @@ DUCKDNS_TOKEN=00112233-4455-6677-8899-aabbccddeeff
 
 切换到 caddy 所在目录然后运行以下命令以首次启动 `caddy`：
 
-```bash
+```batch
 caddy run --envfile caddy.env
 ```
 
@@ -65,7 +65,7 @@ Duck DNS 域名（例如 my-vw.duckns.org）的 caddy 首次启动需要几秒�
 
 运行命令以启动 `vaultwarden`：
 
-```shell
+```batch
 export ROCKET_PORT=8001
 
 ./vaultwarden
@@ -79,7 +79,7 @@ export ROCKET_PORT=8001
 
 您可以使用 \[STRG]-\[C] 来停止 caddy。接下来通过以下命令在后台启动 caddy：
 
-```
+```batch
 caddy start --envfile caddy.env
 ```
 
@@ -107,7 +107,7 @@ caddy start --envfile caddy.env
 
 创建一个名为 `Caddyfile` 的文件，内容如下：
 
-```yaml
+```nginx
 {$DOMAIN}:443 {
     tls {
         dns cloudflare {$CLOUDFLARE_API_TOKEN}
@@ -125,13 +125,13 @@ CLOUDFLARE_API_TOKEN=<your-api-token>
 
 运行命令以启动 `caddy`：
 
-```shell
+```batch
 caddy run --envfile caddy.env
 ```
 
 运行命令以启动 `vaultwarden`：
 
-```shell
+```batch
 export ROCKET_PORT=8080
 
 ./vaultwarden
@@ -171,7 +171,7 @@ export ROCKET_PORT=8080
 
 无论哪种情况，您都可以尝试使用其他 DNS 解析器，例如 Google 的 `8.8.8.8` 或 Cloudflare 的 `1.1.1.1`。对于第二种情况，如果您在 dnsmasq 或 Unbound 等本地 DNS 服务器后面运行，则可以将其配置为完全禁用 DNS 重新绑定保护，或允许某些域名返回私有地址。关于 Unbound，您可以通过将以下指令添加到其配置文件中来实现（使用您自己的 Duck DNS 域名替换该域名）：
 
-```bash
+```yaml
 private-domain: "my-vw.duckdns.org"
 ```
 
@@ -179,7 +179,7 @@ private-domain: "my-vw.duckdns.org"
 
 此外，请确保关闭您之前为 Vaultwarden 设置的 HTTPS 设置，特别是通过 Rocket TLS 使用您自己的（自签名）证书的私有 CA，因为这会干扰您新的 Let's Encrypt 受保护的域名。只需在 Vaultwarden 的环境文件中注释掉（# 符号）`ROCKET_TLS` 指令即可：
 
-```bash
+```systemd
 # ROCKET_TLS={certs="./cert.pem",key="./privkey.pem"}
 ```
 
@@ -187,7 +187,7 @@ private-domain: "my-vw.duckdns.org"
 
 更改域名后不要忘记更新 Vaultwarden 的环境文件：
 
-```bash
+```systemd
 DOMAIN=https://my-vw.duckdns.org
 ```
 

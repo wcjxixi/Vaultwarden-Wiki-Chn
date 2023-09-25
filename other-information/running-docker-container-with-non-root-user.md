@@ -36,7 +36,7 @@ docker run -d \
 
 另一种方法可能是 `CAP_NET_BIND_SERVICE`，它允许以非 root 用户身份绑定到低于 `1024` 的端口。
 
-```
+```batch
 cap_add:
   - CAP_NET_BIND_SERVICE
 user: nobody

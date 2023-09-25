@@ -15,12 +15,12 @@
 {% endhint %}
 
 {% hint style="warning" %}
-&#x20;Vaultwarden 目前**不支持**欧盟数据区域。如果您已请求 `bitwarden.eu（欧盟）`的 INSTALLATION ID 和 KEY，您需要等到 PR 合并和发布后，自己[构建 Vaultwarden](../deployment/building-your-own-docker-image.md) 并进行必要的更改，或者您可以简单地请求一个用于美国数据区域的新的 ID/KEY 对。
+Vaultwarden 目前**不支持**欧盟数据区域。如果您已请求 `bitwarden.eu（欧盟）`的 INSTALLATION ID 和 KEY，您需要等到 PR 合并和发布后，自己[构建 Vaultwarden](../deployment/building-your-own-docker-image.md) 并进行必要的更改，或者您可以简单地请求一个用于美国数据区域的新的 ID/KEY 对。
 {% endhint %}
 
 2、将以下设置添加到 `docker-compose.yml`（并确保插入上一步获取到的正确 ID 和 KEY）：
 
-```
+```systemd
       - PUSH_ENABLED=true
       - PUSH_INSTALLATION_ID=
       - PUSH_INSTALLATION_KEY=
@@ -28,7 +28,7 @@
 
 3、重新创建您的容器，例如：
 
-```
+```bash
 docker compose up -d vaultwarden
 ```
 

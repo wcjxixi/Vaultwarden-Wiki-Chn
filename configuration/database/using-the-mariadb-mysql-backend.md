@@ -199,7 +199,7 @@ error (1064): Syntax error near '"users" VALUES('9b5c2d13-8c4f-47e9-bd94-f0d7036
 
 修复：
 
-```shell
+```bash
 sed -i s#\"#\#g mysqldump.sql
 ```
 

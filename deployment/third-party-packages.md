@@ -44,7 +44,7 @@
 
 此 Vaultwarden 包被构建为一个通用二进制文件，其用于 SQLite、MySQL 和 PostgreSQL。它还创建一个 `vaultwarden` 用户/组和一个 systemd 服务。
 
-```bash
+```batch
 dnf config-manager --add-repo https://evermeet.cx/pub/repo/fedora/evermeet.repo
 dnf install vaultwarden vaultwarden-webvault
 ```

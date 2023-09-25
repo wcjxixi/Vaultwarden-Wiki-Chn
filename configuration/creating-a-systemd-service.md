@@ -1,4 +1,4 @@
-# 16.设置为 systemd 服务
+# 18.设置为 systemd 服务
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Setup-as-a-systemd-service)
@@ -118,7 +118,7 @@ $ sudo systemctl daemon-reload
 
 如果要查看日志输出，请运行：
 
-```shell
+```bash
 $ journalctl -u vaultwarden.service
 ```
 

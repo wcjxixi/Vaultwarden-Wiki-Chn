@@ -295,7 +295,7 @@ sudo fail2ban-client set vaultwarden unbanip XX.XX.XX.XX
 
 当使用 SELinux 时，SELinux 可能会阻止 Fail2ban 读取日志。如果是这样，请运行此命令： `sudo tail /var/log/audit/audit.log`。您应该会看到如下类似内容（当然，实际的审核 ID (pid) 会因您的情况而不一样）：
 
-```
+```systemd
 type=AVC msg=audit(1571777936.719:2193): avc:  denied  { search } for  pid=5853 comm="fail2ban-server" name="containers" dev="dm-0" ino=1144588 scontext=system_u:system_r:fail2ban_t:s0 tcontext=unconfined_u:object_r:container_var_lib_t:s0 tclass=dir permissive=0
 ```
 

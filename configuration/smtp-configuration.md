@@ -1,4 +1,4 @@
-# 12.SMTP 配置
+# 13.SMTP 配置
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/SMTP-Configuration)
@@ -214,6 +214,6 @@ nc -vz smtp.gmail.com 587
 
 要从 docker 容器内部检查，请首先在 docker 主机上运行以下命令以登录到容器。在下面的示例中，我假设容器名称是 `vaultwarden`，将其更改为您使用的容器名称。运行下面的命令后，再运行上述命令之一以从容器内部检查访问性。
 
-```docker
+```bash
 docker exec -it vaultwarden sh
 ```

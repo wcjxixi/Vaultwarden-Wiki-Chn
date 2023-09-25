@@ -16,7 +16,7 @@ mkdir /vw-data
 
 如果你碰巧使用 SELinux (RHEL & Clones / Fedora)，你必须设置持久存储的上下文，以便容器可以写入它：
 
-```shell
+```batch
 semanage fcontext -a -t svirt_sandbox_file_t '/vw-data(/.*)?'
 restorecon -Rv /vw-data
 ```

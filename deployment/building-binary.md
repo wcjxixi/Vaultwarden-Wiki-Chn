@@ -175,7 +175,7 @@ cargo install diesel_cli --no-default-features --features sqlite-bundled
 
 如果要修改模式，请使用以下命令创建新迁移：
 
-```shell
+```batch
 diesel migration generate <name>
 ```
 
@@ -183,7 +183,7 @@ diesel migration generate <name>
 
 应用迁移并保存生成的模式，如下所示：
 
-```shell
+```batch
 diesel migration redo
 
 # 当使用的 diesel-cli > 1.3.0 时，此步骤会自动完成

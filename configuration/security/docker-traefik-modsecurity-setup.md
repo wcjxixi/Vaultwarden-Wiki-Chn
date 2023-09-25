@@ -4,7 +4,7 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Docker---Traefik---ModSecurity-Setup)
 {% endhint %}
 
-设置 ModSecurity 将通过 Web 应用程序防火墙 (WAF) 将所有请求代理到 Vaultwarden。这可能有助于过滤可疑请求（例如注入尝试）以减缓 Vaultwarden 中的未知漏洞（带来的威胁）。
+设置 ModSecurity 将通过 Web 应用程序防火墙 ([WAF](https://www.cloudflare-cn.com/learning/ddos/glossary/web-application-firewall-waf/)) 将所有请求代理到 Vaultwarden。这可能有助于过滤可疑请求（例如注入尝试）以减缓 Vaultwarden 中的未知漏洞（带来的威胁）。
 
 ## 前提条件 <a href="#pre-reqs" id="pre-reqs"></a>
 

@@ -4,7 +4,7 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-HTTPS)
 {% endhint %}
 
-现在几乎都需要启用 [HTTPS](https://en.wikipedia.org/wiki/HTTPS)，才能满足 Vaultwarden 的正常操作，这是因为 Bitwarden 网络密码库使用 [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto)，而大多数浏览器只有在 HTTPS 环境下才能使用。
+如今，要正常运行 Vaultwarden，几乎必须启用 [HTTPS](https://en.wikipedia.org/wiki/HTTPS)，这是因为 Bitwarden 网络密码库使用的 [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto)，大多数浏览器只有在 HTTPS 环境下才能使用。
 
 启用 HTTPS 的几种方式：
 
@@ -16,7 +16,7 @@
 要使 HTTPS 服务器工作，它还需要 SSL/TLS 证书，因此您需要决定如何获取该证书。同样，有几种方式：
 
 * （推荐）使用 [ACME 客户端](https://letsencrypt.org/docs/client-options/)获取 [Let's Encrypt](https://letsencrypt.org/) 证书。一些反向代理（例如 [Caddy](https://caddyserver.com/)）也内置支持使用 ACME 协议获取证书。
-* （推荐）如果您信任 [Cloudflare](https://www.cloudflare.com/) 来代理您的流量，您可以让他们处理您的 SSL/TLS 证书的发放。请注意，上游的 Bitwarden 网络密码库（[https://vault.bitwarden.com/](https://vault.bitwarden.com/)）运行在 Cloudflare 后面。
+* （推荐）如果您信任 [Cloudflare](https://www.cloudflare.com/) 来代理您的流量，您可以让他们处理您的 SSL/TLS 证书的发放。请注意，上游的 Bitwarden 网络密码库 ([https://vault.bitwarden.com/](https://vault.bitwarden.com/)) 运行在 Cloudflare 后面。
 * （不推荐）[建立一个私人 CA](../../other-information/private-ca-and-self-signed-certs-that-work-with-chrome.md)，并发行您自己的（自签名）证书。这样做存在各种隐患和不便，所以请自行考虑是否使用此选项。
 
 有关这些选项的更多细节，请参考[获取 SSL/TLS 证书](enabling-https.md#getting-ssl-tls-certificates)部分。要使移动应用程序能正常运行，必须设置正确的 [OCSP 装订](https://en.wikipedia.org/wiki/OCSP\_stapling)设置。
@@ -54,7 +54,7 @@ ROCKET_TLS={certs="/path/to/certs.pem",key="/path/to/key.pem"}
     （环境变量本身的格式没有错误；只是因为 Rocket 无法解析证书/密钥的内容。）
 * 如果在 Docker 下运行，请记住，Vaultwarden 在容器内部运行时将解析 `ROCKET_TLS` 值 ，所以请确保 `certs` 和 `key` 路径是容器内部呈现的样子（可能与 Docker 主机系统上的路径不同）。
 
-```shell
+```bash
 docker run -d --name vaultwarden \
   -e ROCKET_TLS='{certs="/ssl/certs.pem",key="/ssl/key.pem"}' \
   -v /ssl/keys/:/ssl/ \
@@ -79,7 +79,7 @@ docker run -d --name vaultwarden \
 
 因此，从 Vaultwarden 容器中使用，应像这样：
 
-```shell
+```bash
 docker run -d --name vaultwarden \
   -e ROCKET_TLS='{certs="/ssl/live/mydomain/fullchain.pem",key="/ssl/live/mydomain/privkey.pem"}' \
   -v /etc/letsencrypt/:/ssl/ \
@@ -98,7 +98,7 @@ docker run -d --name vaultwarden \
 
 执行以下操作以验证证书是否随链安装（注意将 `vault.domain.com` 更改为您自己的域名）：
 
-```shell
+```batch
 openssl s_client -showcerts -connect vault.domain.com:443 -servername vault.domain.com
 
 # 或者不同的端口，比如 7070
@@ -121,7 +121,7 @@ verify return:1
 
 ### 检查 OSCP 有效性 <a href="#check-oscp-validity" id="check-oscp-validity"></a>
 
-> \[**译者注**]：OCSP：Online Certificate Status Protocol，在线证书状态协议。OCSP 是一个用于获取 X.509 数字证书撤销状态的网际协议，用于检验证书合法性。OCSP 查询需要建立一次完整的 HTTP 查询请求，期间的 DNS 查询、建立 TCP 连接、服务端响应和数据传输都是额外开销，使得建立 TLS 连接花费更多时长。后来出现了OCSP Stapling ，将原本需要客户端发起的 OCSP 请求转嫁给服务端，并随证书一起发送给客户端，因此能提高 TLS 握手效率。
+> \[**译者注**]：OCSP：Online Certificate Status Protocol，在线证书状态协议。OCSP 是一个用于获取 X.509 数字证书撤销状态的网络协议，用于检验证书合法性。OCSP 查询需要建立一次完整的 HTTP 查询请求，期间的 DNS 查询、建立 TCP 连接、服务端响应和数据传输都是额外开销，使得建立 TLS 连接花费更多时长。后来出现了OCSP Stapling ，将原本需要客户端发起的 OCSP 请求转嫁给服务端，并随证书一起发送给客户端，因此能提高 TLS 握手效率。
 >
 > OCSP Stapling 一般翻译为 OCSP 装订或 OCSP 封套。
 
@@ -131,13 +131,13 @@ verify return:1
 
 您还可以使用如下命令行检查 OCSP 的状态：
 
-```shell
+```batch
 openssl s_client -showcerts -connect vault.domain.com:443 -servername vault.domain.com -status
 ```
 
 在其输出中必须包含：
 
-```
+```batch
 OCSP Response Status: successful (0x0)
 ```
 
