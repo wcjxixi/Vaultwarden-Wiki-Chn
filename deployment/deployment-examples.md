@@ -205,12 +205,18 @@ dokku git:from-image $APP_NAME $image_sha
 
 Digital Ocean 最便宜的 Droplet 的 Vaultwarden 安装。通过 Terraform 设置资源。
 
-## 代管式托管 <a href="#managed-hosting" id="managed-hosting"></a>
+***
 
-最后，本节展示了代管式 Vaultwarden 托管的不同提供商和选项，如果您根本不想自己去关心配置和管理的话。
+{% hint style="info" %}
+2023-09-25：我们不认可这种托管 Vaultwarden 的方式，因此移除了代管式托管部分。
+{% endhint %}
 
-### Server.Camp
+## ~~代管式托管~~ <a href="#managed-hosting" id="managed-hosting"></a>
 
-* [https://server.camp/product/vaultwarden](https://server.camp/product/vaultwarden)
+~~最后，本节展示了代管式 Vaultwarden 托管的不同提供商和选项，如果您根本不想自己去关心配置和管理的话。~~
 
-由开发人员为开发人员、初创公司和中小型企业提供代管、基于欧盟且符合 GDPR 的 Vaultwarden 托管。 15% 的收入捐赠给开源社区。
+### ~~Server.Camp~~
+
+* [~~https://server.camp/product/vaultwarden~~](https://server.camp/product/vaultwarden)
+
+~~由开发人员为开发人员、初创公司和中小型企业提供代管、基于欧盟且符合 GDPR 的 Vaultwarden 托管。 15% 的收入捐赠给开源社区。~~
