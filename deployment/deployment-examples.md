@@ -219,4 +219,4 @@ Digital Ocean 最便宜的 Droplet 的 Vaultwarden 安装。通过 Terraform 设
 
 * [~~https://server.camp/product/vaultwarden~~](https://server.camp/product/vaultwarden)
 
-~~由开发人员为开发人员、初创公司和中小型企业提供代管、基于欧盟且符合 GDPR 的 Vaultwarden 托管。 15% 的收入捐赠给开源社区。~~
+~~为开发人员、初创公司和中小型企业提供的基于欧盟且符合 GDPR 的 Vaultwarden 托管。15% 的收入将捐赠给开源社区。~~
