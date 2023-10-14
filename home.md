@@ -34,8 +34,7 @@ Vaultwarden 实现了 Bitwarden API 所需的大部分功能，其中包括：
 * [个人 API 密钥](https://help.ppgg.in/miscellaneous/personal-api-key-for-cli-authentication)
 * [电子邮件](https://help.ppgg.in/two-step-login/two-step-login-via-email)、[Duo](https://help.ppgg.in/two-step-login/two-step-login-via-duo)、[Yubikey](https://help.ppgg.in/two-step-login/two-step-login-via-yubikey) 和 [FIDO2 WebAuthn](https://help.ppgg.in/two-step-login/two-step-login-via-fido2-webauthn)（包括 Nitrokeys 和 Solokeys）方式的两步登录
 * 使用 SimpleLogin、AnonAddy 或 Firefox Relay 的用户名生成器集成
-* [目录连接器支持](https://help.ppgg.in/directory-connector/about-directory-connector)（基本实现，但不支持群组）\
-  仅支持 [v2.9.2](https://github.com/bitwarden/directory-connector/releases/tag/v2.9.2) 及更低版本，v2.9.3 及更高版本使用不同的登录方式，因此尚未被支持。
+* [目录连接器](https://help.ppgg.in/admin-console/user-management/directory-connector/about-directory-connector)支持
 * [管理员密码重置](https://help.ppgg.in/organizations/admin-password-reset)
 * 用于移动客户端 (Android/iOS) 的[实时同步](https://bitwarden.com/blog/live-sync/)（推送通知）
 * 某些企业策略：
