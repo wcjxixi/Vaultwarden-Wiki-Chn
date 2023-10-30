@@ -1,7 +1,7 @@
 # 关于
 
 {% hint style="success" %}
-[2021-04-27](https://github.com/dani-garcia/vaultwarden/releases/tag/1.21.0)2021-04-27：从 [v1.21.0](https://github.com/dani-garcia/vaultwarden/releases/tag/1.21.0) 开始，bitwarden\_rs 项目更名为 Vaultwarden。参阅 [#1642](https://github.com/dani-garcia/vaultwarden/discussions/1642) 了解更多说明。
+2021-04-27：从 [v1.21.0](https://github.com/dani-garcia/vaultwarden/releases/tag/1.21.0) 开始，bitwarden\_rs 项目更名为 Vaultwarden。参阅 [#1642](https://github.com/dani-garcia/vaultwarden/discussions/1642) 了解更多说明。
 {% endhint %}
 
 这里是对官方 [Vaultwarden](https://github.com/dani-garcia/vaultwarden)（以前叫 bitwarden\_rs）[Wiki](https://github.com/dani-garcia/vaultwarden/wiki) 的中文翻译。
