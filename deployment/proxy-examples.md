@@ -16,6 +16,84 @@
 
 <details>
 
+<summary>Caddy 2.x</summary>
+
+在大多数情况下 Caddy 2 会自动启用 HTTPS，参考[此文档](https://caddyserver.com/docs/automatic-https#activation)。
+
+在 Caddyfile 语法中，`{$VAR}` 表示环境变量 `VAR` 的值。如果您喜欢，也可以直接指定一个值，而不是用一个环境变量的值来代替。
+
+```nginx
+# 取消注释以下语句以及取消注释 import admin_redir 语句，以仅允许从本地网络访问管理界面
+# (admin_redir) {
+#        @admin {
+#                path /admin*
+#                not remote_ip private_ranges
+#        }
+#        redir @admin /
+# }
+
+{$DOMAIN} {
+  log {
+    level INFO
+    output file {$LOG_FILE} {
+      roll_size 10MB
+      roll_keep 10
+    }
+  }
+
+  # 如果你想通过 ACME（Let's Encrypt 或 ZeroSSL）获获取证书，请取消注释
+  # tls {$EMAIL}
+
+  # 或者如果您提供自己的证书，请取消注释
+  # 如果您在 Cloudflare 后面运行，您也会使用此选项
+  # tls {$SSL_CERT_PATH} {$SSL_KEY_PATH}
+
+  # 此设置可能会在某些浏览器上出现兼容性问题（例如，在 Firefox 上下载附件）
+  # 如果遇到问题，请尝试禁用此功能
+  encode gzip
+  
+  # 取消注释以提高安全性（警告：只有在您了解其影响的情况下才能使用！）
+  # 如果您想使用 FIDO2 WebAuthn，请将 X-Frame-Options 设置为 "SAMEORIGIN"，否则浏览器将阻止这些请求
+  # header / {
+  #	# Enable HTTP Strict Transport Security (HSTS)
+  #	Strict-Transport-Security "max-age=31536000;"
+  #	# Disable cross-site filter (XSS)
+  #	X-XSS-Protection "0"
+  #	# Disallow the site to be rendered within a frame (clickjacking protection)
+  #	X-Frame-Options "DENY"
+  #	# Prevent search engines from indexing (optional)
+  #	X-Robots-Tag "noindex, nofollow"
+  #	# Disallow sniffing of X-Content-Type-Options
+  #	X-Content-Type-Options "nosniff"
+  #	# Server name removing
+  #	-Server
+  #	# Remove X-Powered-By though this shouldn't be an issue, better opsec to remove
+  #	-X-Powered-By
+  #	# Remove Last-Modified because etag is the same and is as effective
+  #	-Last-Modified
+  # }
+  
+  # 取消注释以仅允许从本地网络访问管理界面
+  # import admin_redir
+
+  # 将所有代理到 Rocket
+  # 如果位于子路径中，则 reverse_proxy 行将如下所示：
+  # reverse_proxy /subpath/* <server>:80
+  reverse_proxy <SERVER>:80 {
+       # 把真实的远程 IP 发送给 Rocket，以便 Vaultwarden 将其放入日志中，
+       # 这样 fail2ban 就可以阻止正确的 IP 了
+       header_up X-Real-IP {remote_host}
+       # If you use Cloudlfare proxying, replace remote_host with http.request.header.Cf-Connecting-Ip
+       # See https://developers.cloudflare.com/support/troubleshooting/restoring-visitor-ips/restoring-original-visitor-ips/
+       # and https://caddy.community/t/forward-auth-copy-headers-value-not-replaced/16998/4
+  }
+}
+```
+
+</details>
+
+<details>
+
 <summary>lighttpd (by forkbomb9)</summary>
 
 ```nginx
