@@ -29,32 +29,34 @@ https://[YOUR-DOMAIN]:443 {
         dns cloudflare [API-KEY]
   }
 
-  encode gzip
+#  encode gzip
 
-  header / {
-       # 启用 HTTP Strict Transport Security (HSTS)
-       Strict-Transport-Security "max-age=31536000;"
-       # 启用 cross-site filter (XSS) 并告诉浏览器阻止检测到的攻击
-       X-XSS-Protection "0"
-       # 禁止在框架内呈现网站 (clickjacking protection)
-       X-Frame-Options "DENY"
-       # 阻止搜索引擎编制索引（可选）
-       X-Robots-Tag "noindex, nofollow"
-       # 禁止嗅探 X-Content-Type-Options
-       X-Content-Type-Options "nosniff"
-       # 服务器名称移除
-       -Server
-       # 移除 X-Powered-By 应该不会引起问题，但最好移除 opsec
-       -X-Powered-By
-       # 移除 Last-Modified 因为 etag 具有相同的效果
-       -Last-Modified
-   }
-  # 代理到 Rocket
-  reverse_proxy vaultwarden:80 {
-       # 将真正的远程 IP 发送给 Rocket，以便 vaultwarden 可以将其
-       # 放入日志，以便 fail2ban 可以禁止正确的 IP。
-       header_up X-Real-IP {remote_host}
-  }
+#  header / {
+#       # 启用 HTTP Strict Transport Security (HSTS)
+#       Strict-Transport-Security "max-age=31536000;"
+#       # 启用 cross-site filter (XSS) 并告诉浏览器阻止检测到的攻击
+#       X-XSS-Protection "0"
+#       # 禁止在框架内呈现网站 (clickjacking protection)
+#       X-Frame-Options "DENY"
+#       # 阻止搜索引擎编制索引（可选）
+#       X-Robots-Tag "noindex, nofollow"
+#       # 禁止嗅探 X-Content-Type-Options
+#       X-Content-Type-Options "nosniff"
+#       # 服务器名称移除
+#       -Server
+#       # 移除 X-Powered-By 应该不会引起问题，但最好移除 opsec
+#       -X-Powered-By
+#       # 移除 Last-Modified 因为 etag 具有相同的效果
+#       -Last-Modified
+#   }
+#  # 代理到 Rocket
+#  reverse_proxy vaultwarden:80 {
+#       # 将真正的远程 IP 发送给 Rocket，以便 vaultwarden 可以将其
+#       # 放入日志，以便 fail2ban 可以禁止正确的 IP。
+#       header_up X-Real-IP {remote_host}
+#  }
+
+#  其余配置，请参阅 ”代理示例“ 部分
 }
 ```
 
