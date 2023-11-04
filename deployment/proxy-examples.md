@@ -55,21 +55,21 @@
   # 取消注释以提高安全性（警告：只有在您了解其影响的情况下才能使用！）
   # 如果您想使用 FIDO2 WebAuthn，请将 X-Frame-Options 设置为 "SAMEORIGIN"，否则浏览器将阻止这些请求
   # header / {
-  #	#qqiHTTP Strict Transport Security (HSTS)
+  #	# 启用 HTTP Strict Transport Security (HSTS)
   #	Strict-Transport-Security "max-age=31536000;"
-  #	# Disable cross-site filter (XSS)
+  #	# 禁用 cross-site filter (XSS)
   #	X-XSS-Protection "0"
-  #	# Disallow the site to be rendered within a frame (clickjacking protection)
+  #	# 禁止在框架内呈现网站 (clickjacking protection)
   #	X-Frame-Options "DENY"
-  #	# Prevent search engines from indexing (optional)
+  #	# 阻止搜索引擎建立索引（可选）
   #	X-Robots-Tag "noindex, nofollow"
-  #	# Disallow sniffing of X-Content-Type-Options
+  #	# 禁止嗅探 X-Content-Type-Options
   #	X-Content-Type-Options "nosniff"
-  #	# Server name removing
+  #	# 服务器名称移除
   #	-Server
-  #	# Remove X-Powered-By though this shouldn't be an issue, better opsec to remove
+  #	# 移除 X-Powered-By，虽然这不应该是一个问题，但最好移除
   #	-X-Powered-By
-  #	# Remove Last-Modified because etag is the same and is as effective
+  #	# 移除 Last-Modified，因为 etag 相同并且同样有效
   #	-Last-Modified
   # }
   
@@ -83,9 +83,9 @@
        # 把真实的远程 IP 发送给 Rocket，以便 Vaultwarden 将其放入日志中，
        # 这样 fail2ban 就可以阻止正确的 IP 了
        header_up X-Real-IP {remote_host}
-       # If you use Cloudlfare proxying, replace remote_host with http.request.header.Cf-Connecting-Ip
-       # See https://developers.cloudflare.com/support/troubleshooting/restoring-visitor-ips/restoring-original-visitor-ips/
-       # and https://caddy.community/t/forward-auth-copy-headers-value-not-replaced/16998/4
+       # 如果您使用 Cloudlfare 代理，请将 remote_host 替换为 http.request.header.Cf-Connecting-Ip
+       # 请参阅 https://developers.cloudflare.com/support/troubleshooting/restoring-visitor-ips/restoring-original-visitor-ips/
+       # 以及 https://caddy.community/t/forward-auth-copy-headers-value-not-replaced/16998/4
   }
 }
 ```
