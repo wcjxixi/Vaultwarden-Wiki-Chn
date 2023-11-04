@@ -55,7 +55,7 @@
   # 取消注释以提高安全性（警告：只有在您了解其影响的情况下才能使用！）
   # 如果您想使用 FIDO2 WebAuthn，请将 X-Frame-Options 设置为 "SAMEORIGIN"，否则浏览器将阻止这些请求
   # header / {
-  #	# Enable HTTP Strict Transport Security (HSTS)
+  #	#qqiHTTP Strict Transport Security (HSTS)
   #	Strict-Transport-Security "max-age=31536000;"
   #	# Disable cross-site filter (XSS)
   #	X-XSS-Protection "0"
