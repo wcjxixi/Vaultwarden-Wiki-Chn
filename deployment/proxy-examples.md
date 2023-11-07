@@ -715,7 +715,7 @@ backend vaultwarden_http
 
 <details>
 
-<summary>HAproxy - v1.29.0+ (by <a href="https://github.com/williamdes">@williamdes</a>)</summary>
+<summary>HAproxy - v1.29.0 之前 (by <a href="https://github.com/williamdes">@williamdes</a>)</summary>
 
 将这些行添加到您的 HAproxy 配置中。
 
@@ -786,7 +786,7 @@ ACL00
 Path starts with:
 no
 yes
-/big-ass-randomised-test-that-really-no-one-is-ever-going-to-type-DONT-USE-THIS-LINE-THOUGH-make-your-own-up
+/big-ass-randomized-test-that-really-no-one-is-ever-going-to-type-DONT-USE-THIS-LINE-THOUGH-make-your-own-up
 
 ACL01
 Host matches:
@@ -1053,7 +1053,7 @@ relay vaultwarden-https-relay {
 
 <details>
 
-<summary>CloudFlare (by <a href="https://github.com/williamdes">@williamdes</a>)</summary>
+<summary>CloudFlare - v1.29.0 之前 (by <a href="https://github.com/williamdes">@williamdes</a>)</summary>
 
 按照下面的截图创建新的规则。用于查找此设置的示例仪表板 URL：`https://dash.cloudflare.com/xxxxxx/example.org/rules/origin-rules/new`
 
