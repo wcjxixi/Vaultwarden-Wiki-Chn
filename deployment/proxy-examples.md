@@ -421,15 +421,12 @@ NixOS Nginx 配置示例。关于 NixOS 部署的更多信息，请参阅[部署
 ```nginx
 { config, ... }:
 {
-  security.acme.acceptTerms = true;
-  security.acme.email = "me@example.com";
-  security.acme.certs = {
-
-    "bw.example.com" = {
-      group = "vaultwarden";
-      keyType = "rsa2048";
-      # allowKeysForGroup = true; # 已从 NixOS 选项中移除，故这里也移除
+  security.acme = {
+    defaults = {
+      acceptTerms = true;
+      email = "me@example.com";
     };
+    certs."vaultwarden.example.com".group = "vaultwarden";
   };
 
   services.nginx = {
@@ -441,19 +438,14 @@ NixOS Nginx 配置示例。关于 NixOS 部署的更多信息，请参阅[部署
     recommendedTlsSettings = true;
 
     virtualHosts = {
-      "bw.example.com" = {
-        forceSSL = true;
+      "vaultwarden.example.com" = {
         enableACME = true;
+        forceSSL = true;
         locations."/" = {
-          proxyPass = "http://localhost:8812"; # 由于某些冲突，这里更改了默认的 rocket 端口
-          proxyWebsockets = true;
+          proxyPass = "http://localhost:8080";
         };
         locations."/notifications/hub" = {
-          proxyPass = "http://localhost:3012";
-          proxyWebsockets = true;
-        };
-        locations."/notifications/hub/negotiate" = {
-          proxyPass = "http://localhost:8812";
+          proxyPass = "http://localhost:8080";
           proxyWebsockets = true;
         };
       };
