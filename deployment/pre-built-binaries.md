@@ -11,17 +11,17 @@ Vaultwarden 目前并没有提供独立的二进制文件作为单独的下载�
 假设要为您运行的平台提取二进制文件：
 
 ```shell
-docker pull vaultwarden/server:alpine
-docker create --name vm vaultwarden/server:alpine
-docker cp vm:/vaultwarden .
-docker cp vm:/web-vault .
-docker rm vm
+docker pull docker.io/vaultwarden/server:latest-alpine
+docker create --name vw docker.io/vaultwarden/server:latest-alpine
+docker cp vw:/vaultwarden .
+docker cp vw:/web-vault .
+docker rm vw
 ```
 
 如果您想获取不同平台的二进制文件（例如，您的 x86-64 机器上只安装了 Docker，但您想在 Raspberry Pi 上运行 Vaultwarden）， 将 `--platform` 选项添加到 `docker pull` 命令中：
 
 ```shell
-docker pull --platform linux/arm/v7 vaultwarden/server:alpine
+docker pull --platform linux/arm/v7 docker.io/vaultwarden/server:latest-alpine
 # 按照上面的方法运行其余的命令。
 # 注意， `docker create` 命令可能会输出如下类似的信息：
 #   WARNING: The requested image's platform (linux/arm/v7) does not match the detected host platform (linux/amd64)
@@ -38,9 +38,9 @@ $ mkdir vm-image
 $ cd vm-image
 $ wget https://raw.githubusercontent.com/jjlin/docker-image-extract/main/docker-image-extract
 $ chmod +x docker-image-extract
-$ ./docker-image-extract vaultwarden/server:alpine
+$ ./docker-image-extract docker.io/vaultwarden/server:latest-alpine
 Getting API token...
-Getting image manifest for vaultwarden/server:alpine...
+Getting image manifest for docker.io/vaultwarden/server:latest-alpine...
 Downloading layer 801bfaa63ef2094d770c809815b9e2b9c1194728e5e754ef7bc764030e140cea...
 Extracting layer...
 Downloading layer c6d331ed95271d8005dea195449ab4ef943017dc97ab134a4426faf441ae4fa6...
@@ -65,6 +65,6 @@ drwx------ 8 user user     4096 Feb  6 21:46 output/web-vault/
 
 要拉取并提取其他平台的镜像：
 
-* ARMv6：`./docker-image-extract -p linux/arm/v6 vaultwarden/server:alpine`
-* ARMv7：`./docker-image-extract -p linux/arm/v7 vaultwarden/server:alpine`
-* ARMv8 / AArch64：`./docker-image-extract -p linux/arm64 vaultwarden/server:alpine`
+* ARMv6：`./docker-image-extract -p linux/arm/v6 docker.io/vaultwarden/server:latest-alpine`
+* ARMv7：`./docker-image-extract -p linux/arm/v7 docker.io/vaultwarden/server:latest-alpine`
+* ARMv8 / AArch64：`./docker-image-extract -p linux/arm64 docker.io/vaultwarden/server:latest-alpine`

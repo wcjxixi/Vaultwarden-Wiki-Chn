@@ -10,9 +10,9 @@
 
 注意，当您把 Vaultwarden 放在反向代理后面时，反向代理和 Vaultwarden 之间的连接通常被认为是通过安全的私有网络进行的，因此不需要加密。下面的例子假设您是在这种配置下运行的，在这种情况下，不应该启用 Vaultwarden 中内置的 HTTPS 功能（也就是说，不应该设置 `ROCKET_TLS` 环境变量）。如果您这样做了，连接就会失败，因为反向代理使用 HTTP 连接到 Vaultwarden，但您配置的 Vaultwarden 却希望使用 HTTPS。
 
-通常使用 [Docker Compose](https://docs.docker.com/compose/) 将容器化的服务（例如，Vaultwarden 与反向代理）链接在一起。请参阅[使用 Docker Compose](../container-image-usage/using-docker-compose.md) 来了解这方面的示例。
+通常使用 [Docker Compose](https://docs.docker.com/compose/) 将容器化的服务（例如，Vaultwarden 与反向代理）链接在一起。请参阅[使用 Docker Compose](../container-image-usage/using-docker-compose.md) 了解这方面的示例。
 
-可以使用 Mozilla 的 [SSL Configuration Generator](https://ssl-config.mozilla.org/) 来生成 Web 服务器的安全 TLS 协议和密码配置。所有受支持的浏览器和移动应用程序都可以与这些「流行的」配置配合使用。
+可以使用 Mozilla 的 [SSL Configuration Generator](https://ssl-config.mozilla.org/) 来生成 Web 服务器的安全 TLS 协议和密码配置。已知所有受支持的浏览器和移动应用程序都可以使用这种「现代化的」配置。
 
 <details>
 
@@ -636,9 +636,6 @@ labels:
     - traefik.docker.network=traefik
     - traefik.web.frontend.rule=Host:vaultwarden.domain.tld
     - traefik.web.port=80
-    - traefik.hub.frontend.rule=Host:vaultwarden.domain.tld;Path:/notifications/hub
-    - traefik.hub.port=3012
-    - traefik.hub.protocol=ws
 ```
 
 </details>
@@ -1050,5 +1047,45 @@ relay vaultwarden-https-relay {
 按照下面的截图创建新的规则。用于查找此设置的示例仪表板 URL：`https://dash.cloudflare.com/xxxxxx/example.org/rules/origin-rules/new`
 
 <img src="https://user-images.githubusercontent.com/7784660/251004005-e27d9152-219b-4b6a-bf96-dcfce30ebd73.png" alt="" data-size="original">
+
+</details>
+
+<details>
+
+<summary>Pound</summary>
+
+```
+Alive		15
+
+ListenHTTP
+	Address 127.0.0.1
+	Port    80
+	xHTTP 3
+	HeadRemove "X-Forwarded-For"
+	Service
+		Host "vaultwarden.example.tld"
+		Redirect 301 "https://vaultwarden.example.tld"
+	End
+End
+
+ListenHTTPS
+	Address 127.0.0.1
+	Port    443
+	Cert    "/path/to/certificate/letsencrypt/live/vaultwarden.example.tld/fullchain.pem"
+	xHTTP 3
+	AddHeader "Front-End-Https: on"
+	RewriteLocation 0
+	HeadRemove "X-Forwarded-Proto"
+	AddHeader "X-Forwarded-Proto: https"
+End
+
+Service
+	Host "vaultwarden.example.tld"
+	BackEnd
+		Address <SERVER>
+		Port    80
+	End
+End
+```
 
 </details>
