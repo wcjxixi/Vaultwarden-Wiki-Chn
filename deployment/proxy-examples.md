@@ -582,12 +582,12 @@ server {
 
 <details>
 
-<summary>Apache in a sub-location (by ss89)</summary>
+<summary>Apache in a sub-location - v1.29.0+ (by <a href="https://github.com/agentdr8">@agentdr8</a>)</summary>
 
 修改 docker 启动以包含 sub-location。
 
 ```systemd
-; Add the sub-location! Else this will not work!
+; 添加子位置！否则将不起作用！
 DOMAIN=https://$hostname.$domainname/$sublocation/
 ```
 
@@ -615,11 +615,13 @@ LoadModule proxy_wstunnel_module modules/mod_proxy_wstunnel.so`
     <Location /vaultwarden> # 如果需要，调整此处
         RewriteEngine On
         RewriteCond %{HTTP:Upgrade} =websocket [NC]
-        RewriteRule /notifications/hub(.*) ws://<SERVER>:3012/$1 [P,L]
-        ProxyPass http://<SERVER>:80/
+        RewriteRule /notifications/hub(.*) ws://<SERVER>:<SERVER_PORT>/$sublocation/notifications/hub/$1 [P,L]
+        ProxyPass http://<SERVER>:<SERVER_PORT>/$sublocation
 
-        ProxyPreserveHost On
+        ProxyPreserveHost Off
         RequestHeader set X-Real-IP %{REMOTE_ADDR}s
+        RequestHeader setifempty Connection "Upgrade"
+        RequestHeader setifempty Upgrade "websocket"
     </Location>
 </VirtualHost>
 ```
