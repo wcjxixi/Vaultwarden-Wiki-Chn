@@ -22,6 +22,10 @@ Raspberry Pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 
 要在 DietPi 上安装 Vaultwarden，只需在命令行中键入 `dietpi-software install 183` 即可。有关在 DietPi 上的安装步骤和首次访问 Vaultwarden 的更多信息，请访问 [https://dietpi.com/docs/software/cloud/#vaultwarden](https://dietpi.com/docs/software/cloud/#vaultwarden)
 
+* [https://mijo.remotenode.io/posts/tailscale-caddy-docker/](https://mijo.remotenode.io/posts/tailscale-caddy-docker/)
+
+使用 Tailscale 和 Caddy 确保安全访问 Vaultwarden 的演练指南。所有服务均使用 Docker Compose 进行容器化管理，并托管在 Raspberry Pi 上。
+
 ### 共享主机 <a href="#shared-hosting" id="shared-hosting"></a>
 
 * [https://github.com/jjlin/vaultwarden-shared-hosting](https://github.com/jjlin/vaultwarden-shared-hosting)

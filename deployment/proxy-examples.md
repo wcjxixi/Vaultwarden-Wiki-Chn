@@ -83,7 +83,7 @@
        # 把真实的远程 IP 发送给 Rocket，以便 Vaultwarden 将其放入日志中，
        # 这样 fail2ban 就可以阻止正确的 IP 了
        header_up X-Real-IP {remote_host}
-       # 如果您使用 Cloudlfare 代理，请将 remote_host 替换为 http.request.header.Cf-Connecting-Ip
+       # 如果您使用 Cloudflare 代理，请将 remote_host 替换为 http.request.header.Cf-Connecting-Ip
        # 请参阅 https://developers.cloudflare.com/support/troubleshooting/restoring-visitor-ips/restoring-original-visitor-ips/
        # 以及 https://caddy.community/t/forward-auth-copy-headers-value-not-replaced/16998/4
   }
