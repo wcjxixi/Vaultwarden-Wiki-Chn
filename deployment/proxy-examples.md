@@ -123,6 +123,50 @@ $HTTP["host"] == "vault.example.net" {
 
 <details>
 
+<summary>lighttpd with sub-path - v1.29.0+ (by FlakyPi)</summary>
+
+在这个示例中，通过 [https://vaultwarden.example.tld/vault/](https://vaultwarden.example.tld/vault/) 访问 Vaultwarden。如果您想使用其他子路径，如 `bitwarden` 或 `secret-vault`，则应更修改下面示例中的 `vault` 以匹配。
+
+```nginx
+server.modules += (
+"mod_openssl"
+)
+
+$SERVER["socket"] == ":443" {  
+    ssl.engine   = "enable"   
+    ssl.pemfile  = "/etc/letsencrypt/live/vaultwarden.example.tld/fullchain.pem"
+    ssl.privkey  = "/etc/letsencrypt/live/vaultwarden.example.tld/privkey.pem"
+}
+
+# Redirect HTTP requests (port 80) to HTTPS (port 443)
+$SERVER["socket"] == ":80" {  
+        $HTTP["host"] =~ "vaultwarden.example.tld" {  
+         url.redirect = ( "^/(.*)" => "https://vaultwarden.example.tld/$1" )  
+          server.name                 = "vaultwarden.example.tld"   
+        }  
+}
+
+server.modules += ( "mod_proxy" )
+
+$HTTP["host"] == "vaultwarden.example.tld" {
+    $HTTP["url"] =~ "/vault" {
+       proxy.server  = ( "" => ("vaultwarden" => ( "host" => "<SERVER>", "port" => 8080 )))
+       proxy.forwarded = ( "for" => 1 )
+       proxy.header = (
+           "https-remap" => "enable",
+           "upgrade" => "enable",
+           "connect" => "enable"
+       )
+    }
+}
+```
+
+您必须将 Vaultwarden 环境配置中的 `IP_HEADER` 设置为 `X-Forwarded-For` 而不是默认的 `X-Real-IP`。
+
+</details>
+
+<details>
+
 <summary>Nginx - v1.29.0+ (by <a href="https://github.com/BlackDex">@BlackDex</a>)</summary>
 
 ```nginx
