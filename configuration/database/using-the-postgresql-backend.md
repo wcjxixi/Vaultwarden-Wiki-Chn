@@ -46,6 +46,7 @@ CREATE DATABASE vaultwarden;
 
 ```sql
 CREATE USER vaultwarden WITH ENCRYPTED PASSWORD 'yourpassword';
+GRANT ALL ON DATABASE vaultwarden TO vaultwarden;
 GRANT all privileges ON database vaultwarden TO vaultwarden;
 ```
 
@@ -87,6 +88,7 @@ CREATE DATABASE vaultwarden;
 
 ```sql
 CREATE USER vaultwarden WITH ENCRYPTED PASSWORD 'yourpassword';
+GRANT ALL ON DATABASE vaultwarden TO vaultwarden;
 GRANT all privileges ON database vaultwarden TO vaultwarden;
 ```
 
@@ -110,6 +112,6 @@ load database
 
 _如果您的连接需要 SSL，可以选择将 `?sslmode=require` 添加到 PostgreSQL 连接字符串中。_
 
-7、运行 `pgloader vaultwarden.load` 命令，您可能会看到一些警告，（不用理会）迁移会成功完成。如果有错误，很可能是您的 pgloader 版本过时了！
+7、运行 `pgloader vaultwarden.load` 命令，然后您可能会看到一些警告，（不用理会）迁移会成功完成。如果有错误，很可能是您的 pgloader 版本过时了！
 
 8、重新启动 Vaultwarden。
