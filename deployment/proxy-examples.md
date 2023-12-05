@@ -458,7 +458,7 @@ nginx__servers:
 
 <details>
 
-<summary>Nginx (NixOS)(by tklitschi)</summary>
+<summary>Nginx (NixOS) - v1.29.0+ (by tklitschi, samdoshi)</summary>
 
 NixOS Nginx 配置示例。关于 NixOS 部署的更多信息，请参阅[部署示例](deployment-examples.md)页面。
 
@@ -486,9 +486,6 @@ NixOS Nginx 配置示例。关于 NixOS 部署的更多信息，请参阅[部署
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "http://localhost:8080";
-        };
-        locations."/notifications/hub" = {
           proxyPass = "http://localhost:8080";
           proxyWebsockets = true;
         };

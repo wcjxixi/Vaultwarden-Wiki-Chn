@@ -217,3 +217,19 @@ nc -vz smtp.gmail.com 587
 ```bash
 docker exec -it vaultwarden sh
 ```
+
+## 使用 `sendmail`（非 Docker）
+
+如果您的系统上已经有一个正在运行的 SMTP 服务器（例如 Postfix），并且您在没有 docker 的情况下安装了 Vaultwarden，那么还需要一些额外的步骤来允许服务器通过 sendmail 使用您的 SMTP 服务器：
+
+* 在 Vaultwarden 配置文件（通常是 `/etc/vaultwarden.env`）中，设置 `USE_SENDMAIL=true`
+* 在同一文件中，设置 `SMTP_FROM=user@example.com`（替换为您自己的！）变量，因为它也被 sendmail 使用
+* 以 `root` 用户身份（或使用 `sudo`），使用 `gpasswd -a vaultwarden postdrop` 命令将 `vaultwarden` 用户加入到 `postdrop` 组
+* 使用 `systemctl edit vaultwarden` 编辑 vaultwarden systemd 服务然后在 `[Service]` 部分添加如下两行：
+
+```
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_LOCAL AF_NETLINK
+ReadWritePaths=/var/lib/vaultwarden /var/log/vaultwarden.log /var/spool/postfix/maildrop
+```
+
+最后，别忘了使用 `systemctl restart vaultwarden` 重启服务。
