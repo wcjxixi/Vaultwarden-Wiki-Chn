@@ -142,7 +142,7 @@ ALTER USER 'vaultwarden'@'localhost' IDENTIFIED WITH mysql_native_password BY 'y
 您可能想尝试一组受限的授权：
 
 ```sql
-GRANT ALTER, CREATE, DELETE, DROP, INDEX, INSERT, SELECT, UPDATE ON `vaultwarden`.* TO 'vaultwarden'@'localhost';
+GRANT ALTER, CREATE, DELETE, DROP, INDEX, INSERT, REFERENCES, SELECT, UPDATE ON `vaultwarden`.* TO 'vaultwarden'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
