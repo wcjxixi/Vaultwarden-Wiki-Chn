@@ -136,11 +136,11 @@ WARNING: The m variable is not set. Defaulting to a blank string.
 **.env：**
 
 ```systemd
-VAULTWARDEN_ADMIN_TOKEN=$argon2id$v=19$m=65540,t=3,p=4$MmeK.....
+VAULTWARDEN_ADMIN_TOKEN='$argon2id$v=19$m=65540,t=3,p=4$MmeK.....'
 ```
 
 {% hint style="warning" %}
-确保不要在 `.env` 文件中使用引号。
+确保在 docker-compose 所使用的 `env` 文件中使用单引号。
 {% endhint %}
 
 **docker-compose.yaml：**

@@ -747,7 +747,7 @@ backend vaultwarden_http
 
 <details>
 
-<summary>HAproxy - v1.29.0 之前 (by <a href="https://github.com/williamdes">@williamdes</a>)</summary>
+<summary>HAproxy - before v1.29.0 (by <a href="https://github.com/williamdes">@williamdes</a>)</summary>
 
 将这些行添加到您的 HAproxy 配置中。
 
@@ -967,7 +967,62 @@ use_backend VaultWarden-Notifications_ipvANY  if  !ACL4
 
 <details>
 
-<summary>Istio k8s (by <a href="https://github.com/dpoke">@dpoke</a>)</summary>
+<summary>Istio k8s - v1.29.0 (by <a href="https://github.com/asenyaev">@asenyaev</a>)</summary>
+
+```javascript
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: vaultwarden-gateway
+  namespace: vaultwarden
+spec:
+  selector:
+    istio: ingressgateway-internal # use Istio default gateway implementation
+  servers:
+  - hosts:
+    - vw.k8s.prod
+    port:
+      number: 80
+      name: http
+      protocol: HTTP
+    tls:
+      httpsRedirect: true
+  - hosts:
+    - vw.k8s.prod
+    port:
+      name: https-443
+      number: 443
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: vw-k8s-prod-tls
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: vaultwarden-vs
+  namespace: vaultwarden
+spec:
+  hosts:
+  - vw.k8s.prod
+  gateways:
+  - vaultwarden-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        port:
+          number: 80
+        host: vaultwarden
+```
+
+</details>
+
+<details>
+
+<summary>Istio k8s - before v1.29.0 (by <a href="https://github.com/dpoke">@dpoke</a>)</summary>
 
 ```javascript
 apiVersion: networking.istio.io/v1beta1
@@ -1085,7 +1140,7 @@ relay vaultwarden-https-relay {
 
 <details>
 
-<summary>CloudFlare - v1.29.0 之前 (by <a href="https://github.com/williamdes">@williamdes</a>)</summary>
+<summary>CloudFlare - before v1.29.0 (by <a href="https://github.com/williamdes">@williamdes</a>)</summary>
 
 按照下面的截图创建新的规则。用于查找此设置的示例仪表板 URL：`https://dash.cloudflare.com/xxxxxx/example.org/rules/origin-rules/new`
 
