@@ -115,3 +115,11 @@ _（\* 仅限 vaultwarden-1.28.0，因为 GCC-4.9 不可用。）_
 
 在 void-packages 中作为 [vaultwarden](https://github.com/void-linux/void-packages/tree/master/srcpkgs/vaultwarden) 可用：`xbps-install vaultwarden`\
 还可以选择安装网页密码库 ([vaultwarden-web](https://github.com/void-linux/void-packages/tree/master/srcpkgs/vaultwarden-web))：`xbps-install vaultwarden-web`
+
+## Snapcraft
+
+通过 [Snap Store](https://snapcraft.io/vaultwarden) 以 [snap](https://github.com/DownThePark/snapcraft-vaultwarden) 形式提供。网页密码库也包含在内，且默认已启用。
+
+可以使用以下命令从命令行安装 Vaultwarden：`snap install vaultwarden`
+
+其配置文件位于：`/var/snap/vaultwarden/current/.env`

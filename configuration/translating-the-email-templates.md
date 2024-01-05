@@ -24,6 +24,7 @@
 * 法语 by @YoanSimco：[https://github.com/YoanSimco/vaultwarden-lang-fr](https://github.com/YoanSimco/vaultwarden-lang-fr)
 * 简体中文 by @wcjxixi：[https://github.com/wcjxixi/vaultwarden-lang-zhcn](https://github.com/wcjxixi/vaultwarden-lang-zhcn)
 * 意大利语 by @rizlas：[https://github.com/rizlas/vaultwarden-lang-it](https://github.com/rizlas/vaultwarden-lang-it)
+* 西班牙语 by @javier-varez: [https://github.com/javier-varez/vaultwarden-lang-es](https://github.com/javier-varez/vaultwarden-lang-es)
 
 {% hint style="warning" %}
 翻译由社区成员按原样提供，我们尚未对其进行测试。因此，使用它们需要您自担风险。如果发生重大变化（例如，由 Vaultwarden 的新版本引起），请通知维护者和/或在此处做一个注释。
