@@ -23,6 +23,7 @@
 * 德语 by @kennymc-c：[https://github.com/kennymc-c/vaultwarden-lang-de](https://github.com/kennymc-c/vaultwarden-lang-de)
 * 法语 by @YoanSimco：[https://github.com/YoanSimco/vaultwarden-lang-fr](https://github.com/YoanSimco/vaultwarden-lang-fr)
 * 简体中文 by @wcjxixi：[https://github.com/wcjxixi/vaultwarden-lang-zhcn](https://github.com/wcjxixi/vaultwarden-lang-zhcn)
+* 简体中文 by @zituoguan：[https://github.com/zituoguan/vaultwarden-lang-zh\_CN](https://github.com/zituoguan/vaultwarden-lang-zh\_CN)
 * 意大利语 by @rizlas：[https://github.com/rizlas/vaultwarden-lang-it](https://github.com/rizlas/vaultwarden-lang-it)
 * 西班牙语 by @javier-varez: [https://github.com/javier-varez/vaultwarden-lang-es](https://github.com/javier-varez/vaultwarden-lang-es)
 

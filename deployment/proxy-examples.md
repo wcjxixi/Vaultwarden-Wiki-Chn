@@ -1150,6 +1150,82 @@ relay vaultwarden-https-relay {
 
 <details>
 
+<summary>CloudFlare - after v1.29.0 (by <a href="https://github.com/calvin-li-developer">@calvin-li-developer</a>)</summary>
+
+`docker-compose.yml`：
+
+```yaml
+version: '3'
+
+services:
+  vaultwarden:
+    container_name: vaultwarden
+    image: vaultwarden/server:latest
+    restart: unless-stopped
+    environment:
+      DOMAIN: "https://vaultwarden.example.com"  # 您的域名；vaultwarden 需要知道您的域名是 https，才能正常处理附件
+    volumes:
+      - ./vw-data:/data
+    networks:
+      - vaultwarden-network
+
+  cloudflared:
+    image: cloudflare/cloudflared:2024.1.2
+    container_name: vaultwarden-cloudflared
+    restart: unless-stopped
+    read_only: true
+    volumes:
+      - ./cloudflared-config:/root/.cloudflared/
+    command: [ "tunnel", "run", "${TUNNEL_ID}" ]
+    user: root
+    depends_on:
+      - vaultwarden
+    networks:
+      - vaultwarden-network
+networks:
+  vaultwarden-network:
+    name: vaultwarden-network
+    external: false
+```
+
+`cloudflared-config` 文件夹中的内容：
+
+```
+config.yml  aaaaa-bbbb-cccc-dddd-eeeeeeeee.json
+```
+
+请使用[本指南](https://thedxt.ca/2022/10/cloudflare-tunnel-with-docker/)找出您的 cloudflare 账户的以下内容/值。注意：`aaaaa-bbbb-cccc-dddd-eeeeeeeee` 只是一个随机的 tunnelID，请使用真实的 ID。
+
+`config.yml`：
+
+```yaml
+tunnel: aaaaa-bbbb-cccc-dddd-eeeeeeeee
+credentials-file: /root/.cloudflared/aaaaa-bbbb-cccc-dddd-eeeeeeeee.json
+
+originRequest:
+  noHappyEyeballs: true
+  disableChunkedEncoding: true
+  noTLSVerify: true
+
+ingress:
+  - hostname: vault.example.com # 更改为您自己的域名
+    service: http_status:404
+    path: admin
+  - hostname: vault.example.com # 更改为您自己的域名
+    service: http://vaultwarden
+  - service: http_status:404
+```
+
+`aaaaa-bbbb-cccc-dddd-eeeeeeeee.json`：
+
+```
+{"AccountTag":"changeme","TunnelSecret":"changeme","TunnelID":"aaaaa-bbbb-cccc-dddd-eeeeeeeee"}
+```
+
+</details>
+
+<details>
+
 <summary>Pound</summary>
 
 ```
