@@ -20,7 +20,7 @@
 
 ## Arch Linux
 
-可在[官方仓库](https://archlinux.org/packages/community/x86\_64/vaultwarden/)中获取，同时包含了[网页版密码库](https://archlinux.org/packages/community/any/vaultwarden-web/)。
+可在[官方仓库](https://archlinux.org/packages/community/x86\_64/vaultwarden)中获取，同时包含了[网页版密码库](https://archlinux.org/packages/extra/any/vaultwarden-web/)。
 
 ## Debian
 

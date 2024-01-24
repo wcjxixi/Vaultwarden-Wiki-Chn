@@ -10,7 +10,7 @@
 > 2. 通过管理页面修改配置后马上生效
 > 3. 若直接修改 `config.json` 文件，则需要重启 Vaultwarden 才能生效（因为只有启动时才会读取 `config.json` 文件）
 
-## 配置方式 <a href="#configuration-methods" id="configuration-methods"></a>
+## 如何配置 Vaultwarden <a href="#how-to-configure-vaultwarden" id="how-to-configure-vaultwarden"></a>
 
 {% hint style="warning" %}
 **注意：**`config.json` 文件不是配置您的设置的推荐方式！要么使用环境变量，您可以通过多种方式为您的容器环境（Docker、Docker-Compose、K8s 等）进行配置；或者，如果使用独立的二进制文件（其不是由 Vaultwarden 本身分发的），请使用位于当前工作目录下的 `.env` 文件。在管理界面中保存设置时会创建并覆盖 `config.json` 文件！
@@ -42,8 +42,30 @@
 
 ## 设置域名 URL <a href="#setting-the-domain-url" id="setting-the-domain-url"></a>
 
-确保将 `DOMAIN` 环境变量（或配置文件中的 `domain` 选项）设置为用于访问 Vaultwarden 实例的 URL。如果不这样做，可能会出现莫名其妙的功能性问题。一些示例：
+确保将 `DOMAIN` 环境变量（或配置文件中的 `domain`）设置为您的 Vaultwarden 实例的基础 URL。如果不这样做，可能会出现莫名其妙的功能性问题。一些示例：
 
 * `https://vaultwarden.example.com`
 * `https://vaultwarden.example.com:8443`（非默认端口）
 * `https://host.example.com/vaultwarden`（[子目录托管](using-an-alternate-base-dir-subdir-subpath.md) - 尽可能避免 URL 重写）
+
+## 有关不同配置选项的更多信息 <a href="#further-information-about-different-configuration-options" id="further-information-about-different-configuration-options"></a>
+
+* 邀请和注册设置
+  * 禁用邀请
+  * 禁用新用户注册
+* 管理后台
+  * 启用管理页面
+  * 禁用管理令牌
+* SMTP 配置
+* 通知
+  * 启用 WebSocket 通知
+  * 启用移动客户端推送通知
+* 2FA 设置
+  * 启用 U2F 和 FIDO2 WebAuthn 身份验证
+  * 启用 YubiKey OTP 身份验证
+* 日志
+* 其他配置
+  * 更改持久数据位置
+  * 更改 API 请求大小限制
+  * 更改 worker 数量
+* 翻译电子邮件模板
