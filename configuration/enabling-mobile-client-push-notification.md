@@ -21,10 +21,20 @@ Vaultwarden 目前**不支持**欧盟数据区域。如果您已请求 `bitwarde
 2、将以下设置添加到 `docker-compose.yml`（并确保插入上一步获取到的正确 ID 和 KEY）：
 
 ```systemd
+    environment:
       - PUSH_ENABLED=true
       - PUSH_INSTALLATION_ID=
       - PUSH_INSTALLATION_KEY=
 ```
+
+{% hint style="info" %}
+如果您在上一步中请求了 `bitwarden.eu（欧盟）` 的安装 ID 和 kEY，您还必须设置
+
+```systemd
+      - PUSH_RELAY_URI=https://push.bitwarden.eu
+      - PUSH_IDENTITY_URI=https://identity.bitwarden.eu
+```
+{% endhint %}
 
 3、重新创建您的容器，例如：
 
@@ -34,12 +44,31 @@ docker compose up -d vaultwarden
 
 4、将您的应用程序连接到您的 Vaultwarden 实例。
 
-{% hint style="warning" %}
-除非您使用的最新安装的 Bitwarden 应用程序，否则已连接的客户端上的推送通知**将不起作用**。您必须**清除应用程序数据**（或**重新安装应用程序**）然后再次连接您的 Vaultwarden 账户，才能[向 Bitwarden 的 Azure 通知中心注册推送令牌](https://contributing.bitwarden.com/architecture/deep-dives/push-notifications/mobile/#self-hosted-implementation)。
+{% hint style="danger" %}
+如果您在 v1.30.2 之前已经连接了 Bitwarden 应用程序，则推送通知**将不适用于**您的设备（因为设备令牌从未保存）。您必须**清除应用程序数据**（或**重新安装应用程序**）然后再次连接您的 Vaultwarden 账户，才能[向 Bitwarden 的 Azure 通知中心注册推送令牌](https://contributing.bitwarden.com/architecture/deep-dives/push-notifications/mobile/#self-hosted-implementation)。
 {% endhint %}
 
 {% hint style="warning" %}
-推送通知仅适用于从官方移动商店（App Store、Google Play 商店）或使用 Google Play 商店的替代客户端（如 Aurora 商店）安装的 Bitwarden 应用程序。从 [F-Droid](https://mobileapp.bitwarden.com/fdroid/)、NeoStore 或其他替代商店安装的 Bitwarden，推送通知将不起作用。因为这些应用程序是在不支持 Firebase Messaging 的情况下构建的。
+推送通知**仅适用于**从官方移动商店（App Store、Google Play 商店）或使用 Google Play 商店的替代客户端（如 Aurora 商店）安装的 Bitwarden 应用程序。从 [F-Droid](https://mobileapp.bitwarden.com/fdroid/)、NeoStore 或其他替代商店安装的 Bitwarden，推送通知**将不起作用**。因为这些应用程序是在不支持 Firebase Messaging 的情况下构建的。
 {% endhint %}
 
 5、测试移动端的推送通知是否正常工作，例如通过重命名网页密码库中的文件夹，然后查看移动应用程序中的文件夹在几秒钟后是否发生变化。
+
+## 从美国服务器切换到欧盟服务器（反之亦然） <a href="#switching-from-us-to-eu-servers-or-vice-versa" id="switching-from-us-to-eu-servers-or-vice-versa"></a>
+
+{% hint style="danger" %}
+在进行此更改之前，请确保您使用的是最新版本[![GitHub Release](https://img.shields.io/github/release/dani-garcia/vaultwarden.svg)](https://github.com/dani-garcia/vaultwarden/releases/latest)。
+{% endhint %}
+
+要从一个数据区域切换到另一数据区域，您必须：
+
+1. 取消所有会话授权并清除移动应用程序上的应用程序数据
+2. 使用不同的数据区域重复上一节中的步骤 1 到步骤 5
+
+除了步骤 1 之外，您还可以清除数据库中 `devices` 表的 `push_uuid` 字段，例如：
+
+```sql
+UPDATE devices SET push_uuid = NULL;
+```
+
+这将触发在您下次登录该设备时重新注册您的推送设备。

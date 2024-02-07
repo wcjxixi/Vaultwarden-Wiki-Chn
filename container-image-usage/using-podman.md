@@ -1,4 +1,4 @@
-# 5.使用 Podman
+# =5.使用 Podman
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Using-Podman)
@@ -6,7 +6,13 @@
 
 [Podman](https://podman.io/) 是替代 Docker 的无守护程序，它与大部分 Docker 容器兼容。
 
-## 创建一个 systemd 服务文件 <a href="#creating-a-systemd-service-file" id="creating-a-systemd-service-file"></a>
+## 创建 Quadlet（对于 Podman 4.4+） <a href="#creating-a-quadlet-podman-4.4" id="creating-a-quadlet-podman-4.4"></a>
+
+### 通过环境文件配置 <a href="#configuration-via-environment-file" id="configuration-via-environment-file"></a>
+
+### 创建 podman Quadlet <a href="#creating-the-podman-quadlet" id="creating-the-podman-quadlet"></a>
+
+## 创建一个 systemd 服务文件（对于老版本的 Podman） <a href="#creating-a-systemd-service-file-older-podman-versions" id="creating-a-systemd-service-file-older-podman-versions"></a>
 
 由于 Podman 的无守护程序架构，它比 Docker 更容易在 systemd 中运行。它带有一个便捷的 [generate syetemd 命令](http://docs.podman.io/en/latest/markdown/podman-generate-systemd.1.html)，该命令可以生成 systemd 文件。这里有[一篇不错的文章详细介绍了它](https://www.redhat.com/sysadmin/podman-shareable-systemd-services)，还有[这篇文章也详细介绍了一些最新的更新](https://www.redhat.com/sysadmin/improved-systemd-podman)。
 
@@ -36,7 +42,7 @@ WantedBy=multi-user.target default.target
 
 您可以提供 `--files` 标志告诉 podman 将 systemd 服务放到一个文件中，或使用 `podman generate systemd --name vaultwarden > /etc/systemd/system/container-vaultwarden.service`。这样，我们就可以像任何正常的服务文件一样启用和启动容器了。
 
-```bash
+```shell
 $ systemctl --user enable /etc/systemd/system/container-vaultwarden.service
 $ systemctl --user start container-vaultwarden.service
 ```
