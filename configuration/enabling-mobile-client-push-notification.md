@@ -11,11 +11,11 @@
 1、访问 [https://bitwarden.com/host/](https://bitwarden.com/host/)，输入您的电子邮件地址，然后您将获得一个 INSTALLATION ID 和 KEY。
 
 {% hint style="info" %}
-在 [#3752](https://github.com/dani-garcia/vaultwarden/pull/3752) 实施之前，请确保选择 `bitwarden.com（美国）`作为数据区域。
+~~在~~ [~~#3752~~](https://github.com/dani-garcia/vaultwarden/pull/3752) ~~实施之前，请确保选择 `bitwarden.com（美国）`作为数据区域。~~
 {% endhint %}
 
 {% hint style="warning" %}
-Vaultwarden 目前**不支持**欧盟数据区域。如果您已请求 `bitwarden.eu（欧盟）`的 INSTALLATION ID 和 KEY，您需要等到 PR 合并和发布后，自己[构建 Vaultwarden](../deployment/building-your-own-docker-image.md) 并进行必要的更改，或者您可以简单地请求一个用于美国数据区域的新的 ID/KEY 对。
+~~Vaultwarden 目前**不支持**欧盟数据区域。如果您已请求 `bitwarden.eu（欧盟）`的 INSTALLATION ID 和 KEY，您需要等到 PR 合并和发布后，自己~~[~~构建 Vaultwarden~~](../deployment/building-your-own-docker-image.md) ~~并进行必要的更改，或者您可以简单地请求一个用于美国数据区域的新的 ID/KEY 对。~~
 {% endhint %}
 
 2、将以下设置添加到 `docker-compose.yml`（并确保插入上一步获取到的正确 ID 和 KEY）：
@@ -49,7 +49,7 @@ docker compose up -d vaultwarden
 {% endhint %}
 
 {% hint style="warning" %}
-推送通知**仅适用于**从官方移动商店（App Store、Google Play 商店）或使用 Google Play 商店的替代客户端（如 Aurora 商店）安装的 Bitwarden 应用程序。从 [F-Droid](https://mobileapp.bitwarden.com/fdroid/)、NeoStore 或其他替代商店安装的 Bitwarden，推送通知**将不起作用**。因为这些应用程序是在不支持 Firebase Messaging 的情况下构建的。
+推送通知**仅适用于**从官方移动商店（App Store、Google Play 商店）或使用 Google Play 商店的替代客户端（如 Aurora 商店）获取的 Bitwarden 应用程序。从 [F-Droid](https://mobileapp.bitwarden.com/fdroid/)、NeoStore 或其他替代商店安装的 Bitwarden，推送通知**将不起作用**。因为这些应用程序是在不支持 Firebase Messaging 的情况下构建的。
 {% endhint %}
 
 5、测试移动端的推送通知是否正常工作，例如通过重命名网页密码库中的文件夹，然后查看移动应用程序中的文件夹在几秒钟后是否发生变化。

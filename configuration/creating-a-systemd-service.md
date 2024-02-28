@@ -10,7 +10,8 @@
 
 要使 Vaultwarden 在系统启动的时候启动并使用 systemd 的其他功能（例如，隔离、日志记录等），则需要一个 `.service` 文件。以下是一个可行的起点：
 
-<pre class="language-systemd"><code class="lang-systemd">[Unit]
+```systemd
+[Unit]
 Description=Vaultwarden Server (Rust Edition)
 Documentation=https://github.com/dani-garcia/vaultwarden
 # 如果您使用 mariadb、mysql 或 postgresql 数据库， 
@@ -52,15 +53,13 @@ ProtectHome=true
 ProtectSystem=strict
 # 仅允许对以下目录进行写入，并将其设置为工作目录（用户和密码数据存储在这里）
 WorkingDirectory=/var/lib/vaultwarden
-ReadWriteDirectories=/var/lib/vaultwarden
-<strong># 允许 bitwarden_rs 绑定 0-1024 范围内的端口
-</strong># AmbientCapabilities=CAP_NET_BIND_SERVICE
+ReadWritePaths=/var/lib/vaultwarden
 
 [Install]
 WantedBy=multi-user.target
-</code></pre>
+```
 
-更改以上所有路径以匹配您的安装（`WorkingDirectory` 与 `ReadWriteDirectory` 应相同），将此文件命名为 `vaultwarden.service` 并将其放入 `/etc/systemd/system` 中。
+更改以上所有路径以匹配您的安装（`WorkingDirectory` 与 `ReadWritePaths` 应相同），将此文件命名为 `vaultwarden.service` 并将其放入 `/etc/systemd/system` 中。
 
 如果必须更改现有（而不是像上面那样新建）的 systemd 文件（您安装的软件包提供给您的），可以使用下面的命令来添加更改：
 
@@ -144,7 +143,7 @@ Failed at step NAMESPACE spawning /home/vaultwarden/vaultwarden: Permission deni
 Failed to parse protect system value
 ```
 
-要解决这一点，您可以在包含有 `PrivateTmp`、`PrivateDevices`、`ProtectHome`、`ProtectSystem` 和 `ReadWriteDirectories` 的部分或全部行前面放置 `#` 符号来将其注释掉。尽管将所有这些行注释掉可能会起作用，但不建议这样做，因为这些都是很好的安全措施。要查看您的 systemd 支持哪些选项，请运行以下命令来查看其输出：
+要解决这一点，您可以在包含有 `PrivateTmp`、`PrivateDevices`、`ProtectHome`、`ProtectSystem` 和 `ReadWritePaths` 的部分或全部行前面放置 `#` 符号来将其注释掉。尽管将所有这些行注释掉可能会起作用，但不建议这样做，因为这些都是很好的安全措施。要查看您的 systemd 支持哪些选项，请运行以下命令来查看其输出：
 
 ```shell
 $ systemctl --version
