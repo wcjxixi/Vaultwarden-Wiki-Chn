@@ -1,4 +1,4 @@
-# =5.使用 Podman
+# 5.使用 Podman
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Using-Podman)
@@ -8,9 +8,53 @@
 
 ## 创建 Quadlet（对于 Podman 4.4+） <a href="#creating-a-quadlet-podman-4.4" id="creating-a-quadlet-podman-4.4"></a>
 
+从版本 4.4 开始，Podman 使用 [quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html)，如果您使用以前的 `generate systemd` 方法，则会显示警告。
+
+额外的好处是此方法将使容器保持更新。
+
 ### 通过环境文件配置 <a href="#configuration-via-environment-file" id="configuration-via-environment-file"></a>
 
+在环境文件中进行配置可能会更容易并且不易出错。
+
+注意：此文件包含机密，请确保只有 root 拥有访问权限！
+
+```sh
+sudo install -o0 -g0 -m600 /etc/vaultwarden.env
+sudo vi /etc/vaultwarden.env
+```
+
+```sh
+# Contents of /etc/vaultwarden.env
+ROCKET_PORT=8080
+
+# DISABLE_ADMIN_TOKEN=true
+# ADMIN_TOKEN=$argon2id$...
+
+# LOG_LEVEL=debug
+```
+
 ### 创建 podman Quadlet <a href="#creating-the-podman-quadlet" id="creating-the-podman-quadlet"></a>
+
+配置看起来像 systemd 的，但我们配置的是容器，而不是单元。请参阅所有 `[Container]` 指令的[文档](https://man.archlinux.org/man/quadlet.5.en#Container\_units\_%5BContainer%5D)。
+
+```systemd
+# Content of /usr/share/containers/systemd/vaultwarden.container
+[Unit]
+Description=Vaultwarden container
+After=network-online.target
+
+[Container]
+Image=ghcr.io/dani-garcia/vaultwarden:latest
+Exec=/start.sh
+EnvironmentFile=/etc/vaultwarden.env
+Volume=/vw-data/:/data/
+PublishPort=8080:8080
+
+[Install]
+WantedBy=default.target
+```
+
+编辑 quadlet 后，运行 `systemctl daemon-reload` 以创建或更新 systemd 单元。您可以使用常规 `systemctl` 命令控制此容器。
 
 ## 创建一个 systemd 服务文件（对于老版本的 Podman） <a href="#creating-a-systemd-service-file-older-podman-versions" id="creating-a-systemd-service-file-older-podman-versions"></a>
 
