@@ -61,7 +61,7 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 
 * [单点登录 (SSO)](https://help.ppgg.in/login-with-sso/about-login-with-sso)
 * [自定义角色](https://help.ppgg.in/organizations/user-types-and-access-control#custom-role)
-* 某些企业策略（[UI 不是开源的](https://github.com/bitwarden/clients/tree/master/bitwarden\_license/bit-web/src/app/policies)，可能需要通过管理页面进行配置）：
+* 某些企业策略（[UI 非开源](https://github.com/bitwarden/clients/tree/main/bitwarden\_license/bit-web/src/app/admin-console/policies)。可能需要通过管理页面进行配置）：
   * [要求单点登录验证](https://help.ppgg.in/organizations/enterprise-policies#require-single-sign-on-authentication)
   * [密码库超时](https://help.ppgg.in/organizations/enterprise-policies#vault-timeout)
   * [禁用个人密码库导出](https://help.ppgg.in/organizations/enterprise-policies#disable-personal-vault-export)
