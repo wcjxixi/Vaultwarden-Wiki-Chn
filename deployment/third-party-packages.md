@@ -15,7 +15,7 @@
 <table data-full-width="false"><thead><tr><th>Server</th><th>Web-Vault</th></tr></thead><tbody><tr><td><a href="https://repology.org/project/vaultwarden/versions"><img src="https://repology.org/badge/vertical-allrepos/vaultwarden.svg" alt="Packaging status"></a></td><td><a href="https://repology.org/project/vaultwarden-web/versions"><img src="https://repology.org/badge/vertical-allrepos/vaultwarden-web.svg" alt="Packaging status" data-size="original"></a></td></tr></tbody></table>
 
 {% hint style="warning" %}
-请注意，最新的 Vaultwarden 版本并不总是与最新的 web-vault 版本前向兼容，因此您可能需要使[用旧版本](https://github.com/dani-garcia/bw\_web\_builds/releases)的 vaultwarden-web 以确保兼容性。
+请注意，最新的 Vaultwarden 版本并不总是与最新的 web-vault 版本前向兼容，因此您可能需要[使用旧版本](https://github.com/dani-garcia/bw\_web\_builds/releases)的 vaultwarden-web 以确保兼容性。
 {% endhint %}
 
 ## Arch Linux
@@ -49,9 +49,18 @@ dnf config-manager --add-repo https://evermeet.cx/pub/repo/fedora/evermeet.repo
 dnf install vaultwarden vaultwarden-webvault
 ```
 
+## Gentoo
+
+用户可以自定义（是否使用 mysql/sqlite/postgresql 或者 web/cli）使用 USE 标记构建 Vaultwarden。首先按照[此 wiki](https://wiki.gentoo.org/wiki/Project:GURU/Information\_for\_End\_Users) 启用 GURU 覆盖。使用 `equery uses vaultwarden` 查看 Vaultwarden 可用的 USE 标记。
+
+```
+echo "app-admin/vaultwarden <your USE flags here>" >> /etc/portage/package.use/vaultwarden
+emerge app-admin/vaultwarden
+```
+
 ## Nix (OS)
 
-此 Vaultwarden 被同时打包用于 mysql、sqlite、postgresql，以及 Vault。还有一个用于声明式配置的 NixOS 模块（请参阅 `services.vaultwarden`）
+此 Vaultwarden 被同时打包包含 mysql、sqlite、postgresql，以及包含 Vault。还有一个用于声明式配置的 NixOS 模块（请参阅 `services.vaultwarden`）
 
 ## Cloudron
 
@@ -87,12 +96,10 @@ openSUSE 构建服务项目，支持：
 
 | RPM    | 版本                           |
 | ------ | ---------------------------- |
-| SUSE   | 15.4; 15.5; Tumbleweed       |
-| RHEL   | 7\*; 8                       |
-| CentOS | 7\*; 8; 8\_Stream; 9\_Stream |
-| Fedora | 36; 37; 38; Rawhide          |
-
-_（\* 仅限 vaultwarden-1.28.0，因为 GCC-4.9 不可用。）_
+| SUSE   | 15.4; 15.5; 15.6; Tumbleweed |
+| RHEL   | 8                            |
+| CentOS | 7; 8; 8\_Stream; 9\_Stream   |
+| Fedora | 36; 37; 38; 39               |
 
 | DEB    | 版本                         |
 | ------ | -------------------------- |

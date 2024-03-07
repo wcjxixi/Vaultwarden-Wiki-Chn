@@ -1150,7 +1150,7 @@ relay vaultwarden-https-relay {
 
 <details>
 
-<summary>CloudFlare - after v1.29.0 (by <a href="https://github.com/calvin-li-developer">@calvin-li-developer</a>)</summary>
+<summary>CloudFlare Tunnel - after v1.29.0 (by <a href="https://github.com/calvin-li-developer">@calvin-li-developer</a>)</summary>
 
 `docker-compose.yml`：
 
