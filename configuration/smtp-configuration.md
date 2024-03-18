@@ -4,7 +4,7 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/SMTP-Configuration)
 {% endhint %}
 
-{% hint style="warning" %}
+{% hint style="danger" %}
 **注意**：v1.25.0 版本之前的 Vaultwarden 有一个关于 SSL 和 TLS 的漏洞/误导性的配置设置项。这已在测试版和新发布的版本中得到修复。
 
 旧设置项是 `SMTP_SSL` 和 `SMTP_EXPLICIT_TLS`。
@@ -14,6 +14,8 @@
 * `SMTP_SECURITY=starttls` 等同于 `SMTP_SSL=true`
 * `SMTP_SECURITY=force_tls` 等同于 `SMTP_EXPLICIT_TLS=true`
 {% endhint %}
+
+***
 
 您可以配置 Vaultwarden 通过 SMTP 代理来发送电子邮件：
 
@@ -183,7 +185,9 @@ docker run -d --name vaultwarden \
 
 当 `SMTP_SSL` 设置为 `true` 时（这是默认值），将仅接受 TLSv1.1 和 TLSv1.2 协议，并且 `SMTP_PORT` 默认为`587`（等同于 `SMTP_SECURITY=starttls`）。如果设置为 `false`，`SMTP_PORT` 则默认设置为 `25` 并将尝试加密（2020 年 3 月 12 日之前的代码不会尝试加密）（等同于 `SMTP_SECURITY=off`）。这是非常不安全的，仅在您知道您在做什么时才使用此设置。要以隐式模式（强制 TLS）运行 SMTP，请将 `SMTP_EXPLICIT_TLS` 设置为 `true`（等同于 `SMTP_SECURITY=force_tls`）。如果您不登录也可以发送电子邮件，简单地将 `SMTP_USERNAME` 和 `SMTP_PASSWORD` 设置为空即可。
 
+{% hint style="info" %}
 **注意**：如果您在 v1.25.0 及更高版本上使用 `SMTP_SSL` 和 `SMTP_EXPLICIT_TLS` 设置，Vaultwarden 会对已弃用的设置产生的错误进行忽略。
+{% endhint %}
 
 ## 故障排除 <a href="#troubleshooting" id="troubleshooting"></a>
 
@@ -191,7 +195,9 @@ docker run -d --name vaultwarden \
 
 检查您是否可以访问 SMTP 服务器的一些基本步骤是通过在您运行 Vaultwarden（无论是使用 Docker 还是作为一个独立的二进制文件）的主机上运行以下命令来完成。
 
+{% hint style="info" %}
 **注意**：将 `smtp.google.com` 和 `587`、`465` 或 `25` 替换为与您的 SMTP 服务器对应的主机和端口。
+{% endhint %}
 
 这些命令的输出应该是 `0`，如果它返回的不是 `0`，就意味着连接到此服务器时有问题。
 

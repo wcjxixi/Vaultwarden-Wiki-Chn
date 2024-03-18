@@ -8,7 +8,7 @@
 
 本文将演示如何使用 [Caddy](https://caddyserver.com/) Web 服务器创建这样的设置，Caddy 内置了对诸多 DNS 提供商的 ACME 支持。我们将通过 ACME [DNS 验证方式](https://letsencrypt.org/docs/challenge-types/#dns-01-challenge)获取 Let's Encrypt 证书来配置 Caddy -- 在这里使用通常的 HTTP 验证方式的话会有问题，因为它依赖于 Let's Encrypt 服务器能够访问到您的内部 Web 服务器。
 
-{% hint style="warning" %}
+{% hint style="danger" %}
 本文涵盖了更通用的 DNS 验证设置，但许多用户可能会发现使用 Docker Compose 来集成 Caddy 和 Vaultwarden 是最简单的。具体的例子请参见[使用 Docker Compose](../../container-image-usage/using-docker-compose.md#caddy-with-dns-challenge)。
 {% endhint %}
 
@@ -89,7 +89,7 @@ caddy start --envfile caddy.env
 
 如果您还没有账户，请在 [https://www.cloudflare.com/](https://www.cloudflare.com/) 创建一个；您还需要到您的域名注册商那里将名称服务器设置为 Cloudflare 分配给您的值。为您的 Vaultwarden 实例创建一个子域名（例如，`vw.example.com`），将其 IP 地址设置为您的 Vaultwarden 主机的私有 IP（例如，`192.168.1.100`）。例如：
 
-![](https://camo.githubusercontent.com/0e3cc1847c048fa874c2ca42d79b734d2eee88e0b36bfae7a52e1cf2a04a0b91/68747470733a2f2f692e696d6775722e636f6d2f4242767934596a2e706e67)
+<figure><img src="https://camo.githubusercontent.com/17b5c9a41a4dfda12a3e60cdf054456392b5361a08082b1e9e2433d0c5354fa5/68747470733a2f2f692e696d6775722e636f6d2f4242767934596a2e706e67" alt=""><figcaption></figcaption></figure>
 
 创建一个用于 DNS 验证的 API token（更多背景知识，请参阅 [https://github.com/libdns/cloudflare/blob/master/README.md](https://github.com/libdns/cloudflare/blob/master/README.md)）：
 
@@ -151,7 +151,7 @@ export ROCKET_PORT=8080
 2. 从那个目录中，运行 `DUCKDNS_TOKEN=<token> ./lego -a --dns duckdns -d my-vm.duckdns.org -m me@example.com run`（用合适的值替换令牌、域名和电子邮件地址）。这将使您在 Let's Encrypt 注册，并为您的域名获取一个证书。
 3. 设置一个每周的 cron 作业来运行 `DUCKDNS_TOKEN=<token> ./lego --dns duckdns -d my-vw.duckdns.org -m me@example.com renew`。这将在你的证书即将到期时更新它。
 
-{% hint style="warning" %}
+{% hint style="info" %}
 `lego` 默认请求 ECC/ECDSA 证书。如果您使用 Vaultwarden 中内置的 [Rocket HTTPS 服务器](enabling-https.md#via-rocket)，您需要请求 RSA 证书。在上面的 `lego` 命令中，添加选项 `--key-type rsa2048`。
 {% endhint %}
 

@@ -4,7 +4,9 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Running-without-WAL-enabled)
 {% endhint %}
 
-> WAL 是专用于 SQLite 的设置，它在 Postgres 或 MySQL 上不起作用；如果您使用这些后端之一，则 `ENABLE_DB_WAL` 配置选项无效。
+{% hint style="warning" %}
+WAL 是专用于 SQLite 的设置，它在 Postgres 或 MySQL 上不起作用；如果您使用这些后端之一，则 `ENABLE_DB_WAL` 配置选项无效。
+{% endhint %}
 
 默认情况下，`vaultwarden` 在启动期间将尝试为数据库启用 [WAL](https://sqlite.org/wal.html)。添加此功能可以提高性能，并且在某些情况下有助于避免请求失败。
 
@@ -18,11 +20,11 @@
 
 ## 关闭 WAL 的步骤 <a href="#how-to-turn-wal-off" id="how-to-turn-wal-off"></a>
 
-### 0、执行备份 <a href="#0-make-backup" id="0-make-backup"></a>
+### 0、执行备份 <a href="#id-0-make-backup" id="id-0-make-backup"></a>
 
 这些更改通常是安全的，可以顺利完成并且不会丢失数据，但是强烈建议在进行任何更改之前[备份您的数据](../../other-information/backing-up-your-vault.md)。
 
-### 1、在低版本数据库上禁用 WAL <a href="#1-disable-wal-on-old-db" id="1-disable-wal-on-old-db"></a>
+### 1、在低版本数据库上禁用 WAL <a href="#id-1-disable-wal-on-old-db" id="id-1-disable-wal-on-old-db"></a>
 
 如果您使用启用了 WAL 的低版本数据库，则需要使用 sqlite 来禁用它：
 
@@ -45,7 +47,7 @@ delete
 
 5）键入 `.quit` 并按回车退出 sqlite 实用程序（注意前面的点）。
 
-### 2、在 `vaultwarden` 中禁用 WAL <a href="#2-disable-wal-in-vaultwarden" id="2-disable-wal-in-vaultwarden"></a>
+### 2、在 `vaultwarden` 中禁用 WAL <a href="#id-2-disable-wal-in-vaultwarden" id="id-2-disable-wal-in-vaultwarden"></a>
 
 要关闭 WAL，您需要通过将 `ENABLE_DB_WAL` 变量的值设置为 `false` 来启动 `vaultwarden`。
 
