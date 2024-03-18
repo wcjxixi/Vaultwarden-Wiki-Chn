@@ -103,7 +103,7 @@ caddy start --envfile caddy.env
 
 您的 token 列表看起来应该像这样：
 
-![](https://camo.githubusercontent.com/3317aacd91dd3a80b0a9689929ded89c1b384749ec7eda07bebccae2d79ceba0/68747470733a2f2f692e696d6775722e636f6d2f466f4f763957772e706e67)
+<figure><img src="https://camo.githubusercontent.com/6f44c7e4797be79e533787884ecc880c5d1797c266a4550ae2d61dbbf885932a/68747470733a2f2f692e696d6775722e636f6d2f466f4f763957772e706e67" alt=""><figcaption></figcaption></figure>
 
 创建一个名为 `Caddyfile` 的文件，内容如下：
 

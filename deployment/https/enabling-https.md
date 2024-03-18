@@ -29,7 +29,7 @@
 
 ### 通过 Rocket <a href="#via-rocket" id="via-rocket"></a>
 
-{% hint style="warning" %}
+{% hint style="danger" %}
 不建议使用此方式。
 {% endhint %}
 
@@ -67,7 +67,7 @@ docker run -d --name vaultwarden \
 
 ~~有关如何在本地系统上设置和使用私有 CA 的更多信息，请参阅~~[~~此页面~~](../../other-information/private-ca-and-self-signed-certs-that-work-with-chrome.md)~~。如果遵循该指南，您的 ROCKET\_TLS 行看起来应该像这样：`-e ROCKET_TLS='{certs="/ssl/vaultwarden.crt",key="/ssl/vaultwarden.key"}' \`~~
 
-{% hint style="warning" %}
+{% hint style="danger" %}
 确保您的证书文件包含了完整的信任链。对于 certbot，这意味着应使用 `fullchain.pem` 而不是 `cert.pem`。完整的信任链应该包含两个证书：叶证书（与 `cert.pem` 中的内容相同），后面跟随 R3 或 E1 [中间证书](https://letsencrypt.org/certificates/#intermediate-certificates)。例如，Android 默认不在其系统信任存储中包含任何 Let's Encrypt 中间证书，所以如果您不提供完整的证书链，Android 客户端很可能无法连接。
 {% endhint %}
 
