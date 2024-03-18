@@ -5,11 +5,11 @@
 {% endhint %}
 
 {% hint style="warning" %}
-我们的构建基于 MariaDB 客户端库，因为这是 Debian 提供的。
+⚠️ 💩 ⚠️我们的构建基于 MariaDB 客户端库，因为这是 Debian 提供的。
 
 对最新 Oracle MySQLv8 版本的支持需要额外注意。
 
-如果您坚持使用 MySQLv8 而不是 MariaDB，请使用旧的密码散列方法而不是默认方法创建用户！
+如果您坚持使用 MySQLv8 而不是 MariaDB，请使用旧的密码散列方法而不是默认方法创建用户！⚠️ 💩 ⚠️
 {% endhint %}
 
 要使用 MySQL 后端，你可以使用[官方 Docker 镜像](https://hub.docker.com/r/bitwardenrs/server-mysql)，也可以构建您自己的[启用了 MySQL](../../deployment/building-binary.md#mysql-backend) 的二进制。
@@ -99,13 +99,11 @@ volumes:
 
 ## 手动创建数据库（例如，使用现有的数据库服务器） <a href="#manually-create-a-database-for-example-using-an-existing-database-server" id="manually-create-a-database-for-example-using-an-existing-database-server"></a>
 
-{% hint style="warning" %}
+{% hint style="danger" %}
 要执行这些查询，您需要有一个可以创建新数据库和用户的用户。大多数情况下，这将是 `root` 用户，但根据您的数据库可能会有所不同。
 {% endhint %}
 
-{% hint style="info" %}
-使用上面的 docker-compose 示例使这些步骤变得不必要。数据库、排序规则和字符集在启动时将被自动创建。
-{% endhint %}
+> 使用上面的 docker-compose 示例使这些步骤变得不必要。数据库、排序规则和字符集在启动时将被自动创建。
 
 ### 创建数据库和用户 <a href="#create-database-and-user" id="create-database-and-user"></a>
 

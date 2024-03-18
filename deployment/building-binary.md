@@ -21,7 +21,7 @@
 ## 依赖 <a href="#dependencies" id="dependencies"></a>
 
 * `Rust stable`（强烈建议使用 [rustup](https://rustup.rs/)）\
-  最低支持 Rust 版本 (**MSRV**) 策略是 **N-2**，这意味着如果当前 Rust 版本是 **v1.67**，我们支持使用 **v1.65** 构建
+  ⚠️ 最低支持 Rust 版本 (MSRV) 策略是 **N-2**，这意味着如果当前 Rust 版本是 **v1.67**，我们支持使用 **v1.65** 构建。
 * 在基于 Debian 的发行版上，请安装以下包：`build-essential`、`git`，这些通用包可确保构建能正常进行
 * `OpenSSL`（应在路径中是可用的，请参阅 [openssl crate 文档](https://docs.rs/openssl/latest/openssl/#automatic)）。在基于 Debian 的发行版上，需要安装 `pkg-config` 和 `libssl-dev`
 * 对于基于 Debian 发行版上的 SQLite3 后端，需要安装 `libsqlite3-dev`

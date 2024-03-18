@@ -8,7 +8,9 @@
 
 Vaultwarden 的 SSO 支持目前[正在开发中](https://github.com/dani-garcia/vaultwarden/pull/3154)。以下内容描述了基于 docker-compose 的用于本地测试这些更改的设置。
 
+{% hint style="danger" %}
 **仅用于测试 SSO，这些设置并不安全！**
+{% endhint %}
 
 ## 设置 <a href="#setup" id="setup"></a>
 

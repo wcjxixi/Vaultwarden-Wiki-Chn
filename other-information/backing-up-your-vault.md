@@ -54,7 +54,7 @@ SQLite 数据库文件 (`db.sqlite3`) 存储了几乎所有重要的 Vaultwarden
 sqlite3 data/db.sqlite3 ".backup '/path/to/backups/db-$(date '+%Y%m%d-%H%M').sqlite3'"
 ```
 
-~~您也可以使用 `VACUUM INTO`，这将压缩空闲空间，但需要更多的处理时间：~~
+您也可以使用 `VACUUM INTO`，这将压缩空闲空间，但需要更多的处理时间：
 
 {% code fullWidth="false" %}
 ```batch
@@ -114,7 +114,7 @@ _**可选备份。**_
 
 确保 Vaultwarden 已经停止，然后简单地将 `data` 文件夹中的每个文件或目录替换为它的备份版本即可。
 
-当恢复使用 `.backup` ~~或 `VACUUM INTO`~~ 创建的备份时，确保首先删除任何已存在的 `db.sqlite3-wal` 文件，因为当 SQLite 试图使用陈旧/不匹配的 WAL 文件恢复 `db.sqlite3` 时，有可能导致数据库损坏。然而，如果您直接拷贝 `db.sqlite3` 文件和其匹配的 `db.sqlite3-wal` 文件的方式来备份数据库，那么您必须将两个文件作为一对来恢复。不需要备份或恢复 `db.sqlite3-shm` 文件。
+当恢复使用 `.backup` 或 `VACUUM INTO` 创建的备份时，确保首先删除任何已存在的 `db.sqlite3-wal` 文件，因为当 SQLite 试图使用陈旧/不匹配的 WAL 文件恢复 `db.sqlite3` 时，有可能导致数据库损坏。然而，如果您直接拷贝 `db.sqlite3` 文件和其匹配的 `db.sqlite3-wal` 文件的方式来备份数据库，那么您必须将两个文件作为一对来恢复。不需要备份或恢复 `db.sqlite3-shm` 文件。
 
 为了验证您的备份是否能正常工作，定期运行从备份中恢复的过程是个好主意。这样做的时候，请确保移动或保留原始数据的副本，以防备份实际上不能正常工作。
 

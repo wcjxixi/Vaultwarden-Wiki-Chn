@@ -4,7 +4,9 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-admin-page)
 {% endhint %}
 
-**重要**：强烈建议在启用此功能之前激活 HTTPS，以避免潜在的 [MITM](https://zh.wikipedia.org/wiki/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB) 攻击。
+{% hint style="warning" %}
+强烈建议在启用此功能之前激活 HTTPS，以避免潜在的 [MITM](https://zh.wikipedia.org/wiki/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB) 攻击。
+{% endhint %}
 
 该页面允许服务器管理员查看并删除所有已注册的用户。它也允许邀请新用户，即使禁用了注册功能。
 
@@ -38,19 +40,15 @@ docker run -d --name vaultwarden \
 
 ## 保护 ADMIN\_TOKEN <a href="#secure-the-admin_token" id="secure-the-admin_token"></a>
 
-{% hint style="warning" %}
-此功能自 [1.28.0+](https://github.com/dani-garcia/vaultwarden/releases/tag/1.28.0) 后可用。
-{% endhint %}
-
 {% hint style="danger" %}
+此功能自 [1.28.0+](https://github.com/dani-garcia/vaultwarden/releases/tag/1.28.0) 后可用。
+
 优先使用环境变量。
 
 但是，如果您通过管理界面更新了设置，则需要通过相同的 Web 界面更新管理令牌！
 
 请**不要**手动编辑 `config.json` 文件，因为如果操作不当可能会引起故障！
-{% endhint %}
 
-{% hint style="info" %}
 要在保护令牌后登录管理页面，您需要使用令牌创建期间提供的密码（而不是令牌本身）。
 {% endhint %}
 
@@ -124,7 +122,9 @@ WARNING: The m variable is not set. Defaulting to a blank string.
 ...
 ```
 
-**注意：**为 `docker-compose.yaml` 使用 `.env` 文件时情况并非如此。如下所示。在这种情况下，只需使用单个 `$` 变量。与使用 `-e ADMIN_TOKEN` 的 docker/podman cli 相同。
+{% hint style="info" %}
+为 `docker-compose.yaml` 使用 `.env` 文件时情况并非如此。如下所示。在这种情况下，只需使用单个 `$` 变量。与使用 `-e ADMIN_TOKEN` 的 docker/podman cli 相同。
+{% endhint %}
 
 ```
 /docker-data
@@ -135,13 +135,11 @@ WARNING: The m variable is not set. Defaulting to a blank string.
 
 **.env：**
 
+_确保在 docker-compose 所使用的 `env` 文件中使用单引号。_
+
 ```systemd
 VAULTWARDEN_ADMIN_TOKEN='$argon2id$v=19$m=65540,t=3,p=4$MmeK.....'
 ```
-
-{% hint style="warning" %}
-确保在 docker-compose 所使用的 `env` 文件中使用单引号。
-{% endhint %}
 
 **docker-compose.yaml：**
 

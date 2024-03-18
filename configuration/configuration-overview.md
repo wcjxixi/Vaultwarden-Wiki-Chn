@@ -1,4 +1,4 @@
-# =1.配置概述
+# 1.配置概述
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Configuration-overview)
@@ -67,7 +67,7 @@ Vaultwarden 支持从磁盘加载配置选项的值（通过环境变量或在 `
 此外，Vaultwarden 还可以使用 `config.json` 文件进行配置，该文件可以通过 `/admin` 面板生成和编辑，并保存在数据文件夹中。
 
 {% hint style="info" %}
-虽然从技术上讲可以手动创建和编辑 `config.json` 文件，**但我们强烈建议不要这样做**。[JSON](https://www.json.org/) 具有相当严格的语法，如果您不知道自己在做什么，这可能会成为调试的噩梦。
+🙏 虽然从技术上讲可以手动创建和编辑 `config.json` 文件，**但我们强烈建议不要这样做**。[JSON](https://www.json.org/) 具有相当严格的语法，如果您不知道自己在做什么，这可能会成为调试的噩梦。
 {% endhint %}
 
 `config.json` 中的设置将覆盖任何其他配置方法，并且您将在启动时收到警告哪些设置会被覆盖。
