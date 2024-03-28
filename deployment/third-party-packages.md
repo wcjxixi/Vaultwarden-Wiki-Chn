@@ -125,7 +125,7 @@ openSUSE 构建服务项目，支持：
 在 void-packages 中作为 [vaultwarden](https://github.com/void-linux/void-packages/tree/master/srcpkgs/vaultwarden) 可用：`xbps-install vaultwarden`\
 还可以选择安装网页密码库 ([vaultwarden-web](https://github.com/void-linux/void-packages/tree/master/srcpkgs/vaultwarden-web))：`xbps-install vaultwarden-web`
 
-## Snapcraft
+## Snap
 
 Vaultwarden 通过 [Snap Store](https://snapcraft.io/vaultwarden) 以 [snap](https://github.com/DownThePark/snapcraft-vaultwarden) 形式提供。可以使用以下命令从命令行安装 Vaultwarden：
 
