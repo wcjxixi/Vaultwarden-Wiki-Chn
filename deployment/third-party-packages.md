@@ -127,8 +127,10 @@ openSUSE 构建服务项目，支持：
 
 ## Snapcraft
 
-通过 [Snap Store](https://snapcraft.io/vaultwarden) 以 [snap](https://github.com/DownThePark/snapcraft-vaultwarden) 形式提供。网页密码库也包含在内，且默认已启用。
+Vaultwarden 通过 [Snap Store](https://snapcraft.io/vaultwarden) 以 [snap](https://github.com/DownThePark/snapcraft-vaultwarden) 形式提供。可以使用以下命令从命令行安装 Vaultwarden：
 
-可以使用以下命令从命令行安装 Vaultwarden：`snap install vaultwarden`
+```bash
+sudo snap install vaultwarden
+```
 
-其配置文件位于：`/var/snap/vaultwarden/current/.env`
+配置文件位置：`/var/snap/vaultwarden/current/vaultwarden.conf`。
