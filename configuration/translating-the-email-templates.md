@@ -4,7 +4,7 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Translating-the-email-templates)
 {% endhint %}
 
-如果您[设置了电子邮件](smtp-configuration.md)，Vaultwarden 将以英语发送邮件。由于服务器不知道用户的首选语言设置（完全在客户端完成），因此目前不可能在同一服务器上为不同用户提供多种语言。
+如果您[设置了电子邮件](smtp-configuration.md)，Vaultwarden 将以英语发送邮件。由于服务器不知道用户的首选语言设置（完全在客户端完成），因此目前不太可能在同一服务器上为不同用户提供多种语言。
 
 如果您的用户不懂英语，您可以将提供的标头模板翻译成您的首选语言。
 
