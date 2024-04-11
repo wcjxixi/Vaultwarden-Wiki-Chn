@@ -19,6 +19,8 @@ Bitwarden 可以导入来自许多[应用程序](https://help.ppgg.in/import-exp
 
 做导入操作时，Bitwarden 自己会自动做很多工作：比如将「集合」更改为「文件夹」以及转换所有条目的所有权等。因此，根据您的需要选择合适的方式！
 
+一种替代方法是使用 [KP2BW - KeePass 2.x 到 Bitwarden 转换器](https://github.com/jampe/kp2bw)执行导入，该转换器支持更多的 Keepass 功能，如文件附件，引用等等！
+
 ## 示例 <a href="#example" id="example"></a>
 
 ### 名称为「MyVault」的 Keepass 数据库 <a href="#keepass-database-with-name-myvault" id="keepass-database-with-name-myvault"></a>
