@@ -67,7 +67,7 @@ Raspberry Pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
       SMTP_FROM = "bitwarden@example.com";
       SMTP_FROM_NAME = "Bitwarden_RS";
       SMTP_PORT = 587;
-      SMTP_SSL = true;
+      SMTP_SECURITY = starttls;
 #     SMTP_USERNAME = (import /etc/nixos/secret/bitwarden.nix).SMTP_USERNAME;
 #     SMTP_PASSWORD = (import /etc/nixos/secret/bitwarden.nix).SMTP_PASSWORD;
       SMTP_TIMEOUT = 15;

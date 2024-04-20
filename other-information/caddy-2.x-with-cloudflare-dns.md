@@ -77,7 +77,7 @@ services:
       SMTP_HOST: '[MAIL-SERVER]'
       SMTP_FROM: '[E-MAIL]'
       SMTP_PORT: '587'
-      SMTP_SSL: 'true'
+      SMTP_SECURITY: 'starttls'
       SMTP_USERNAME: '[E-MAIL]'
       SMTP_PASSWORD: '[SMTP-PASS]'
 #      ADMIN_TOKEN: '[RAND. GENERATE]'
