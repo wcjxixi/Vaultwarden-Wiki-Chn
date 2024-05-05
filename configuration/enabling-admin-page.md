@@ -54,6 +54,10 @@ docker run -d --name vaultwarden \
 
 以前 `ADMIN_TOKEN` 只能是纯文本格式。您现在可以通过生成 [PHC 字符串](https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md)来使用 Argon2 对 `ADMIN_TOKEN` 进行哈希处理。这可以通过使用 Vaultwarden 中的内置 `hash` 命令或使用 `argon2` CLI 工具生成。在 Vaultwarden 应用程序中，有两个预设，一个使用 [Bitwarden 默认](https://github.com/bitwarden/clients/blob/04d1fbb716bc7676c60a009906e183bb3cbb6047/libs/common/src/enums/kdfType.ts#L8-L10)的，一个使用 [OWASP 推荐](https://cheatsheetseries.owasp.org/cheatsheets/Password\_Storage\_Cheat\_Sheet.html#argon2id)。
 
+{% hint style="danger" %}
+如果您一直收到 `You are using a plain text ADMIN_TOKEN which is insecure.` 消息，则说明您要么已经通过管理界面保存了设置，环境变量将不会被使用，或者您需要确认使用的格式是否正确。请仔细阅读下面的**如何防止 docker-compose.yml 中的变量插值**部分。
+{% endhint %}
+
 有关如何生成 Argon2id PHC 哈希的一些示例。
 
 ### 使用 `vaultwarden hash` <a href="#using-vaultwarden-hash" id="using-vaultwarden-hash"></a>
