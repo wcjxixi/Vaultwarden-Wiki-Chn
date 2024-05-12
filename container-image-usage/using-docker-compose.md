@@ -14,11 +14,9 @@
 Docker Compose 可能以 `docker-compose <command> ...`（带破折号）或 `docker compose <command> ...`（带空格）运行，具体取决于您安装 Docker Compose 的方式。当 Docker Compose 作为独立的可执行文件分发时，`docker-compose` 是原始语法。您也可以选择进行[独立](https://docs.docker.com/compose/install/other/#install-compose-standalone)安装，在这种情况下将继续使用此语法。但是，Docker 目前建议将 Docker Compose 作为 Docker 插件安装，其中 `compose` 作为 `docker` 的子命令，其语法为 `docker compose <command> ...`。
 {% endhint %}
 
-首先创建一个新的目录，然后切换到该目录下。接下来，创建如下的 `docker-compose.yml` 文件，确保将 `DOMAIN` 和 `EMAIL` 变量替换为实际的值。
+首先创建一个新的目录，然后切换到该目录下。接下来，创建如下的 `compose.yml` 文件（旧版本为 `docker-compose.yml`），确保将 `DOMAIN` 和 `EMAIL` 变量替换为实际的值。
 
 ```javascript
-version: '3'
-
 services:
   vaultwarden:
     image: vaultwarden/server:latest
@@ -36,13 +34,14 @@ services:
     ports:
       - 80:80  #  ACME HTTP-01 验证需要
       - 443:443
+      - 443:443/udp # HTTP/3 需要
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - ./caddy-config:/config
       - ./caddy-data:/data
     environment:
       DOMAIN: "https://vaultwarden.example.com"  # 您的域名，以 http 或 https 作为前缀
-      EMAIL: "admin@example.com"       # 用于 ACME 注册的电子邮件地址
+      EMAIL: "admin@example.com"                 # 用于 ACME 注册的电子邮件地址
       LOG_FILE: "/data/access.log"
 ```
 
@@ -63,7 +62,7 @@ services:
 
   # 此设置可能会在某些浏览器上出现兼容性问题（例如，在 Firefox 上下载附件）
   # 如果遇到问题，请尝试禁用此功能
-  encode gzip
+  encode zstd gzip
 
   # 将所有代理到 Rocket
   reverse_proxy vaultwarden:80 {
@@ -74,7 +73,7 @@ services:
 }
 ```
 
-运行以下命令创建并启动容器。这将为 `docker-compose.yml` 文件中的服务创建私有网络，这样就只有 Caddy 暴露在外面了：
+运行以下命令创建并启动容器。这将为 `compose.yml` 文件（旧版本为 `docker-compose.yml`）中的服务创建私有网络，这样就只有 Caddy 暴露在外面了：
 
 ```shell
 docker compose up -d # 或者 'docker-compose up -d' 如果使用独立的 Docker Compose 的话
@@ -92,11 +91,9 @@ docker compose down # 或者 'docker-compose down' 如果使用独立的 Docker 
 
 这个示例和上一个示例一样，但适用于您不希望您的实例被公开访问的情况（即您只能从您的本地网络访问它）。这个示例使用 Duck DNS 作为 DNS 提供商。更多的背景资料，以及如何设置 Duck DNS 的细节，请参考[使用 Let's Encrypt 证书运行私有 Vaultwarden 实例](../deployment/https/running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md)。
 
-首先创建一个新的目录，然后切换到该目录下。接下来，创建如下的 `docker-compose.yml` 文件，确保将 `DOMAIN` 和 `EMAIL` 变量替换为实际的值。
+首先创建一个新的目录，然后切换到该目录下。接下来，创建如下的 `compose.yml` 文件（旧版本为 `docker-compose.yml`），确保将 `DOMAIN` 和 `EMAIL` 变量替换为实际的值。
 
 ```javascript
-version: '3'
-
 services:
   vaultwarden:
     image: vaultwarden/server:latest
@@ -114,6 +111,7 @@ services:
     ports:
       - 80:80
       - 443:443
+      - 443:443/udp # HTTP/3 需要
     volumes:
       - ./caddy:/usr/bin/caddy  # 您的 Caddy 自定义构建
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
@@ -121,12 +119,12 @@ services:
       - ./caddy-data:/data
     environment:
       DOMAIN: "https://vaultwarden.example.com"  # 您的域名，以 http 或 https 作为前缀
-      EMAIL: "admin@example.com"        # 用于 ACME 注册的电子邮件地址
-      DUCKDNS_TOKEN: "<token>"          # 您的 Duck DNS 令牌
+      EMAIL: "admin@example.com"                 # 用于 ACME 注册的电子邮件地址
+      DUCKDNS_TOKEN: "<token>"                   # 您的 Duck DNS 令牌
       LOG_FILE: "/data/access.log"
 ```
 
-原有的 Caddy 构建（包括 Docker 映像中的构建）不包含 DNS 挑战模块，因此接下来您需要[获取自定义 Caddy 构建](../deployment/https/running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md#getting-a-custom-caddy-build)。将自定义构建重命名为 `caddy` 并将其移动到与 `docker-compose.yml` 相同的目录下。确保 `caddy` 文件是可执行的（例如 `chmod a + x caddy`）。上面的 `docker-compose.yml` 文件会将自定义构建绑定挂载到 `caddy:2` 容器中，并替换原有的构建。
+原有的 Caddy 构建（包括 Docker 映像中的构建）不包含 DNS 挑战模块，因此接下来您需要[获取自定义 Caddy 构建](../deployment/https/running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md#getting-a-custom-caddy-build)。将自定义构建重命名为 `caddy` 并将其移动到与 `compose.yml`（旧版本为 `docker-compose.yml`）相同的目录下。确保 `caddy` 文件是可执行的（例如 `chmod a + x caddy`）。上面的 `compose.yml` 文件（旧版本为 `docker-compose.yml`）会将自定义构建绑定挂载到 `caddy:2` 容器中，并替换原有的构建。
 
 在相同的目录下，创建如下的 `Caddyfile` 文件（此文件不需要做修改）。
 
@@ -147,7 +145,7 @@ services:
 
   # 此设置可能会在某些浏览器上出现兼容性问题（例如，在 Firefox 上下载附件）
   # 如果遇到问题，请尝试禁用此功能
-  encode gzip
+  encode zstd gzip
 
   # 将所有代理到 Rocket
   reverse_proxy vaultwarden:80

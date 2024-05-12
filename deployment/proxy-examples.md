@@ -50,7 +50,7 @@
 
   # 此设置可能会在某些浏览器上出现兼容性问题（例如，在 Firefox 上下载附件）
   # 如果遇到问题，请尝试禁用此功能
-  encode gzip
+  encode zstd gzip
   
   # 取消注释以提高安全性（警告：只有在您了解其影响的情况下才能使用！）
   # 如果您想使用 FIDO2 WebAuthn，请将 X-Frame-Options 设置为 "SAMEORIGIN"，否则浏览器将阻止这些请求
@@ -962,6 +962,45 @@ use_backend VaultWarden-Notifications_ipvANY  if  !ACL4
 ```
 
 为了进行测试，如果您在浏览器中导航到 /notifications/hub，那么您应该会看到一个页面，上面写着「WebSocket Protocol Error: Unable to parse WebSocket key.」（WebSocket 协议错误：无法解析 WebSocket 密钥。） ……这意味着它可以正常工作！ - 所有其他子页面都应该出现 Rocket 错误。
+
+</details>
+
+<details>
+
+<summary>HAproxy Kubernetes Ingress(by <a href="https://github.com/devinslick">@devinslick</a>)</summary>
+
+控制器安装详情可在此处找到：[https://www.haproxy.com/documentation/kubernetes-ingress/community/installation/on-prem/](https://www.haproxy.com/documentation/kubernetes-ingress/community/installation/on-prem/)。请注意，仅当您使用 Cloudflare 时才需要 CF-Connecting-IP 标头
+
+添加以下资源定义：
+
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vaultwarden
+  namespace: default
+  annotations:
+    haproxy.org/forwarded-for: "true"
+    haproxy.org/compression-algo: "gzip"
+    haproxy.org/compression-type: "text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript"
+    haproxy.org/http2-enabled: "true"
+spec:
+  ingressClassName: haproxy
+  tls:
+  - hosts:
+    - vaultwarden.example.tld
+  rules:
+  - host: vaultwarden.example.tld
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: vaultwarden-http
+            port:
+              number: 80
+```
 
 </details>
 

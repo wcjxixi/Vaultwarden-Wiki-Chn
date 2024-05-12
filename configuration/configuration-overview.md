@@ -16,7 +16,7 @@
 
 1. 设置环境变量，
 2. 使用 `ENV_FILE` 以及
-3. 通过 `config.json`（这可以通过[管理页面](enabling-admin-page.md)生成和管理）
+3. 通过 `config.json`（**不推荐**）（这可以通过[管理页面](enabling-admin-page.md)生成和管理）
 
 您可以在 [`.env.template`](https://github.com/dani-garcia/vaultwarden/blob/main/.env.template) 文件中找到大多数配置选项的文档列表。通常，注释内容中的值表示默认值，但这并不一定。如果不是，事实来源将是 [`src/config.rs`](https://github.com/dani-garcia/vaultwarden/blob/main/src/config.rs)。
 

@@ -8,7 +8,7 @@
 
 ## 创建 Quadlet（对于 Podman 4.4+） <a href="#creating-a-quadlet-podman-4.4" id="creating-a-quadlet-podman-4.4"></a>
 
-从版本 4.4 开始，Podman 使用 [quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html)，如果您使用以前的 `generate systemd` 方法，则会显示警告。
+从版本 4.4 开始，Podman 使用 [quadlets](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html)，如果您使用以前的 `generate systemd` 方法，则会显示警告。
 
 额外的好处是此方法将使容器保持更新。
 
