@@ -8,6 +8,10 @@
 
 简短的回答，**没有**。两个项目的开发人员之间有时会有联系，但没有合作。除此之外，Vaultwarden 项目仅使用 Bitwarden, Inc 提供的 Web Vault 并打了一些[补丁](https://github.com/dani-garcia/bw\_web\_builds/tree/master/patches)，以使其与我们的实现兼容。
 
+## 我发现了一个 Vaultwarden 公共实例。它与这个项目有关吗？使用它安全吗？  <a href="#ive-found-a-public-vaultwarden-instance.-is-it-associated-with-this-project-is-it-safe-to-use" id="ive-found-a-public-vaultwarden-instance.-is-it-associated-with-this-project-is-it-safe-to-use"></a>
+
+本项目不托管任何公共 Vaultwarden 实例，我们也不提倡使用任何此类网站。参见 [#3233](https://github.com/dani-garcia/vaultwarden/discussions/3233#discussioncomment-4917141) [#4142](https://github.com/dani-garcia/vaultwarden/discussions/4142) [#4367](https://github.com/dani-garcia/vaultwarden/discussions/4367#discussioncomment-8529763)
+
 ## Vaultwarden 能连接到 Oracle MySQL V8.x 数据库吗？ <a href="#can-bitwarden_rs-connect-to-an-oracle-mysql-v-8-x-database" id="can-bitwarden_rs-connect-to-an-oracle-mysql-v-8-x-database"></a>
 
 在使用 Oracle MySQL v8.x 时，当您试图启动 Vaultwarden，可能会出现以下警告：
