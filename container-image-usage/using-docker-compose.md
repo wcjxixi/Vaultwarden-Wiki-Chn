@@ -48,7 +48,7 @@ services:
 在相同的目录下创建如下的 `Caddyfile` 文件（此文件不需要做修改）：
 
 ```nginx
-{$DOMAIN}:443 {
+{$DOMAIN} {
   log {
     level INFO
     output file {$LOG_FILE} {
@@ -129,7 +129,7 @@ services:
 在相同的目录下，创建如下的 `Caddyfile` 文件（此文件不需要做修改）。
 
 ```nginx
-{$DOMAIN}:443 {
+{$DOMAIN} {
   log {
     level INFO
     output file {$LOG_FILE} {

@@ -23,7 +23,7 @@ docker build -t [YOUR-NAME]/caddycfdns .
 Caddyfile（作为反向代理）：
 
 ```nginx
-https://[YOUR-DOMAIN]:443 {
+[YOUR-DOMAIN] {
 
   tls {
         dns cloudflare [API-KEY]
