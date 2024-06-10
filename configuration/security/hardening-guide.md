@@ -36,6 +36,20 @@ Vaultwarden 在登录页面上显示密码提示，以适应没有配置 SMTP �
 
 请参看[代理示例](../../deployment/proxy-examples.md)，以了解反向代理配置的示例。
 
+#### 访问日志包含 `access_token` 参数 <a href="#access-logs-contain-access_token-parameter" id="access-logs-contain-access_token-parameter"></a>
+
+通过调用具有 JWT 密钥的 GET 请求来建立用于通知的 WSS 连接。
+
+GET 请求示例：
+
+```
+/notifications/hub?access_token=[this part is always the same].eyJuYmYi[redacted]sImV4cCI6MTcxNzc1NzQ1OCwiaXN[redacted]M6Ly92YXVsdC5zZWMuYXJwYXxsb2dpbiIsInN1YiI6ImY5YmVhN[redacted]tNGJjNS05MDY2LTQ3NjFlZmY4ND[redacted]sInByZW1pdW0iOnRydWU[redacted]JjaXBoZXIiLCJlbWFpbCI6ImNpc[redacted]ljdSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJzc3RhbXAiOiJlZjM3[redacted]MjctODE2OS1hZTQ3NmFjNDc4MGQiLCJkZX[redacted]02ZTk3LTQ2N2M[redacted]jM3NmEiLCJzY29wZSI6WyJhcG[redacted]5lX2FjY2VzcyJdLCJhbXIiOlsiQXBwbGljY[redacted]hGDeCNdjTs1cOL2fV_OR96Sey-gA5eRa8OCGNgCrDeyYAPyk[redacted]BkQGwjEhD7fcWILxRYqQ7W6rkC2o[redacted]LB_nztpAgeRUbsPgsd3RNTWJDKdlH8aMf1[redacted]vB_doENJPeyaeMuEG85KqpAN2A[redacted]GeeCztxmQIe21PMtBG-SAgGeI[redacted]X_9mmyv0nISHBuHjhQ_km[redacted]VCLoFneb-MEzN[redacted]T8VcXSKhGXpwJUx8j1[redacted]k_nH27vrD2Dg
+```
+
+如果您的反向代理配置为保存访问日志，或者访问日志被发送到外部服务（例如 Prometheus + Promtail），建议在外部日志存储上编辑 `access_token` 参数的值，或者选择直接在您的反向代理上编辑，如果支持的话。
+
+任何其他数据都不会通过 GET 请求发送，无论是加密的还是未加密的。
+
 ## Docker 配置 <a href="#docker-configuration" id="docker-configuration"></a>
 
 下面的小节涵盖了 Docker 相关的强化。

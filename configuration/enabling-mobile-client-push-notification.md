@@ -31,7 +31,7 @@
 如果您在上一步中请求了 `bitwarden.eu（欧盟）` 的安装 ID 和 kEY，您还必须设置
 
 ```systemd
-      - PUSH_RELAY_URI=https://push.bitwarden.eu
+      - PUSH_RELAY_URI=https://api.bitwarden.eu
       - PUSH_IDENTITY_URI=https://identity.bitwarden.eu
 ```
 {% endhint %}
@@ -45,11 +45,11 @@ docker compose up -d vaultwarden
 4、将您的应用程序连接到您的 Vaultwarden 实例。
 
 {% hint style="danger" %}
-如果您在 v1.30.2 之前已经连接了 Bitwarden 应用程序，则推送通知**将不适用于**您的设备（因为设备令牌从未保存）。您必须**清除应用程序数据**（或**重新安装应用程序**）然后再次连接您的 Vaultwarden 账户，才能[向 Bitwarden 的 Azure 通知中心注册推送令牌](https://contributing.bitwarden.com/architecture/deep-dives/push-notifications/mobile/#self-hosted-implementation)。
+如果您在 [v1.30.2](https://github.com/dani-garcia/vaultwarden/releases/tag/1.30.2) 之前已经连接了 Bitwarden 应用程序，则推送通知**将不适用于**您的设备（因为设备令牌从未保存）。您必须**清除应用程序数据**（或**重新安装应用程序**）然后再次连接您的 Vaultwarden 账户，才能向 [Bitwarden 的 Azure 通知中心](https://contributing.bitwarden.com/architecture/deep-dives/push-notifications/mobile/#self-hosted-implementation)注册推送令牌。
 {% endhint %}
 
 {% hint style="warning" %}
-推送通知**仅适用于**从官方移动商店（App Store、Google Play 商店）或使用 Google Play 商店的替代客户端（如 Aurora 商店）获取的 Bitwarden 应用程序。从 [F-Droid](https://mobileapp.bitwarden.com/fdroid/)、NeoStore 或其他替代商店安装的 Bitwarden，推送通知**将不起作用**。因为这些应用程序是在不支持 Firebase Messaging 的情况下构建的。
+推送通知**仅适用于**从官方移动商店（App Store、Google Play 商店）或使用 Google Play 商店的替代客户端（如 Aurora 商店）获取的 Bitwarden 应用程序。从 [F-Droid](https://mobileapp.bitwarden.com/fdroid/)、NeoStore 或其他替代商店安装的 Bitwarden，推送通知**将不起作用**。因为这些应用程序是在不支持 Firebase Messaging 的情况下构建的。为保证推送通知正常，请确保 `firebaseinstallations.googleapis.com` 未被阻止，因为该功能需要它才能正常工作。
 {% endhint %}
 
 5、测试移动端的推送通知是否正常工作，例如通过重命名网页密码库中的文件夹，然后查看移动应用程序中的文件夹在几秒钟后是否发生变化。

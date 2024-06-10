@@ -139,7 +139,7 @@ docker-compose up -d
 before = common.conf
 
 [Definition]
-failregex = ^.*Username or password is incorrect\. Try again\. IP: <ADDR>\. Username:.*$
+failregex = ^.*?Username or password is incorrect\. Try again\. IP: <ADDR>\. Username:.*$
 ignoreregex =
 ```
 

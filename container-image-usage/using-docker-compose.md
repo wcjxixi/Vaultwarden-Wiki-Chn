@@ -6,6 +6,40 @@
 
 [Docker Compose](https://docs.docker.com/compose/) 是一个用于定义和配置多容器应用程序的工具。在我们的例子中，我们希望 Vaultwarden 服务器和代理都将 WebSocket 请求重定向到正确的地方。
 
+## 无反向代理/您自己配置的反向代理的最小模板（以下以 Caddy 为例） <a href="#minimal-template-for-no-reverse-proxy-a-reverse-proxy-configured-by-yourself" id="minimal-template-for-no-reverse-proxy-a-reverse-proxy-configured-by-yourself"></a>
+
+此示例假设您已[安装](https://docs.docker.com/compose/install/) Docker Compose。此配置可用于不向「外界」开放的本地服务器，也可用作[反向代理](../deployment/proxy-examples.md)的模板。
+
+首先在您喜欢的位置创建一个新目录，然后更改到该目录下。然后，创建 `compose.yml` 文件（旧版本为 `docker-compose.yml`）：
+
+```yaml
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: always
+    environment:
+      # DOMAIN: "https://vaultwarden.example.com" # 使用反向代理时必填；您的域名；Vaultwarden 需要知道它是 https 才能正确处理附件
+      SIGNUPS_ALLOWED: "true" # 创建账户后，使用 "false" 停用此选项，这样就不会有陌生人注册了
+卷
+    volumes:
+      - ./vw-data:/data # : 前面的路径可以修改
+    ports:
+      - 11001:80 # 您可以将 11001 替换为您喜欢的端口
+```
+
+要创建然后运行容器，请运行：
+
+```bash
+docker compose up -d && docker compose logs -f
+```
+
+要更新然后运行容器，请运行：
+
+```bash
+docker compose pull && docker compose up -d && docker compose logs -f
+```
+
 ## 带有 HTTP 挑战的 Caddy <a href="#caddy-with-http-challenge" id="caddy-with-http-challenge"></a>
 
 本示例假定您[已安装](https://docs.docker.com/compose/install/) Docker Compose，并且您的 Vaultwarden 实例具有一个可以公开访问的域名（例如 `vaultwarden.example.com`）。
@@ -24,6 +58,7 @@ services:
     restart: always
     environment:
       DOMAIN: "https://vaultwarden.example.com"  # 您的域名；Vaultwarden 需要知道它是 https 才能正确处理附件
+      SIGNUPS_ALLOWED: "true"
     volumes:
       - /vw-data:/data
 
