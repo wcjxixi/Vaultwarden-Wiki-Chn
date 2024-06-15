@@ -80,6 +80,13 @@ Vaultwarden 支持从磁盘加载配置选项的值（通过环境变量或在 `
 
 某些环境变量（例如 `ROCKET_ADDRESS` 或 `ROCKET_PORT`）不是 Vaultwarden 配置系统的一部分，因此无法通过 `config.json` 来设置。
 
+## 配置优先级 <a href="#configuration-precedence" id="configuration-precedence"></a>
+
+1. 编译时，默认值通过 `src/config.rs` 进行硬编码。
+2. 无需重新编译二进制文件。这些默认值可以通过配置 `ENV_FILE` 来更改
+3. 也可以通过设置环境变量（这将推翻 `ENV_FILE` 中的设置）来更改。
+4. 最终用户（具有 `/admin` 面板访问权限）可以选择创建具有最高优先级的 `config.json`。
+
 ## 设置域名 URL <a href="#setting-the-domain-url" id="setting-the-domain-url"></a>
 
 确保将 `DOMAIN` 环境变量（或配置文件中的 `domain`）设置为您的 Vaultwarden 实例的基础 URL。如果不这样做，可能会出现莫名其妙的功能性问题。一些示例：
