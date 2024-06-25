@@ -26,6 +26,23 @@ Raspberry Pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 
 使用 Tailscale 和 Caddy 确保安全访问 Vaultwarden 的演练指南。所有服务均使用 Docker Compose 进行容器化管理，并托管在 Raspberry Pi 上。
 
+* [https://github.com/AlphanAksoyoglu/vaultwarden-rpi/](https://github.com/AlphanAksoyoglu/vaultwarden-rpi/)
+
+基于 docker-compose 的、模块化的、自托管的 Vaultwarden 部署。
+
+选项：
+
+* 仅 LAN，或 LAN + Tailscale（通过 VPN 从任何地方访问）
+* 您的域名 (Cloudflare) 或 DuckDNS 域名
+* 可选的不依赖第三方容器的备份服务
+* 可选的 UFW 和 IPTABLES 强化
+
+配有方便的安装程序：
+
+* 只需运行 `install.sh --init` 和 `install.sh --install`
+
+还有一个广泛的自述文件。
+
 ### 共享主机 <a href="#shared-hosting" id="shared-hosting"></a>
 
 * [https://github.com/jjlin/vaultwarden-shared-hosting](https://github.com/jjlin/vaultwarden-shared-hosting)
