@@ -44,6 +44,7 @@ Description=Vaultwarden container
 After=network-online.target
 
 [Container]
+AutoUpdate=registry
 Image=ghcr.io/dani-garcia/vaultwarden:latest
 Exec=/start.sh
 EnvironmentFile=/etc/vaultwarden.env
