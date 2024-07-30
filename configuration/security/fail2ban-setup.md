@@ -177,7 +177,7 @@ bantime = 14400
 findtime = 14400
 ```
 
-**Docker 用户注意：**
+**Docker 用户注意事项**
 
 Docker 使用 FORWARD 链而不是默认的 INPUT 链。如果接收请求的机器将他们直接映射到 Docker 容器，那么无论容器里有什么（反向代理、Vaultwarden 等），链都需要适当地设置。默认的 `action` 被设置为`action_`（它使用 `banaction`，其别名我们设置为 `banaction_allports`），`action_` 已经考虑了链的问题，因此，只需设置 `chain` 即可。参阅[这个类似的问题](https://forum.openwrt.org/t/resolved-fail2ban-and-iptables-ip-bans-not-blocked/90057)。
 
@@ -185,10 +185,18 @@ Docker 使用 FORWARD 链而不是默认的 INPUT 链。如果接收请求的机
 chain = FORWARD
 ```
 
+**使用 Fail2Ban v1.1.1.dev1（以及可能更高版本）的 Docker 用户注意事项**
+
+在 Fail2Ban v1.1.1.dev1 中，Debian 的默认 `banactions` 从 iptables 变成了 nftables（参阅[此处](https://github.com/fail2ban/fail2ban/commit/d0d07285234871bad3dc0c359d0ec03365b6dddc)）。另一方面，Docker（至少是 25.0.3 版）仍在使用 iptables。因此，`banaction = %(banaction_allports)s` 无法阻止对 Docker 容器的请求。在这种情况下，使用：
+
+```systemd
+banaction = iptables
+```
+
 {% hint style="info" %}
 如果您使用 systemd 来管理 Vaultwarden，您可以为 Fail2ban 使用 systemd-journal：
 
-```
+```systemd
 backend = systemd
 filter = vaultwarden[journalmatch='_SYSTEMD_UNIT=your_vaultwarden.service']
 ```
@@ -196,9 +204,7 @@ filter = vaultwarden[journalmatch='_SYSTEMD_UNIT=your_vaultwarden.service']
 使用它们来代替 `logpath =` 和 `filter =` 变量。
 {% endhint %}
 
-**Cloudflare 用户注意：**
-
-如果您使用 Cloudflare 代理，您需要将 Cloudflare 添加到您的操作列表中，如[这个指南](https://niksec.com/using-fail2ban-with-cloudflare/)中所示。
+**Cloudflare 用户注意：**如果您使用 Cloudflare 代理，您需要将 Cloudflare 添加到您的操作列表中，如[这个指南](https://niksec.com/using-fail2ban-with-cloudflare/)中所示。
 
 重新加载 Fail2ban 使更改生效：
 
@@ -264,9 +270,7 @@ filter = vaultwarden-admin[journalmatch='_SYSTEMD_UNIT=your_vaultwarden.service'
 使用它们来代替 `logpath =` 和 `filter =` 变量。
 {% endhint %}
 
-**Cloudflare 用户请注意：**
-
-如果您使用 Cloudflare 代理，您需要将 Cloudflare 添加到您的操作列表中，如[本指南](https://niksec.com/using-fail2ban-with-cloudflare/)中所示。
+**Cloudflare 用户请注意：**如果您使用 Cloudflare 代理，您需要将 Cloudflare 添加到您的操作列表中，如[本指南](https://niksec.com/using-fail2ban-with-cloudflare/)中所示。
 
 重新加载 Fail2ban 使更改生效：
 

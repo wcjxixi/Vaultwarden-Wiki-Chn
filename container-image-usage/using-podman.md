@@ -54,7 +54,21 @@ PublishPort=8080:8080
 WantedBy=default.target
 ```
 
-编辑 quadlet 后，运行 `systemctl daemon-reload` 以创建或更新 systemd 单元。您可以使用常规 `systemctl` 命令控制此容器。
+编辑 quadlet 后，运行 `systemctl daemon-reload` 以创建或更新 systemd 单元。您可以使用常规的 `systemctl` 命令控制此容器，例如 `systemctl start vaultwarden.service` 。
+
+### 自动更新 <a href="#auto-update" id="auto-update"></a>
+
+[自动更新](https://docs.podman.io/en/latest/markdown/podman-auto-update.1.html#description)可自动执行更新过程：
+
+```sh
+sudo podman auto-update
+```
+
+或者，您可以启用定时器，它会每天自动更新（默认情况下，可以编辑）：
+
+```sh
+sudo systemctl enable podman-auto-update.timer
+```
 
 ## 创建一个 systemd 服务文件（对于老版本的 Podman） <a href="#creating-a-systemd-service-file-older-podman-versions" id="creating-a-systemd-service-file-older-podman-versions"></a>
 
