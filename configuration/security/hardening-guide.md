@@ -50,6 +50,8 @@ GET 请求示例：
 
 任何其他数据都不会通过 GET 请求发送，无论是加密的还是未加密的。
 
+请注意，内部 Vaultwarden 日志将查询截断为 30 个字符，因此 access\_token 会被截断。这意味着默认情况下如果没有使用反向代理，您也应该是安全的。
+
 ## Docker 配置 <a href="#docker-configuration" id="docker-configuration"></a>
 
 下面的小节涵盖了 Docker 相关的强化。
