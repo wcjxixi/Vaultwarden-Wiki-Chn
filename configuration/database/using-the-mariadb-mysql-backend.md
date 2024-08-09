@@ -24,7 +24,7 @@ DATABASE_URL=mysql://[[user]:[password]@]host[:port][/database]
 
 如果密码包含特殊字符，则需要使用百分号编码。
 
-<table><thead><tr><th width="150">!</th><th width="150">#</th><th width="150">$</th><th width="150">%</th><th width="150">&#x26;</th><th width="150">'</th><th width="150">(</th><th width="150">)</th><th width="150">*</th><th width="150">+</th><th width="150">,</th><th width="150">/</th><th width="150">:</th><th width="150">;</th><th width="150">=</th><th width="150">?</th><th width="150">@</th><th width="150">[</th><th>]</th></tr></thead><tbody><tr><td>%21</td><td>%23</td><td>%24</td><td>%25</td><td>%26</td><td>%27</td><td>%28</td><td>%29</td><td>%2A</td><td>%2B</td><td>%2C</td><td>%2F</td><td>%3A</td><td>%3B</td><td>%3D</td><td>%3F</td><td>%40</td><td>%5B</td><td>%5D</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th>!</th><th>#</th><th>$</th><th>%</th><th>&#x26;</th><th>'</th><th>(</th><th>)</th><th>*</th><th>+</th><th>,</th><th>/</th><th>:</th><th>;</th><th>=</th><th>?</th><th>@</th><th>[</th><th>]</th></tr></thead><tbody><tr><td>%21</td><td>%23</td><td>%24</td><td>%25</td><td>%26</td><td>%27</td><td>%28</td><td>%29</td><td>%2A</td><td>%2B</td><td>%2C</td><td>%2F</td><td>%3A</td><td>%3B</td><td>%3D</td><td>%3F</td><td>%40</td><td>%5B</td><td>%5D</td></tr></tbody></table>
 
 完整的代码列表可以在 [Wikipedia 的百分号编码页面](https://zh.wikipedia.org/wiki/%E7%99%BE%E5%88%86%E5%8F%B7%E7%BC%96%E7%A0%81)上找到。
 
