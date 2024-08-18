@@ -253,15 +253,15 @@ AND TABLE_TYPE="BASE TABLE";
 这将生成几个查询，您需要执行这些查询来转换这些表的排序规则和字符集。为了使这些更改生效，我们需要暂时禁用外键检查。将上面查询生成的输出复制/粘贴到以下行的中间：
 
 ```sql
-SET foreign_key_checks = 0;
+SET foreign_key_checks=0;
 -- 复制/粘贴上面的输出内容到这里
-SET foreign_key_checks = 1;
+SET foreign_key_checks=1;
 ```
 
 最后，它看起来应该类似于以下内容（但根据数据库结构的更新或更改，可能会有所不同）：
 
 ```sql
-SET foreign_key_checks = 0;
+SET foreign_key_checks=0;
 ALTER TABLE `__diesel_schema_migrations` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE `attachments` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE `ciphers_collections` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -281,7 +281,7 @@ ALTER TABLE `twofactor` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode
 ALTER TABLE `users_collections` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE `users_organizations` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE `users` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-SET foreign_key_checks = 1;
+SET foreign_key_checks=1;
 ```
 
 您需要运行这些查询以将它们转换为正确的排序规则和字符集。您可以通过对至少一张表运行以下查询来验证它是否有效：
