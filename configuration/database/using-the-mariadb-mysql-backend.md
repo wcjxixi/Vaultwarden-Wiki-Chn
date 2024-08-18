@@ -135,7 +135,7 @@ FLUSH PRIVILEGES;
 如果您已经创建了用户，想要更改密码类型：
 
 ```sql
--- 密码类型由 caching_sha2_password 更改未原生
+-- 密码类型由 caching_sha2_password 更改为原生
 ALTER USER 'vaultwarden'@'localhost' IDENTIFIED WITH mysql_native_password BY 'yourpassword';
 ```
 
