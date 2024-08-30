@@ -740,6 +740,13 @@ backend vaultwarden_http
     # 启用压缩（如果您需要）
     # 压缩算法 gzip
     # 压缩类型 text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript
+    # Vaultwarden 不支持 forwarded 头，但您可以启用它
+    # option forward
+    # 添加 x-forwarded-for 头
+    option forwardfor
+    # 在 `X-Real-IP` 头中设置来源 IP
+    http-request set-header X-Real-IP %[src]
+    # 将流量发送到本地实例
     server vwhttp 0.0.0.0:8080 alpn http/1.1
 ```
 
