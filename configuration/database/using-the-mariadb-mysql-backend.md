@@ -5,11 +5,7 @@
 {% endhint %}
 
 {% hint style="warning" %}
-⚠️ 💩 ⚠️我们的构建基于 MariaDB 客户端库，因为这是 Debian 提供的。
-
-对最新 Oracle MySQLv8 版本的支持需要额外注意。
-
-如果您坚持使用 MySQLv8 而不是 MariaDB，请使用旧的密码散列方法而不是默认方法创建用户！⚠️ 💩 ⚠️
+⚠️ 💩 ⚠️尽管 MySQL 数据库工作正常，但请注意，我们的构建基于 MariaDB 客户端库，因为这是 Debian 提供的。⚠️ 💩 ⚠️
 {% endhint %}
 
 要使用 MySQL 后端，你可以使用[官方 Docker 镜像](https://hub.docker.com/r/bitwardenrs/server-mysql)，也可以构建您自己的[启用了 MySQL](../../deployment/building-binary.md#mysql-backend) 的二进制。
@@ -61,42 +57,49 @@ mysql://dbuser:yourpassword@192.168.1.10:3306/vaultwarden
 ```batch
 version: "3.7"
 services:
- mariadb:
-  image: "mariadb"
-  container_name: "mariadb"
-  hostname: "mariadb"
+ vaultwarden-db:
+  image: "mariadb" # or "mysql"
+  container_name: "vaultwarden-db"
   restart: always
   env_file:
    - ".env"
   volumes:
-   - "mariadb_vol:/var/lib/mysql"
+   - "vaultwarden-db_vol:/var/lib/mysql"
    - "/etc/localtime:/etc/localtime:ro"
   environment:
    - "MYSQL_ROOT_PASSWORD=<my-secret-pw>"
    - "MYSQL_PASSWORD=<vaultwarden_pw>"
    - "MYSQL_DATABASE=vaultwarden_db"
    - "MYSQL_USER=<vaultwarden_user>"
-
+  healthcheck:
+   test: mariadb-admin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+   start_period: 5s
+   interval: 5s
+   timeout: 5s
+   retries: 55
+   
  vaultwarden:
   image: "vaultwarden/server-mysql:latest"
   container_name: "vaultwarden"
   hostname: "vaultwarden"
+  depends_on:
+   vaultwarden-db:
+    condition: service_healthy
   restart: always
   env_file:
    - ".env"
   volumes:
    - "vaultwarden_vol:/data/"
   environment:
-## 当在 mysql URL 周围使用单括号时会出现问题，就像在普通的 docker 例子中的一样
-   - "DATABASE_URL=mysql://<vaultwarden_user>:<vaultwarden_pw>@mariadb/vaultwarden_db"
-   - "ADMIN_TOKEN=<some_random_token_as_per_above_explanation>"
-   - "RUST_BACKTRACE=1"
+   - DATABASE_URL=mysql://<vaultwarden_user>:${VAULTWARDEN_MYSQL_PASSWORD}@vaultwarden-db/vaultwarden
+   - ADMIN_TOKEN=<some_random_token_as_per_above_explanation> # https://github.com/dani-garcia/vaultwarden/wiki/Enabling-admin-page
+   - RUST_BACKTRACE=1
   ports:
    - "80:80"
 
 volumes:
  vaultwarden_vol:
- mariadb_vol:
+ vaultwarden-db_vol:
 ```
 
 ## 手动创建数据库（例如，使用现有的数据库服务器） <a href="#manually-create-a-database-for-example-using-an-existing-database-server" id="manually-create-a-database-for-example-using-an-existing-database-server"></a>
@@ -115,28 +118,12 @@ volumes:
 CREATE DATABASE vaultwarden CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-2a、创建一个新的数据库用户并授予数据库权限（对于 MariaDB，版本低于 v8 的 MySQL）：
+2、创建一个新的数据库用户并授予数据库权限（MariaDB，MySQL）：
 
 ```sql
 CREATE USER 'vaultwarden'@'localhost' IDENTIFIED BY 'yourpassword';
 GRANT ALL ON `vaultwarden`.* TO 'vaultwarden'@'localhost';
 FLUSH PRIVILEGES;
-```
-
-2b、如果使用 MySQL v8.x，则需要这样创建用户：
-
-```sql
--- 在 MySQLv8 安装上这样使用
-CREATE USER 'vaultwarden'@'localhost' IDENTIFIED WITH mysql_native_password BY 'yourpassword';
-GRANT ALL ON `vaultwarden`.* TO 'vaultwarden'@'localhost';
-FLUSH PRIVILEGES;
-```
-
-如果您已经创建了用户，想要更改密码类型：
-
-```sql
--- 密码类型由 caching_sha2_password 更改为原生
-ALTER USER 'vaultwarden'@'localhost' IDENTIFIED WITH mysql_native_password BY 'yourpassword';
 ```
 
 您可能想尝试一组受限的授权：
