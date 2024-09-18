@@ -74,7 +74,7 @@ load database
 
 ## 从 MySQL 迁移到 PostgreSQL <a href="#migrating-from-mysql-to-postgresql" id="migrating-from-mysql-to-postgresql"></a>
 
-> 使用 MariaDB 10.3.32、PostgreSQL 14.2 和 Vaultwarden 1.24.0 测试
+> 使用 MariaDB 10.11.9、PostgreSQL 15.8-1 和 Vaultwarden 1.32.0 测试
 
 请注意，**使用此方法风险自负，并且强烈建议备份您的安装和数据**！这**不受支持**，也没有经过强有力的测试。
 
