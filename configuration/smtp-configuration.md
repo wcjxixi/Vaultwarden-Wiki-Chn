@@ -93,6 +93,10 @@ SMTP_SECURITY=off
 
 您需要为 Vaultwarden 生成应用专用密码才能使用 Gmail。按照此处的步骤操作：[使用应用专用密码登录](https://support.google.com/accounts/answer/185833?hl=zh-Hans\&ref\_topic=7189145)（自 2022 年 5 月 30 日起不可用），最后您会得到一个密码（中间有空格但无需使用，只是为了方便输入），使用这个密码。
 
+{% hint style="info" %}
+如果这个无法完成（由于您的安全设置），您可以参阅下面有关 [OAuth2 支持](smtp-configuration.md#oauth2-support)的部分以获取更多信息。
+{% endhint %}
+
 Full SSL：
 
 ```systemd
@@ -118,6 +122,10 @@ StartTLS：
 另外参考：[Using Lettre With Gmail](https://web.archive.org/web/20210925161633/https://webewizard.com/2019/09/17/Using-Lettre-With-Gmail/)
 
 ### Hotmail/Outlook/Office365
+
+{% hint style="danger" %}
+由于微软要求支持 OAuth2，但这不能正常工作。有关详细信息，请参阅[下面的故障排除](smtp-configuration.md#troubleshooting)。
+{% endhint %}
 
 ```systemd
   # Domains: hotmail.com, outlook.com, office365.com
@@ -223,6 +231,16 @@ nc -vz smtp.gmail.com 587
 ```bash
 docker exec -it vaultwarden sh
 ```
+
+### OAuth2 支持 <a href="#oauth2-support" id="oauth2-support"></a>
+
+如果您收到以下错误消息：
+
+> No compatible authentication mechanism was found（未找到兼容的身份验证机制）
+
+这很可能是因为 Microsoft（以及某些用例的 Google Mail）已切换到 OAuth2（参阅 [RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749)）作为唯一受支持的身份验证方法，而我们（暂时）还不支持，即使 lettre crate 已经有对它的非标准支持（参阅 [#4518](https://github.com/dani-garcia/vaultwarden/discussions/4518#discussioncomment-9196455)）。
+
+推荐的处理方法（如果您不想或可以使用不同的 SMTP 服务器）是设置 [email-oauth2-proxy](https://github.com/simonrob/email-oauth2-proxy)。
 
 ## 使用 `sendmail`（非 Docker）
 
