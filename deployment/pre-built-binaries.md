@@ -68,3 +68,5 @@ drwx------ 8 user user     4096 Feb  6 21:46 output/web-vault/
 * ARMv6：`./docker-image-extract -p linux/arm/v6 docker.io/vaultwarden/server:latest-alpine`
 * ARMv7：`./docker-image-extract -p linux/arm/v7 docker.io/vaultwarden/server:latest-alpine`
 * ARMv8 / AArch64：`./docker-image-extract -p linux/arm64 docker.io/vaultwarden/server:latest-alpine`
+
+或使用 github actions 从[此存储库](https://github.com/czyt/vaultwarden-binary)自动提取二进制文件。

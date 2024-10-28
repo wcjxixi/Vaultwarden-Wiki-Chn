@@ -17,7 +17,7 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 * 网页界面（等效于 [https://vault.bitwarden.com/](https://vault.bitwarden.com/\))）
 * 个人密码库支持
 * [组织](https://help.ppgg.in/getting-started/getting-started-with-organizations)密码库支持
-* [群组](https://help.ppgg.in/organizations/groups)（不稳定 ([#3624](https://github.com/dani-garcia/vaultwarden/issues/3624), [#3413](https://github.com/dani-garcia/vaultwarden/issues/3413))，需要设置[环境变量](https://github.com/dani-garcia/vaultwarden/blob/bb2412d0339e1da5dee99fc566a2b2aab5d2808c/.env.template#L409-L414)才能启用它）
+* [群组](https://help.ppgg.in/organizations/groups)（~~不稳定 (~~[~~#3624~~](https://github.com/dani-garcia/vaultwarden/issues/3624)~~,~~ [~~#3413~~](https://github.com/dani-garcia/vaultwarden/issues/3413)~~)，~~需要设置[环境变量](https://github.com/dani-garcia/vaultwarden/blob/bb2412d0339e1da5dee99fc566a2b2aab5d2808c/.env.template#L409-L414)才能启用它）
 * [事件日志](https://help.ppgg.in/organizations/event-logs)
 * [密码共享](https://help.ppgg.in/organizations/sharing)和[访问控制](https://help.ppgg.in/organizations/user-types-and-access-control)
 * [集合](https://help.ppgg.in/organizations/collections)

@@ -10,6 +10,12 @@
 
 本节介绍了在您**自己的硬件**或主要**由您自己管理**的任何基础设施上托管 Vaultwarden 的不同选项。
 
+### Ansible
+
+* [https://github.com/guerzon/ansible-role-vaultwarden](https://github.com/guerzon/ansible-role-vaultwarden)
+
+目前支持 EL8 和 EL9 发行版的 Ansible 角色。在积极开发和支持下，已经有一个可用的 MVP 版本。
+
 ### Raspberry Pi
 
 * [https://github.com/martient/vaultwarden-ansible](https://github.com/martient/vaultwarden-ansible)
@@ -105,11 +111,13 @@ Raspberry Pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 
 您可以使用 Let's Encrypt 将 Vaultwarden 安装到您的安全网络附加存储 (NAS) 中。但由于 QNAP 内置的 HTTP(S) 服务器，您不能在标准的 HTTP(S) 端口 (80/443) 上发布 Vaultwarden。
 
-### Kubernetes
+### Kubernetes Manifests
 
 * [https://github.com/icicimov/kubernetes-bitwarden\_rs](https://github.com/icicimov/kubernetes-bitwarden\_rs)
 
 在 Kubernetes 上以 [nginx-ingress-controller](https://github.com/kubernetes/ingress-nginx) 和 AWS [ELBv1](https://aws.amazon.com/elasticloadbalancing/features/#Details\_for\_Elastic\_Load\_Balancing\_Products) 作为后端设置一个功能齐全且安全的 Vaultwarden 应用程序。它提供的不仅仅是简单的部署，还可以根据您的需要和设置使用全部或部分功能。
+
+### Helm charts
 
 * [https://github.com/Skeen/helm-bitwarden\_rs](https://github.com/Skeen/helm-bitwarden\_rs)
 
@@ -117,7 +125,9 @@ Raspberry Pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 
 * [https://github.com/guerzon/vaultwarden](https://github.com/guerzon/vaultwarden)
 
-使用 [Helm](https://helm.sh/zh/docs/) 将 Vaultwarden 部署到 Kubernetes 集群。它支持重要的自定义，例如提供图像标签和自定义注册表值、使用​​外部 MySQL 或 PostgreSQL 数据库、使用入口控制器（如 [nginx-ingress](https://kubernetes.github.io/ingress-nginx/deploy/) 和 [AWS LB 入口控制器](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/deploy/installation/)）、使用服务账户、配置 SMTP，以及配置存储选项。它拥有完美的文档记录，未来将继续引入更多配置选项。
+使用 [Helm](https://helm.sh/zh/docs/) 将 Vaultwarden 部署到 Kubernetes 集群。它支持重要的自定义，例如提供图像标签和自定义注册表值、使用​​外部 MySQL 或 PostgreSQL 数据库、使用入口控制器（如 [nginx-ingress](https://kubernetes.github.io/ingress-nginx/deploy/) 和 [AWS LB 入口控制器](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/deploy/installation/)）、使用服务账户、配置 SMTP，以及配置存储选项。
+
+此 Helm chart 目前正在积极开发和支持中。
 
 ## PaaS 托管 <a href="#paas-hosting" id="paas-hosting"></a>
 
@@ -137,9 +147,9 @@ Raspberry Pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 
 针对 Google Cloud 的「永远免费」的 f1-micro 计算实例进行了优化的 Vaultwarden 安装。
 
-* [https://medium.com/@sreafterhours/terraform-helm-external-dns-cert-manager-nginx-and-vaultwarden-on-gke-5080f3b4909f](https://medium.com/@sreafterhours/terraform-helm-external-dns-cert-manager-nginx-and-vaultwarden-on-gke-5080f3b4909f)
+* [~~https://medium.com/@sreafterhours/terraform-helm-external-dns-cert-manager-nginx-and-vaultwarden-on-gke-5080f3b4909f~~](https://medium.com/@sreafterhours/terraform-helm-external-dns-cert-manager-nginx-and-vaultwarden-on-gke-5080f3b4909f)
 
-针对 Google Kubernetes Engine 的详细的 Vaultwarden 安装，包括基础设施和集群配置。
+~~针对 Google Kubernetes Engine 的详细的 Vaultwarden 安装，包括基础设施和集群配置。~~
 
 ### Heroku
 

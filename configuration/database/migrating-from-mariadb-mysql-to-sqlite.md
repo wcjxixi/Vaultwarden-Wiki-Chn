@@ -37,8 +37,7 @@ mysqldump \
   --single-transaction \
   --no-create-db \
   --no-create-info \
-  --hex-blob \
-  --skip-quote-names <database> \
+  --hex-blob <database> \
   | grep -a "^INSERT INTO" | grep -a -v "__diesel_schema_migrations" \
   | sed 's#\\"#"#gm' \
   | sed -sE "s#,0x([^,]*)#,X'\L\1'#gm" \
@@ -47,10 +46,10 @@ mysqldump \
 
 系统会提示您输入密码，输入密码然后按回车键。
 
-这一步将生成一个用于保存您的数据库的 `mysql-to-sqlite.sql` 文件。现在查找上一步中在您第一次使用 SQLite 作为数据库启动 Vaultwarden 时由 Vaultwarden 创建的 db.sqlite3 文件。复制或移动 `mysql-to-sqlite.sql`，让 db.sqlite3 和导出位于同一目录中。现在您可以执行以下命令：
+这一步将生成一个用于保存您的数据库的 `mysql-to-sqlite.sql` 文件。现在查找上一步中在您第一次使用 SQLite 作为数据库启动 Vaultwarden 时由 Vaultwarden 创建的 db.sqlite3 文件。复制或移动 `mysql-to-sqlite.sql` 到与 `db.sqlite3` 于同一目录中。现在您可以执行以下命令：
 
 ```sql
-sqlite3 db_new.sqlite3 < mysql-to-sqlite.sql
+sqlite3 db.sqlite3 < mysql-to-sqlite.sql
 ```
 
 这一步将使用转储填充 SQLite 数据库，您现在可以使用 SQLite 而非 MySQL 再次启动 Vaultwarden 了。

@@ -43,6 +43,7 @@
   * [20.使用备用基本目录（子目录/子路径）](configuration/using-an-alternate-base-dir-subdir-subpath.md)
   * [21.其他配置](configuration/other-configuration.md)
   * [\*使用 systemd docker 运行](configuration/running-with-systemd-docker.md)
+  * [\*自定义 Vaultwarden CSS](configuration/customize-vaultwarden-css.md)
   * [数据库](configuration/database/README.md)
     * [1.使用 MariaDB (MySQL) 后端](configuration/database/using-the-mariadb-mysql-backend.md)
     * [2.使用 PostgreSQL 后端](configuration/database/using-the-postgresql-backend.md)
