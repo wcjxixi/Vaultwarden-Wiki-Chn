@@ -32,6 +32,7 @@ mysqldump \
   --user=<dbuser> --password \
   --skip-create-options \
   --compatible=ansi \
+  --default-character-set=utf8 \
   --skip-extended-insert \
   --compact \
   --single-transaction \
