@@ -135,6 +135,12 @@ Raspberry Pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 
 > \[**译者注**]：[PaaS](https://cloud.google.com/learn/what-is-paas?hl=zh-cn)：Platform as a Service，平台即服务。PaaS 是一种云计算服务模型，提供灵活的可扩缩云平台来开发、部署、运行和管理应用。PaaS 为开发者提供了开发应用所需的所有功能，而不必费心考虑操作系统和开发工具更新或者硬件维护。整个 PaaS 环境（或平台）而是由第三方服务提供商通过云提供。
 
+### AWS EKS
+
+* [https://medium.com/@sreafterhours/deploy-vaultwarden-to-amazon-eks-using-terraform-terragrunt-and-helm-69a0a7396625](https://medium.com/@sreafterhours/deploy-vaultwarden-to-amazon-eks-using-terraform-terragrunt-and-helm-69a0a7396625)
+
+使用 Terraform 和 Infrastructure-as-Code 在亚马逊 EKS 中部署 Vaultwarden。
+
 ### Sealos
 
 [![Deploy on Sealos](https://raw.githubusercontent.com/labring-actions/templates/main/Deploy-on-Sealos.svg)](https://cloud.sealos.io/?openapp=system-fastdeploy%3FtemplateName%3Dvaultwarden)

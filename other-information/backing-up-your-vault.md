@@ -66,7 +66,7 @@ sqlite3 data/db.sqlite3 "VACUUM INTO '/path/to/backups/db-$(date '+%Y%m%d-%H%M')
 
 您可以通过一个 cron 作业来定期运行这个命令（最好每天至少一次）。如果您通过 Docker 运行，请注意 Docker 映像不包含 sqlite3 二进制文件或 cron 守护程序，因此通常会将它们安装在 Docker 主机本身上并在容器外运行 cron 作业。如果您出于某种原因确实想从容器内运行备份，您可以在[容器启动](../container-image-usage/starting-a-container.md#customizing-container-startup)期间安装任何必要的包，或者使用您首选的 `vaultwarden/server:<tag>` 镜像作为父镜像创建您自己的自定义 Docker 镜像。
 
-如果您想把备份数据复制到云存储上，[Rclone](https://rclone.org/) 是一个有用的工具，可以与各种云存储系统进行对接。[restic](https://restic.net/) 是另一个不错的选择，特别是如果您有较大的附件，并想避免每次都将其作为备份的一部分的时候。
+如果您想把备份数据复制到云存储上，[Rclone](https://rclone.org/) 是一个有用的工具，可以与各种云存储系统进行对接。[restic](https://restic.net/) 或 [rustic](https://rustic.cli.rs/) 是另一个不错的选择，特别是如果您有较大的附件，并想避免每次都将其作为备份的一部分的时候。
 
 ### `attachments` 目录 <a href="#the-attachments-dir" id="the-attachments-dir"></a>
 
