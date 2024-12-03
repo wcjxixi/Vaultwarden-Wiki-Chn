@@ -195,10 +195,7 @@ server {
     listen [::]:80;
     server_name vaultwarden.example.tld;
 
-    if ($host = vaultwarden.example.tld) {
-        return 301 https://$host$request_uri;
-    }
-    return 404;
+    return 301 https://$host$request_uri;
 }
 
 server {
@@ -300,10 +297,13 @@ server {
     listen [::]:80;
     server_name vaultwarden.example.tld;
 
-    if ($host = vaultwarden.example.tld) {
+    location /vault/ { # <-- 替换为所需的子路径
         return 301 https://$host$request_uri;
     }
-    return 404;
+    
+    # 如果您想对整个域名而不是只对 Vaultwarden 强制 HTTPS，
+    # 那么您可以使用下面的内容代替上面的 location 块：
+    return 301 https://$host$request_uri;
 }
 
 server {
@@ -501,7 +501,7 @@ NixOS Nginx 配置示例。关于 NixOS 部署的更多信息，请参阅[部署
 
 <summary>Nginx with proxy_protocol in front - v1.29.0+ (by dionysius)</summary>
 
-在这个例子中，有一个下游代理在[这个 nginx 前面的 proxy\_protocol](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/) 中进行通信（例如，[启用了 proxy\_protocol 的 LXD 代理设备](https://linuxcontainers.org/lxd/docs/master/reference/devices\_proxy/)）。Nginx 需要从这里设置正确使用协议和要转发的标头。标有 `# <---` 的行与 blackdex 的示例内容不同。
+在这个例子中，有一个下游代理在[这个 nginx 前面的 proxy\_protocol](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/) 中进行通信（例如，[启用了 proxy\_protocol 的 LXD 代理设备](https://linuxcontainers.org/lxd/docs/master/reference/devices_proxy/)）。Nginx 需要从这里设置正确使用协议和要转发的标头。标有 `# <---` 的行与 blackdex 的示例内容不同。
 
 参考这个 LXD 下游代理设备配置：
 
@@ -546,14 +546,11 @@ map $http_upgrade $connection_upgrade {
 
 # HTTP 重定向到 HTTPS
 server {
-    if ($host = vaultwarden.example.tld) {
-        return 301 https://$host$request_uri;
-    }
-
     listen 80 proxy_protocol; # &#x3C;---
     listen [::]:80 proxy_protocol; # &#x3C;---
     server_name vaultwarden.example.tld;
-    return 404;
+    
+    return 301 https://$host$request_uri;
 }
 
 server {
