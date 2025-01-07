@@ -109,7 +109,7 @@ StartTLS：
   SMTP_PASSWORD=<less-secure-app-password>
 ```
 
-Full SSL：
+FullSSL：
 
 ```systemd
   # Domains: gmail.com, googlemail.com
@@ -126,7 +126,7 @@ Full SSL：
 ### Hotmail/Outlook/Office365
 
 {% hint style="danger" %}
-由于微软要求支持 OAuth2，这将不再起作用。有关详细信息，请参阅[下面的故障排除](smtp-configuration.md#troubleshooting)。
+由于微软要求支持 OAuth2，下面的方法将不再起作用。有关详细信息，请参阅[下面的故障排除](smtp-configuration.md#troubleshooting)。
 {% endhint %}
 
 ```systemd
@@ -155,7 +155,7 @@ StartTLS：
   SMTP_AUTH_MECHANISM="Login"
 ```
 
-Full SSL：
+FullSSL：
 
 ```systemd
   SMTP_HOST=smtp.sendgrid.net
