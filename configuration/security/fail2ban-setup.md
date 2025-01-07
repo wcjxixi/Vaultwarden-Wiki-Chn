@@ -212,7 +212,32 @@ filter = vaultwarden[journalmatch='_SYSTEMD_UNIT=your_vaultwarden.service']
 使用它们来代替 `logpath =` 和 `filter =` 变量。
 {% endhint %}
 
-**Cloudflare 用户注意：**如果您使用 Cloudflare 代理，您需要将 Cloudflare 添加到您的操作列表中，如[这个指南](https://niksec.com/using-fail2ban-with-cloudflare/)中所示。
+**后端注意事项**：如果您使用 `sudo apt install` 等方式安装 fail2ban，`/etc/fai2ban/jail.conf` 可能会使用 systemd 作为默认的后端。此默认配置项将导致无法监控 logpath 日志。
+
+将 `backend = pyinotify` 或 `backend = inotify` 添加到 `vaultwarden.local` 配置中：
+
+```systemd
+# path_f2b/jail.d/vaultwarden.local
+
+[vaultwarden]
+enabled = true
+backend = pyinotify
+port = 80,443,8081
+filter = vaultwarden
+banaction = %(banaction_allports)s
+logpath = /path/to/vaultwarden.log
+maxretry = 3
+bantime = 14400
+findtime = 14400
+```
+
+重启 fail2ban 以使更改生效：
+
+```sh
+sudo systemctl restart fail2ban
+```
+
+**Cloudflare 用户注意事项：**&#x5982;果您使用 Cloudflare 代理，您需要将 Cloudflare 添加到您的操作列表中，如[这个指南](https://niksec.com/using-fail2ban-with-cloudflare/)中所示。
 
 重新加载 Fail2ban 使更改生效：
 
@@ -278,7 +303,32 @@ filter = vaultwarden-admin[journalmatch='_SYSTEMD_UNIT=your_vaultwarden.service'
 使用它们来代替 `logpath =` 和 `filter =` 变量。
 {% endhint %}
 
-**Cloudflare 用户请注意：**如果您使用 Cloudflare 代理，您需要将 Cloudflare 添加到您的操作列表中，如[本指南](https://niksec.com/using-fail2ban-with-cloudflare/)中所示。
+**后端注意事项**：如果您使用 `sudo apt install` 等方式安装 fail2ban，`/etc/fai2ban/jail.conf` 可能会使用 systemd 作为默认的后端。此默认配置项将导致无法监控 logpath 日志。
+
+将 `backend = pyinotify` 或 `backend = inotify` 添加到 `vaultwarden.local` 配置中：
+
+```systemd
+# path_f2b/jail.d/vaultwarden.local
+
+[vaultwarden]
+enabled = true
+backend = pyinotify
+port = 80,443,8081
+filter = vaultwarden
+banaction = %(banaction_allports)s
+logpath = /path/to/vaultwarden.log
+maxretry = 3
+bantime = 14400
+findtime = 14400
+```
+
+重启 fail2ban 以使更改生效：
+
+```sh
+sudo systemctl restart fail2ban
+```
+
+**Cloudflare 用户请注意事项：**&#x5982;果您使用 Cloudflare 代理，您需要将 Cloudflare 添加到您的操作列表中，如[本指南](https://niksec.com/using-fail2ban-with-cloudflare/)中所示。
 
 重新加载 Fail2ban 使更改生效：
 
@@ -299,9 +349,9 @@ sudo fail2ban-client set vaultwarden unbanip XX.XX.XX.XX
 
 如果 Fail2ban 无法正常运行，请检查 Vaultwarden 日志文件的路径是否正确。对于 Docker：如果指定的日志文件未生成和/或更新，请确保将 `EXTENDED_LOGGING` 变量设置为 `true`（默认值），并且确保日志文件的路径是 Docker 内部的路径（当您使用 `/vw-data/:/data/` 时，日志文件应位于容器外部的 `/data/...` 中）。
 
-还要确认 Docker 容器的时区与主机的时区是否一致。通过将日志文件中显示的时间与主机操作系统的时间进行比较来进行检查。如果它们不一致，则有多种解决方法。一种是使用 `-e "TZ = <timezone>"` 选项启动 Docker 。可用的时区（比如 `-e TZ = "Australia/Melbourne"`）列表在[这里](https://en.wikipedia.org/wiki/List\_of\_tz\_database\_time\_zones)查看。
+还要确认 Docker 容器的时区与主机的时区是否一致。通过将日志文件中显示的时间与主机操作系统的时间进行比较来进行检查。如果它们不一致，则有多种解决方法。一种是使用 `-e "TZ = <timezone>"` 选项启动 Docker 。可用的时区（比如 `-e TZ = "Australia/Melbourne"`）列表在[这里](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)查看。
 
-如果您使用的是 podman 而不是 Docker，则无法通过 `-e "TZ = <timezone>"` 来设置时区。可以按照以下指南解决此问题（当使用 alpine 镜像时）：[https://wiki.alpinelinux.org/wiki/Setting\_the\_timezone](https://wiki.alpinelinux.org/wiki/Setting\_the\_timezone)。
+如果您使用的是 podman 而不是 Docker，则无法通过 `-e "TZ = <timezone>"` 来设置时区。可以按照以下指南解决此问题（当使用 alpine 镜像时）：[https://wiki.alpinelinux.org/wiki/Setting\_the\_timezone](https://wiki.alpinelinux.org/wiki/Setting_the_timezone)。
 
 ## SELinux 中的问题 <a href="#selinux-problems" id="selinux-problems"></a>
 

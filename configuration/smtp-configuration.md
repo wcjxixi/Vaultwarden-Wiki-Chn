@@ -91,22 +91,11 @@ SMTP_SECURITY=off
 
 ### Google/Gmail
 
-您需要为 Vaultwarden 生成应用专用密码才能使用 Gmail。按照此处的步骤操作：[使用应用专用密码登录](https://support.google.com/accounts/answer/185833?hl=zh-Hans\&ref\_topic=7189145)（自 2022 年 5 月 30 日起不可用），最后您会得到一个密码（中间有空格但无需使用，只是为了方便输入），使用这个密码。
+您需要为 Vaultwarden 生成应用专用密码才能使用 Gmail。按照此处的步骤操作：[使用应用专用密码登录](https://support.google.com/accounts/answer/185833?hl=zh-Hans\&ref_topic=7189145)~~（自 2022 年 5 月 30 日起不可用）~~，最后您会得到一个密码（中间有空格但无需使用，只是为了方便输入），使用这个密码。
 
 {% hint style="info" %}
 如果这个无法完成（由于您的安全设置），您可以参阅下面有关 [OAuth2 支持](smtp-configuration.md#oauth2-support)的部分以获取更多信息。
 {% endhint %}
-
-Full SSL：
-
-```systemd
- # Domains: gmail.com, googlemail.com
-  SMTP_HOST=smtp.gmail.com
-  SMTP_PORT=465
-  SMTP_SECURITY=force_tls
-  SMTP_USERNAME=<mail-address>
-  SMTP_PASSWORD=<less-secure-app-password>
-```
 
 StartTLS：
 
@@ -115,16 +104,29 @@ StartTLS：
   SMTP_HOST=smtp.gmail.com
   SMTP_PORT=587
   SMTP_SECURITY=starttls
+  SMTP_FROM=<mail-address>
   SMTP_USERNAME=<mail-address>
   SMTP_PASSWORD=<less-secure-app-password>
 ```
 
-另外参考：[Using Lettre With Gmail](https://web.archive.org/web/20210925161633/https://webewizard.com/2019/09/17/Using-Lettre-With-Gmail/)
+Full SSL：
+
+```systemd
+  # Domains: gmail.com, googlemail.com
+  SMTP_HOST=smtp.gmail.com
+  SMTP_PORT=465
+  SMTP_SECURITY=force_tls
+  SMTP_FROM=<mail-address>
+  SMTP_USERNAME=<mail-address>
+  SMTP_PASSWORD=<less-secure-app-password>
+```
+
+另请参阅：[Using Lettre With Gmail](https://web.archive.org/web/20210925161633/https://webewizard.com/2019/09/17/Using-Lettre-With-Gmail/)
 
 ### Hotmail/Outlook/Office365
 
 {% hint style="danger" %}
-由于微软要求支持 OAuth2，但这不能正常工作。有关详细信息，请参阅[下面的故障排除](smtp-configuration.md#troubleshooting)。
+由于微软要求支持 OAuth2，这将不再起作用。有关详细信息，请参阅[下面的故障排除](smtp-configuration.md#troubleshooting)。
 {% endhint %}
 
 ```systemd
