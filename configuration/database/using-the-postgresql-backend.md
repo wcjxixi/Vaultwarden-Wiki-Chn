@@ -6,7 +6,7 @@
 
 要使用 PostgreSQ 后端，您可以使用[官方 Docker 镜像](https://hub.docker.com/r/bitwardenrs/server-postgresql)，也可以构建您自己的[启用了 PostgreSQL](../../deployment/building-binary.md#postgresql-backend) 的二进制。
 
-要运行二进制或容器，请确保已设置 `DATABASE_URL` 环境变量（即 `DATABASE_URL='postgresql://<user>:<password>@postgresql/bitwarden'`）。
+要运行二进制或容器，请确保已设置 `DATABASE_URL` 环境变量（即 `DATABASE_URL='postgresql://<user>:<password>@postgresql/vaultwarden'`）。
 
 **字符串连接语法：**
 
@@ -46,8 +46,8 @@ CREATE DATABASE vaultwarden;
 
 ```sql
 CREATE USER vaultwarden WITH ENCRYPTED PASSWORD 'yourpassword';
-GRANT ALL ON DATABASE vaultwarden TO vaultwarden;
-GRANT all privileges ON database vaultwarden TO vaultwarden;
+GRANT CONNECT ON DATABASE vaultwarden TO vaultwarden;
+ALTER SCHEMA public OWNER TO vaultwarden;
 ```
 
 3、配置 Vaultwarden 并启动它，以便 [diesel](http://diesel.rs/) 可以运行迁移并设置正确的模式。除此之外不要做别的。

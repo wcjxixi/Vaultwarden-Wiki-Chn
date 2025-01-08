@@ -10,6 +10,21 @@
 
 本节介绍了在您**自己的硬件**或主要**由您自己管理**的任何基础设施上托管 Vaultwarden 的不同选项。
 
+### 使用 Ansible 进行高可用性 Vaultwarden 部署 <a href="#highly-available-vaultwarden-deployment-with-ansible" id="highly-available-vaultwarden-deployment-with-ansible"></a>
+
+* [https://github.com/sudoix/vaultwarden-ansible](https://github.com/sudoix/vaultwarden-ansible)
+
+此 Ansible 部署使用以下组件设置高可用的 Vaultwarden 集群：
+
+**主要特点：**
+
+* **Nginx**：处理 SSL 卸载和负载平衡，以获得最佳性能和安全性。
+* **Certbot**：自动生成和管理 SSL 证书以实现安全通信。
+* **Vaultwarden**：作为密码管理的主要后端。
+* **Keepalived**：提供虚拟IP和冗余以实现高可用性。
+* **PostgreSQL**：使用外部数据库来存储数据。
+* **Docker** 和 **Docker Compose**：使用 docker compose 部署所有服务。
+
 ### Ansible
 
 * [https://github.com/guerzon/ansible-role-vaultwarden](https://github.com/guerzon/ansible-role-vaultwarden)
@@ -55,13 +70,13 @@ Raspberry Pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 
 在 [DreamHost](https://www.dreamhost.com/) 上运行 Vaultwarden 的配置示例，但应该也适用于许多其他共享主机服务。
 
-* [https://lab.uberspace.de/guide\_vaultwarden.html?highlight=bitwarden](https://lab.uberspace.de/guide\_vaultwarden.html?highlight=bitwarden)
+* [https://lab.uberspace.de/guide\_vaultwarden.html?highlight=bitwarden](https://lab.uberspace.de/guide_vaultwarden.html?highlight=bitwarden)
 
 如何从源代码安装以及如何在 [Uberspace](https://uberspace.de/en/) 共享托管服务提供商上运行的说明。
 
 ### NixOS (by tklitschi)
 
-这里是一个针对 NixOS 上的 Vaultwarden 配置的示例。它不是很复杂，有您想使用的数据库类型的后端选项、用于系统服务专用备份的备份目录、启用它的选项以及配置选项。对于配置选项，你只需[从 .env 模板](https://github.com/dani-garcia/bitwarden\_rs/blob/1.13.1/.env.template)传递 .env 变量到 nix 语法中即可。密码 (SMTP\_PASSWORD,... ) 存储在 /nix/store 之外的另一个 .env 文件中，并被 [services.vaultwarden.environmentFile](https://search.nixos.org/options?channel=21.11\&show=services.vaultwarden.environmentFile\&from=0\&size=50\&sort=relevance\&type=packages\&query=vaultw) 包含。请参阅[代理示例](proxy-examples.md)以了解 nixos-nginx 的配置示例。
+这里是一个针对 NixOS 上的 Vaultwarden 配置的示例。它不是很复杂，有您想使用的数据库类型的后端选项、用于系统服务专用备份的备份目录、启用它的选项以及配置选项。对于配置选项，你只需[从 .env 模板](https://github.com/dani-garcia/bitwarden_rs/blob/1.13.1/.env.template)传递 .env 变量到 nix 语法中即可。密码 (SMTP\_PASSWORD,... ) 存储在 /nix/store 之外的另一个 .env 文件中，并被 [services.vaultwarden.environmentFile](https://search.nixos.org/options?channel=21.11\&show=services.vaultwarden.environmentFile\&from=0\&size=50\&sort=relevance\&type=packages\&query=vaultw) 包含。请参阅[代理示例](proxy-examples.md)以了解 nixos-nginx 的配置示例。
 
 <details>
 
@@ -113,13 +128,13 @@ Raspberry Pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 
 ### Kubernetes Manifests
 
-* [https://github.com/icicimov/kubernetes-bitwarden\_rs](https://github.com/icicimov/kubernetes-bitwarden\_rs)
+* [https://github.com/icicimov/kubernetes-bitwarden\_rs](https://github.com/icicimov/kubernetes-bitwarden_rs)
 
-在 Kubernetes 上以 [nginx-ingress-controller](https://github.com/kubernetes/ingress-nginx) 和 AWS [ELBv1](https://aws.amazon.com/elasticloadbalancing/features/#Details\_for\_Elastic\_Load\_Balancing\_Products) 作为后端设置一个功能齐全且安全的 Vaultwarden 应用程序。它提供的不仅仅是简单的部署，还可以根据您的需要和设置使用全部或部分功能。
+在 Kubernetes 上以 [nginx-ingress-controller](https://github.com/kubernetes/ingress-nginx) 和 AWS [ELBv1](https://aws.amazon.com/elasticloadbalancing/features/#Details_for_Elastic_Load_Balancing_Products) 作为后端设置一个功能齐全且安全的 Vaultwarden 应用程序。它提供的不仅仅是简单的部署，还可以根据您的需要和设置使用全部或部分功能。
 
 ### Helm charts
 
-* [https://github.com/Skeen/helm-bitwarden\_rs](https://github.com/Skeen/helm-bitwarden\_rs)
+* [https://github.com/Skeen/helm-bitwarden\_rs](https://github.com/Skeen/helm-bitwarden_rs)
 
 在 Kubernetes 上以您选择的 nginx 控制器作为后端设置一个功能齐全且安全的 Vaultwarden 应用程序。它运行良好，并已使用 [microk8s](https://microk8s.io/) 设置进行了测试。而且支持通过 [cert-manager](https://github.com/jetstack/cert-manager) 生成 SSL 证书。
 
@@ -149,7 +164,7 @@ Raspberry Pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 
 ### Google Cloud
 
-* [https://github.com/dadatuputi/bitwarden\_gcloud](https://github.com/dadatuputi/bitwarden\_gcloud)
+* [https://github.com/dadatuputi/bitwarden\_gcloud](https://github.com/dadatuputi/bitwarden_gcloud)
 
 针对 Google Cloud 的「永远免费」的 f1-micro 计算实例进行了优化的 Vaultwarden 安装。
 
@@ -159,7 +174,7 @@ Raspberry Pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 
 ### Heroku
 
-* [https://github.com/davidjameshowell/vaultwarden\_heroku](https://github.com/davidjameshowell/vaultwarden\_heroku)
+* [https://github.com/davidjameshowell/vaultwarden\_heroku](https://github.com/davidjameshowell/vaultwarden_heroku)
 
 使用完全免费的插件在 Heroku 上安装 Vaultwarden。安装大约需要 15 分钟。
 
@@ -238,7 +253,7 @@ dokku git:from-image $APP_NAME $image_sha
 
 ### Digital Ocean
 
-* [https://github.com/HarrisonLeach1/vaultwarden\_digitalocean](https://github.com/HarrisonLeach1/vaultwarden\_digitalocean)
+* [https://github.com/HarrisonLeach1/vaultwarden\_digitalocean](https://github.com/HarrisonLeach1/vaultwarden_digitalocean)
 
 Digital Ocean 最便宜的 Droplet 的 Vaultwarden 安装。通过 Terraform 设置资源。
 
