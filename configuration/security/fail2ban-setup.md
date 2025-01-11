@@ -245,7 +245,7 @@ sudo systemctl restart fail2ban
 sudo systemctl reload fail2ban
 ```
 
-随意更改您认为合适的选项。
+请根据您自己的需要自由修改这些选项。
 
 ## 为管理页面设置 <a href="#setup-for-admin-page" id="setup-for-admin-page"></a>
 
