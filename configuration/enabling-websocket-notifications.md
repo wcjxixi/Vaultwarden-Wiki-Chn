@@ -14,9 +14,7 @@ WebSocket 通知用于将发生的一些相关事件通告给浏览器、Bitward
 
 如果您确实使用像 nginx 或 Apache HTTPd 这样的反向代理，那么您需要确保正确配置它以传递 WebSocket `Upgrade` 和 `Connection` 标头。一些反向代理默认执行此操作，例如 Traefik。
 
-自 Vaultwarden v1.29.0 起，旧的 `WEBSOCKET_ENABLED` 和 `WEBSOCKET_PORT` 不再需要，可以忽略。&#x20;
-
-事实上，如果您使用原生实现设置 `WEBSOCKET_ENABLED` 为默认的 `false` 值，将会减少 Vaultwarden 使用的资源（尽管不会那么多）。
+自 Vaultwarden v1.29.0 版本起，旧的 `WEBSOCKET_ENABLED` 和 `WEBSOCKET_PORT` 已被弃用并将被忽略。在 v1.29.0 版本之后，您可以通过将 `ENABLE_WEBSOCKET` 设置为 `false` 值来禁用 Websocket 通知，这将减少 Vaultwarden 使用的资源（尽管不会太多）。
 
 示例配置包含在[代理示例](../deployment/proxy-examples.md)中。&#x20;
 
