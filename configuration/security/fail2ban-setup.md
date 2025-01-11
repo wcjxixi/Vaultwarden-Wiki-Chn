@@ -212,7 +212,7 @@ filter = vaultwarden[journalmatch='_SYSTEMD_UNIT=your_vaultwarden.service']
 使用它们来代替 `logpath =` 和 `filter =` 变量。
 {% endhint %}
 
-**后端注意事项**：如果您使用 `sudo apt install` 等方式安装 fail2ban，`/etc/fai2ban/jail.conf` 可能会使用 systemd 作为默认的后端。此默认配置项将导致无法监控 logpath 日志。
+**后端注意事项**：如果您使用 `sudo apt install` 等方式安装 fail2ban，`/etc/fail2ban/jail.conf` 可能会使用 systemd 作为默认的后端。此默认配置项将导致无法监控 logpath 日志。
 
 将 `backend = pyinotify` 或 `backend = inotify` 添加到 `vaultwarden.local` 配置中：
 
