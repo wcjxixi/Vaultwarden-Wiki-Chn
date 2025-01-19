@@ -199,7 +199,7 @@ server {
 }
 
 server {
-    # 对于旧版本的 nginx，在 ssl 后面的 listen 行中加入 http2，并移除 'http2 on;'。
+    # 对于旧版本的 nginx，在 ssl 后面的 listen 行中加入 http2，并移除 'http2 on'
     listen 443 ssl;
     listen [::]:443 ssl;
     http2 on;
@@ -209,19 +209,21 @@ server {
     #ssl_certificate /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/fullchain.pem;
     #ssl_certificate_key /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/privkey.pem;
     #ssl_trusted_certificate /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/fullchain.pem;
+    #add_header Strict-Transport-Security "max-age=31536000;";
 
     client_max_body_size 525M;
 
     location / {
-      proxy_http_version 1.1;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection $connection_upgrade;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
 
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
 
+    location / {
       proxy_pass http://vaultwarden-default;
     }
 
@@ -262,13 +264,13 @@ server {
 
 <summary>Nginx with sub-path - v1.29.0+ (by <a href="https://github.com/BlackDex">@BlackDex</a>)</summary>
 
-在这个示例中，Vaultwarden 的访问地址为 `https://vaultwarden.example.tld/vault/`，如果您想使用任何其他的子路径，比如 `vaultwarden` 或 `secret-vault`，您需要更改下面示例中相应的地方。
+在这个示例中，Vaultwarden 的访问地址为 `https://shared.example.tld/vault/`，如果您想使用任何其他的子路径，比如 `vaultwarden` 或 `secret-vault`，您需要更改下面示例中相应的地方。
 
 为此，您需要配置 `DOMAIN` 变量以使其匹配，它应类似于：
 
 ```systemd
 ; 添加子路径！否则将无法正常工作！
-DOMAIN=https://vaultwarden.example.tld/vault/
+DOMAIN=https://shared.example.tld/vault/
 ```
 
 ```nginx
@@ -295,7 +297,7 @@ map $http_upgrade $connection_upgrade {
 server {
     listen 80;
     listen [::]:80;
-    server_name vaultwarden.example.tld;
+    server_name shared.example.tld;
 
     location /vault/ { # <-- 替换为所需的子路径
         return 301 https://$host$request_uri;
@@ -311,12 +313,13 @@ server {
     listen 443 ssl;
     listen [::]:443 ssl;
     http2 on;
-    server_name vaultwarden.example.tld;
+    server_name shared.example.tld;
 
     # 根据需要指定 SSL 配置
-    #ssl_certificate /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/fullchain.pem;
-    #ssl_certificate_key /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/privkey.pem;
-    #ssl_trusted_certificate /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/fullchain.pem;
+    #ssl_certificate /path/to/certificate/letsencrypt/live/shared.example.tld/fullchain.pem;
+    #ssl_certificate_key /path/to/certificate/letsencrypt/live/shared.example.tld/privkey.pem;
+    #ssl_trusted_certificate /path/to/certificate/letsencrypt/live/shared.example.tld/fullchain.pem;
+    #add_header Strict-Transport-Security "max-age=31536000;";
 
     client_max_body_size 525M;
 
@@ -333,7 +336,7 @@ server {
       proxy_set_header X-Real-IP $remote_addr;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto $scheme;
-
+      
       proxy_pass http://vaultwarden-default;
     }
 
