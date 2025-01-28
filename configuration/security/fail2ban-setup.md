@@ -336,6 +336,30 @@ sudo systemctl restart fail2ban
 sudo systemctl reload fail2ban
 ```
 
+## 为 TOTP 代码设置 <a href="#setup-for-totp" id="setup-for-totp"></a>
+
+按照惯例，`path_f2b` 表示 Fail2ban 运行所需的路径。这取决于您的系统。例如，在 Synology 上，我们讨论的是 `/volumeX/docker/fail2ban/`，而在其他一些系统上，我们讨论的是 `/etc/fail2ban/`。
+
+### Filter
+
+使用如下内容创建文件：
+
+```systemd
+# path_f2b/filter.d/vaultwarden-totp.local
+# Fail2Ban filter for Vaultwarden TOTP
+
+[INCLUDES]
+before = common.conf
+
+[Definition]
+failregex = ^.*\[ERROR\] Invalid TOTP code! Server time: (.*) UTC IP: <ADDR>$
+ignoreregex =
+```
+
+ri
+
+### Jail
+
 ## 测试 Fail2ban <a href="#testing-fail-2-ban" id="testing-fail-2-ban"></a>
 
 现在，尝试使用任何电子邮件地址登录 Vaultwarden（不必是有效电子邮件，只需是电子邮件格式即可）。如果它可以正常工作，您的 IP 将被阻止。运行以下命令来取消阻止的 IP：
