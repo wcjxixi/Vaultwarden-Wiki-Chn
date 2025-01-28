@@ -672,6 +672,28 @@ LoadModule proxy_wstunnel_module modules/mod_proxy_wstunnel.so`
 
 <details>
 
+<summary>Apache 2.4.47 (or later) in a sub-location (by <a href="https://github.com/NoseyNick">@NoseyNick</a>)</summary>
+
+现在，常规的 `mod_proxy` 支持使用 `upgrade=websocket` 升级到 WebSocket，而不需要 `mod_proxy_wstunnel`。
+
+复制上面的说明，除非使用更简单的...
+
+```apacheconf
+<VirtualHost *:443>
+  [ blah blah ]
+  <Location /$sublocation/> #adjust here if necessary
+    ProxyPass http://$server:$port/$sublocation/ upgrade=websocket
+    ProxyPreserveHost On
+    ProxyRequests Off # ... is the default, but as a safety-net
+    RequestHeader set X-Real-IP %{REMOTE_ADDR}s
+  </Location>
+</VirtualHost>
+```
+
+</details>
+
+<details>
+
 <summary>Traefik v1 (docker-compose 示例)</summary>
 
 ```yaml

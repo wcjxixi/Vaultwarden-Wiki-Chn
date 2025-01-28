@@ -17,12 +17,12 @@
 <table data-full-width="false"><thead><tr><th>Server</th><th>Web-Vault</th></tr></thead><tbody><tr><td><a href="https://repology.org/project/vaultwarden/versions"><img src="https://repology.org/badge/vertical-allrepos/vaultwarden.svg" alt="Packaging status"></a></td><td><a href="https://repology.org/project/vaultwarden-web/versions"><img src="https://repology.org/badge/vertical-allrepos/vaultwarden-web.svg" alt="Packaging status" data-size="original"></a></td></tr></tbody></table>
 
 {% hint style="danger" %}
-请注意，最新的 Vaultwarden 版本并不总是与最新的 web-vault 版本前向兼容，因此您可能需要[使用旧版本](https://github.com/dani-garcia/bw\_web\_builds/releases)的 vaultwarden-web 以确保兼容性。
+请注意，最新的 Vaultwarden 版本并不总是与最新的 web-vault 版本前向兼容，因此您可能需要[使用旧版本](https://github.com/dani-garcia/bw_web_builds/releases)的 vaultwarden-web 以确保兼容性。
 {% endhint %}
 
 ## Arch Linux
 
-可在[官方仓库](https://archlinux.org/packages/community/x86\_64/vaultwarden)中获取，同时包含了[网页版密码库](https://archlinux.org/packages/extra/any/vaultwarden-web/)。
+可在[官方仓库](https://archlinux.org/packages/community/x86_64/vaultwarden)中获取，同时包含了[网页版密码库](https://archlinux.org/packages/extra/any/vaultwarden-web/)。
 
 ## Debian
 
@@ -36,11 +36,13 @@
 
 要在 DietPi 上安装 Vaultwarden，只需在命令行中键入 `dietpi-software install 183`。有关安装过程和首次访问 DietPi 上的 Vaultwarden 的更多信息，请访问 [https://dietpi.com/docs/software/cloud/#vaultwarden](https://dietpi.com/docs/software/cloud/#vaultwarden)。
 
-## CentOS 8 / RHEL 8
+## CentOS 8 / RHEL 8（已弃用）
 
 一个使用 SQLite 的 hacky 包。它还不包含密码库，并且在很明显的地方仍然使用旧的名称。
 
 [https://github.com/alexpdp7/vaultwarden-rpm](https://github.com/alexpdp7/vaultwarden-rpm)
+
+我不再维护这个软件包了，我现在使用 EPEL 9 软件包。
 
 ## Fedora (current release, x86\_64)
 
@@ -53,7 +55,7 @@ dnf install vaultwarden vaultwarden-webvault
 
 ## Gentoo
 
-用户可以自定义（是否使用 mysql/sqlite/postgresql 或者 web/cli）使用 USE 标记构建 Vaultwarden。首先按照[此 wiki](https://wiki.gentoo.org/wiki/Project:GURU/Information\_for\_End\_Users) 启用 GURU 覆盖。使用 `equery uses vaultwarden` 查看 Vaultwarden 可用的 USE 标记。
+用户可以自定义（是否使用 mysql/sqlite/postgresql 或者 web/cli）使用 USE 标记构建 Vaultwarden。首先按照[此 wiki](https://wiki.gentoo.org/wiki/Project:GURU/Information_for_End_Users) 启用 GURU 覆盖。使用 `equery uses vaultwarden` 查看 Vaultwarden 可用的 USE 标记。
 
 ```
 echo "app-admin/vaultwarden <your USE flags here>" >> /etc/portage/package.use/vaultwarden
@@ -76,7 +78,7 @@ emerge app-admin/vaultwarden
 
 ## 用于 Ubuntu 20.04 的构建脚本 <a href="#build-script-for-ubuntu-20-04" id="build-script-for-ubuntu-20-04"></a>
 
-Dinger1986 创建了一个在 Ubuntu 20.04 上从源代码安装 Vaultwarden 的脚本，参阅：[https://github.com/dinger1986/bitwardenrs\_install\_script](https://github.com/dinger1986/bitwardenrs\_install\_script)
+Dinger1986 创建了一个在 Ubuntu 20.04 上从源代码安装 Vaultwarden 的脚本，参阅：[https://github.com/dinger1986/bitwardenrs\_install\_script](https://github.com/dinger1986/bitwardenrs_install_script)
 
 ## FreeBSD
 
@@ -94,7 +96,7 @@ Bitwarden 可在设备上的应用商店中安装，并且无需配置。
 
 openSUSE 构建服务项目，支持：
 
-> \[**译者注**]：[什么是 openSUSE 构建服务](https://zh.wikipedia.org/wiki/Open\_Build\_Service)
+> \[**译者注**]：[什么是 openSUSE 构建服务](https://zh.wikipedia.org/wiki/Open_Build_Service)
 
 | RPM    | 版本                           |
 | ------ | ---------------------------- |

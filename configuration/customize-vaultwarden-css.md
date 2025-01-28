@@ -1,11 +1,11 @@
-# \*自定义 Vaultwarden CSS
+# 15.自定义 Vaultwarden CSS
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Customize-Vaultwarden-CSS/)
 {% endhint %}
 
 {% hint style="info" %}
-**功能尚未合并或发布！**它可能会在 v1.33.0 中成为稳定版。
+此功能仅适用于 v1.33.0 及更高版本。
 {% endhint %}
 
 从 v1.33.0 版本开始，您可以修改 Vaultwarden 之前嵌入到 web-Vault 中的 CSS。
@@ -60,33 +60,35 @@ app-two-factor-setup ul.list-group.list-group-2fa li.list-group-item:nth-child(5
 }
 
 /* Use a custom login logo */
-app-login img.logo {
+app-root img.new-logo-themed {
 	content: url(../images/my-custom-login.logo.png) !important;
 }
 
-/* Use a custom top left logo global */
-bit-icon > svg {
+/* Use a custom top left logo on login and locked screen page */
+auth-anon-layout > main > a > bit-icon > svg {
   display: none !important;
 }
-bit-icon::before {
+auth-anon-layout > main > a > bit-icon::before {
   display: block;
   content: "" !important;
   width: 175px !important;
-  height: 30px !important;
+  height: 36px !important;
   background-image: url(../images/my-custom-global-logo.png) !important;
   background-repeat: no-repeat !important;
   background-size: contain;
 }
 
 /* Use a custom top left logo different per vault/admin */
-bit-icon > svg {
+app-user-layout bit-icon > svg,
+app-organization-layout bit-icon > svg {
   display: none !important;
 }
-bit-icon::before {
+app-user-layout bit-icon::before,
+app-organization-layout bit-icon::before {
   display: block;
   content: "" !important;
-  width: 175px !important;
-  height: 30px !important;
+  width: 200px !important;
+  height: 50px !important;
   background-repeat: no-repeat !important;
   background-size: contain;
 }

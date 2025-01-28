@@ -19,6 +19,9 @@
 * [为管理页面设置](fail2ban-setup.md#setup-for-admin-page)
   * [Filter](fail2ban-setup.md#filter-1)
   * [Jail](fail2ban-setup.md#jail-1)
+* [为 TOTP 代码设置](fail2ban-setup.md#setup-for-totp)
+  * [Filter](fail2ban-setup.md#filter-2)
+  * [Jail](fail2ban-setup.md#jail-2)
 * [测试 Fail2ban](fail2ban-setup.md#testing-fail-2-ban)
 * [SELinux 中的问题](fail2ban-setup.md#selinux-problems)
 
@@ -356,9 +359,37 @@ failregex = ^.*\[ERROR\] Invalid TOTP code! Server time: (.*) UTC IP: <ADDR>$
 ignoreregex =
 ```
 
-ri
+日志示例：
+
+```
+[YYYY-MM-DD hh:mm:ss][vaultwarden::api::core::two_factor::authenticator][ERROR] Invalid TOTP code! Server time: YYYY-MM-DD hh:mm:ss UTC IP: 1.2.3.4
+```
 
 ### Jail
+
+使用如下内容创建文件：
+
+```systemd
+# path_f2b/jail.d/vaultwarden-totp.local
+
+[vaultwarden-totp]
+enabled = true
+port = 80,443
+filter = vaultwarden-totp
+banaction = iptables-multiport[name=vaultwarden-totp, port="80,443", protocol=tcp]
+logpath = /path/to/vaultwarden.log
+maxretry = 3
+bantime = 14400
+findtime = 14400
+```
+
+重启 fail2ban 以使更改生效：
+
+```sh
+sudo systemctl restart fail2ban
+```
+
+请根据您自己的需要自由修改这些选项。
 
 ## 测试 Fail2ban <a href="#testing-fail-2-ban" id="testing-fail-2-ban"></a>
 
