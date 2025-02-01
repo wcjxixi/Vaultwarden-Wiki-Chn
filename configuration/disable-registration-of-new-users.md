@@ -14,6 +14,8 @@ docker run -d --name vaultwarden \
   vaultwarden/server:latest
 ```
 
+**注意**：当 `SIGNUPS_ALLOWED=false` 时，网页密码库用户界面将不会显示 `Create Account` 按钮。 无论设置如何，仍然可以邀请。
+
 ## 禁用组织邀请 <a href="#disabling-organization-invitations" id="disabling-organization-invitations"></a>
 
 即使 `SIGNUPS_ALLOWED=false`，作为组织的所有者或管理员的现有用户仍然可以邀请新用户。如果您也想禁用此功能，请参阅[禁用邀请](disable-invitations.md)。
@@ -31,6 +33,6 @@ docker run -d --name vaultwarden \
 
 您可能还想设置 `SIGNUPS_VERIFY=true`，这要求新注册的用户在成功登录前进行电子邮件验证。这可以防止有人用一个拥有正确域名的假电子邮件地址注册。
 
-## 通过管理页面发出邀请 <a href="#invitations-via-the-admin-page" id="invitations-via-the-admin-page"></a>
+## 通过管理页面邀请 <a href="#invitations-via-the-admin-page" id="invitations-via-the-admin-page"></a>
 
-Vaultwarden 管理员可以通过[管理页面](enabling-admin-page.md)邀请任何人，不受以上限制。
+Vaultwarden 管理员可以通过[管理页面](enabling-admin-page.md)邀请任何人，不受以上限制。如果 SMTP 被禁用，用户应访问 `https://example.com/#/register` 然后使用邀请的电子邮箱注册。
