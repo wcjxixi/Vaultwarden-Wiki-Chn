@@ -8,9 +8,7 @@
 此功能仅适用于 v1.33.0 及更高版本。
 {% endhint %}
 
-从 v1.33.0 版本开始，您可以修改 Vaultwarden 之前嵌入到 web-Vault 中的 CSS。
-
-这样，用户可以更轻松地调整样式和布局，甚至隐藏项目。
+从 v1.33.0 版本开始，您可以修改 Vaultwarden 之前嵌入到 web-Vault 中的 CSS。这样，用户可以方便地调整样式和布局，甚至隐藏项目。
 
 要修改 CSS，您需要在 `data` 目录中添加 `templates` 目录，或通过 `TEMPLATES_FOLDER` 环境变量提供正确的路径。
 
@@ -32,39 +30,39 @@
 **您可以将一些示例放置在 `user.vaultwarden.scss.hbs` 中：**
 
 ```css
-/* Hide `Authenticator app` 2FA (First item of the list) */
+/* 隐藏 "验证器 App" 2FA (列表第一项) */
 app-two-factor-setup ul.list-group.list-group-2fa li.list-group-item:nth-child(1) {
   @extend %vw-hide;
 }
 
-/* Hide `YubiKey OTP security key` 2FA (Second item of the list) */
-/* Note: This will also be hidden automatically if the Yubikey config is net set */
+/* 隐藏 "YubiKey OTP 安全钥匙" 2FA (列表第二项) */
+/* 注意：如果 Yubikey 配置为净设置，该选项也将自动隐藏 */
 app-two-factor-setup ul.list-group.list-group-2fa li.list-group-item:nth-child(2) {
   @extend %vw-hide;
 }
 
-/* Hide `Duo` 2FA (Third item of the list) */
+/* 隐藏 "Duo" 2FA (列表第三项) */
 app-two-factor-setup ul.list-group.list-group-2fa li.list-group-item:nth-child(3) {
   @extend %vw-hide;
 }
 
-/* Hide `FIDO2 WebAuthn` 2FA (Fourth item of the list) */
+/* 隐藏 "FIDO2 WebAuthn" 2FA (列表第四项) */
 app-two-factor-setup ul.list-group.list-group-2fa li.list-group-item:nth-child(4) {
   @extend %vw-hide;
 }
 
-/* Hide `Email` 2FA (Fifth item of the list) */
-/* Note: This will also be hidden automatically if email is not enabled */
+/* 隐藏 "Email" 2FA (列表第五项) */
+/* 注意：如果未启用电子邮箱功能，该选项也将自动隐藏。 */
 app-two-factor-setup ul.list-group.list-group-2fa li.list-group-item:nth-child(5) {
   @extend %vw-hide;
 }
 
-/* Use a custom login logo */
+/* 使用自定义登录 logo */
 app-root img.new-logo-themed {
 	content: url(../images/my-custom-login.logo.png) !important;
 }
 
-/* Use a custom top left logo on login and locked screen page */
+/* 在登录和锁定界面的左上角使用自定义 logo */
 auth-anon-layout > main > a > bit-icon > svg {
   display: none !important;
 }
@@ -79,12 +77,12 @@ auth-anon-layout > main > a > bit-icon::before {
 }
 
 /* Use a custom top left logo different per vault/admin */
-app-user-layout bit-icon > svg,
-app-organization-layout bit-icon > svg {
+app-user-layout bit-nav-logo bit-icon > svg,
+app-organization-layout bit-nav-logo bit-icon > svg {
   display: none !important;
 }
-app-user-layout bit-icon::before,
-app-organization-layout bit-icon::before {
+app-user-layout bit-nav-logo bit-icon::before,
+app-organization-layout bit-nav-logo bit-icon::before {
   display: block;
   content: "" !important;
   width: 200px !important;
@@ -92,10 +90,10 @@ app-organization-layout bit-icon::before {
   background-repeat: no-repeat !important;
   background-size: contain;
 }
-app-user-layout bit-icon::before {
+app-user-layout bit-nav-logo bit-icon::before {
   background-image: url(../images/my-custom-password-manager-logo.png) !important;
 }
-app-organization-layout bit-icon::before {
+app-organization-layout bit-nav-logo bit-icon::before {
   background-image: url(../images/my-custom-admin-console-logo.png) !important;
 }
 ```
