@@ -21,12 +21,12 @@
 
 ```shell
 docker run -d --name vaultwarden \
-  -e SMTP_HOST=<smtp.domain.tld> \
-  -e SMTP_FROM=<vaultwarden@domain.tld> \
+  -e SMTP_HOST=smtp.domain.tld \
+  -e SMTP_FROM=vaultwarden@domain.tld \
   -e SMTP_PORT=587 \
   -e SMTP_SECURITY=starttls \
-  -e SMTP_USERNAME=<username> \
-  -e SMTP_PASSWORD=<password> \
+  -e SMTP_USERNAME=myusername \
+  -e SMTP_PASSWORD=MyPassw0rd \
   -v /vw-data/:/data/ \
   -p 80:80 \
   vaultwarden/server:latest
@@ -47,7 +47,7 @@ docker run -d --name vaultwarden \
 
 ## SMTP 服务器 <a href="#smtp-servers" id="smtp-servers"></a>
 
-正确配置 SMTP 服务器/中继并不是一件容易的事。Vaultwarden 使用的邮件程序库也不是最容易排除故障的。所以，除非您对自己设置这个特别感兴趣，否则使用外部服务可能更简单。
+正确配置 SMTP 服务器/中继并不是一件容易的事。Vaultwarden 使用的邮件程序库也不是最容易排除故障的。所以，除非您特别有兴趣自己设置，否则使用外部服务可能会更简单。
 
 这里有几个对于大部分使用场景来说已经足够的免费服务：
 
@@ -104,9 +104,9 @@ StartTLS：
   SMTP_HOST=smtp.gmail.com
   SMTP_PORT=587
   SMTP_SECURITY=starttls
-  SMTP_FROM=<mail-address>
-  SMTP_USERNAME=<mail-address>
-  SMTP_PASSWORD=<less-secure-app-password>
+  SMTP_FROM=user@gmail.tld
+  SMTP_USERNAME=user@gmail.tld
+  SMTP_PASSWORD=Less-Secure-App-Passw0rd
 ```
 
 FullSSL：
@@ -116,9 +116,9 @@ FullSSL：
   SMTP_HOST=smtp.gmail.com
   SMTP_PORT=465
   SMTP_SECURITY=force_tls
-  SMTP_FROM=<mail-address>
-  SMTP_USERNAME=<mail-address>
-  SMTP_PASSWORD=<less-secure-app-password>
+  SMTP_FROM=user@gmail.tld
+  SMTP_USERNAME=user@gmail.tld
+  SMTP_PASSWORD=Less-Secure-App-Passw0rd
 ```
 
 另请参阅：[Using Lettre With Gmail](https://web.archive.org/web/20210925161633/https://webewizard.com/2019/09/17/Using-Lettre-With-Gmail/)
@@ -134,9 +134,9 @@ FullSSL：
   SMTP_HOST=smtp-mail.outlook.com
   SMTP_PORT=587
   SMTP_SECURITY=starttls
-  SMTP_FROM=<mail-address>
-  SMTP_USERNAME=<mail-address>
-  SMTP_PASSWORD=<password>
+  SMTP_FROM=user@hotmail.tld
+  SMTP_USERNAME=user@hotmail.tld
+  SMTP_PASSWORD=MyPassw0rd
   SMTP_AUTH_MECHANISM="Login"
 ```
 
@@ -153,6 +153,7 @@ StartTLS：
   SMTP_USERNAME=apikey
   SMTP_PASSWORD=<full-api-key>
   SMTP_AUTH_MECHANISM="Login"
+  SMTP_FROM=user@domain.tld
 ```
 
 FullSSL：
@@ -164,6 +165,7 @@ FullSSL：
   SMTP_USERNAME=apikey
   SMTP_PASSWORD=<full-api-key>
   SMTP_AUTH_MECHANISM="Login"
+  SMTP_FROM=user@domain.tld
 ```
 
 ## 带特殊字符的密码 <a href="#passwords-with-special-characters" id="passwords-with-special-characters"></a>
