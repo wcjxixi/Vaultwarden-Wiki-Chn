@@ -6,7 +6,7 @@
 
 [Podman](https://podman.io/) 是替代 Docker 的无守护程序，它与大部分 Docker 容器兼容。
 
-## 创建 Quadlet（对于 Podman 4.4+） <a href="#creating-a-quadlet-podman-4.4" id="creating-a-quadlet-podman-4.4"></a>
+## 创建 Quadlet（适用于 Podman 4.4+） <a href="#creating-a-quadlet-podman-4.4" id="creating-a-quadlet-podman-4.4"></a>
 
 从版本 4.4 开始，Podman 使用 [quadlets](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html)，如果您使用以前的 `generate systemd` 方法，则会显示一个警告。
 
@@ -35,7 +35,7 @@ ROCKET_PORT=8080
 
 ### 创建 podman Quadlet <a href="#creating-the-podman-quadlet" id="creating-the-podman-quadlet"></a>
 
-配置看起来像 systemd 的，但我们配置的是容器，而不是单元。请参阅所有 `[Container]` 指令的[文档](https://man.archlinux.org/man/quadlet.5.en#Container\_units\_%5BContainer%5D)。
+配置看起来像 systemd 的，但我们配置的是容器，而不是单元。请参阅所有 `[Container]` 指令的[文档](https://man.archlinux.org/man/quadlet.5.en#Container_units_%5BContainer%5D)。
 
 ```systemd
 # Content of /usr/share/containers/systemd/vaultwarden.container
@@ -65,15 +65,15 @@ WantedBy=default.target
 sudo podman auto-update
 ```
 
-或者，您可以启用定时器，它会每天自动更新（默认情况下，可以编辑）：
+或者，您可以启用定时器，它会每天自动更新（默认情况。也可以编辑）：
 
 ```sh
 sudo systemctl enable podman-auto-update.timer
 ```
 
-## 创建一个 systemd 服务文件（对于老版本的 Podman） <a href="#creating-a-systemd-service-file-older-podman-versions" id="creating-a-systemd-service-file-older-podman-versions"></a>
+## 创建 systemd 服务文件（适用于老版本的 Podman） <a href="#creating-a-systemd-service-file-older-podman-versions" id="creating-a-systemd-service-file-older-podman-versions"></a>
 
-由于 Podman 的无守护程序架构，它比 Docker 更容易在 systemd 中运行。它带有一个便捷的 [generate syetemd 命令](http://docs.podman.io/en/latest/markdown/podman-generate-systemd.1.html)，该命令可以生成 systemd 文件。这里有[一篇不错的文章详细介绍了它](https://www.redhat.com/sysadmin/podman-shareable-systemd-services)，还有[这篇文章也详细介绍了一些最新的更新](https://www.redhat.com/sysadmin/improved-systemd-podman)。
+由于 Podman 的无守护程序架构，它比 Docker 更容易在 systemd 中运行。它带有一个便捷的 [generate syetemd 命令](http://docs.podman.io/en/latest/markdown/podman-generate-systemd.1.html)，该命令可以生成 systemd 文件。[这一篇不错的文章详细介绍了它](https://www.redhat.com/zh/blog/podman-shareable-systemd-services)，还有[这篇文章也详细介绍了一些最新的更新](https://www.redhat.com/zh/blog/improved-systemd-podman)。
 
 ```systemd
 $ podman run -d --name vaultwarden -v /vw-data/:/data/:Z -e ROCKET_PORT=8080 -p 8080:8080 vaultwarden/server:latest
@@ -99,7 +99,7 @@ PIDFile=/run/user/1000/overlay-containers/54502f309f3092d32b4c496ef3d099b270b2af
 WantedBy=multi-user.target default.target
 ```
 
-您可以提供 `--files` 标志告诉 podman 将 systemd 服务放到一个文件中，或使用 `podman generate systemd --name vaultwarden > /etc/systemd/system/container-vaultwarden.service`。这样，我们就可以像任何正常的服务文件一样启用和启动容器了。
+您可以提供 `--files` 标志告诉 podman 将 systemd 服务放到某个文件中，或使用 `podman generate systemd --name vaultwarden > /etc/systemd/system/container-vaultwarden.service`。这样，我们就可以像任何正常的服务文件一样启用和启动容器了。
 
 ```shell
 $ systemctl --user enable /etc/systemd/system/container-vaultwarden.service
