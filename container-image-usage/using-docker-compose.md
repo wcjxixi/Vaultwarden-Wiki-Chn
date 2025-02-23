@@ -28,13 +28,13 @@ services:
       - 11001:80 # 您可以将 11001 替换为您喜欢的端口
 ```
 
-要创建然后运行容器，请运行：
+要创建并运行容器，请运行：
 
 ```bash
 docker compose up -d && docker compose logs -f
 ```
 
-要更新然后运行容器，请运行：
+要更新并运行容器，请运行：
 
 ```bash
 docker compose pull && docker compose up -d && docker compose logs -f
@@ -120,7 +120,7 @@ docker compose up -d # 或者 'docker-compose up -d' 如果使用独立的 Docke
 docker compose down # 或者 'docker-compose down' 如果使用独立的 Docker Compose 的话
 ```
 
-[此处](https://github.com/sosandroid/docker-bitwarden\_rs-caddy-synology)提供了一个类似的基于 Caddy 的适用于 Synology 的示例。
+[此处](https://github.com/sosandroid/docker-bitwarden_rs-caddy-synology)提供了一个类似的基于 Caddy 的适用于 Synology 的示例。
 
 ## 带有 DNS 挑战的 Caddy <a href="#caddy-with-dns-challenge" id="caddy-with-dns-challenge"></a>
 
