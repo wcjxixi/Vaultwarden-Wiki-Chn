@@ -62,6 +62,7 @@
   * [3.与上游 API 实现的区别](other-information/differences-from-the-upstream-api-implementation.md)
   * [4.支持上游的发展](other-information/supporting-upstream-development.md)
   * [5.使用 Cloudflare DNS 的 Caddy 2.x](other-information/caddy-2.x-with-cloudflare-dns.md)
+  * [6.Git hooks](other-information/git-hooks.md)
   * [\*使用非 root 用户运行 docker 容器](other-information/running-docker-container-with-non-root-user.md)
   * [\*使私有 CA 和自签名证书兼容 Chrome](other-information/private-ca-and-self-signed-certs-that-work-with-chrome.md)
   * [\*测试 SSO](other-information/testing-sso.md)

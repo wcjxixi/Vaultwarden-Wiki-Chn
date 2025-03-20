@@ -55,7 +55,6 @@ mysql://dbuser:yourpassword@192.168.1.10:3306/vaultwarden
 ### 使用 docker-compose 的示例 <a href="#example-using-docker-compose" id="example-using-docker-compose"></a>
 
 ```batch
-version: "3.7"
 services:
  vaultwarden-db:
   image: "mariadb" # or "mysql"
