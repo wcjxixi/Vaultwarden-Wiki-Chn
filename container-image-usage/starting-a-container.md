@@ -23,7 +23,7 @@ restorecon -Rv /vw-data
 
 ```shell
 # 使用 Docker：
-docker run -d --name vaultwarden -v /vw-data/:/data/ --restart unless-stopped -p 80:80 vaultwarden/server:latest
+docker run -d --name vaultwarden -v /vw-data/:/data/ -p 80:80 vaultwarden/server:latest
 # 使用 Podman as non-root：
 podman run -d --name vaultwarden -v /vw-data/:/data/:Z -e ROCKET_PORT=8080 -p 8080:8080 vaultwarden/server:latest
 # 使用 Podman as root：
