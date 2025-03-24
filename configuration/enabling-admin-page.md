@@ -12,7 +12,7 @@
 
 要启用管理页面，您需要设置一组身份验证令牌。该令牌可以是任何字符，但建议使用随机生成的长字符串，比如运行 `openssl rand -base64 48` 命令生成。
 
-**此令牌是您访问服务器管理区域的密码！请确保其安全性。**您该如何[确保管理令牌的安全](enabling-admin-page.md#secure-the-admin\_token)。
+**此令牌是您访问服务器管理区域的密码！请确保其安全性。**&#x60A8;该如何[确保管理令牌的安全](enabling-admin-page.md#secure-the-admin_token)。
 
 要设置令牌，请使用 `ADMIN_TOKEN` 变量：
 
@@ -43,19 +43,17 @@ docker run -d --name vaultwarden \
 {% hint style="danger" %}
 此功能自 [1.28.0+](https://github.com/dani-garcia/vaultwarden/releases/tag/1.28.0) 后可用。
 
-优先使用环境变量。
-
-但是，如果您通过管理界面更新了设置，则需要通过相同的 Web 界面更新管理令牌！
+最好是使用环境变量。但如果您通过管理界面更新了设置，则需要通过相同的网页界面更新管理令牌！
 
 请**不要**手动编辑 `config.json` 文件，因为如果操作不当可能会引起故障！
 
 要在保护令牌后登录管理页面，您需要使用令牌创建期间提供的密码（而不是令牌本身）。
 {% endhint %}
 
-以前 `ADMIN_TOKEN` 只能是纯文本格式。您现在可以通过生成 [PHC 字符串](https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md)来使用 Argon2 对 `ADMIN_TOKEN` 进行哈希处理。这可以通过使用 Vaultwarden 中的内置 `hash` 命令或使用 `argon2` CLI 工具生成。在 Vaultwarden 应用程序中，有两个预设，一个使用 [Bitwarden 默认](https://github.com/bitwarden/clients/blob/04d1fbb716bc7676c60a009906e183bb3cbb6047/libs/common/src/enums/kdfType.ts#L8-L10)的，一个使用 [OWASP 推荐](https://cheatsheetseries.owasp.org/cheatsheets/Password\_Storage\_Cheat\_Sheet.html#argon2id)。
+以前 `ADMIN_TOKEN` 只能是纯文本格式。您现在可以使用 Argon2 通过生成 [PHC 字符串](https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md)来对 `ADMIN_TOKEN` 进行哈希处理。这可以通过使用 Vaultwarden 中的内置 `hash` 命令或使用 `argon2` CLI 工具生成。在 Vaultwarden 应用程序中，有两个预设，一个是使用 [Bitwarden 默认](https://github.com/bitwarden/clients/blob/04d1fbb716bc7676c60a009906e183bb3cbb6047/libs/common/src/enums/kdfType.ts#L8-L10)的，一个是使用 [OWASP 推荐](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html#argon2id)的。
 
 {% hint style="danger" %}
-如果您一直收到 `You are using a plain text ADMIN_TOKEN which is insecure.` 消息，则说明您要么已经通过管理界面保存了设置，环境变量将不会被使用，或者您需要确认使用的格式是否正确。请仔细阅读下面的**如何防止 docker-compose.yml 中的变量插值**部分。
+如果您一直收到 `You are using a plain text ADMIN_TOKEN which is insecure.` 消息，则说明您要么已经通过管理界面保存了设置，环境变量将不会被使用，要么您需要确认使用了正确的格式。请仔细阅读下面的**如何防止 docker-compose.yml 中的变量插值**部分。
 {% endhint %}
 
 有关如何生成 Argon2id PHC 哈希的一些示例。
@@ -64,7 +62,7 @@ docker run -d --name vaultwarden \
 
 Vaultwarden 中内置了一个 PHC 生成器，您可以通过 CLI `vaultwarden hash` 运行它。这可以通过已经运行的实例上的 `docker exec` 来完成，或者通过在您自己的系统上的 docker 在本地运行它。
 
-下面使用 `vwcontainer` 作为容器名称，请将其替换为您的实例的正确容器名称。Vaultwarden CLI 会要求输入两次密码，如果两次相同，它将输出已生成的 PHC 字符串。
+下面使用 `vwcontainer` 作为容器名称，请将其替换为您的实例的实际容器名称。Vaultwarden CLI 会要求输入两次密码，如果两次相同，它将输出生成的 PHC 字符串。
 
 示例：
 
