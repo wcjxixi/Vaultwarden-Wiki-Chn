@@ -14,9 +14,9 @@
 
 ## 常规 <a href="#general" id="general"></a>
 
-Vaultwarden 最初设计时仅使用 SQLite，但当时 MariaDB (MySQL) 和 PostgreSQL 也被同时添加到了组合中。对于 SQLite，您不必运行单独的服务器或容器，而对于其他两个，您确实需要运行一些额外的东西。
+Vaultwarden 最初设计时仅使用 SQLite，但后来又加入了MariaDB（MySQL）和PostgreSQL。对于 SQLite，您不需要运行单独的服务器或容器，而对于其他两个，您确实需要运行一些额外的东西。
 
-如果您一开始使用的是 MariaDB 并想回到 SQLite，现在该怎么办呢？嗯，这是可能的，但是使用以下步骤可能会出现一些我们不知道的奇怪故障。如果您遇到任何奇怪的问题然后需要帮助，或者您解决了这些问题，请在此处开启一个新的讨论：[https://github.com/dani-garcia/vaultwarden/discussions](https://github.com/dani-garcia/vaultwarden/discussions)，以帮助您和其他人。
+现在，如果您一开始使用的是 MariaDB，但又想回到 SQLite，该怎么办呢？嗯，这是可能的，但是使用以下步骤可能会出现一些我们不知道的奇怪故障。如果您遇到任何奇怪的问题然后需要帮助，或者您解决了这些问题，请在此处开启一个新的讨论：[https://github.com/dani-garcia/vaultwarden/discussions](https://github.com/dani-garcia/vaultwarden/discussions)，以帮助您和其他人。
 
 ## 如何从 MariaDB 迁移到 SQLite <a href="#how-to-migrate-from-mariadb-to-sqlite" id="how-to-migrate-from-mariadb-to-sqlite"></a>
 
