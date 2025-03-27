@@ -1,4 +1,4 @@
-# 15.自定义 Vaultwarden CSS
+# 3.自定义 Vaultwarden CSS
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Customize-Vaultwarden-CSS/)

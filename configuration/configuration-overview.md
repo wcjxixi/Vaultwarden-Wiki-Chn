@@ -103,6 +103,7 @@ Vaultwarden 支持从磁盘加载配置选项的值（通过环境变量或在 `
 * 管理后台
   * [启用管理页面](enabling-admin-page.md)
   * [禁用管理令牌](disable-the-admin-token.md)
+  * [翻译管理页面](other/translating-admin-page.md)
 * [SMTP 配置](smtp-configuration.md)
 * 通知
   * [启用 WebSocket 通知](enabling-websocket-notifications.md)
@@ -115,4 +116,4 @@ Vaultwarden 支持从磁盘加载配置选项的值（通过环境变量或在 `
   * [更改持久数据位置](changing-persistent-data-location.md)
   * [更改 API 请求大小限制](changing-the-api-request-size-limit.md)
   * [更改 worker 数量](changing-the-number-of-workers.md)
-* [翻译电子邮件模板](other/translating-the-email-templates.md)
+* [翻译电子邮件模板](translating-the-email-templates.md)
