@@ -52,7 +52,7 @@
     * [1.强化指南](configuration/security/hardening-guide.md)
     * [2.Fail2ban 设置](configuration/security/fail2ban-setup.md)
     * [3.Docker Traefik ModSecurity 设置](configuration/security/docker-traefik-modsecurity-setup.md)
-  * [Other](configuration/other/README.md)
+  * [其他](configuration/other/README.md)
     * [1.翻译管理页面](configuration/other/translating-admin-page.md)
     * [2.翻译电子邮件模板](configuration/translating-the-email-templates.md)
     * [3.自定义 Vaultwarden CSS](configuration/customize-vaultwarden-css.md)

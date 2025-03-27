@@ -27,7 +27,7 @@
 │       └── vaultwarden.scss.hbs
 ```
 
-**您可以将一些示例放置在 `user.vaultwarden.scss.hbs` 中：**
+**可以将其放置在 `user.vaultwarden.scss.hbs` 中的一些示例：**
 
 ```css
 /* 隐藏 "验证器 App" 2FA (列表第一项) */
@@ -76,7 +76,7 @@ auth-anon-layout > main > a > bit-icon::before {
   background-size: contain;
 }
 
-/* Use a custom top left logo different per vault/admin */
+/* 使用自定义左上角徽标，密码库和管理页面不一样 */
 app-user-layout bit-nav-logo bit-icon > svg,
 app-organization-layout bit-nav-logo bit-icon > svg {
   display: none !important;
