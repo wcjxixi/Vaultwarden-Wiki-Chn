@@ -59,7 +59,7 @@ app-two-factor-setup ul.list-group.list-group-2fa li.list-group-item:nth-child(5
 
 /* 使用自定义登录 logo */
 app-root img.new-logo-themed {
-	content: url(../images/my-custom-login.logo.png) !important;
+	content: url(../images/my-custom-login-logo.png) !important;
 }
 
 /* 在登录和锁定界面的左上角使用自定义 logo */
