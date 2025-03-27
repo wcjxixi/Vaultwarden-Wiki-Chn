@@ -17,7 +17,7 @@
 {% endhint %}
 
 {% hint style="info" %}
-**备注：**标题前有 \* 的表示官方曾经有但现已移除的页面和/或分类，我将其保留仅作为参考之用。
+**备注：**&#x6807;题前有 \* 的表示官方曾经有但现已移除的页面和/或分类，我将其保留仅作为参考之用。
 {% endhint %}
 
 ## Vaultwarden 是什么 <a href="#what-is-vaultwarden" id="what-is-vaultwarden"></a>

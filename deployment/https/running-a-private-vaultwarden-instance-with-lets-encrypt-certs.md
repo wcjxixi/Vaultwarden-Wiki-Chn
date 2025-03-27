@@ -83,7 +83,7 @@ export ROCKET_PORT=8001
 caddy start --envfile caddy.env
 ```
 
-**重要提示：**如有必要，在某些路由器（例如 FritzBox）或 DNS 解析器（例如 unbound）中，由于 DNS 重新绑定保护，必须为域名（例如 `my-vw.example.com`）设置例外。
+**重要提示：**&#x5982;有必要，在某些路由器（例如 FritzBox）或 DNS 解析器（例如 unbound）中，由于 DNS 重新绑定保护，必须为域名（例如 `my-vw.example.com`）设置例外。
 
 ## Cloudflare 设置 <a href="#cloudflare-setup" id="cloudflare-setup"></a>
 
@@ -139,7 +139,7 @@ export ROCKET_PORT=8080
 
 您现在应该可以通过 `https://vw.example.com` 访问到您的实例了。
 
-**重要提示：**如有必要，在某些路由器（例如 FritzBox）中，由于 DNS 重新绑定保护，必须为域名（例如 `vw.example.com`）设置例外。
+**重要提示：**&#x5982;有必要，在某些路由器（例如 FritzBox）中，由于 DNS 重新绑定保护，必须为域名（例如 `vw.example.com`）设置例外。
 
 ## 使用 `lego` CLI 获取证书 <a href="#getting-certs-using-the-lego-cli" id="getting-certs-using-the-lego-cli"></a>
 
@@ -167,7 +167,7 @@ export ROCKET_PORT=8080
 如果您的子域名出现 DNS 解析错误（例如，`DNS_PROBE_FINISHED_NXDOMAIN` 或 `ERR_NAME_NOT_RESOLVED`），可能是您的 DNS 解析器阻止了解析，有以下原因：
 
 1. 出于安全原因，它会阻止动态 DNS 服务。
-2. 为防止 [DNS 重新绑定](https://en.wikipedia.org/wiki/DNS\_rebinding)攻击，或出于其他一些原因，它会阻止域名解析到私有 (RFC 1918) IP 地址。
+2. 为防止 [DNS 重新绑定](https://en.wikipedia.org/wiki/DNS_rebinding)攻击，或出于其他一些原因，它会阻止域名解析到私有 (RFC 1918) IP 地址。
 
 无论哪种情况，您都可以尝试使用其他 DNS 解析器，例如 Google 的 `8.8.8.8` 或 Cloudflare 的 `1.1.1.1`。对于第二种情况，如果您在 dnsmasq 或 Unbound 等本地 DNS 服务器后面运行，则可以将其配置为完全禁用 DNS 重新绑定保护，或允许某些域名返回私有地址。关于 Unbound，您可以通过将以下指令添加到其配置文件中来实现（使用您自己的 Duck DNS 域名替换该域名）：
 

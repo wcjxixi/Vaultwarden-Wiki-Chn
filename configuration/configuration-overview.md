@@ -23,7 +23,7 @@
 如果启用了[管理页面](enabling-admin-page.md)，您还可以看到带有配置值的配置选项（如果您使用 `config.json`，则指示该值是否已从初始值更改）。
 
 {% hint style="warning" %}
-**注意：**`config.json` 文件_**不是**_配置您的设置的推荐方式！要么使用环境变量，您可以通过多种方式为您的容器环境（Docker、Docker-Compose、K8s 等）进行配置；或者，如果使用独立的二进制文件（其不是由 Vaultwarden 本身分发的），请使用位于当前工作目录下的 `.env` 文件。在管理界面中保存设置时会创建并覆盖 `config.json` 文件！
+**注意：**`config.json` 文&#x4EF6;_**不是**_&#x914D;置您的设置的推荐方式！要么使用环境变量，您可以通过多种方式为您的容器环境（Docker、Docker-Compose、K8s 等）进行配置；或者，如果使用独立的二进制文件（其不是由 Vaultwarden 本身分发的），请使用位于当前工作目录下的 `.env` 文件。在管理界面中保存设置时会创建并覆盖 `config.json` 文件！
 {% endhint %}
 
 如果您依赖[第三方软件包](../deployment/third-party-packages.md)，则必须检查提供的文档（例如 Arch Linux 的 `vaultwarden` 软件包的安装通知），因为下游维护者通常会对他们的软件包做出一些假设。
@@ -32,7 +32,7 @@
 
 配置 Vaultwarden 的推荐方法是通过环境变量。根据您运行 Vaultwarden 的方式（例如直接运行、在容器化环境中运行、通过 systemd 运行等），设置环境变量的方法有多种，因此请熟悉您的平台和安装方法。
 
-大多数可以设置的环境变量都可以在 `.env.template` 文件中找到。您还可以使用该文件作为容器环境的环境文件的基础（例如，通过 [`env_file`](https://docs.docker.com/compose/environment-variables/set-environment-variables/#use-the-env\_file-attribute) 属性）或与 systemd 服务一起使用（参见 [`EnvironmentFile=`](https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html#EnvironmentFile=)） - 只是不要将此文件与下面的 [`ENV_FILE` 方式](configuration-overview.md#using-an-env\_file)混淆！
+大多数可以设置的环境变量都可以在 `.env.template` 文件中找到。您还可以使用该文件作为容器环境的环境文件的基础（例如，通过 [`env_file`](https://docs.docker.com/compose/environment-variables/set-environment-variables/#use-the-env_file-attribute) 属性）或与 systemd 服务一起使用（参见 [`EnvironmentFile=`](https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html#EnvironmentFile=)） - 只是不要将此文件与下面的 [`ENV_FILE` 方式](configuration-overview.md#using-an-env_file)混淆！
 
 {% hint style="info" %}
 请注意，不同平台之间的环境文件解释方式可能存在一些细微的差异（关于变量扩展或是否可以或应该在值周围使用引号等）。
@@ -115,4 +115,4 @@ Vaultwarden 支持从磁盘加载配置选项的值（通过环境变量或在 `
   * [更改持久数据位置](changing-persistent-data-location.md)
   * [更改 API 请求大小限制](changing-the-api-request-size-limit.md)
   * [更改 worker 数量](changing-the-number-of-workers.md)
-* [翻译电子邮件模板](translating-the-email-templates.md)
+* [翻译电子邮件模板](other/translating-the-email-templates.md)

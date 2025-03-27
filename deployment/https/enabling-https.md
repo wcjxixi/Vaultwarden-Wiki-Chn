@@ -8,7 +8,7 @@
 
 启用 HTTPS 的几种方式：
 
-* （推荐）把 Vaultwarden 放在一个[反向代理](https://en.wikipedia.org/wiki/Reverse\_proxy)后面，代替 Vaultwarden 处理 HTTPS 连接。
+* （推荐）把 Vaultwarden 放在一个[反向代理](https://en.wikipedia.org/wiki/Reverse_proxy)后面，代替 Vaultwarden 处理 HTTPS 连接。
 * （不推荐）启用 Vaultwarden 内置的 HTTPS 功能（通过 [Rocket](https://rocket.rs/) 网络框架）。Rocket 的 HTTPS 实现相对不成熟且功能有限。
 
 有关这些选项的更多细节，请参阅[启用 HTTPS](enabling-https.md#enabling-https) 部分。
@@ -19,7 +19,7 @@
 * （推荐）如果您信任 [Cloudflare](https://www.cloudflare.com/) 来代理您的流量，您可以让他们处理您的 SSL/TLS 证书的发放。请注意，上游的 Bitwarden 网络密码库 ([https://vault.bitwarden.com/](https://vault.bitwarden.com/)) 运行在 Cloudflare 后面。
 * （不推荐）[建立一个私人 CA](../../other-information/private-ca-and-self-signed-certs-that-work-with-chrome.md)，并发行您自己的（自签名）证书。这样做存在各种隐患和不便，所以请自行考虑是否使用此选项。
 
-有关这些选项的更多细节，请参考[获取 SSL/TLS 证书](enabling-https.md#getting-ssl-tls-certificates)部分。要使移动应用程序能正常运行，必须设置正确的 [OCSP 装订](https://en.wikipedia.org/wiki/OCSP\_stapling)设置。
+有关这些选项的更多细节，请参考[获取 SSL/TLS 证书](enabling-https.md#getting-ssl-tls-certificates)部分。要使移动应用程序能正常运行，必须设置正确的 [OCSP 装订](https://en.wikipedia.org/wiki/OCSP_stapling)设置。
 
 ## 启用 HTTPS <a href="#enabling-https" id="enabling-https"></a>
 
@@ -46,7 +46,7 @@ ROCKET_TLS={certs="/path/to/certs.pem",key="/path/to/key.pem"}
 
 说明：
 
-* `ROCKET_TLS` 行中使用的文件_**扩展**_名不一定非要像示例中那样是 `.PEM`。某些地方可能会使用其他扩展名，例如，`.crt` 作为证书，`.key` 作为私钥。这些文件的_**格式**_必须是 PEM，即 base64 编码。PEM 是 openssl 的默认格式，因此您可以将 .cert、.cer、.crt 和 .key 文件重命名为 .pem 以作为 `ROCKET_TLS` 行中的文件扩展名，或者使用 .crt 或 .key 作为 `ROCKET_TLS` 行中的文件扩展名。
+* `ROCKET_TLS` 行中使用的文&#x4EF6;_**扩展**_&#x540D;不一定非要像示例中那样是 `.PEM`。某些地方可能会使用其他扩展名，例如，`.crt` 作为证书，`.key` 作为私钥。这些文件&#x7684;_**格式**_&#x5FC5;须是 PEM，即 base64 编码。PEM 是 openssl 的默认格式，因此您可以将 .cert、.cer、.crt 和 .key 文件重命名为 .pem 以作为 `ROCKET_TLS` 行中的文件扩展名，或者使用 .crt 或 .key 作为 `ROCKET_TLS` 行中的文件扩展名。
 *   使用 RSA 证书/密钥。Rocket 目前无法处理 ECC 证书/密钥，会输出类似下面的误导性错误消息：
 
     > `[ERROR] environment variable ROCKET_TLS={certs="/ssl/ecdsa.crt",key="/ssl/ecdsa.key"} could not be parsed`
