@@ -1,4 +1,4 @@
-# 1.翻译管理页面
+# 2.翻译管理页面
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Translating-admin-page)
@@ -13,7 +13,7 @@
 您可以通过如下方式使用自定义模板：
 
 1. 将相应文件从存储库（`src/static/templates/admin`）复制到具有相同文件夹结构的对应的 `TEMPLATES_FOLDER` 下（例如复制到 `data/templates/admin`）
-2. 翻译它们，然后
+2. 更改它们（比如翻译它们 - 但一定要保持链接中的 `{{variables}}` 完好无损，这样才能确保有效），然后
 3. 重新启动 Vaultwarden 以加载新的（覆盖）模板。
 
 **注意**：为确保兼容性，您应该首先下载适合您的版本的模板，并且如果它们发生变化（或添加了新的模板），您还必须自行更新它们。
