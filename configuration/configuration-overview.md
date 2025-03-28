@@ -14,7 +14,7 @@
 
 基本上有三种不同的方式配置 Vaultwarden：
 
-1. 设置环境变量，
+1. 设置环境变量
 2. 使用 `ENV_FILE` 以及
 3. 通过 `config.json`（**不推荐**）（这可以通过[管理页面](enabling-admin-page.md)生成和管理）
 
@@ -82,10 +82,10 @@ Vaultwarden 支持从磁盘加载配置选项的值（通过环境变量或在 `
 
 ## 配置优先级 <a href="#configuration-precedence" id="configuration-precedence"></a>
 
-1. 编译时，默认值通过 `src/config.rs` 进行硬编码。
+1. 编译时，默认值通过 `src/config.rs` 进行硬编码
 2. 无需重新编译二进制文件。这些默认值可以通过配置 `ENV_FILE` 来更改
-3. 也可以通过设置环境变量（这将推翻 `ENV_FILE` 中的设置）来更改。
-4. 最终用户（具有 `/admin` 面板访问权限）可以选择创建具有最高优先级的 `config.json`。
+3. 也可以通过设置环境变量（这将推翻 `ENV_FILE` 中的设置）来更改
+4. 最终用户（具有 `/admin` 面板访问权限）可以选择创建具有最高优先级的 `config.json`
 
 ## 设置域名 URL <a href="#setting-the-domain-url" id="setting-the-domain-url"></a>
 
