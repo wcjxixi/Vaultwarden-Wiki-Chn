@@ -6,7 +6,7 @@
 
 WebSocket 通知用于将发生的一些相关事件通告给浏览器、Bitwarden 的桌面和浏览器扩展客户端，例如密码数据库中有条目被修改了或被删除了。收到通知后，客户端可以采取适当的操作，例如刷新已修改的条目，或从其本地缓存中移除已删除的条目。在此通知方案中，Bitwarden 客户端与 Bitwarden 服务器（在本案例中为 Vaultwarden）建立持久的 WebSocket 连接。每当服务器有需要报告的事件时，它都会通过此持久连接将其发送给客户端。
 
-请注意，WebSocket 通知不适用于移动 (Android/iOS) Bitwarden 客户端。这些客户端使用原生推送通知服务（Android 为 [FCM](https://firebase.google.com/docs/cloud-messaging)，iOS 为 [APN](https://developer.apple.com/go/?id=push-notifications)）。这些必须使用 Bitwarden 云服务的推送证书单独配置。同样也适用于 v1.29.0。
+请注意，WebSocket 通知不适用于移动 (Android/iOS) Bitwarden 客户端。这些客户端使用原生推送通知服务（Android 为 [FCM](https://firebase.google.com/docs/cloud-messaging)，iOS 为 [APN](https://developer.apple.com/go/?id=push-notifications)）。这些必须使用 Bitwarden 云服务的推送证书单独配置，自 v1.29.0 起可用。
 
 自 Vaultwarden v1.29.0 起，WebSocket 默认启用。以前的版本需要反向代理，因为 WebSocket 运行在与默认的 HTTPS 端口不同的端口上。
 
@@ -14,7 +14,7 @@ WebSocket 通知用于将发生的一些相关事件通告给浏览器、Bitward
 
 如果您确实使用像 nginx 或 Apache HTTPd 这样的反向代理，那么您需要确保正确配置它以传递 WebSocket `Upgrade` 和 `Connection` 标头。一些反向代理默认执行此操作，例如 Traefik。
 
-自 Vaultwarden v1.29.0 版本起，旧的 `WEBSOCKET_ENABLED` 和 `WEBSOCKET_PORT` 已被弃用并将被忽略。在 v1.29.0 版本之后，您可以通过将 `ENABLE_WEBSOCKET` 设置为 `false` 值来禁用 Websocket 通知，这将减少 Vaultwarden 使用的资源（尽管不会太多）。
+自 Vaultwarden v1.29.0 版本起，旧的 `WEBSOCKET_ENABLED` 和 `WEBSOCKET_PORT` 已被弃用并将被忽略。在 v1.29.0 版本之后，您可以通过将 `ENABLE_WEBSOCKET` 设置为 `false` 值来禁用 Websocket 通知，这将减少 Vaultwarden 使用的资源（尽管不会太多）。自 v1.31.0 起，已移除对 3012 端口 WebSocket 流量的支持，因为它已集成至主 HTTP 端口。
 
 示例配置包含在[代理示例](../deployment/proxy-examples.md)中。&#x20;
 
