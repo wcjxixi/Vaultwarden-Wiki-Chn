@@ -60,7 +60,7 @@ GET 请求示例：
 
 Vaultwarden Docker 镜像被配置为默认以 root 用户的身份运行容器进程。这允许 Vaultwarden 读取/写入 [bind-mounted](https://docs.docker.com/storage/bind-mounts/) 到容器中的任何数据，而无需权限问题，即使这些数据是由另一个用户（例如，你在 Docker 主机上的用户账户）拥有的。
 
-默认配置在安全性和可用性之间取得了很好的平衡--在一个非特权 Docker 容器中以 root 身份运行，本身就提供了合理的隔离级别，同时也让那些不是非常精通如何在 Linux 上管理所有权/权限的用户更容易进行设置。然而，作为通用策略，从安全的角度来说，以所需的最低权限运行进程是更好的；对于用 Rust 等内存安全语言编写的程序来说，这一点就不那么重要了，但请注意，Vaultwarden 也使用了一些用 C 语言编写的库代码（例如 SQLite、OpenSSL、MySQL、PostgreSQL 等）。
+默认配置在安全性和可用性之间取得了很好的平衡 -- 在一个非特权 Docker 容器中以 root 身份运行，本身就提供了合理的隔离级别，同时也让那些不是非常精通如何在 Linux 上管理所有权/权限的用户更容易进行设置。然而，作为通用策略，从安全的角度来说，以所需的最低权限运行进程是更好的；对于用 Rust 等内存安全语言编写的程序来说，这一点就不那么重要了，但请注意，Vaultwarden 也使用了一些用 C 语言编写的库代码（例如 SQLite、OpenSSL、MySQL、PostgreSQL 等）。
 
 要在 Docker 中以非 root 用户 (uid/gid 1000) 的身份运行容器进程 (vaultwarden)：
 
@@ -93,11 +93,11 @@ Vaultwarden Docker 镜像的设置使得 `vaultwarden` 可执行文件绑定到�
 
 ### 暴力破解 <a href="#brute-force-mitigation" id="brute-force-mitigation"></a>
 
-当不使用双重身份验证时，（理论上）有可能对用户的密码进行暴力破解，从而获得对其账户的访问权限。缓解此问题的一种相对简单的方法是设置 fail2ban，设置后，在过多的失败登录尝试后将阻止访问者的 IP 地址。但是在许多反向代理（例如 cloudflare）后面使用此功能时，应格外注意。参阅：[Fail2Ban 设置](fail2ban-setup.md)。
+当不使用双重身份验证时，（理论上）有可能对用户的密码进行暴力破解，从而获得对账户的访问权限。缓解此问题的一种相对简单的方法是设置 fail2ban，设置后，在过多的失败登录尝试后将阻止访问者的 IP 地址。但是在许多反向代理（例如 cloudflare）后面使用此功能时，应格外注意。参阅：[Fail2Ban 设置](fail2ban-setup.md)。
 
 ### 隐藏在子目录下 <a href="#hiding-under-a-subdir" id="hiding-under-a-subdir"></a>
 
-通常，Bitwarden 实例驻留在子域的根目录下（即 `bitwarden.example.com`，而不是 `bitwarden.example.com/some/path`）。上游的 Bitwarden 服务器目前只支持子域根目录，而 Vaultwarden 则增加了对[备用基本目录](../using-an-alternate-base-dir-subdir-subpath.md)的支持。对于某些用户来说，这很有用，因为他们只能访问一个子域，并希望在不同的目录下运行多个服务。在这种情况下，他们通常可以做一些显而易见的选择，比如使用 `mysubdomain.example.com/bitwarden`。然而，您也可以通过把 Vaultwarden 放在类似 `mysubdomain.example.com/vaultwarden/<mysecretstring>` 这样的目录下来提供额外的保护，其中 `<mysecretstring>` 有效地充当一个密码。也许有人会说这是[通过隐藏实现安全](https://en.wikipedia.org/wiki/Security\_through\_obscurity)，但实际上这是深度防御 -- 子目录的隐蔽性只是额外的一层安全保护，而不是为了成为主要的安全手段（用户主密码的强度仍然是主要的安全手段）。
+通常，Bitwarden 实例驻留在子域的根目录下（即 `bitwarden.example.com`，而不是 `bitwarden.example.com/some/path`）。上游的 Bitwarden 服务器目前只支持子域根目录，而 Vaultwarden 则增加了对[备用基本目录](../using-an-alternate-base-dir-subdir-subpath.md)的支持。对于某些用户来说，这很有用，因为他们只能访问一个子域，并希望在不同的目录下运行多个服务。在这种情况下，他们通常可以做一些显而易见的选择，比如使用 `mysubdomain.example.com/bitwarden`。然而，您也可以通过把 Vaultwarden 放在类似 `mysubdomain.example.com/vaultwarden/<mysecretstring>` 这样的目录下来提供额外的保护，其中 `<mysecretstring>` 有效地充当一个密码。也许有人会说这是[通过隐藏实现安全](https://en.wikipedia.org/wiki/Security_through_obscurity)，但实际上这是深度防御 -- 子目录的隐蔽性只是额外的一层安全保护，而不是为了成为主要的安全手段（用户主密码的强度仍然是主要的安全手段）。
 
 有关安全性子路径托管的一般性讨论，请参阅：[https://github.com/debops/debops/issues/1233](https://github.com/debops/debops/issues/1233)
 

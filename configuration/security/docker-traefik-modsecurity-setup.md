@@ -150,17 +150,17 @@ findtime = 14400
 
 将 Fail2Ban 与 ModSecurity 集成将减缓/阻止攻击者的进一步利用/探测。这是设置为在第一次 ModSecurity 干预时禁止。
 
-要增加 ModSecurity 的攻击性，可以增加 `PARANOIA`（[在这里了解更多](https://coreruleset.org/20211028/working-with-paranoia-levels/)）和/或减少 `ANOMALY_INBOUND`（[了解更多](https://coreruleset.org/docs/concepts/anomaly\_scoring/)）的值。
+要增加 ModSecurity 的攻击性，可以增加 `PARANOIA`（[了解更多](https://coreruleset.org/20211028/working-with-paranoia-levels/)）和/或减少 `ANOMALY_INBOUND`（[了解更多](https://coreruleset.org/docs/concepts/anomaly_scoring/)）的值。
 
 准备好在 PARANOIA > 2 的情况下对 ModSecurity 进行严格的调整，以便在不禁用大量规则的情况下使 UI 能勉强工作。
 
-以下文件将使您能够对 ModSecurity 进行调整（[教程](https://coreruleset.org/docs/concepts/false\_positives\_tuning/)）：
+以下文件将使您能够对 ModSecurity 进行调整（[教程](https://coreruleset.org/docs/concepts/false_positives_tuning/)）：
 
 ```
 /opt/docker/waf-rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf
 /opt/docker/waf-rules/RESPONSE-999-EXCLUSION-RULES-AFTER-CRS.conf
 ```
 
-☁️ 值得深思 ☁️
+☁️ 一些值得您仔细考虑的建议 ☁️
 
 如果您的数据非常敏感，以至于您正在考虑设置 `PARANOIA` > 1，那么请考虑不要在公共端点上托管 Vaultwarden，并通过防火墙限制对主机本身的访问，以及授予用户仅能通过 VPN 连接访问。请记住，这并不能降低来自内部的威胁，而内部威胁往往被低估，所以请记住这一点！

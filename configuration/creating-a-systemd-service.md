@@ -1,4 +1,4 @@
-# 18.设置为 systemd 服务
+# 17.设置为 systemd 服务
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Setup-as-a-systemd-service)
@@ -131,7 +131,7 @@ $ systemctl status vaultwarden.service
 
 ### 旧版 systemd 的沙盒选项 <a href="#sandboxing-options-with-older-systemd-versions" id="sandboxing-options-with-older-systemd-versions"></a>
 
-在 RHEL 7（以及 debian 8）中，使用的 systemd 不支持某些隔离选项 ([#445](https://github.com/dani-garcia/bitwarden\_rs/issues/445), [#363](https://github.com/dani-garcia/bitwarden\_rs/issues/363))。这可能导致出现如下错误：
+在 RHEL 7（以及 debian 8）中，使用的 systemd 不支持某些隔离选项 ([#445](https://github.com/dani-garcia/bitwarden_rs/issues/445), [#363](https://github.com/dani-garcia/bitwarden_rs/issues/363))。这可能导致出现如下错误：
 
 ```
 Failed at step NAMESPACE spawning /home/vaultwarden/vaultwarden: Permission denied
@@ -192,4 +192,4 @@ WEBSOCKET_ENABLED=true # enable websocket
 
 ## 更多信息 <a href="#more-information" id="more-information"></a>
 
-有关 .service 文件的更多信息，请参阅 [systemd.service](https://www.freedesktop.org/software/systemd/man/systemd.service.html) 和 [systemd.exec](https://www.freedesktop.org/software/systemd/man/systemd.exec.html)（用于安全性配置）手册页。
+有关 `.service` 文件的更多信息，请参阅 [systemd.service](https://www.freedesktop.org/software/systemd/man/systemd.service.html) 和 [systemd.exec](https://www.freedesktop.org/software/systemd/man/systemd.exec.html)（用于安全性配置）手册页。

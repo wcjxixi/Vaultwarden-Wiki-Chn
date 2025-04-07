@@ -20,9 +20,9 @@ docker run -d --name vaultwarden \
 
 即使 `SIGNUPS_ALLOWED=false`，作为组织的所有者或管理员的现有用户仍然可以邀请新用户。如果您也想禁用此功能，请参阅[禁用邀请](disable-invitations.md)。
 
-## 将注册限制为某些电子邮件域名 <a href="#restricting-registrations-to-certain-email-domains" id="restricting-registrations-to-certain-email-domains"></a>
+## 将注册限制为某些电子邮箱域名 <a href="#restricting-registrations-to-certain-email-domains" id="restricting-registrations-to-certain-email-domains"></a>
 
-您可以通过设置 `SIGNUPS_DOMAINS_WHITELIST` 来限制只能某些域名的电子邮件地址可以注册。示例：
+您可以通过设置 `SIGNUPS_DOMAINS_WHITELIST` 来限制只能某些域名的电子邮箱地址可以注册。示例：
 
 * `SIGNUPS_DOMAINS_WHITELIST=example.com` （单个域名）
 * `SIGNUPS_DOMAINS_WHITELIST=example.com,example.net,example.org` （多个域名）
@@ -31,7 +31,7 @@ docker run -d --name vaultwarden \
 如果设置了 `SIGNUPS_DOMAINS_WHITELIST`，`SIGNUPS_ALLOWED=false`的值将被忽略。
 {% endhint %}
 
-您可能还想设置 `SIGNUPS_VERIFY=true`，这要求新注册的用户在成功登录前进行电子邮件验证。这可以防止有人用一个拥有正确域名的假电子邮件地址注册。
+您可能还想设置 `SIGNUPS_VERIFY=true`，这要求新注册的用户在成功登录前进行电子邮箱验证。这可以防止有人用一个拥有正确域名的假电子邮箱地址注册。
 
 ## 通过管理页面邀请 <a href="#invitations-via-the-admin-page" id="invitations-via-the-admin-page"></a>
 

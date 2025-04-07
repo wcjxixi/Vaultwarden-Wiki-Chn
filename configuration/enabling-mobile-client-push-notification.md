@@ -8,7 +8,7 @@
 
 ### 启用移动客户端推送通知 <a href="#enable-mobile-client-push-notification" id="enable-mobile-client-push-notification"></a>
 
-1、访问 [https://bitwarden.com/host/](https://bitwarden.com/host/)，输入您的电子邮件地址，然后您将获得一个 INSTALLATION ID 和 KEY。
+1、访问 [https://bitwarden.com/host/](https://bitwarden.com/host/)，输入您的电子邮箱地址，然后您将获得一个 INSTALLATION ID 和 KEY。
 
 {% hint style="info" %}
 ~~在~~ [~~#3752~~](https://github.com/dani-garcia/vaultwarden/pull/3752) ~~实施之前，请确保选择 `bitwarden.com（美国）`作为数据区域。~~
