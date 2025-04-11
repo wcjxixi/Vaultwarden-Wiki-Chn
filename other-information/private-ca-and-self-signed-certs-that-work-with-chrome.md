@@ -18,7 +18,7 @@
 
 创建 CA 密钥（您自己的小型本地证书颁发机构）：
 
-```opencl
+```sh
 openssl genpkey -algorithm RSA -aes128 -out private-ca.key -outform PEM -pkeyopt rsa_keygen_bits:2048
 ```
 
@@ -46,7 +46,7 @@ openssl req -new -key vaultwarden.key -out vaultwarden.csr
 
 使用以下内容创建文本文件 `vaultwarden.ext`，请将域名更改为您设置的域名：
 
-```opencl
+```systemd
 authorityKeyIdentifier=keyid,issuer
 basicConstraints=CA:TRUE
 keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
