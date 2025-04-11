@@ -18,7 +18,7 @@
 
 创建 CA 密钥（您自己的小型本地证书颁发机构）：
 
-```batch
+```sh
 openssl genpkey -algorithm RSA -aes128 -out private-ca.key -outform PEM -pkeyopt rsa_keygen_bits:2048
 ```
 
@@ -26,7 +26,7 @@ openssl genpkey -algorithm RSA -aes128 -out private-ca.key -outform PEM -pkeyopt
 
 创建 CA 证书：
 
-```batch
+```sh
 openssl req -x509 -new -nodes -sha256 -days 3650 -key private-ca.key -out self-signed-ca-cert.crt
 ```
 
@@ -34,19 +34,19 @@ openssl req -x509 -new -nodes -sha256 -days 3650 -key private-ca.key -out self-s
 
 创建一个 Vaultwarden 密钥：
 
-```batch
+```sh
 openssl genpkey -algorithm RSA -out vaultwarden.key -outform PEM -pkeyopt rsa_keygen_bits:2048
 ```
 
 创建 Vaultwarden 证书请求文件：
 
-```batch
+```sh
 openssl req -new -key vaultwarden.key -out vaultwarden.csr
 ```
 
 使用以下内容创建文本文件 `vaultwarden.ext`，请将域名更改为您设置的域名：
 
-```systemd
+```opencl
 authorityKeyIdentifier=keyid,issuer
 basicConstraints=CA:TRUE
 keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
@@ -62,7 +62,7 @@ IP.1 = 192.168.1.3
 
 创建从根 CA 签名的 Vaultwarden 证书：
 
-```batch
+```sh
 openssl x509 -req -in vaultwarden.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out vaultwarden.crt -days 365 -sha256 -extfile vaultwarden.ext
 ```
 
