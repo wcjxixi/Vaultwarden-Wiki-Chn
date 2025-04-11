@@ -10,7 +10,7 @@
 sudo nano /etc/logrotate.d/vaultwarden
 ```
 
-```batch
+```systemd
 /var/log/vaultwarden/*.log {
     # 以 vaultwarden 用户和群组的身份执行转储
     su vaultwarden vaultwarden
