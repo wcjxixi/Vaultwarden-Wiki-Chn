@@ -2,8 +2,11 @@
 
 * [关于](README.md)
 * [首页](home.md)
-* [FAQ](faqs.md)
-* [审计](audits.md)
+* [FAQ](faq/README.md)
+  * [1.FAQ](faq/faqs.md)
+  * [2.审计](faq/audits.md)
+  * [故障排除](faq/troubleshooting/README.md)
+    * [1.Bitwarden Android 故障排除](faq/troubleshooting/bitwarden-android-troubleshooting.md)
 * [容器镜像的使用](container-image-usage/README.md)
   * [1.容器镜像的选择](container-image-usage/which-container-image-to-use.md)
   * [2.启动容器](container-image-usage/starting-a-container.md)

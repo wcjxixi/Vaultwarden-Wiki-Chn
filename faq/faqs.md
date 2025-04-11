@@ -1,4 +1,4 @@
-# FAQ
+# 1.FAQ
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/FAQs)
@@ -6,7 +6,7 @@
 
 ## Vaultwarden 是否与 Bitwarden 项目或 Bitwarden, Inc 有关？ <a href="#is-vaultwarden-associated-with-the-bitwarden-project-or-bitwarden" id="is-vaultwarden-associated-with-the-bitwarden-project-or-bitwarden"></a>
 
-简短的回答，**没有**。两个项目的开发人员之间有时会有联系，但没有合作。除此之外，Vaultwarden 项目仅使用 Bitwarden, Inc 提供的 Web Vault 并打了一些[补丁](https://github.com/dani-garcia/bw\_web\_builds/tree/master/patches)，以使其与我们的实现兼容。
+简短的回答，**没有**。两个项目的开发人员之间有时会有联系，但没有合作。除此之外，Vaultwarden 项目仅使用 Bitwarden, Inc 提供的 Web Vault 并打了一些[补丁](https://github.com/dani-garcia/bw_web_builds/tree/master/patches)，以使其与我们的实现兼容。
 
 ## 我发现了一个 Vaultwarden 公共实例。它与这个项目有关吗？使用它安全吗？  <a href="#ive-found-a-public-vaultwarden-instance.-is-it-associated-with-this-project-is-it-safe-to-use" id="ive-found-a-public-vaultwarden-instance.-is-it-associated-with-this-project-is-it-safe-to-use"></a>
 
@@ -39,7 +39,7 @@ CREATE USER 'vaultwarden'@'localhost' IDENTIFIED WITH mysql_native_password BY '
 ALTER USER 'vaultwarden'@'localhost' IDENTIFIED WITH mysql_native_password BY 'yourpassword';
 ```
 
-另外可参阅：[使用 MariaDB - 创建数据库和用户](configuration/database/using-the-mariadb-mysql-backend.md#create-database-and-user)
+另外可参阅：[使用 MariaDB - 创建数据库和用户](../configuration/database/using-the-mariadb-mysql-backend.md#create-database-and-user)
 
 ## 客户端（桌面端、移动端、网页端）无法正常工作，无法登录或提示证书无效。 <a href="#my-client-desktop-mobile-web-does-not-work-i-can-not-login-or-it-complains-about-invalid-certificate" id="my-client-desktop-mobile-web-does-not-work-i-can-not-login-or-it-complains-about-invalid-certificate"></a>
 
@@ -49,14 +49,14 @@ Bitwarden 客户端需要一个安全的连接，才能正常工作且没有任�
 
 我们建议使用诸如 Let's Encrypt 这样的服务来提供一个有效的、被大多数设备默认接受的证书。请参阅以下页面：
 
-* [启用 HTTPS](deployment/https/enabling-https.md)
-* [使用 Let's Encrypt 证书运行私有 Vaultwarden 实例](deployment/https/running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md)
+* [启用 HTTPS](../deployment/https/enabling-https.md)
+* [使用 Let's Encrypt 证书运行私有 Vaultwarden 实例](../deployment/https/running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md)
 
 ## 为什么我密码库的所有项目都看不到图标？ <a href="#why-do-i-see-no-icons-for-all-my-vault-items" id="why-do-i-see-no-icons-for-all-my-vault-items"></a>
 
 没有显示图标的原因有很多种。如果只是某几个密码库项目，可能是我们无法提取它。有些网站启用了一些保护措施，导致我们的实施失败。他们中的大多数需要 Javascript 才能工作。
 
-这也可能是 Vaultwarden 服务器无法访问互联网或未解决 DNS 查询所致。您可以检查 `/admin/diagnostics` 页面（参阅[启用管理页面](configuration/enabling-admin-page.md)），看看您是否能解决 DNS 查询以及是否有连接到互联网。如果都没问题，也有可能是防火墙或外发互联网代理阻止了这些请求。
+这也可能是 Vaultwarden 服务器无法访问互联网或未解决 DNS 查询所致。您可以检查 `/admin/diagnostics` 页面（参阅[启用管理页面](../configuration/enabling-admin-page.md)），看看您是否能解决 DNS 查询以及是否有连接到互联网。如果都没问题，也有可能是防火墙或外发互联网代理阻止了这些请求。
 
 ## Websocket 连接显示错误的 IP 地址。 <a href="#websocket-connections-show-wrong-ip-address" id="websocket-connections-show-wrong-ip-address"></a>
 
@@ -66,7 +66,7 @@ Bitwarden 客户端需要一个安全的连接，才能正常工作且没有任�
 
 ## 为什么 Vaultwarden 会提示 `[INFO] No .env file found`。即使我已经提供了一个？
 
-启动时，Vaultwarden 将检查进程的当前工作目录中是否存在名为 `.env` 的文件（如果未通过环境变量 `ENV_FILE` 更改）。如果您没有提供此文件，Vaultwarden 将简单地通知您它没有找到它。此文件与您提供给 docker 的用于在创建容器时加载环境变量的 env 文件无关，也与在 [systemd .service](configuration/creating-a-systemd-service.md) 中使用的环境文件无关。
+启动时，Vaultwarden 将检查进程的当前工作目录中是否存在名为 `.env` 的文件（如果未通过环境变量 `ENV_FILE` 更改）。如果您没有提供此文件，Vaultwarden 将简单地通知您它没有找到它。此文件与您提供给 docker 的用于在创建容器时加载环境变量的 env 文件无关，也与在 [systemd .service](../configuration/creating-a-systemd-service.md) 中使用的环境文件无关。
 
 ## 可以将 Vaultwarden 作为 Azure WebApp 运行吗？ <a href="#can-i-run-bitwarden_rs-as-an-azure-webapp" id="can-i-run-bitwarden_rs-as-an-azure-webapp"></a>
 
@@ -79,6 +79,6 @@ Bitwarden 客户端需要一个安全的连接，才能正常工作且没有任�
 
 ## 我在 FAQ 中找不到答案，下一步该怎么做？ <a href="#i-did-not-find-my-answer-here-in-the-faq-what-to-do-next" id="i-did-not-find-my-answer-here-in-the-faq-what-to-do-next"></a>
 
-请尝试在我们精彩的 [Wiki](./) 中搜索和点击。如果这对您没有帮助，请尝试查看 [Github 讨论](https://github.com/dani-garcia/bitwarden\_rs/discussions)或 [Vaultwarden 论坛](https://bitwardenrs.discourse.group/)。如果这也没有解决，您可以尝试搜索开放的和已关闭的[话题](https://github.com/dani-garcia/bitwarden\_rs/issues)。
+请尝试在我们精彩的 [Wiki](../) 中搜索和点击。如果这对您没有帮助，请尝试查看 [Github 讨论](https://github.com/dani-garcia/bitwarden_rs/discussions)或 [Vaultwarden 论坛](https://bitwardenrs.discourse.group/)。如果这也没有解决，您可以尝试搜索开放的和已关闭的[话题](https://github.com/dani-garcia/bitwarden_rs/issues)。
 
-如果您仍然没有找到答案，您可以在 [Github 讨论](https://github.com/dani-garcia/bitwarden\_rs/discussions)或 [Vaultwarden 论坛](https://bitwardenrs.discourse.group/)上发起一个主题，或者加入我们的[聊天室](https://matrix.to/#/#bitwarden\_rs:matrix.org)。
+如果您仍然没有找到答案，您可以在 [Github 讨论](https://github.com/dani-garcia/bitwarden_rs/discussions)或 [Vaultwarden 论坛](https://bitwardenrs.discourse.group/)上发起一个主题，或者加入我们的[聊天室](https://matrix.to/#/#bitwarden_rs:matrix.org)。
