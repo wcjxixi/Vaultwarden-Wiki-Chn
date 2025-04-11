@@ -42,7 +42,7 @@ docker buildx build -t vaultwarden --build-arg DB=postgresql .
 
 在 docker-compose.yml 中它看起来像这样：
 
-```javascript
+```yaml
   vaultwarden:
     image: vaultwarden
     build:
