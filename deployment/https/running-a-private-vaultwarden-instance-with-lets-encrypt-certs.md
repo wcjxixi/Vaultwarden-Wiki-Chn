@@ -27,7 +27,7 @@
 
 如果您喜欢从源代码构建，可以使用 [`xcaddy`](https://caddyserver.com/docs/build#xcaddy)。例如，要创建一个包含 Cloudflare 和 Duck DNS 支持的构建：
 
-```batch
+```sh
 xcaddy build --with github.com/caddy-dns/cloudflare --with github.com/caddy-dns/duckdns
 ```
 
@@ -57,7 +57,7 @@ DUCKDNS_TOKEN=00112233-4455-6677-8899-aabbccddeeff
 
 切换到 caddy 所在目录然后运行以下命令以首次启动 `caddy`：
 
-```batch
+```sh
 caddy run --envfile caddy.env
 ```
 
@@ -65,7 +65,7 @@ Duck DNS 域名（例如 my-vw.duckns.org）的 caddy 首次启动需要几秒�
 
 运行命令以启动 `vaultwarden`：
 
-```batch
+```sh
 export ROCKET_PORT=8001
 
 ./vaultwarden
@@ -79,7 +79,7 @@ export ROCKET_PORT=8001
 
 您可以使用 \[STRG]-\[C] 来停止 caddy。接下来通过以下命令在后台启动 caddy：
 
-```batch
+```sh
 caddy start --envfile caddy.env
 ```
 
@@ -89,7 +89,7 @@ caddy start --envfile caddy.env
 
 如果您还没有账户，请在 [https://www.cloudflare.com/](https://www.cloudflare.com/) 创建一个；您还需要到您的域名注册商那里将名称服务器设置为 Cloudflare 分配给您的值。为您的 Vaultwarden 实例创建一个子域名（例如，`vw.example.com`），将其 IP 地址设置为您的 Vaultwarden 主机的私有 IP（例如，`192.168.1.100`）。例如：
 
-<figure><img src="https://camo.githubusercontent.com/17b5c9a41a4dfda12a3e60cdf054456392b5361a08082b1e9e2433d0c5354fa5/68747470733a2f2f692e696d6775722e636f6d2f4242767934596a2e706e67" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://camo.githubusercontent.com/51b60d7ebd08c95a06fa4bd9db5414d805a2465c310e0cfc4c490263dc987fd6/68747470733a2f2f692e696d6775722e636f6d2f4242767934596a2e706e67" alt=""><figcaption></figcaption></figure>
 
 创建一个用于 DNS 验证的 API token（更多背景知识，请参阅 [https://github.com/libdns/cloudflare/blob/master/README.md](https://github.com/libdns/cloudflare/blob/master/README.md)）：
 
@@ -103,7 +103,7 @@ caddy start --envfile caddy.env
 
 您的 token 列表看起来应该像这样：
 
-<figure><img src="https://camo.githubusercontent.com/6f44c7e4797be79e533787884ecc880c5d1797c266a4550ae2d61dbbf885932a/68747470733a2f2f692e696d6775722e636f6d2f466f4f763957772e706e67" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://camo.githubusercontent.com/d9615957fc1ae9649cf7cfce70e1e4c2563e186eb9e9cd557a01829a09eef5e6/68747470733a2f2f692e696d6775722e636f6d2f466f4f763957772e706e67" alt=""><figcaption></figcaption></figure>
 
 创建一个名为 `Caddyfile` 的文件，内容如下：
 
@@ -125,13 +125,13 @@ CLOUDFLARE_API_TOKEN=<your-api-token>
 
 运行命令以启动 `caddy`：
 
-```batch
+```sh
 caddy run --envfile caddy.env
 ```
 
 运行命令以启动 `vaultwarden`：
 
-```batch
+```sh
 export ROCKET_PORT=8080
 
 ./vaultwarden
