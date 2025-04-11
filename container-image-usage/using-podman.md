@@ -37,7 +37,7 @@ ROCKET_PORT=8080
 
 配置看起来像 systemd 的，但我们配置的是容器，而不是单元。请参阅所有 `[Container]` 指令的[文档](https://man.archlinux.org/man/quadlet.5.en#Container_units_%5BContainer%5D)。
 
-```systemd
+```yaml
 # Content of /usr/share/containers/systemd/vaultwarden.container
 [Unit]
 Description=Vaultwarden container

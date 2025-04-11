@@ -50,7 +50,7 @@ Docker Compose 可能以 `docker-compose <command> ...`（带破折号）或 `do
 
 首先创建一个新的目录，然后切换到该目录下。接下来，创建如下的 `compose.yml` 文件（旧版本为 `docker-compose.yml`），确保将 `DOMAIN` 和 `EMAIL` 变量替换为实际的值。
 
-```javascript
+```yaml
 services:
   vaultwarden:
     image: vaultwarden/server:latest
@@ -128,7 +128,7 @@ docker compose down # 或者 'docker-compose down' 如果使用独立的 Docker 
 
 首先创建一个新的目录，然后切换到该目录下。接下来，创建如下的 `compose.yml` 文件（旧版本为 `docker-compose.yml`），确保将 `DOMAIN` 和 `EMAIL` 变量替换为实际的值。
 
-```javascript
+```yaml
 services:
   vaultwarden:
     image: vaultwarden/server:latest
