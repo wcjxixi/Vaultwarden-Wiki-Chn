@@ -35,7 +35,7 @@
 
 要对 `vaultwarden` 本身启用 HTTPS，请设置如下格式的 `ROCKET_TLS` 环境变量：
 
-```systemd
+```json
 ROCKET_TLS={certs="/path/to/certs.pem",key="/path/to/key.pem"}
 ```
 
@@ -98,7 +98,7 @@ docker run -d --name vaultwarden \
 
 执行以下操作以验证证书是否随链安装（注意将 `vault.domain.com` 更改为您自己的域名）：
 
-```batch
+```sh
 openssl s_client -showcerts -connect vault.domain.com:443 -servername vault.domain.com
 
 # 或者不同的端口，比如 7070
@@ -131,13 +131,13 @@ verify return:1
 
 您还可以使用如下命令行检查 OCSP 的状态：
 
-```batch
+```sh
 openssl s_client -showcerts -connect vault.domain.com:443 -servername vault.domain.com -status
 ```
 
 在其输出中必须包含：
 
-```batch
+```sh
 OCSP Response Status: successful (0x0)
 ```
 

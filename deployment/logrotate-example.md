@@ -37,7 +37,7 @@ sudo nano /etc/logrotate.d/vaultwarden
 
 无需手动解压缩而查看压缩的日志文件：
 
-```batch
+```sh
 zcat logfile.gz
 zless logfile.gz
 zgrep -i keyword_search logfile.gz
