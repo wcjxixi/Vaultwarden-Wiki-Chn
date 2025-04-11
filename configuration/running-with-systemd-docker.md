@@ -12,7 +12,7 @@
 
 以 root 身份，使用您喜欢的编辑器用以下内容创建 `/etc/systemd/system/vaultwarden.service` 文件：
 
-```systemd
+```tsconfig
 [Unit]
 Description=Vaultwarden
 After=docker.service
@@ -66,7 +66,7 @@ systemd 可以获取以下格式的文件：
 Key="Value"
 ```
 
-您可以在此[环境示例模版](https://github.com/dani-garcia/bitwarden\_rs/blob/21325b7523a68ab3ae8d435ab5b73176db6155ff/.env.template)中找到更多关于环境设置和语法的说明。
+您可以在此[环境示例模版](https://github.com/dani-garcia/bitwarden_rs/blob/21325b7523a68ab3ae8d435ab5b73176db6155ff/.env.template)中找到更多关于环境设置和语法的说明。
 
 但是，systemd 项目并没有规定该文件的存储位置。有关此文件的最佳存储位置，请查阅发行版文档。例如，基于 RedHat 的发行版通常将这些文件放在 `/etc/sysconfig/` 中。
 
