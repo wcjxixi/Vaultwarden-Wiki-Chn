@@ -42,7 +42,7 @@
 
 运行以下命令以仅显示 Bitwarden 客户端日志：
 
-```batch
+```sh
 adb logcat --pid=$(adb shell pidof -s com.x8bit.bitwarden)
 ```
 
@@ -53,7 +53,7 @@ adb logcat --pid=$(adb shell pidof -s com.x8bit.bitwarden)
 {% hint style="success" %}
 如果您想在文件中记录所有内容，您至少可以在 Linux 使用如下的附加命令：
 
-```batch
+```sh
 # 直接输出到文件：
 > bitwarden-android.log
 # 或者，输出到文件并同时输出到屏幕上：
@@ -78,7 +78,7 @@ adb logcat --pid=$(adb shell pidof -s com.x8bit.bitwarden) | tee -a bitwarden-an
 
 或者，使用 `adb` 按如下方式安装：
 
-```batch
+```sh
 adb install com.x8bit.bitwarden.dev.apk
 ```
 
@@ -88,7 +88,7 @@ adb install com.x8bit.bitwarden.dev.apk
 
 要从该客户端提取日志，您需要稍微调整一下 `logcat` 命令，使其看起来像这样：
 
-```batch
+```sh
 adb logcat --pid=$(adb shell pidof -s com.x8bit.bitwarden.dev)
 ```
 
@@ -110,6 +110,6 @@ adb logcat --pid=$(adb shell pidof -s com.x8bit.bitwarden.dev)
 
 1. （ _**推荐**_ ）通过我们的 Matrix 聊天室：[ ![Matrix Chat](https://camo.githubusercontent.com/9394bf2c04102038a60688af025f04eab4cf6306f4241ac21a8f42927d403401/68747470733a2f2f696d672e736869656c64732e696f2f6d61747269782f7661756c7477617264656e3a6d61747269782e6f72672e7376673f7374796c653d666c61742d737175617265266c6f676f3d6d6174726978266c6f676f436f6c6f723d66666626636f6c6f723d3935334230302663616368655365636f6e64733d3134343030)](https://matrix.to/#/#vaultwarden:matrix.org)
 2. 通过电子邮件，发送到 [![security-contact](https://github.com/dani-garcia/vaultwarden/raw/refs/heads/main/.github/security-contact.gif)](https://github.com/dani-garcia/vaultwarden/raw/refs/heads/main/.github/security-contact.gif)，以提供详细信息
-3. 通过您自托管的 Vaultwarden 的带有密码的 **Send**（通过 Matrix 或电子邮件分享）
+3. 通过您自托管的 Vaultwarden 的带有密码的 **Send**（使用 Matrix 或电子邮件分享）
 
 如果您对此主题有任何疑问，请在我们的 [![GitHub Discussions](https://camo.githubusercontent.com/e318009d35d82b3f9e13b41af9e84f8ee9ade6b9d5d4311c1dcb2364de6cfe09/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f64697363757373696f6e732f64616e692d6761726369612f7661756c7477617264656e3f7374796c653d666c61742d737175617265266c6f676f3d676974687562266c6f676f436f6c6f723d66666626636f6c6f723d3935334230302663616368655365636f6e64733d333030) ](https://github.com/dani-garcia/vaultwarden/discussions)上发起一个新的主题。
