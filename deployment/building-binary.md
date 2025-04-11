@@ -75,7 +75,7 @@ cargo build --features postgresql --release
 
 ### 安装 web-vault <a href="#install-the-web-vault" id="install-the-web-vault"></a>
 
-可以从 [dani-garcia/bw\_web\_builds](https://github.com/dani-garcia/bw\_web\_builds/releases) 下载网页密码库的编译版本。
+可以从 [dani-garcia/bw\_web\_builds](https://github.com/dani-garcia/bw_web_builds/releases) 下载网页密码库的编译版本。
 
 {% hint style="warning" %}
 构建密码库需要约 1.5GB 的 RAM。在具有 1GB 或更小容量的 RaspberryPI 之类的系统上，请[启用交换功能](https://www.tecmint.com/create-a-linux-swap-file/)或在功能更强大的计算机上构建，然后从那里复制目录。仅构建时需要大量内存，而运行带密码库的 Vaultwarden 仅需要约 10MB 的 RAM。
@@ -85,7 +85,7 @@ cargo build --features postgresql --release
 
 #### 新的（简单的方式） <a href="#new-easy-way" id="new-easy-way"></a>
 
-克隆 [dani-garcia/bw\_web\_builds](https://github.com/dani-garcia/bw\_web\_builds) git 库：
+克隆 [dani-garcia/bw\_web\_builds](https://github.com/dani-garcia/bw_web_builds) git 库：
 
 ```shell
 # 克隆库
@@ -114,9 +114,9 @@ git -c advice.detachedHead=false checkout web-v2022.6.0
 git -c advice.detachedHead=false checkout bb5f9311a776b94a33bcf0a7bff44cd87a2fcc92
 ```
 
-2、根据 [apply\_patches script](https://github.com/dani-garcia/bw\_web\_builds/blob/master/scripts/apply\_patches.sh) 中的说明修补[资源](https://github.com/dani-garcia/bw\_web\_builds/tree/master/resources)中的所有镜像
+2、根据 [apply\_patches script](https://github.com/dani-garcia/bw_web_builds/blob/master/scripts/apply_patches.sh) 中的说明修补[资源](https://github.com/dani-garcia/bw_web_builds/tree/master/resources)中的所有镜像
 
-3、从 [dani-garcia/bw\_web\_builds](https://github.com/dani-garcia/bw\_web\_builds/tree/master/patches) 下载补丁文件并将其复制到 `web-vault` 文件夹。补丁文件版本（假设网页密码库版本为 `vXXXX.Y.Z`）的选择：
+3、从 [dani-garcia/bw\_web\_builds](https://github.com/dani-garcia/bw_web_builds/tree/master/patches) 下载补丁文件并将其复制到 `web-vault` 文件夹。补丁文件版本（假设网页密码库版本为 `vXXXX.Y.Z`）的选择：
 
 * 如果有版本为 `vXXXX.Y.Z` 的补丁，则使用该版本
 * 否则，选择小于 `vXXXX.Y.Z` 的最大的那一个版本
@@ -175,7 +175,7 @@ cargo install diesel_cli --no-default-features --features sqlite-bundled
 
 如果要修改模式，请使用以下命令创建新迁移：
 
-```batch
+```sh
 diesel migration generate <name>
 ```
 
@@ -183,7 +183,7 @@ diesel migration generate <name>
 
 应用迁移并保存生成的模式，如下所示：
 
-```batch
+```sh
 diesel migration redo
 
 # 当使用的 diesel-cli > 1.3.0 时，此步骤会自动完成
