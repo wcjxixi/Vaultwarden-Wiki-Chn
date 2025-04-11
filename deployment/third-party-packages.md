@@ -48,7 +48,7 @@
 
 此 Vaultwarden 包被构建为一个通用二进制文件，其用于 SQLite、MySQL 和 PostgreSQL。它还创建一个 `vaultwarden` 用户/组和一个 systemd 服务。
 
-```batch
+```sh
 dnf config-manager --add-repo https://evermeet.cx/pub/repo/fedora/evermeet.repo
 dnf install vaultwarden vaultwarden-webvault
 ```
@@ -57,7 +57,7 @@ dnf install vaultwarden vaultwarden-webvault
 
 用户可以自定义（是否使用 mysql/sqlite/postgresql 或者 web/cli）使用 USE 标记构建 Vaultwarden。首先按照[此 wiki](https://wiki.gentoo.org/wiki/Project:GURU/Information_for_End_Users) 启用 GURU 覆盖。使用 `equery uses vaultwarden` 查看 Vaultwarden 可用的 USE 标记。
 
-```
+```sh
 echo "app-admin/vaultwarden <your USE flags here>" >> /etc/portage/package.use/vaultwarden
 emerge app-admin/vaultwarden
 ```
