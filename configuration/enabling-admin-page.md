@@ -92,7 +92,7 @@ docker run --rm -it vaultwarden/server /vaultwarden hash --preset owasp
 
 您还可以使用大多数 Linux 发行版上提供的 `argon2` CLI。
 
-```bash
+```sh
 # 使用 Bitwarden 默认
 echo -n "MySecretPassword" | argon2 "$(openssl rand -base64 32)" -e -id -k 65540 -t 3 -p 4
 # 输出：$argon2id$v=19$m=65540,t=3,p=4$bXBGMENBZUVzT3VUSFErTzQzK25Jck1BN2Z0amFuWjdSdVlIQVZqYzAzYz0$T9m73OdD2mz9+aJKLuOAdbvoARdaKxtOZ+jZcSL9/N0
