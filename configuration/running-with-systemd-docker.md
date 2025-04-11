@@ -12,7 +12,7 @@
 
 以 root 身份，使用您喜欢的编辑器用以下内容创建 `/etc/systemd/system/vaultwarden.service` 文件：
 
-```tsconfig
+```systemd
 [Unit]
 Description=Vaultwarden
 After=docker.service

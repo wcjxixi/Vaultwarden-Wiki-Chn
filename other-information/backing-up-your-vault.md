@@ -46,11 +46,11 @@ _**需要备份。**_
 
 SQLite 数据库文件 (`db.sqlite3`) 存储了几乎所有重要的 Vaultwarden 数据/状态（数据库条目、用户/组织/设备元数据等），主要的例外是附件，附件作为单独的文件存储在文件系统中。
 
-您通常应使用 SQLite CLI (`sqlite3`) 中的 `.backup` 命令来备份数据库文件。该命令使用 [Online Backup API](https://www.sqlite.org/backup.html)，它是备份可能正在被使用的数据库文件的[最佳方式](https://www.sqlite.org/howtocorrupt.html#\_backup\_or\_restore\_while\_a\_transaction\_is\_active)。如果您能确保数据库在备份运行时未被使用，您也可以使用其他方式，例如 `.dump` 命令，或者简单地复制所有 SQLite 数据库文件（包括 `-wal` 文件，如果存在的话）。
+您通常应使用 SQLite CLI (`sqlite3`) 中的 `.backup` 命令来备份数据库文件。该命令使用 [Online Backup API](https://www.sqlite.org/backup.html)，它是备份可能正在被使用的数据库文件的[最佳方式](https://www.sqlite.org/howtocorrupt.html#_backup_or_restore_while_a_transaction_is_active)。如果您能确保数据库在备份运行时未被使用，您也可以使用其他方式，例如 `.dump` 命令，或者简单地复制所有 SQLite 数据库文件（包括 `-wal` 文件，如果存在的话）。
 
 假设您的数据文件夹是 `data`（默认），一个基本的备份命令看起来像这样：
 
-```batch
+```sql
 sqlite3 data/db.sqlite3 ".backup '/path/to/backups/db-$(date '+%Y%m%d-%H%M').sqlite3'"
 ```
 
@@ -96,7 +96,7 @@ _**建议备份。**_
 
 _**建议备份。**_
 
-这些文件用于对当前已登录用户的 [JWT](https://en.wikipedia.org/wiki/JSON\_Web\_Token)（验证令牌）进行签名。删除这些文件将简单地注销所有用户，强制他们重新登录，并且会使已通过邮件发送了的所有已打开的邀请令牌失效。
+这些文件用于对当前已登录用户的 [JWT](https://en.wikipedia.org/wiki/JSON_Web_Token)（验证令牌）进行签名。删除这些文件将简单地注销所有用户，强制他们重新登录，并且会使已通过邮件发送了的所有已打开的邀请令牌失效。
 
 > \[**译者注**]：[JWT](https://jwt.io/) (JSON Web Tokens)，是一种基于 JSON 的、用于在网络上声明某种主张的令牌 (token)。JWT 通常由三部分组成:：头信息 (header)、消息体 (payload) 和签名 (signature)。
 
@@ -123,8 +123,8 @@ _**可选备份。**_
 本部分是第三方备份示例的索引。在使用某个示例之前，您应该彻底审阅此示例并了解其工作方式。
 
 * [https://github.com/ttionya/vaultwarden-backup](https://github.com/ttionya/vaultwarden-backup)
-* [https://github.com/shivpatel/bitwarden\_rs-local-backup](https://github.com/shivpatel/bitwarden\_rs-local-backup)
-* [https://github.com/shivpatel/bitwarden\_rs\_dropbox\_backup](https://github.com/shivpatel/bitwarden\_rs\_dropbox\_backup)
+* [https://github.com/shivpatel/bitwarden\_rs-local-backup](https://github.com/shivpatel/bitwarden_rs-local-backup)
+* [https://github.com/shivpatel/bitwarden\_rs\_dropbox\_backup](https://github.com/shivpatel/bitwarden_rs_dropbox_backup)
 * [https://gitlab.com/1O/vaultwarden-backup](https://gitlab.com/1O/vaultwarden-backup)
 * [https://github.com/jjlin/vaultwarden-backup](https://github.com/jjlin/vaultwarden-backup)
-* [https://github.com/jmqm/vaultwarden\_backup](https://github.com/jmqm/vaultwarden\_backup)
+* [https://github.com/jmqm/vaultwarden\_backup](https://github.com/jmqm/vaultwarden_backup)
