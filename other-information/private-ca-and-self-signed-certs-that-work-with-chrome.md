@@ -18,7 +18,7 @@
 
 创建 CA 密钥（您自己的小型本地证书颁发机构）：
 
-```sh
+```opencl
 openssl genpkey -algorithm RSA -aes128 -out private-ca.key -outform PEM -pkeyopt rsa_keygen_bits:2048
 ```
 
