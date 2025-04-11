@@ -20,7 +20,7 @@
 
 2、将以下设置添加到 `docker-compose.yml`（并确保插入上一步获取到的正确 ID 和 KEY）：
 
-```systemd
+```yaml
     environment:
       - PUSH_ENABLED=true
       - PUSH_INSTALLATION_ID=
@@ -30,7 +30,7 @@
 {% hint style="info" %}
 如果您在上一步中请求了 `bitwarden.eu（欧盟）` 的安装 ID 和 kEY，您还必须设置
 
-```systemd
+```yaml
       - PUSH_RELAY_URI=https://api.bitwarden.eu
       - PUSH_IDENTITY_URI=https://identity.bitwarden.eu
 ```
@@ -38,7 +38,7 @@
 
 3、重新创建您的容器，例如：
 
-```bash
+```sh
 docker compose up -d vaultwarden
 ```
 
