@@ -50,14 +50,14 @@ SQLite 数据库文件 (`db.sqlite3`) 存储了几乎所有重要的 Vaultwarden
 
 假设您的数据文件夹是 `data`（默认），一个基本的备份命令看起来像这样：
 
-```sql
+```sh
 sqlite3 data/db.sqlite3 ".backup '/path/to/backups/db-$(date '+%Y%m%d-%H%M').sqlite3'"
 ```
 
 您也可以使用 `VACUUM INTO`，这将压缩空闲空间，但需要更多的处理时间：
 
 {% code fullWidth="false" %}
-```batch
+```sh
 sqlite3 data/db.sqlite3 "VACUUM INTO '/path/to/backups/db-$(date '+%Y%m%d-%H%M').sqlite3'"
 ```
 {% endcode %}

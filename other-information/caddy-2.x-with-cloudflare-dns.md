@@ -6,7 +6,7 @@
 
 Dockerfile（Caddy 构建器）：
 
-```batch
+```docker
 FROM caddy:builder AS builder
 RUN xcaddy build --with github.com/caddy-dns/cloudflare
 
@@ -62,7 +62,7 @@ Caddyfile（作为反向代理）：
 
 docker-compose.yml：
 
-```batch
+```yaml
 version: '3'
 
 services:
