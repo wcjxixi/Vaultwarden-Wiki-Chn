@@ -116,7 +116,7 @@ $ podman generate systemd --new --name vaultwarden
 
 如果您使用的是旧版 Podman，则可以编辑服务文件以包含如下内容：
 
-```yaml
+```systemd
 [Unit]
 Description=Podman container-vaultwarden.service
 
