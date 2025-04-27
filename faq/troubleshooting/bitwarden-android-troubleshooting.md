@@ -18,13 +18,14 @@
 
 首先要确保客户端本地没有无效的缓存 JSON。这是在同步请求完成之前加载的，可能会导致我们无法在服务器端解决的问题。
 
-1. 从移动客户端注销
-2. 清除 Bitwarden App 的缓存和数据
-3. 卸载 Bitwarden App
-4. 为了确保彻底清除，请重启设备
-5. 重新安装 Bitwarden App
-6. 配置 App 以连接到您的自托管实例
-7. 登录并祈祷
+1. 确保安装了最新版本的 Android 客户端。查看已发布的版本： [https://github.com/bitwarden/android/releases](https://github.com/bitwarden/android/releases)
+2. 从移动客户端注销
+3. 清除 Bitwarden App 的缓存和数据
+4. 卸载 Bitwarden App
+5. 为了确保彻底清除，请重启设备
+6. 重新安装 Bitwarden App
+7. 配置 App 以连接到您的自托管实例
+8. 登录并祈祷
 
 如果上述步骤没有解决您的问题，那么可能 Vaultwarden 返回的数据还是存在问题。这种情况下，请继续以下步骤。
 
