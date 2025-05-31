@@ -128,3 +128,4 @@ _**可选备份。**_
 * [https://gitlab.com/1O/vaultwarden-backup](https://gitlab.com/1O/vaultwarden-backup)
 * [https://github.com/jjlin/vaultwarden-backup](https://github.com/jjlin/vaultwarden-backup)
 * [https://github.com/jmqm/vaultwarden\_backup](https://github.com/jmqm/vaultwarden_backup)
+* [https://github.com/Guru-25/bitwarden-export](https://github.com/Guru-25/bitwarden-export)
