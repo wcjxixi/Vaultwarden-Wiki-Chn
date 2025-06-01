@@ -26,8 +26,8 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 * [文件附件](https://help.ppgg.in/password-manager/vault-basics/file-attachments)
 * [文件夹](https://help.ppgg.in/password-manager/vault-administration/folders)
 * [收藏](https://help.ppgg.in/password-manager/vault-administration/favorites)
-* [网站图标](https://help.ppgg.in/security/privacy-when-using-website-icons)
-* Bitwarden 验证器 (TOTP)
+* [网站图标](https://help.ppgg.in/security/website-icons)
+* [Bitwarden 验证器 (TOTP)](https://help.ppgg.in/password-manager/vault-basics/totp)
 * [Bitwarden Send](https://help.ppgg.in/password-manager/bitwarden-send/about-send)
 * [紧急访问](https://help.ppgg.in/my-account/more/emergency-access)
 * 用于桌面端/浏览器客户端/扩展的[实时同步](https://bitwarden.com/blog/live-sync/)（仅 WebSocket）
