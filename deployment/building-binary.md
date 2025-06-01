@@ -1,4 +1,4 @@
-# 2.构建二进制
+# 1.构建二进制
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Building-binary)
@@ -16,7 +16,7 @@
 
 这个页面主要是给那些对 Vaultwarden 开发感兴趣，或者有特殊原因想要构建自己的二进制的用户。
 
-普通用户应该使用从基于 Alpine 的 Docker 镜像中[提取的预构建二进制](pre-built-binaries.md)文件，[通过 Docker 部署](../container-image-usage/which-container-image-to-use.md)，或者[寻找第三方包](third-party-packages.md)。
+普通用户应该使用从基于 Alpine 的 Docker 镜像中[提取的预构建二进制](../alternative-deployments/pre-built-binaries.md)文件，[通过 Docker 部署](../container-image-usage/which-container-image-to-use.md)，或者[寻找第三方包](../alternative-deployments/third-party-packages.md)。
 
 ## 依赖 <a href="#dependencies" id="dependencies"></a>
 
@@ -160,8 +160,8 @@ npm run dist:oss:selfhost
 
 ## 有关部署的更多信息 <a href="#more-information-for-deployment" id="more-information-for-deployment"></a>
 
-* [配置反向代理](proxy-examples.md)
-* [通过 systemd 设置自动启动](../configuration/creating-a-systemd-service.md)
+* [配置反向代理](../reverse-proxy/proxy-examples.md)
+* [通过 systemd 设置自动启动](../alternative-deployments/creating-a-systemd-service.md)
 
 ## 如何为 SQLite 后端重建数据库模式（面向开发人员） <a href="#how-to-recreate-database-schemas-for-the-sqlite-backend-for-developers" id="how-to-recreate-database-schemas-for-the-sqlite-backend-for-developers"></a>
 

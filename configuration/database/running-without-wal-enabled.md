@@ -22,7 +22,7 @@ WAL 是专用于 SQLite 的设置，它在 Postgres 或 MySQL 上不起作用；
 
 ### 0、执行备份 <a href="#id-0-make-backup" id="id-0-make-backup"></a>
 
-这些更改通常是安全的，可以顺利完成并且不会丢失数据，但是强烈建议在进行任何更改之前[备份您的数据](../../other-information/backing-up-your-vault.md)。
+这些更改通常是安全的，可以顺利完成并且不会丢失数据，但是强烈建议在进行任何更改之前[备份您的数据](../../backup/backing-up-your-vault.md)。
 
 ### 1、在低版本数据库上禁用 WAL <a href="#id-1-disable-wal-on-old-db" id="id-1-disable-wal-on-old-db"></a>
 
@@ -30,7 +30,7 @@ WAL 是专用于 SQLite 的设置，它在 Postgres 或 MySQL 上不起作用；
 
 1）停止 `vaultwarden`
 
-2）定位您的[数据文件夹](../changing-persistent-data-location.md)。除非您指定了其他名称，否则这里通常会有一个名为 `db.sqlite3` 的文件。
+2）定位您的[数据文件夹](../../other-information/changing-persistent-data-location.md)。除非您指定了其他名称，否则这里通常会有一个名为 `db.sqlite3` 的文件。
 
 3）使用 sqlite 打开此文件：
 

@@ -1,4 +1,4 @@
-# 2.Fail2ban 设置
+# 5.Fail2ban 设置
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Fail2Ban-Setup)
@@ -28,7 +28,7 @@
 ## 预先说明 <a href="#pre-requisite" id="pre-requisite"></a>
 
 * 文件名位于每个代码块的顶部。
-* 从 1.5.0 版开始，Vaultwarden 支持记录到文件。请设置[日志记录](../logging.md)。
+* 从 1.5.0 版开始，Vaultwarden 支持记录到文件。请设置[日志记录](../../faq/troubleshooting/logging.md)。
 * 尝试使用错误的账户信息登录到网页版密码库，并检查日志文件中如下格式的记录项：
 
 ```
@@ -158,7 +158,7 @@ ignoreregex =
 [YYYY-MM-DD hh:mm:ss][vaultwarden::api::identity][ERROR] Username or password is incorrect. Try again. IP: 127.0.0.1. Username: email@example.com.
 ```
 
-要解决这个问题，需要通过 X-Real-IP 头将真实的远程地址转发给 Vaultwarden。如何操作呢？根据你使用的代理服务器不同而不同。例如，在 Caddy 2.x 中，当您定义反向代理时，同时定义 `header_up X-Real-IP {remote_host}`。更多信息请参阅[代理示例](../../deployment/proxy-examples.md)。
+要解决这个问题，需要通过 X-Real-IP 头将真实的远程地址转发给 Vaultwarden。如何操作呢？根据你使用的代理服务器不同而不同。例如，在 Caddy 2.x 中，当您定义反向代理时，同时定义 `header_up X-Real-IP {remote_host}`。更多信息请参阅[代理示例](../../reverse-proxy/proxy-examples.md)。
 
 ### Jail
 

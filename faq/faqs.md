@@ -49,8 +49,8 @@ Bitwarden 客户端需要一个安全的连接，才能正常工作且没有任�
 
 我们建议使用诸如 Let's Encrypt 这样的服务来提供一个有效的、被大多数设备默认接受的证书。请参阅以下页面：
 
-* [启用 HTTPS](../deployment/https/enabling-https.md)
-* [使用 Let's Encrypt 证书运行私有 Vaultwarden 实例](../deployment/https/running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md)
+* [启用 HTTPS](../reverse-proxy/https/enabling-https.md)
+* [使用 Let's Encrypt 证书运行私有 Vaultwarden 实例](../reverse-proxy/https/running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md)
 
 ## 为什么我密码库的所有项目都看不到图标？ <a href="#why-do-i-see-no-icons-for-all-my-vault-items" id="why-do-i-see-no-icons-for-all-my-vault-items"></a>
 
@@ -66,7 +66,7 @@ Bitwarden 客户端需要一个安全的连接，才能正常工作且没有任�
 
 ## 为什么 Vaultwarden 会提示 `[INFO] No .env file found`。即使我已经提供了一个？
 
-启动时，Vaultwarden 将检查进程的当前工作目录中是否存在名为 `.env` 的文件（如果未通过环境变量 `ENV_FILE` 更改）。如果您没有提供此文件，Vaultwarden 将简单地通知您它没有找到它。此文件与您提供给 docker 的用于在创建容器时加载环境变量的 env 文件无关，也与在 [systemd .service](../configuration/creating-a-systemd-service.md) 中使用的环境文件无关。
+启动时，Vaultwarden 将检查进程的当前工作目录中是否存在名为 `.env` 的文件（如果未通过环境变量 `ENV_FILE` 更改）。如果您没有提供此文件，Vaultwarden 将简单地通知您它没有找到它。此文件与您提供给 docker 的用于在创建容器时加载环境变量的 env 文件无关，也与在 [systemd .service](../alternative-deployments/creating-a-systemd-service.md) 中使用的环境文件无关。
 
 ## 可以将 Vaultwarden 作为 Azure WebApp 运行吗？ <a href="#can-i-run-bitwarden_rs-as-an-azure-webapp" id="can-i-run-bitwarden_rs-as-an-azure-webapp"></a>
 

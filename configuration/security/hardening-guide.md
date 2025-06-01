@@ -28,13 +28,13 @@ Vaultwarden 在登录页面上显示密码提示，以适应没有配置 SMTP �
 
 ### 反向代理 <a href="#reverse-proxying" id="reverse-proxying"></a>
 
-一般来说，您应该避免通过 Vaultwarden 内置的 [Rocket TLS 支持](../../deployment/https/enabling-https.md)启用 HTTPS，特别是当您的实例是公开访问的时候。Rocket 本身列出了如下[警告](https://rocket.rs/v0.4/guide/configuration/#configuring-tls)：
+一般来说，您应该避免通过 Vaultwarden 内置的 [Rocket TLS 支持](../../reverse-proxy/https/enabling-https.md)启用 HTTPS，特别是当您的实例是公开访问的时候。Rocket 本身列出了如下[警告](https://rocket.rs/v0.4/guide/configuration/#configuring-tls)：
 
 > Rocket's built-in TLS is not considered ready for production use. It is intended for development use only.（Rocket 内置的 TLS 还不能用于生产。它只用于开发用途。）
 
 比如，Rocket TLS 不支持严格 SNI 或 ECC 证书（仅 RSA）。
 
-请参看[代理示例](../../deployment/proxy-examples.md)，以了解反向代理配置的示例。
+请参看[代理示例](../../reverse-proxy/proxy-examples.md)，以了解反向代理配置的示例。
 
 #### 访问日志包含 `access_token` 参数 <a href="#access-logs-contain-access_token-parameter" id="access-logs-contain-access_token-parameter"></a>
 
@@ -97,7 +97,7 @@ Vaultwarden Docker 镜像的设置使得 `vaultwarden` 可执行文件绑定到�
 
 ### 隐藏在子目录下 <a href="#hiding-under-a-subdir" id="hiding-under-a-subdir"></a>
 
-通常，Bitwarden 实例驻留在子域的根目录下（即 `bitwarden.example.com`，而不是 `bitwarden.example.com/some/path`）。上游的 Bitwarden 服务器目前只支持子域根目录，而 Vaultwarden 则增加了对[备用基本目录](../using-an-alternate-base-dir-subdir-subpath.md)的支持。对于某些用户来说，这很有用，因为他们只能访问一个子域，并希望在不同的目录下运行多个服务。在这种情况下，他们通常可以做一些显而易见的选择，比如使用 `mysubdomain.example.com/bitwarden`。然而，您也可以通过把 Vaultwarden 放在类似 `mysubdomain.example.com/vaultwarden/<mysecretstring>` 这样的目录下来提供额外的保护，其中 `<mysecretstring>` 有效地充当一个密码。也许有人会说这是[通过隐藏实现安全](https://en.wikipedia.org/wiki/Security_through_obscurity)，但实际上这是深度防御 -- 子目录的隐蔽性只是额外的一层安全保护，而不是为了成为主要的安全手段（用户主密码的强度仍然是主要的安全手段）。
+通常，Bitwarden 实例驻留在子域的根目录下（即 `bitwarden.example.com`，而不是 `bitwarden.example.com/some/path`）。上游的 Bitwarden 服务器目前只支持子域根目录，而 Vaultwarden 则增加了对[备用基本目录](../../reverse-proxy/using-an-alternate-base-dir-subdir-subpath.md)的支持。对于某些用户来说，这很有用，因为他们只能访问一个子域，并希望在不同的目录下运行多个服务。在这种情况下，他们通常可以做一些显而易见的选择，比如使用 `mysubdomain.example.com/bitwarden`。然而，您也可以通过把 Vaultwarden 放在类似 `mysubdomain.example.com/vaultwarden/<mysecretstring>` 这样的目录下来提供额外的保护，其中 `<mysecretstring>` 有效地充当一个密码。也许有人会说这是[通过隐藏实现安全](https://en.wikipedia.org/wiki/Security_through_obscurity)，但实际上这是深度防御 -- 子目录的隐蔽性只是额外的一层安全保护，而不是为了成为主要的安全手段（用户主密码的强度仍然是主要的安全手段）。
 
 有关安全性子路径托管的一般性讨论，请参阅：[https://github.com/debops/debops/issues/1233](https://github.com/debops/debops/issues/1233)
 

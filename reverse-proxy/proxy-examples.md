@@ -1,4 +1,4 @@
-# 6.代理示例
+# 1.代理示例
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Proxy-examples)
@@ -463,7 +463,7 @@ nginx__servers:
 
 <summary>Nginx (NixOS) - v1.29.0+ (by tklitschi, samdoshi)</summary>
 
-NixOS Nginx 配置示例。关于 NixOS 部署的更多信息，请参阅[部署示例](deployment-examples.md)页面。
+NixOS Nginx 配置示例。关于 NixOS 部署的更多信息，请参阅[部署示例](../alternative-deployments/deployment-examples.md)页面。
 
 ```nginx
 { config, ... }:

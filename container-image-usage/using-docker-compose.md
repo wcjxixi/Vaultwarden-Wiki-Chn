@@ -1,4 +1,4 @@
-# 4.使用 Docker Compose
+# 3.使用 Docker Compose
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Using-Docker-Compose)
@@ -8,7 +8,7 @@
 
 ## 无反向代理/您自己配置的反向代理的最小模板（以下以 Caddy 为例） <a href="#minimal-template-for-no-reverse-proxy-a-reverse-proxy-configured-by-yourself" id="minimal-template-for-no-reverse-proxy-a-reverse-proxy-configured-by-yourself"></a>
 
-此示例假设您已[安装](https://docs.docker.com/compose/install/) Docker Compose。此配置可用于不向「外界」开放的本地服务器，也可用作[反向代理](../deployment/proxy-examples.md)的模板。
+此示例假设您已[安装](https://docs.docker.com/compose/install/) Docker Compose。此配置可用于不向「外界」开放的本地服务器，也可用作[反向代理](../reverse-proxy/proxy-examples.md)的模板。
 
 首先在您喜欢的位置创建一个新目录，然后更改到该目录下。然后，创建 `compose.yml` 文件（旧版本为 `docker-compose.yml`）：
 
@@ -124,7 +124,7 @@ docker compose down # 或者 'docker-compose down' 如果使用独立的 Docker 
 
 ## 带有 DNS 挑战的 Caddy <a href="#caddy-with-dns-challenge" id="caddy-with-dns-challenge"></a>
 
-这个示例和上一个示例一样，但适用于您不希望您的实例被公开访问的情况（即您只能从您的本地网络访问它）。这个示例使用 Duck DNS 作为 DNS 提供商。更多的背景资料，以及如何设置 Duck DNS 的细节，请参考[使用 Let's Encrypt 证书运行私有 Vaultwarden 实例](../deployment/https/running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md)。
+这个示例和上一个示例一样，但适用于您不希望您的实例被公开访问的情况（即您只能从您的本地网络访问它）。这个示例使用 Duck DNS 作为 DNS 提供商。更多的背景资料，以及如何设置 Duck DNS 的细节，请参考[使用 Let's Encrypt 证书运行私有 Vaultwarden 实例](../reverse-proxy/https/running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md)。
 
 首先创建一个新的目录，然后切换到该目录下。接下来，创建如下的 `compose.yml` 文件（旧版本为 `docker-compose.yml`），确保将 `DOMAIN` 和 `EMAIL` 变量替换为实际的值。
 
@@ -159,7 +159,7 @@ services:
       LOG_FILE: "/data/access.log"
 ```
 
-原有的 Caddy 构建（包括 Docker 映像中的构建）不包含 DNS 挑战模块，因此接下来您需要[获取自定义 Caddy 构建](../deployment/https/running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md#getting-a-custom-caddy-build)。将自定义构建重命名为 `caddy` 并将其移动到与 `compose.yml`（旧版本为 `docker-compose.yml`）相同的目录下。确保 `caddy` 文件是可执行的（例如 `chmod a + x caddy`）。上面的 `compose.yml` 文件（旧版本为 `docker-compose.yml`）会将自定义构建绑定挂载到 `caddy:2` 容器中，并替换原有的构建。
+原有的 Caddy 构建（包括 Docker 映像中的构建）不包含 DNS 挑战模块，因此接下来您需要[获取自定义 Caddy 构建](../reverse-proxy/https/running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md#getting-a-custom-caddy-build)。将自定义构建重命名为 `caddy` 并将其移动到与 `compose.yml`（旧版本为 `docker-compose.yml`）相同的目录下。确保 `caddy` 文件是可执行的（例如 `chmod a + x caddy`）。上面的 `compose.yml` 文件（旧版本为 `docker-compose.yml`）会将自定义构建绑定挂载到 `caddy:2` 容器中，并替换原有的构建。
 
 在相同的目录下，创建如下的 `Caddyfile` 文件（此文件不需要做修改）。
 

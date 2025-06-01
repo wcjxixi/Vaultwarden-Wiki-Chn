@@ -10,7 +10,7 @@
 
 ## 备份您的数据 <a href="#backing-up-data" id="backing-up-data"></a>
 
-默认情况下，Vaultwarden 将所有的数据存储在一个名为 `data` 的目录下（与 `vaultwarden` 可执行文件位于同一目录）。这个位置可以通过设置 [DATA\_FOLDER](../configuration/changing-persistent-data-location.md) 环境变量来更改。如果您使用 SQLite 运行 Vaultwarden（这是最常见的设置），那么 SQL 数据库只是 data 文件夹中的一个文件。如果您使用 MySQL 或 PostgreSQL 运行，则必须单独转储这些数据 -- 这超出了本文的范围，但在网上搜索会发现有许多此类话题的教程。
+默认情况下，Vaultwarden 将所有的数据存储在一个名为 `data` 的目录下（与 `vaultwarden` 可执行文件位于同一目录）。这个位置可以通过设置 [DATA\_FOLDER](../other-information/changing-persistent-data-location.md) 环境变量来更改。如果您使用 SQLite 运行 Vaultwarden（这是最常见的设置），那么 SQL 数据库只是 data 文件夹中的一个文件。如果您使用 MySQL 或 PostgreSQL 运行，则必须单独转储这些数据 -- 这超出了本文的范围，但在网上搜索会发现有许多此类话题的教程。
 
 当使用默认的 SQLite 后端运行时，Vaultwarden 的 `data` 目录具有如下的结构：
 

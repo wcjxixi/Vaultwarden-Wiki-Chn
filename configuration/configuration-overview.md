@@ -26,7 +26,7 @@
 **注意：**`config.json` 文&#x4EF6;_**不是**_&#x914D;置您的设置的推荐方式！要么使用环境变量，您可以通过多种方式为您的容器环境（Docker、Docker-Compose、K8s 等）进行配置；或者，如果使用独立的二进制文件（其不是由 Vaultwarden 本身分发的），请使用位于当前工作目录下的 `.env` 文件。在管理界面中保存设置时会创建并覆盖 `config.json` 文件！
 {% endhint %}
 
-如果您依赖[第三方软件包](../deployment/third-party-packages.md)，则必须检查提供的文档（例如 Arch Linux 的 `vaultwarden` 软件包的安装通知），因为下游维护者通常会对他们的软件包做出一些假设。
+如果您依赖[第三方软件包](../alternative-deployments/third-party-packages.md)，则必须检查提供的文档（例如 Arch Linux 的 `vaultwarden` 软件包的安装通知），因为下游维护者通常会对他们的软件包做出一些假设。
 
 ### 使用环境变量 <a href="#using-environment-variables" id="using-environment-variables"></a>
 
@@ -93,7 +93,7 @@ Vaultwarden 支持从磁盘加载配置选项的值（通过环境变量或在 `
 
 * `https://vaultwarden.example.com`
 * `https://vaultwarden.example.com:8443`（非默认端口）
-* `https://host.example.com/vaultwarden`（[子目录托管](using-an-alternate-base-dir-subdir-subpath.md) - 尽可能避免 URL 重写）
+* `https://host.example.com/vaultwarden`（[子目录托管](../reverse-proxy/using-an-alternate-base-dir-subdir-subpath.md) - 尽可能避免 URL 重写）
 
 ## 有关不同配置选项的更多信息 <a href="#further-information-about-different-configuration-options" id="further-information-about-different-configuration-options"></a>
 
@@ -102,18 +102,18 @@ Vaultwarden 支持从磁盘加载配置选项的值（通过环境变量或在 `
   * [禁用新用户注册](disable-registration-of-new-users.md)
 * 管理后台
   * [启用管理页面](enabling-admin-page.md)
-  * [禁用管理令牌](disable-the-admin-token.md)
-  * [翻译管理页面](other/translating-admin-page.md)
+  * [禁用管理令牌](../alternative-deployments/disable-the-admin-token.md)
+  * [翻译管理页面](../customization/translating-admin-page.md)
 * [SMTP 配置](smtp-configuration.md)
 * 通知
   * [启用 WebSocket 通知](enabling-websocket-notifications.md)
   * [启用移动客户端推送通知](enabling-mobile-client-push-notification.md)
 * 2FA 设置
-  * [启用 U2F 和 FIDO2 WebAuthn 身份验证](enabling-u2f-and-fido2-webauthn-authentication.md)
-  * [启用 YubiKey OTP 身份验证](enabling-yubikey-otp-authentication.md)
-* [日志记录](logging.md)
+  * [启用 U2F 和 FIDO2 WebAuthn 身份验证](security/enabling-u2f-and-fido2-webauthn-authentication.md)
+  * [启用 YubiKey OTP 身份验证](security/enabling-yubikey-otp-authentication.md)
+* [日志记录](../faq/troubleshooting/logging.md)
 * [其他配置](other-configuration.md)
-  * [更改持久数据位置](changing-persistent-data-location.md)
-  * [更改 API 请求大小限制](changing-the-api-request-size-limit.md)
-  * [更改 worker 数量](changing-the-number-of-workers.md)
-* [翻译电子邮件模板](translating-the-email-templates.md)
+  * [更改持久数据位置](../other-information/changing-persistent-data-location.md)
+  * [更改 API 请求大小限制](performance/changing-the-api-request-size-limit.md)
+  * [更改 worker 数量](performance/changing-the-number-of-workers.md)
+* [翻译电子邮件模板](../customization/translating-the-email-templates.md)

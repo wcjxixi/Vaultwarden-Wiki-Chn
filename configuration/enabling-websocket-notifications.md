@@ -16,7 +16,7 @@ WebSocket 通知用于将发生的一些相关事件通告给浏览器、Bitward
 
 自 Vaultwarden v1.29.0 版本起，旧的 `WEBSOCKET_ENABLED` 和 `WEBSOCKET_PORT` 已被弃用并将被忽略。在 v1.29.0 版本之后，您可以通过将 `ENABLE_WEBSOCKET` 设置为 `false` 值来禁用 Websocket 通知，这将减少 Vaultwarden 使用的资源（尽管不会太多）。自 v1.31.0 起，已移除对 3012 端口 WebSocket 流量的支持，因为它已集成至主 HTTP 端口。
 
-示例配置包含在[代理示例](../deployment/proxy-examples.md)中。&#x20;
+示例配置包含在[代理示例](../reverse-proxy/proxy-examples.md)中。&#x20;
 
 **请注意，某些示例尚未针对 v1.29.0 进行更新。**
 
