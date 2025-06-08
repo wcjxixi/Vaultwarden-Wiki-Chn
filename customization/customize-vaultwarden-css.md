@@ -27,7 +27,7 @@
 │       └── vaultwarden.scss.hbs
 ```
 
-**以下是可以将其放入 `user.vaultwarden.scss.hbs` 中的示例代码：**
+**以下是可以将其放入 `user.vaultwarden.scss.hbs` 中的示例代码片段：**
 
 ```css
 /* 隐藏 "验证器 App" 2FA (列表第一项) */
@@ -35,8 +35,8 @@ app-two-factor-setup ul.list-group.list-group-2fa li.list-group-item:nth-child(1
   @extend %vw-hide;
 }
 
-/* 隐藏 "YubiKey OTP 安全钥匙" 2FA (列表第二项) */
-/* 注意：如果 Yubikey 配置为净设置，该选项也将自动隐藏 */
+/* 隐藏 "YubiKey OTP 安全密钥" 2FA (列表第二项) */
+/* 注意：如果未配置 Yubikey，该选项将自动隐藏 */
 app-two-factor-setup ul.list-group.list-group-2fa li.list-group-item:nth-child(2) {
   @extend %vw-hide;
 }
@@ -52,7 +52,7 @@ app-two-factor-setup ul.list-group.list-group-2fa li.list-group-item:nth-child(4
 }
 
 /* 隐藏 "Email" 2FA (列表第五项) */
-/* 注意：如果未启用电子邮箱功能，该选项也将自动隐藏。 */
+/* 注意：如果未启用电子邮箱功能，该选项将自动隐藏。 */
 app-two-factor-setup ul.list-group.list-group-2fa li.list-group-item:nth-child(5) {
   @extend %vw-hide;
 }
@@ -102,7 +102,7 @@ app-organization-layout bit-nav-logo bit-icon::before {
 
 ```css
 /*
-使「筛选器」框固定不动，只有条目列表滚动。
+使 "筛选器" 框固定不动，只有条目列表滚动。
 这样就能始终看到您筛选的内容，并能快速访问搜索筛选器，而无需滚动返回顶部。
 */
 #main-content > app-vault > .tw-flex .tw-basis-1\/4
