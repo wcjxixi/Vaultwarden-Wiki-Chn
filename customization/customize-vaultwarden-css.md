@@ -27,7 +27,7 @@
 │       └── vaultwarden.scss.hbs
 ```
 
-**可以将其放置在 `user.vaultwarden.scss.hbs` 中的一些示例：**
+**以下是可以将其放入 `user.vaultwarden.scss.hbs` 中的示例代码：**
 
 ```css
 /* 隐藏 "验证器 App" 2FA (列表第一项) */
@@ -95,5 +95,25 @@ app-user-layout bit-nav-logo bit-icon::before {
 }
 app-organization-layout bit-nav-logo bit-icon::before {
   background-image: url(../images/my-custom-admin-console-logo.png) !important;
+}
+```
+
+**固定搜索筛选器（使用「Stylus」浏览器扩展测试）：**
+
+```css
+/*
+使「筛选器」框固定不动，只有条目列表滚动。
+这样就能始终看到您筛选的内容，并能快速访问搜索筛选器，而无需滚动返回顶部。
+*/
+#main-content > app-vault > .tw-flex .tw-basis-1\/4
+{
+    position: fixed;
+    width: calc(25% - 55px);
+}
+
+#main-content > app-vault > .tw-flex .tw-basis-3\/4
+{
+    position: relative;
+    left: calc(25% + 10px);
 }
 ```
