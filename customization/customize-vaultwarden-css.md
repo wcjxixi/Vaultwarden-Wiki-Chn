@@ -12,9 +12,9 @@
 
 要修改 CSS，您需要在 `data` 目录中创建 `templates` 目录，或通过 `TEMPLATES_FOLDER` 环境变量指定正确的路径。
 
-在此目录中，还需要创建另一个名为 `scss` 的目录，该目录将用于存放修改的 Vaultwarden CSS 文件。
+在 `templates` 目录中，还需要创建另一个名为 `scss` 的目录，该目录将用于存放修改的 Vaultwarden CSS 文件。
 
-您可以在此处放置两个文件：
+您可以将以下两个文件放置在 `scss` 目录中：
 
 * **`user.vaultwarden.scss.hbs`**：此文件是您要编辑并向其中添加自定义样式的文件。
 * **`vaultwarden.scss.hbs`**：此文件不应存在，因为它将覆盖内置默认值。_**除非您完全清楚操作后果，否则不要覆盖此文件！**_
