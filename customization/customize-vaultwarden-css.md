@@ -8,7 +8,7 @@
 **此功能仅适用于 v1.33.0 及更高版本。**
 {% endhint %}
 
-从 v1.33.0 版本开始，您可以修改 Vaultwarden 之前嵌入在 web-Vault 中的 CSS 样式。这可以让用户能够轻松调整样式、布局，甚至隐藏特定元素。
+从 v1.33.0 版本开始，您可以修改 Vaultwarden 的 CSS 样式（以前是嵌入在 web-vault 中）。这可以让用户能够轻松调整样式、布局，甚至隐藏特定元素。
 
 要修改 CSS，您需要在 `data` 目录中创建 `templates` 目录，或通过 `TEMPLATES_FOLDER` 环境变量指定正确的路径。
 
