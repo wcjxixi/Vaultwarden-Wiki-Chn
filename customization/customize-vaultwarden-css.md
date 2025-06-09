@@ -5,19 +5,19 @@
 {% endhint %}
 
 {% hint style="info" %}
-此功能仅适用于 v1.33.0 及更高版本。
+**此功能仅适用于 v1.33.0 及更高版本。**
 {% endhint %}
 
-从 v1.33.0 版本开始，您可以修改 Vaultwarden 之前嵌入到 web-Vault 中的 CSS。这样，用户可以方便地调整样式和布局，甚至隐藏项目。
+从 v1.33.0 版本开始，您可以修改 Vaultwarden 之前嵌入在 web-Vault 中的 CSS 样式。这可以让用户能够轻松调整样式、布局，甚至隐藏特定元素。
 
-要修改 CSS，您需要在 `data` 目录中添加 `templates` 目录，或通过 `TEMPLATES_FOLDER` 环境变量提供正确的路径。
+要修改 CSS，您需要在 `data` 目录中创建 `templates` 目录，或通过 `TEMPLATES_FOLDER` 环境变量指定正确的路径。
 
-在此目录中，您需要创建另一个名为 `scss` 的目录，该目录将保存用于修改 Vaultwarden CSS 的文件。
+在此目录中，还需要创建另一个名为 `scss` 的目录，该目录将用于存放修改的 Vaultwarden CSS 文件。
 
 您可以在此处放置两个文件：
 
-* **`user.vaultwarden.scss.hbs`**：该文件是您要编辑并向其中添加自定义样式的文件。
-* **`vaultwarden.scss.hbs`**：该文件不应该存在，因为它将覆盖内置默认值。_**只有当您真正知道自己在做什么时才可以覆盖此设置！**_
+* **`user.vaultwarden.scss.hbs`**：此文件是您要编辑并向其中添加自定义样式的文件。
+* **`vaultwarden.scss.hbs`**：此文件不应存在，因为它将覆盖内置默认值。_**除非您完全清楚操作后果，否则不要覆盖此文件！**_
 
 ```
 .
