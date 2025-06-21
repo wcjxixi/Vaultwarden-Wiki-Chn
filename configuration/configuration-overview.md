@@ -93,7 +93,7 @@ Vaultwarden 支持从磁盘加载配置选项的值（通过环境变量或在 `
 
 * `https://vaultwarden.example.com`
 * `https://vaultwarden.example.com:8443`（非默认端口）
-* `https://host.example.com/vaultwarden`（[子目录托管](../reverse-proxy/using-an-alternate-base-dir-subdir-subpath.md) - 尽可能避免 URL 重写）
+* `https://host.example.com/vaultwarden`（[子目录托管](../reverse-proxy/using-an-alternate-base-dir.md) - 尽可能避免 URL 重写）
 
 ## 有关不同配置选项的更多信息 <a href="#further-information-about-different-configuration-options" id="further-information-about-different-configuration-options"></a>
 

@@ -17,7 +17,7 @@
   * [5.更新 Vaultwarden 镜像](container-image-usage/updating-the-vaultwarden-image.md)
 * [代理](reverse-proxy/README.md)
   * [1.代理示例](reverse-proxy/proxy-examples.md)
-  * [2.使用备用基本目录（子目录/子路径）](reverse-proxy/using-an-alternate-base-dir-subdir-subpath.md)
+  * [2.使用备用基本目录](reverse-proxy/using-an-alternate-base-dir.md)
   * [HTTPS](reverse-proxy/https/README.md)
     * [1.启用 HTTPS](reverse-proxy/https/enabling-https.md)
     * [2.使用 Let's Encrypt 证书运行私有 Vaultwarden 实例](reverse-proxy/https/running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md)
