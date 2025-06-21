@@ -220,6 +220,9 @@ server {
 
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
+    # 如果您使用 Cloudflare 代理，请将 $remote_addr 替换为 $http_cf_connecting_ip
+    # 参阅 https://developers.cloudflare.com/support/troubleshooting/restoring-visitor-ips/restoring-original-visitor-ips/#nginx-1
+    # 或者使用 ngx_http_realip_module
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
 
