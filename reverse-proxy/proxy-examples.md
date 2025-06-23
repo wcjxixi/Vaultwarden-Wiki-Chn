@@ -657,16 +657,10 @@ LoadModule proxy_wstunnel_module modules/mod_proxy_wstunnel.so`
     CustomLog \${APACHE_LOG_DIR}/access.log combined
 
     <Location /vaultwarden> # 如果需要，调整此处
-        RewriteEngine On
-        RewriteCond %{HTTP:Upgrade} =websocket [NC]
-        RewriteRule /notifications/hub(.*) ws://<SERVER>:<SERVER_PORT>/$sublocation/notifications/hub/$1 [P,L]
-        RewriteRule /notifications/anonymous-hub(.*) ws://<SERVER>:<SERVER_PORT>/fjbitwarden/notifications/anonymous-hub/$1 [P,L]
-        ProxyPass http://<SERVER>:<SERVER_PORT>/$sublocation
+        ProxyPass http://<SERVER>:<SERVER_PORT>/$sublocation upgrade=websocket
 
         ProxyPreserveHost Off
         RequestHeader set X-Real-IP %{REMOTE_ADDR}s
-        RequestHeader setifempty Connection "Upgrade"
-        RequestHeader setifempty Upgrade "websocket"
     </Location>
 </VirtualHost>
 ```
