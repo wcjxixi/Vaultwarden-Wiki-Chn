@@ -18,7 +18,7 @@
 
 这意味着在请求图标时将忽略方案和端口，因此您无法根据端口号提供不同的图标。
 
-虽然 web-vault 支持多种图像类型，如 ICO、BMP、GIF、JPG、WEBP 和 PNG，但缓存的图标本身始终命名为 `<fqdn>.png` 或 `<IP>.png` （例如 `data/icon_cache/en.wikipedia.org.png`）。因此，您应该相应地命名您的自定义图标。
+虽然 web-vault 支持多种图像类型，如 ICO、BMP、GIF、JPG、WEBP 和 PNG，但缓存的图标本身始终被命名为 `<fqdn>.png` 或 `<IP>.png` （例如 `data/icon_cache/en.wikipedia.org.png`）。因此，您应该相应地命名您的自定义图标。
 
 ## 图标缓存过期机制 <a href="#how-the-icon-cache-expiration-works" id="how-the-icon-cache-expiration-works"></a>
 
@@ -40,6 +40,6 @@
 
 如果您没有禁用图标下载（`DISABLE_ICON_DOWNLOAD`），Vaultwarden `internal` 图标服务将从指定的资源下载请求的图标。这是通过向指定的域名/IP（忽略端口）发起网络请求来完成的。如果您的 Vaultwarden 服务器无法发起出站请求（例如缺少互联网访问），则不会下载新图标。
 
-出于安全考虑，Vaultwarden 默认会屏蔽其认为非全局的 IP 范围（如私有网络）。您还可以通过配置 `HTTP_REQUEST_BLOCK_REGEX` 来进一步配置 Vaultwarden 应额外屏蔽的主机。
+默认情况下，出于安全考虑，Vaultwarden 会[屏蔽其认为非全局（即私有网络）的某些 IP 范围](https://github.com/dani-garcia/vaultwarden/blob/9059437c35e35ab8eb7d1d4716bf13eec0a4ee64/src/util.rs#L776-L819)。您还可以通过配置 `HTTP_REQUEST_BLOCK_REGEX` 来进一步配置 Vaultwarden 应额外屏蔽的主机。
 
-如果您设置 `ICON_CACHE_NEGTTL=0`，则会禁用 miss 指示器过期，这意味着 Vaultwarden 将始终为指定的域名使用默认的备用图标。
+如果您设置了 `ICON_CACHE_NEGTTL=0`，则会禁用 miss 指示器过期，这意味着 Vaultwarden 将始终为指定的域名使用默认的备用图标。
