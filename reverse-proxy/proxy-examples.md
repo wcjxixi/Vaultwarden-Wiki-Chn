@@ -75,6 +75,15 @@
   
   # 取消注释以仅允许从本地网络访问管理界面
   # import admin_redir
+  
+  # 取消注释以只允许从指定的转发 IP（例如 Cloudflare 代理）访问管理界面
+  # @not_allowed_admin {
+  #     path /admin*
+  #     Trusted IPs one and two
+  #     not remote_ip forwarded xx.xx.xx.xx/32 xx.xx.xx.xx/32
+  # }
+
+  # respond @not_allowed_admin "401 - {http.request.header.Cf-Connecting-Ip} is not an allowed IP." 401
 
   # 将所有代理到 Rocket
   # 如果位于子路径中，则 reverse_proxy 行将如下所示：
