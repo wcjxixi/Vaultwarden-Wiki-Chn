@@ -129,3 +129,36 @@ _**可选备份。**_
 * [https://github.com/jjlin/vaultwarden-backup](https://github.com/jjlin/vaultwarden-backup)
 * [https://github.com/jmqm/vaultwarden\_backup](https://github.com/jmqm/vaultwarden_backup)
 * [https://github.com/Guru-25/bitwarden-export](https://github.com/Guru-25/bitwarden-export)
+
+## 基于 Docker 的自动备份（示例） <a href="#docker-based-automated-backups-example" id="docker-based-automated-backups-example"></a>
+
+如果您通过 Docker 使用 Vaultwarden 并希望自动备份到远程机器，以下方法可能会有帮助。它停止容器以确保一致性，压缩数据目录，通过 `scp` 转移它，然后重新启动 Vaultwarden。
+
+**备份脚本示例：**
+
+```bash
+#!/bin/bash
+docker-compose down
+datestamp=$(date +%m-%d-%Y)
+backup_dir="/home/<user>/vw-backups"
+zip -9 -r "${backup_dir}/${datestamp}.zip" /opt/vw-data*
+scp -i ~/.ssh/id_rsa "${backup_dir}/${datestamp}.zip" user@<REMOTE_IP>:~/vw-backups/
+docker-compose up -d
+```
+
+您可以通过 cron 自动化执行此操作：
+
+```bash
+0 0 * * * /root/transfer_vaultwarden_logs.sh
+```
+
+**清理脚本（可选）**&#x4EE5;仅保留最新的备份：
+
+```bash
+#!/bin/bash
+cd ~/backups || exit
+find . -type f -name '*.zip' ! -mtime -1 -exec rm {} +
+```
+
+> 请始终测试恢复。要恢复，请将存档解压缩回 `/opt/vw-data` ，替换之前的数据目录。
+

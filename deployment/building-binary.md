@@ -77,7 +77,7 @@ cargo build --features postgresql --release
 
 可以从 [dani-garcia/bw\_web\_builds](https://github.com/dani-garcia/bw_web_builds/releases) 下载网页密码库的编译版本。
 
-{% hint style="warning" %}
+{% hint style="info" %}
 构建密码库需要约 1.5GB 的 RAM。在具有 1GB 或更小容量的 RaspberryPI 之类的系统上，请[启用交换功能](https://www.tecmint.com/create-a-linux-swap-file/)或在功能更强大的计算机上构建，然后从那里复制目录。仅构建时需要大量内存，而运行带密码库的 Vaultwarden 仅需要约 10MB 的 RAM。
 {% endhint %}
 
@@ -99,6 +99,10 @@ make docker-extract
 # 改用主机提供的 npm 和节点
 make full
 ```
+
+{% hint style="warning" %}
+该脚本要求您输入要构建的 web-vault 的[标签](https://github.com/vaultwarden/vw_web_builds/tags)或[分支](https://github.com/vaultwarden/vw_web_builds/branches)。`main` 分支是 [bitwarden/clients 存储库](https://github.com/bitwarden/clients/)的过期镜像，尚未打补丁，因此与 Vaultwarden 不兼容。
+{% endhint %}
 
 #### 旧的（更手动的方式） <a href="#old-very-manual-way" id="old-very-manual-way"></a>
 
