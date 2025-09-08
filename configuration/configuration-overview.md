@@ -15,12 +15,12 @@
 基本上有三种不同的方式配置 Vaultwarden：
 
 1. 设置环境变量
-2. 使用 `ENV_FILE` 以及
+2. 使用 `ENV_FILE`，以及
 3. 通过 `config.json`（**不推荐**）（这可以通过[管理页面](enabling-admin-page.md)生成和管理）
 
 您可以在 [`.env.template`](https://github.com/dani-garcia/vaultwarden/blob/main/.env.template) 文件中找到大多数配置选项的文档列表。通常，注释内容中的值表示默认值，但这并不一定。如果不是，事实来源将是 [`src/config.rs`](https://github.com/dani-garcia/vaultwarden/blob/main/src/config.rs)。
 
-如果启用了[管理页面](enabling-admin-page.md)，您还可以看到带有配置值的配置选项（如果您使用 `config.json`，则指示该值是否已从初始值更改）。
+如果您启用了[管理页面](enabling-admin-page.md)，您还可以看到带有配置值的配置选项（并且如果您使用 `config.json`，还可以看到这些值与初始值相比是否有变化）。
 
 {% hint style="warning" %}
 **注意：**`config.json` 文&#x4EF6;_**不是**_&#x914D;置您的设置的推荐方式！要么使用环境变量，您可以通过多种方式为您的容器环境（Docker、Docker-Compose、K8s 等）进行配置；或者，如果使用独立的二进制文件（其不是由 Vaultwarden 本身分发的），请使用位于当前工作目录下的 `.env` 文件。在管理界面中保存设置时会创建并覆盖 `config.json` 文件！
