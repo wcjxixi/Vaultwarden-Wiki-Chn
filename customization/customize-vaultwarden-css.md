@@ -30,30 +30,30 @@
 **以下是可以将其放入 `user.vaultwarden.scss.hbs` 中的示例代码片段：**
 
 ```css
-/* 隐藏 "验证器 App" 2FA (列表第一项) */
-app-two-factor-setup ul.list-group.list-group-2fa li.list-group-item:nth-child(1) {
+/* 隐藏 "验证器 App" 2FA */
+.providers-2fa-0 {
   @extend %vw-hide;
 }
 
-/* 隐藏 "YubiKey OTP 安全密钥" 2FA (列表第二项) */
+/* 隐藏 "YubiKey OTP 安全密钥" 2FA */
 /* 注意：如果未配置 Yubikey，该选项将自动隐藏 */
-app-two-factor-setup ul.list-group.list-group-2fa li.list-group-item:nth-child(2) {
+.providers-2fa-3 {
   @extend %vw-hide;
 }
 
-/* 隐藏 "Duo" 2FA (列表第三项) */
-app-two-factor-setup ul.list-group.list-group-2fa li.list-group-item:nth-child(3) {
+/* 隐藏 "Duo" 2FA */
+.providers-2fa-2 {
   @extend %vw-hide;
 }
 
-/* 隐藏 "FIDO2 WebAuthn" 2FA (列表第四项) */
-app-two-factor-setup ul.list-group.list-group-2fa li.list-group-item:nth-child(4) {
+/* 隐藏 "FIDO2 WebAuthn" 2FA */
+.providers-2fa-7 {
   @extend %vw-hide;
 }
 
-/* 隐藏 "Email" 2FA (列表第五项) */
+/* 隐藏 "Email" 2FA */
 /* 注意：如果未启用电子邮箱功能，该选项将自动隐藏。 */
-app-two-factor-setup ul.list-group.list-group-2fa li.list-group-item:nth-child(5) {
+.providers-2fa-1 {
   @extend %vw-hide;
 }
 

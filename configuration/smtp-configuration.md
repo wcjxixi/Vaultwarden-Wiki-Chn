@@ -1,4 +1,4 @@
-# 13.SMTP 配置
+# 3.SMTP 配置
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/SMTP-Configuration)
@@ -51,7 +51,7 @@ docker run -d --name vaultwarden \
 
 这里有几个对于大部分使用场景来说已经足够的免费服务：
 
-* [SendGrid](https://sendgrid.com)（每天 100 封电子邮件）
+* [~~SendGrid~~](https://sendgrid.com)~~（每天 100 封电子邮件）~~
 * [MailJet](https://www.mailjet.com)（每天 200 封电子邮件）
 * [SendinBlue](https://www.sendinblue.com/)（每天 200 封电子邮件）
 * [SMTP2GO](https://www.smtp2go.com/)（每月 1000 封电子邮件）

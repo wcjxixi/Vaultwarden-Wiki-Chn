@@ -12,7 +12,7 @@ Vaultwarden 已经进行了多项审计，其中一些是公开的，请在我�
 
 > \[**译者注**]：PR 指 GitHub 中的 [pull requests](https://docs.github.com/cn/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)（拉取请求）。
 
-## 支持的特性 <a href="#supported-features" id="supported-features"></a>
+## 支持的功能 <a href="#supported-features" id="supported-features"></a>
 
 Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 
@@ -49,7 +49,13 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
   * [禁用 Send](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#disable-send)
   * [Send 选项](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#send-options)
 
-## 缺少的特性 <a href="#missing-features" id="missing-features"></a>
+## 测试的功能 <a href="#testing-features" id="testing-features"></a>
+
+`testing` docker 映像中的可用功能：
+
+* [单点登录 (SSO)](https://help.ppgg.in/admin-console/login-with-sso/about-login-with-sso)，请参阅[文档](configuration/enabling-sso-support-using-openid-connect.md)
+
+## 缺少的功能 <a href="#missing-features" id="missing-features"></a>
 
 话题 [#246](https://github.com/dani-garcia/vaultwarden/issues/246) 包含了完整的功能请求列表，其中既有官方服务器在 Vaultwarden 中缺失的功能，也有 Vaultwarden 中特有的增强功能。
 
@@ -61,7 +67,6 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 
 除非做出贡献，否则可能不会添加的功能：
 
-* [单点登录 (SSO)](https://help.ppgg.in/login-with-sso/about-login-with-sso)
 * [自定义角色](https://help.ppgg.in/admin-console/user-management/member-roles-and-permissions#custom-role)
 * 某些企业策略（[UI 非开源](https://github.com/bitwarden/clients/tree/main/bitwarden_license/bit-web/src/app/admin-console/policies)。可能需要通过管理页面进行配置）：
   * [要求单点登录验证](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#require-single-sign-on-authentication)

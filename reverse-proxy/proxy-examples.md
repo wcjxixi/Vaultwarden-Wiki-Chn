@@ -24,6 +24,15 @@
 
 ```nginx
 # 取消注释以下语句以及取消注释 import admin_redir 语句，以仅允许从本地网络访问管理界面
+# {
+#        servers {
+#                trusted_proxies static private_ranges
+#                client_ip_headers X-Forwarded-For X-Real-IP
+#                # client_ip_headers CF-Connecting-IP X-Forwarded-For X-Real-IP
+#                # If using Cloudflare proxy, insert CF-Connecting-IP as first priority
+#                # since Cloudflare doesn't prevent X-Forwarded-For spoofing.
+#        }
+# }
 # (admin_redir) {
 #        @admin {
 #                path /admin*
@@ -80,7 +89,8 @@
   # @not_allowed_admin {
   #     path /admin*
   #     Trusted IPs one and two
-  #     not remote_ip forwarded xx.xx.xx.xx/32 xx.xx.xx.xx/32
+  #     not client_ip xx.xx.xx.xx/32 xx.xx.xx.xx/32
+  #     # remote_ip's forwarded mode is deprecated; client_ip matcher with global options client_ip_headers and trusted_proxies
   # }
 
   # respond @not_allowed_admin "401 - {http.request.header.Cf-Connecting-Ip} is not an allowed IP." 401
@@ -93,6 +103,7 @@
        # 这样 fail2ban 就可以阻止正确的 IP 了
        header_up X-Real-IP {remote_host}
        # 如果您使用 Cloudflare 代理，请将 remote_host 替换为 http.request.header.Cf-Connecting-Ip
+       # 如果使用全局选项 'client_ip_headers CF-Connecting-IP' 则不需要
        # 请参阅 https://developers.cloudflare.com/support/troubleshooting/restoring-visitor-ips/restoring-original-visitor-ips/
        # 以及 https://caddy.community/t/forward-auth-copy-headers-value-not-replaced/16998/4
   }

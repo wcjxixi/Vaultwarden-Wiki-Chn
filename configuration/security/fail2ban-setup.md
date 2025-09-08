@@ -150,7 +150,7 @@ ignoreregex =
 `fail2ban.filter [5291]: ERROR No 'host' group in '^.*Username or password is incorrect\. Try again\. IP: <ADDR>\. Username:.*$'`\
 请将 `vaultwarden.local` 中的 `<ADDR>` 改为 `<HOST>`。
 
-**提示**：对于 Cloudflare 用户，请确保在**管理面板** -> **高级设置** -> **客户端 IP 标头**中将客户端 IP 标头设置为 `CF-Connecting-IP`，否则客户端的真实 IP 将不会被识别和阻止。
+**提示**：对于 Cloudflare 用户，请确保在**管理面板** -> **高级设置** -> **客户端 IP 标头**中将客户端 IP 标头设置为 `CF-Connecting-IP`，否则客户端的真实 IP 将不会被记录/阻止。如果您使用的代理已设置为配置使用哪些标头来确定客户端的 IP 地址，则不需要；否则，当 `CF-Connecting-IP` 不存在时，会记录 Docker 网络地址。
 
 **提示**：如果您在 `vaultwarden.log` 中看到 127.0.0.1 是登录失败的 IP 地址，那么您可能正在使用反向代理，而 Fail2ban 无法正常工作：
 

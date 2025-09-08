@@ -60,7 +60,7 @@ services:
       DOMAIN: "https://vaultwarden.example.com"  # 您的域名；Vaultwarden 需要知道它是 https 才能正确处理附件
       SIGNUPS_ALLOWED: "true"
     volumes:
-      - /vw-data:/data
+      - ./vw-data:/data
 
   caddy:
     image: caddy:2
@@ -137,7 +137,7 @@ services:
     environment:
        DOMAIN: "https://vaultwarden.example.com"  # 您的域名；Vaultwarden 需要知道它是 https 才能正确处理附件
     volumes:
-       - /vw-data:/data
+       - ./vw-data:/data
 
   caddy:
     image: caddy:2

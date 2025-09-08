@@ -42,7 +42,7 @@
 docker compose up -d vaultwarden
 ```
 
-4、将您的应用程序连接到您的 Vaultwarden 实例。
+4、注销然后重新登录 Bitwarden 客户端，这样它们就能从服务器上获取推送配置。
 
 {% hint style="danger" %}
 如果您在 [v1.30.2](https://github.com/dani-garcia/vaultwarden/releases/tag/1.30.2) 之前已经连接了 Bitwarden 应用程序，则推送通知**将不适用于**您的设备（因为设备令牌从未保存）。您必须**清除应用程序数据**（或**重新安装应用程序**）然后再次连接您的 Vaultwarden 账户，才能向 [Bitwarden 的 Azure 通知中心](https://contributing.bitwarden.com/architecture/deep-dives/push-notifications/mobile/#self-hosted-implementation)注册推送令牌。

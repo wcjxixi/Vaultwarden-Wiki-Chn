@@ -119,7 +119,7 @@ verify return:1
 
 有 3 个不同深度（请注意，它是从 0 开始的）级别的验证。在接下来的输出中，您应该看到来自 Let's Encryptbase 的使用 base64 编码的证书信息。
 
-### 检查 OSCP 有效性 <a href="#check-oscp-validity" id="check-oscp-validity"></a>
+### 检查 OCSP 有效性 <a href="#check-oscp-validity" id="check-oscp-validity"></a>
 
 > \[**译者注**]：OCSP：Online Certificate Status Protocol，在线证书状态协议。OCSP 是一个用于获取 X.509 数字证书撤销状态的网络协议，用于检验证书合法性。OCSP 查询需要建立一次完整的 HTTP 查询请求，期间的 DNS 查询、建立 TCP 连接、服务端响应和数据传输都是额外开销，使得建立 TLS 连接花费更多时长。后来出现了OCSP Stapling ，将原本需要客户端发起的 OCSP 请求转嫁给服务端，并随证书一起发送给客户端，因此能提高 TLS 握手效率。
 >

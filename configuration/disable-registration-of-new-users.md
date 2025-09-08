@@ -1,4 +1,4 @@
-# 2.禁用新用户注册
+# 4.禁用新用户注册
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Disable-registration-of-new-users)
@@ -33,6 +33,10 @@ docker run -d --name vaultwarden \
 
 您可能还想设置 `SIGNUPS_VERIFY=true`，这要求新注册的用户在成功登录前进行电子邮箱验证。这可以防止有人用一个拥有正确域名的假电子邮箱地址注册。
 
+## 创建账户链接的可见性 <a href="#visibility-of-the-create-account-link" id="visibility-of-the-create-account-link"></a>
+
+当 `SIGNUPS_ALLOWED=false`（且 `SIGNUPS_DOMAINS_WHITELIST` 为空）时，网页密码库 UI 中的创建账户链接将隐藏，除非您没有[配置电子邮箱](smtp-configuration.md)和允许邀请（参见 [#6109](https://github.com/dani-garcia/vaultwarden/issues/6109)）。如果在后一种情况下也不想让链接可见，可以使用[自定义 CSS](../customization/customize-vaultwarden-css.md) 隐藏链接。
+
 ## 通过管理页面邀请 <a href="#invitations-via-the-admin-page" id="invitations-via-the-admin-page"></a>
 
-Vaultwarden 管理员可以通过[管理页面](enabling-admin-page.md)邀请任何人，不受以上限制。如果 SMTP 被禁用，用户应访问 `https://example.com/#/register` 然后使用邀请的电子邮箱注册。
+Vaultwarden 管理员可以通过[管理页面](enabling-admin-page.md)邀请任何人，不受以上限制。如果 SMTP 被禁用，用户应访问 `https://vaultwarden.example.tld/#/signup` 然后使用邀请的电子邮箱注册。

@@ -12,6 +12,14 @@
 
 本项目不托管任何公共 Vaultwarden 实例，我们也不提倡使用任何此类网站。参见 [#3233](https://github.com/dani-garcia/vaultwarden/discussions/3233#discussioncomment-4917141) [#4142](https://github.com/dani-garcia/vaultwarden/discussions/4142) [#4367](https://github.com/dani-garcia/vaultwarden/discussions/4367#discussioncomment-8529763)
 
+## Vaultwarden 的下一个版本是什么时候？您能给出一个 ETA 吗？ <a href="#when-is-the-next-release-of-vaultwarden-can-you-give-an-eta" id="when-is-the-next-release-of-vaultwarden-can-you-give-an-eta"></a>
+
+Vaultwarden 没有发布时间表。如果维护者有时间并认为有必要发布新版本，那么可以立即发布，但鉴于这是一个由人们利用业余时间完成的项目，下一次发布可能需要几周甚至几个月的时间。
+
+如果您「希望尽早获得最新功能、增强功能或错误修复」，您可以随时改用测试镜像，它总是基于最新的提交。参见容器镜像的选择。
+
+> **\[译者注]**：ETA：Estimated Time of Arrival。在软件开发和日常交流中，它不再仅仅指「预计到达时间」，而是被广泛引申为「预计完成时间」或「预计发布日期」。
+
 ## Vaultwarden 能连接到 Oracle MySQL V8.x 数据库吗？ <a href="#can-bitwarden_rs-connect-to-an-oracle-mysql-v-8-x-database" id="can-bitwarden_rs-connect-to-an-oracle-mysql-v-8-x-database"></a>
 
 在使用 Oracle MySQL v8.x 时，当您试图启动 Vaultwarden，可能会出现以下警告：
