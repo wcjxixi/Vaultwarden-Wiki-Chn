@@ -4,15 +4,17 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Proxy-examples)
 {% endhint %}
 
-在此文档中，`<SERVER>` 是指用于访问 Vaultwarden 的 IP 或域名，如果代理和 Vaultwarden 两者在同一系统中运行，简单地使用 `localhost` 即可。
+以下是用户收集的不同[反向代理](https://zh.wikipedia.org/wiki/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86)配置示例列表。我们建议使用反向代理终止 TLS/SSL 连接（最好是 443 端口，即 HTTPS 的标准端口），而不是使用 Vaultwarden 内置的 HTTPS 功能。有关更多信息，请参阅[启用 HTTPS](https/enabling-https.md)。
 
-默认情况下，Vaultwarden 在端口 80 上监听网页 (REST API) 流量和 [WebSocket 流量](../configuration/enabling-websocket-notifications.md)。反向代理应该被配置为终止 SSL/TLS 连接（最好是在 HTTPS 的标准端口 443 上）。然后，反向代理将传入的客户端请求在端口 80 或 3012（视情况而定）上传递给 Vaultwarden，并在收到 Vaultwarden 的响应后，将该响应传回客户端。
+在本文档中，我们假设您在与反向代理相同的主机上运行 Vaultwarden。如果您将 Vaultwarden 作为一个容器运行，假设您已经向主机发布了 `-p 127.0.0.1:8000:80`，因为容器内的 Vaultwarden 已经被配置为监听所有 IPv4 接口（`ROCKET_ADDRESS=0.0.0.0`）上的 `80` 端口（通过 `ROCKET_PORT`）。
 
-注意，当您把 Vaultwarden 放在反向代理后面时，反向代理和 Vaultwarden 之间的连接通常被认为是通过安全的私有网络进行的，因此不需要加密。下面的例子假设您是在这种配置下运行的，在这种情况下，不应该启用 Vaultwarden 中内置的 HTTPS 功能（也就是说，不应该设置 `ROCKET_TLS` 环境变量）。如果您这样做了，连接就会失败，因为反向代理使用 HTTP 连接到 Vaultwarden，但您配置的 Vaultwarden 却希望使用 HTTPS。
+示例还假定您没有加密反向代理和 Vaultwarden 之间的连接，即没有配置 `ROCKET_TLS`，因此反向代理可以直接通过 `http://127.0.0.1:8000` 连接到 Vaultwarden。
 
-通常使用 [Docker Compose](https://docs.docker.com/compose/) 将容器化的服务（例如，Vaultwarden 与反向代理）链接在一起。请参阅[使用 Docker Compose](../container-image-usage/using-docker-compose.md) 了解这方面的示例。
+如果您使用 [Docker Compose](https://docs.docker.com/compose/) 将容器化的服务（例如，Vaultwarden 与反向代理）链接在一起，您必须调整示例代码以考虑到这一点（例如，将 `127.0.0.1:8000` 改为 `service_name:80`，而 `service_name` 通常是 `vaultwarden`）。请参阅[使用 Docker Compose](../container-image-usage/using-docker-compose.md) 了解这方面的示例。
 
+{% hint style="info" %}
 可以使用 Mozilla 的 [SSL Configuration Generator](https://ssl-config.mozilla.org/) 来生成 Web 服务器的安全 TLS 协议和密码配置。已知所有受支持的浏览器和移动应用程序都可以使用这种「现代化的」配置。
+{% endhint %}
 
 <details>
 
@@ -97,8 +99,8 @@
 
   # 将所有代理到 Rocket
   # 如果位于子路径中，则 reverse_proxy 行将如下所示：
-  # reverse_proxy /subpath/* <server>:80
-  reverse_proxy <SERVER>:80 {
+  # reverse_proxy /vault/* 127.0.0.1:8000
+  reverse_proxy 127.0.0.1:8000 {
        # 把真实的远程 IP 发送给 Rocket，以便 Vaultwarden 将其放入日志中，
        # 这样 fail2ban 就可以阻止正确的 IP 了
        header_up X-Real-IP {remote_host}
@@ -114,7 +116,7 @@
 
 <details>
 
-<summary>lighttpd (by forkbomb9)</summary>
+<summary><del>lighttpd (by forkbomb9)</del></summary>
 
 ```nginx
 erver.modules += ( "mod_proxy" )
@@ -143,9 +145,9 @@ $HTTP["host"] == "vault.example.net" {
 
 <details>
 
-<summary>lighttpd with sub-path - v1.29.0+ (by FlakyPi)</summary>
+<summary>lighttpd with sub-path (by FlakyPi)</summary>
 
-在这个示例中，通过 [https://vaultwarden.example.tld/vault/](https://vaultwarden.example.tld/vault/) 访问 Vaultwarden。如果您想使用其他子路径，如 `bitwarden` 或 `secret-vault`，则应更修改下面示例中的 `vault` 以匹配。
+在这个示例中，通过 [https://shared.example.tld/vault/](https://shared.example.tld/vault/) 访问 Vaultwarden。如果您想使用其他子路径，如 `vaultwarden` 或 `secret-vault`，则应更修改下面示例中的 `vault` 以匹配。
 
 ```nginx
 server.modules += (
@@ -154,23 +156,23 @@ server.modules += (
 
 $SERVER["socket"] == ":443" {  
     ssl.engine   = "enable"   
-    ssl.pemfile  = "/etc/letsencrypt/live/vaultwarden.example.tld/fullchain.pem"
-    ssl.privkey  = "/etc/letsencrypt/live/vaultwarden.example.tld/privkey.pem"
+    ssl.pemfile  = "/etc/letsencrypt/live/shared.example.tld/fullchain.pem"
+    ssl.privkey  = "/etc/letsencrypt/live/shared.example.tld/privkey.pem"
 }
 
 # Redirect HTTP requests (port 80) to HTTPS (port 443)
 $SERVER["socket"] == ":80" {  
-        $HTTP["host"] =~ "vaultwarden.example.tld" {  
-         url.redirect = ( "^/(.*)" => "https://vaultwarden.example.tld/$1" )  
-          server.name                 = "vaultwarden.example.tld"   
+        $HTTP["host"] =~ "shared.example.tld" {  
+         url.redirect = ( "^/(.*)" => "https://shared.example.tld/$1" )  
+          server.name                 = "shared.example.tld"   
         }  
 }
 
 server.modules += ( "mod_proxy" )
 
-$HTTP["host"] == "vaultwarden.example.tld" {
+$HTTP["host"] == "shared.example.tld" {
     $HTTP["url"] =~ "/vault" {
-       proxy.server  = ( "" => ("vaultwarden" => ( "host" => "<SERVER>", "port" => 8080 )))
+       proxy.server  = ( "" => ("vaultwarden" => ( "host" => "127.0.0.1", "port" => 8000 )))
        proxy.forwarded = ( "for" => 1 )
        proxy.header = (
            "https-remap" => "enable",
@@ -196,7 +198,7 @@ $HTTP["host"] == "vaultwarden.example.tld" {
 # 此处定义服务器的 IP 和端口。
 upstream vaultwarden-default {
   zone vaultwarden-default 64k;
-  server 127.0.0.1:8080;
+  server 127.0.0.1:8000;
   keepalive 2;
 }
 
@@ -303,7 +305,7 @@ DOMAIN=https://shared.example.tld/vault/
 # 此处定义服务器的 IP 和端口。
 upstream vaultwarden-default {
   zone vaultwarden-default 64k;
-  server 127.0.0.1:8080;
+  server 127.0.0.1:8000;
   keepalive 2;
 }
 
@@ -390,7 +392,7 @@ server {
 
 <details>
 
-<summary>Nginx configured by Ansible/DebOps (by ypid)</summary>
+<summary><del>Nginx configured by Ansible/DebOps (by ypid)</del></summary>
 
 使用 [DebOps](https://debops.org) 配置 nginx 作为 Vaultwarden 的反向代理的清单示例。我选择在 URL 中使用 PSK 以获得额外的安全性，从而不会将 API 暴露给 Internet 上的每个人，因为客户端应用程序尚不支持客户端证书（我测试过）。 参考[强化指南 - 隐藏在子目录下](../configuration/security/hardening-guide.md#hiding-under-a-subdir)
 
@@ -496,7 +498,7 @@ NixOS Nginx 配置示例。关于 NixOS 部署的更多信息，请参阅[部署
       acceptTerms = true;
       email = "me@example.com";
     };
-    certs."vaultwarden.example.com".group = "vaultwarden";
+    certs."vaultwarden.example.tld".group = "vaultwarden";
   };
 
   services.nginx = {
@@ -508,11 +510,11 @@ NixOS Nginx 配置示例。关于 NixOS 部署的更多信息，请参阅[部署
     recommendedTlsSettings = true;
 
     virtualHosts = {
-      "vaultwarden.example.com" = {
+      "vaultwarden.example.ltd" = {
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "http://localhost:8080";
+          proxyPass = "http://127.0.0.1:8000";
           proxyWebsockets = true;
         };
       };
@@ -558,7 +560,7 @@ real_ip_header proxy_protocol; # 可选，如果您希望 nginx 使用来自 pro
 # 这里定义服务器 IP 和端口.
 upstream vaultwarden-default {
   zone vaultwarden-default 64k;
-  server 127.0.0.1:8080;
+  server 127.0.0.1:8000;
   keepalive 2;
 }
 # 需要这些以支持 websocket 连接
@@ -574,7 +576,7 @@ map $http_upgrade $connection_upgrade {
 server {
     listen 80 proxy_protocol; # &#x3C;---
     listen [::]:80 proxy_protocol; # &#x3C;---
-    server_name vaultwarden.example.tld;
+    server_name shared.example.tld;
     
     return 301 https://$host$request_uri;
 }
@@ -583,12 +585,12 @@ server {
 <strong>    listen 443 ssl proxy_protocol; # &#x3C;---
 </strong>    listen [::]:443 ssl proxy_protocol; # &#x3C;---
     http2 on;
-    server_name vaultwarden.example.tld;
+    server_name shared.example.tld;
 
     # 需要时指定 SSL Config
-    #ssl_certificate /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/fullchain.pem;
-    #ssl_certificate_key /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/privkey.pem;
-    #ssl_trusted_certificate /path/to/certificate/letsencrypt/live/vaultwarden.example.tld/fullchain.pem;
+    #ssl_certificate /path/to/certificate/letsencrypt/live/shared.example.tld/fullchain.pem;
+    #ssl_certificate_key /path/to/certificate/letsencrypt/live/shared.example.tld/privkey.pem;
+    #ssl_trusted_certificate /path/to/certificate/letsencrypt/live/shared.example.tld/fullchain.pem;
 
     client_max_body_size 525M;
 
@@ -617,12 +619,12 @@ server {
 
 <summary>Apache (by fbartels)</summary>
 
-记得启用 `mod_proxy_wstunnel` 和 `mod_proxy_http`，例如：`a2enmod proxy_wstunnel` 和 `a2enmod proxy_http`。
+请记得启用 `mod_proxy_http`，例如使用：`a2enmod proxy_http`。这要求 Apache >= 2.4.47。
 
 ```apacheconf
 <VirtualHost *:443>
     SSLEngine on
-    ServerName vaultwarden.$hostname.$domainname
+    ServerName vaultwarden.example.tld
 
     SSLCertificateFile ${SSLCERTIFICATE}
     SSLCertificateKeyFile ${SSLKEY}
@@ -632,7 +634,7 @@ server {
     ErrorLog \${APACHE_LOG_DIR}/vaultwarden-error.log
     CustomLog \${APACHE_LOG_DIR}/vaultwarden-access.log combined
 
-    ProxyPass / http://<SERVER>:80/ upgrade=websocket
+    ProxyPass / http://127.0.0.1:8000/ upgrade=websocket
 
     ProxyPreserveHost On
     ProxyRequests Off
@@ -646,22 +648,16 @@ server {
 
 <details>
 
-<summary>Apache in a sub-location (by <a href="https://github.com/agentdr8">@agentdr8</a>)</summary>
+<summary>Apache in a sub-location (by <a href="https://github.com/agentdr8">@agentdr8</a> &#x26; <a href="https://github.com/NoseyNick">@NoseyNick</a>)</summary>
 
 修改 docker 启动以包含 sub-location。
 
 ```systemd
 ; 添加子位置！否则将不起作用！
-DOMAIN=https://$hostname.$domainname/$sublocation/
+DOMAIN=https://shared.example.tld/vault/
 ```
 
-需确保在 apache 配置中的某个位置加载了 websocket 代理模块。 它看起来像这样：
-
-```apacheconf
-LoadModule proxy_wstunnel_module modules/mod_proxy_wstunnel.so`
-```
-
-在某些操作系统上，您可以使用 a2enmod，例如：`a2enmod proxy_wstunnel` 和 `a2enmod proxy_http`。
+请记得启用 `mod_proxy_http`，例如使用：`a2enmod proxy_http`。这要求 Apache >= 2.4.47。
 
 ```apacheconf
 <VirtualHost *:443>
@@ -676,10 +672,10 @@ LoadModule proxy_wstunnel_module modules/mod_proxy_wstunnel.so`
     ErrorLog \${APACHE_LOG_DIR}/error.log
     CustomLog \${APACHE_LOG_DIR}/access.log combined
 
-    <Location /vaultwarden> # 如果需要，调整此处
-        ProxyPass http://<SERVER>:<SERVER_PORT>/$sublocation upgrade=websocket
+    <Location /vault> # 如果需要，调整此处
+        ProxyPass http://127.0.0.1:8000/vault/ upgrade=websocket
 
-        ProxyPreserveHost Off
+        ProxyPreserveHost On
         RequestHeader set X-Real-IP %{REMOTE_ADDR}s
     </Location>
 </VirtualHost>
@@ -689,7 +685,7 @@ LoadModule proxy_wstunnel_module modules/mod_proxy_wstunnel.so`
 
 <details>
 
-<summary>Apache 2.4.47 (or later) in a sub-location (by <a href="https://github.com/NoseyNick">@NoseyNick</a>)</summary>
+<summary><del>Apache 2.4.47 (or later) in a sub-location (by</del> <a href="https://github.com/NoseyNick"><del>@NoseyNick</del></a><del>)</del></summary>
 
 现在，常规的 `mod_proxy` 支持使用 `upgrade=websocket` 升级到 WebSocket，而不需要 `mod_proxy_wstunnel`。
 
@@ -698,8 +694,8 @@ LoadModule proxy_wstunnel_module modules/mod_proxy_wstunnel.so`
 ```apacheconf
 <VirtualHost *:443>
   [ blah blah ]
-  <Location /$sublocation/> #adjust here if necessary
-    ProxyPass http://$server:$port/$sublocation/ upgrade=websocket
+  <Location /vault> #adjust here if necessary
+    ProxyPass http://127.0.0.1:8000/vault/ upgrade=websocket
     ProxyPreserveHost On
     ProxyRequests Off # ... is the default, but as a safety-net
     RequestHeader set X-Real-IP %{REMOTE_ADDR}s
@@ -711,13 +707,13 @@ LoadModule proxy_wstunnel_module modules/mod_proxy_wstunnel.so`
 
 <details>
 
-<summary>Traefik v1 (docker-compose 示例)</summary>
+<summary><del>Traefik v1 (docker-compose 示例)</del></summary>
 
 ```yaml
 labels:
     - traefik.enable=true
     - traefik.docker.network=traefik
-    - traefik.web.frontend.rule=Host:vaultwarden.domain.tld
+    - traefik.web.frontend.rule=Host:vaultwarden.example.tld
     - traefik.web.port=80
 ```
 
@@ -733,9 +729,9 @@ labels:
 labels:
   - traefik.enable=true
   - traefik.docker.network=traefik
-  - traefik.http.routers.bitwarden.rule=Host(`bitwarden.domain.tld`)
-  - traefik.http.routers.bitwarden.service=bitwarden
-  - traefik.http.services.bitwarden.loadbalancer.server.port=80
+  - traefik.http.routers.vaultwarden.rule=Host(`vaultwarden.example.tld`)
+  - traefik.http.routers.vaultwarden.service=vaultwarden
+  - traefik.http.services.vaultwarden.loadbalancer.server.port=80
 ```
 
 #### 迁移的标签加上 HTTP 到 HTTPS 重定向 <a href="#migrated-labels-plus-http-to-https-redirect" id="migrated-labels-plus-http-to-https-redirect"></a>
@@ -750,15 +746,15 @@ labels:
   - traefik.docker.network=traefik
   - traefik.http.middlewares.redirect-https.redirectScheme.scheme=https
   - traefik.http.middlewares.redirect-https.redirectScheme.permanent=true
-  - traefik.http.routers.bitwarden-https.rule=Host(`bitwarden.domain.tld`)
-  - traefik.http.routers.bitwarden-https.entrypoints=websecure
-  - traefik.http.routers.bitwarden-https.tls=true
-  - traefik.http.routers.bitwarden-https.service=bitwarden
-  - traefik.http.routers.bitwarden-http.rule=Host(`bitwarden.domain.tld`)
-  - traefik.http.routers.bitwarden-http.entrypoints=web
-  - traefik.http.routers.bitwarden-http.middlewares=redirect-https
-  - traefik.http.routers.bitwarden-http.service=bitwarden
-  - traefik.http.services.bitwarden.loadbalancer.server.port=80
+  - traefik.http.routers.vaultwarden-https.rule=Host(`vaultwarden.domain.tld`)
+  - traefik.http.routers.vaultwarden-https.entrypoints=websecure
+  - traefik.http.routers.vaultwarden-https.tls=true
+  - traefik.http.routers.vaultwarden-https.service=vaultwarden
+  - traefik.http.routers.vaultwarden-http.rule=Host(`vaultwarden.domain.tld`)
+  - traefik.http.routers.vaultwarden-http.entrypoints=web
+  - traefik.http.routers.vaultwarden-http.middlewares=redirect-https
+  - traefik.http.routers.vaultwarden-http.service=vaultwarden
+  - traefik.http.services.vaultwarden.loadbalancer.server.port=80
 ```
 
 </details>
@@ -787,14 +783,14 @@ backend vaultwarden_http
     # 在 `X-Real-IP` 头中设置来源 IP
     http-request set-header X-Real-IP %[src]
     # 将流量发送到本地实例
-    server vwhttp 0.0.0.0:8080 alpn http/1.1
+    server vwhttp 0.0.0.0:8000alpn http/1.1
 ```
 
 </details>
 
 <details>
 
-<summary>HAproxy - before v1.29.0 (by <a href="https://github.com/williamdes">@williamdes</a>)</summary>
+<summary><del>HAproxy - before v1.29.0 (by</del> <a href="https://github.com/williamdes"><del>@williamdes</del></a><del>)</del></summary>
 
 将这些行添加到您的 HAproxy 配置中。
 
@@ -828,7 +824,7 @@ backend vaultwarden_http
 
 <details>
 
-<summary>HAproxy inside PfSense (by <a href="https://github.com/RichardMawdsley">@RichardMawdsley</a>)</summary>
+<summary><del>HAproxy inside PfSense (by</del> <a href="https://github.com/RichardMawdsley"><del>@RichardMawdsley</del></a><del>)</del></summary>
 
 作为 GUI 设置，下面的详细信息\说明供您在需要的地方添加。
 
@@ -1108,7 +1104,7 @@ spec:
 
 <details>
 
-<summary>Istio k8s - before v1.29.0 (by <a href="https://github.com/dpoke">@dpoke</a>)</summary>
+<summary><del>Istio k8s - before v1.29.0 (by</del> <a href="https://github.com/dpoke"><del>@dpoke</del></a><del>)</del></summary>
 
 ```javascript
 apiVersion: networking.istio.io/v1beta1
@@ -1171,7 +1167,7 @@ spec:
 
 <details>
 
-<summary>relayd on openbsd (by olliestrickland)</summary>
+<summary><del>relayd on openbsd (by olliestrickland)</del></summary>
 
 经测试可正常运行（包括 websockets） - /etc/relayd.conf - 在 openbsd 7.2 上使用来自 OpenBSD Ports 的 Vaultwarden - [https://openports.se/security/vaultwarden](https://openports.se/security/vaultwarden)
 
@@ -1226,7 +1222,7 @@ relay vaultwarden-https-relay {
 
 <details>
 
-<summary>CloudFlare - before v1.29.0 (by <a href="https://github.com/williamdes">@williamdes</a>)</summary>
+<summary><del>CloudFlare - before v1.29.0 (by</del> <a href="https://github.com/williamdes"><del>@williamdes</del></a><del>)</del></summary>
 
 按照下面的截图创建新的规则。用于查找此设置的示例仪表板 URL：`https://dash.cloudflare.com/xxxxxx/example.org/rules/origin-rules/new`
 
@@ -1249,7 +1245,7 @@ services:
     image: vaultwarden/server:latest
     restart: unless-stopped
     environment:
-      DOMAIN: "https://vaultwarden.example.com"  # 您的域名；vaultwarden 需要知道您的域名是 https，才能正常处理附件
+      DOMAIN: "https://vaultwarden.example.ltd"  # 您的域名；vaultwarden 需要知道您的域名是 https，才能正常处理附件
     volumes:
       - ./vw-data:/data
     networks:
@@ -1342,8 +1338,8 @@ End
 Service
 	Host "vaultwarden.example.tld"
 	BackEnd
-		Address <SERVER>
-		Port    80
+		Address 127.0.0.1
+		Port    8000
 	End
 End
 ```
