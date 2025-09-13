@@ -105,6 +105,11 @@ app-organization-layout bit-nav-logo bit-icon::before {
 使 "筛选器" 框固定不动，只有条目列表滚动。
 这样就能始终看到您筛选的内容，并能快速访问搜索筛选器，而无需滚动返回顶部。
 */
+#main-content {
+    /*Edit 2025.09.12*/
+    contain: none;
+}
+
 #main-content > app-vault > .tw-flex .tw-basis-1\/4
 {
     position: fixed;
