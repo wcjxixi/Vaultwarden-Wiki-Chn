@@ -1,4 +1,4 @@
-# =8.使用 OpenId Connect 启用 SSO 支持
+# 8.使用 OpenId Connect 启用 SSO 支持
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-SSO-support-using-OpenId-Connect)
@@ -210,18 +210,91 @@ Google [文档](https://developers.google.com/identity/openid-connect/openid-con
 
 ## Rauthy
 
+要使用提供程序控制的会话，您需要在运行 `Rauthy` 时使用 `DISABLE_REFRESH_TOKEN_NBF=true`，否则服务器在尝试读取尚未生效的 `refresh_token` 时会失败（即使 `access_token` 有效，Bitwarden 客户端也会触发刷新。详情参阅 [rauthy](https://github.com/sebadob/rauthy/issues/651)）。另一种方法是使用 `SSO_AUTH_ONLY_NOT_SESSION=true` 的默认会话处理方式。
+
+创建客户端时不需要特殊配置。
+
+您的配置看起来应如下：
+
+* `SSO_AUTHORITY=http://${provider_host}/auth/v1`
+* `SSO_CLIENT_ID=${Client ID}`
+* `SSO_CLIENT_SECRET=${Client Secret}`
+* `SSO_AUTH_ONLY_NOT_SESSION=true`，仅在不使用 `DISABLE_REFRESH_TOKEN_NBF=true` 运行 `Rauthy` 时才需要
+
 ## Slack
+
+您将需要在[https://api.slack.com/apps/](https://api.slack.com/apps/)中创建一个 App。
+
+看起来返回的 `access_token` 不是 JWT 格式，并且没有使用它发送到期日期。因此，您需要使用默认的会话生命周期。
+
+您的配置看起来应如下：
+
+* `SSO_AUTHORITY=https://slack.com`
+* `SSO_CLIENT_ID=${Application Client ID}`
+* `SSO_CLIENT_SECRET=${Application Client Secret}`
+* `SSO_AUTH_ONLY_NOT_SESSION=true`
 
 ## Zitadel
 
+要获取 `refresh_token` 以扩展会话，您需要添加 `Offline_Access` 范围。
+
+此外，Zitadel 还在 Id Token 的受众中加入了 `Project id` 和客户 `Client Id`。为使验证生效，您需要将 `Resource Id` 添加为受信任的受众（默认情况下 `Client Id` 是受信任的）。您可以使用 `SSO_AUDIENCE_TRUSTED` 配置来控制受信任的受众。
+
+根据 [Zitadel#9200](https://github.com/zitadel/zitadel/issues/9200)，`id_token` 会传递一个受信任受众列表，其中包括 `Project Id`。如果最终有许多受信任的 `aud` 字符串，`SSO_AUDIENCE_TRUSTED` 可能会变得难以管理。在这种情况下，`SSO_AUDIENCE_TRUSTED: '^\d{18}$'`（18 是 `aud` 列表中每个字符串的大小，可能因 Zitadel 实现而异）会对您有所帮助，但单独添加所有审核字符串也是安全的，如 `SSO_AUDIENCE_TRUSTED:'^abcd|def|xyz$'`。
+
+自 [zitadel#721](https://github.com/zitadel/oidc/pull/721) 以来，PKCE 应该可以使用客户端机密。但旧版本可能需要禁用它（`SSO_PKCE=false`）。
+
+配置看起来应如下：
+
+* `SSO_AUTHORITY=https://${provider_host}`
+* `SSO_SCOPES="email profile offline_access"`
+* `SSO_CLIENT_ID`
+* `SSO_CLIENT_SECRET`
+* `SSO_AUDIENCE_TRUSTED='^${Project Id}$'`
+
 ## 会话生命周期 <a href="#session-lifetime" id="session-lifetime"></a>
+
+会话生命周期取决于刷新令牌和调用 SSO 令牌端点（授权类型：`authorization_code`）后返回的访问令牌。如果没有返回刷新令牌，会话将仅限于访问令牌的有效期。
+
+令牌不会持久保存在服务器中，而是封装在 JWT 令牌中并返回给应用程序（VW `identity/connect/token` 端点返回的 `refresh_token` 和 `access_token` 值）。请注意，出于与 Web 前端兼容的原因，服务器将始终返回一个 `refresh_token`，它的存在并不表明 SSO 返回了刷新令牌（但您可以使用 [https://jwt.io](https://jwt.io/) 对其值进行解码，然后检查 `token` 字段是否包含任何内容）。
+
+有了刷新令牌，应用程序中的活动就会在访问令牌快过期时（网页客户端为 [5 分钟](https://github.com/bitwarden/clients/blob/0bcb45ed5caa990abaff735553a5046e85250f24/libs/common/src/auth/services/token.service.ts#L126)）触发刷新。
+
+此外，在执行某些操作时还会进行令牌检查，如果有刷新令牌，就会执行刷新，否则就会调用用户信息端点来检查访问令牌的有效性。
 
 ### 禁用 SSO 会话处理 <a href="#disabling-sso-session-handling" id="disabling-sso-session-handling"></a>
 
+如果无法获取 `efresh_token` 或出于其他原因，可以禁用 SSO 会话处理，以恢复到默认的处理方式。您需要启用 `SSO_AUTH_ONLY_NOT_SESSION=true`，然后访问令牌的有效期将为 2 小时，刷新令牌的空闲时间为 7 天（可无限期延长）。
+
 ### 调试信息 <a href="#debug-information" id="debug-information"></a>
+
+使用 `LOG_LEVEL=debug` 运行，您就能看到令牌过期的信息。
 
 ## 桌面客户端 <a href="#desktop-client" id="desktop-client"></a>
 
+在处理从浏览器（用于 SSO 登录）到应用程序的重定向方面存在一些问题。
+
 ### Chrome
 
+一些用户报告有说存在[问题](https://github.com/bitwarden/clients/issues/12929)。
+
 ## Firefox
+
+在 Windows 系统中，首次登录时会出现一个提示，以确认应启动哪个应用程序（但目前存在一个 bug，即登录后可能会出现空密码库）。
+
+在 Linux 系统上，稍微麻烦些。首先，您需要在 `about:config` 中添加一些配置：
+
+```systemd
+network.protocol-handler.expose.bitwarden=false
+network.protocol-handler.external.bitwarden=true
+```
+
+如果您有任何疑问，可以检查 `mailto` 以查看它是如何配置的。
+
+重定向仍然不起作用，因为与应用程序的关联似乎只能通过链接/点击来完成。您可以用一个虚拟页面来触发它，例如：
+
+```html
+data:text/html,<a href="bitwarden:///dummy">Click me to register Bitwarden</a>
+```
+
+从现在起，重定向应该可以正常工作了。如果需要更改启动的应用程序，现在可以使用搜索功能在 `Settings`  中输入 `application` 进行查找。
