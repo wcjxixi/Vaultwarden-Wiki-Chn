@@ -30,7 +30,7 @@ SSO 目前仅适用于 `:testing` 标签的镜像！\
 * `SSO_ONLY` ：禁用电子邮箱 + 主密码认证
 * `SSO_SIGNUPS_MATCH_EMAIL` ：在 SSO 注册时，如果存在具有相同电子邮件地址的用户，则进行关联（默认 `true` ）
 * `SSO_ALLOW_UNKNOWN_EMAIL_VERIFICATION` ：允许未知电子邮箱验证状态（默认 `false` ）。允许此功能与 `SSO_SIGNUPS_MATCH_EMAIL` 结合使用可能会带来账户接管的风险。
-* `SSO_AUTHORITY` ：您的 SSO 的 OpenID Connect 发现端点
+* `SSO_AUTHORITY` ：您的 SSO 的 OpenID Connect Discovery 端点
   * 不应包含 `/.well-known/openid-configuration` 部分，且无 `/` 尾随
   * $SSO\_AUTHORITY/.well-known/openid-configuration 应返回一个 JSON 文档：[https://openid.net/specs/openid-connect-discovery-1\_0.html#ProviderConfigurationResponse](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse)
 * `SSO_SCOPES` ：可选，允许在需要时覆盖范围（默认 `"email profile"` ）
@@ -44,7 +44,7 @@ SSO 目前仅适用于 `:testing` 标签的镜像！\
 * `SSO_CLIENT_CACHE_EXPIRATION` ：缓存对发现端点的调用，持续时间（秒）， `0` 禁用（默认 `0` ）;
 * `SSO_DEBUG_TOKENS` ：记录所有令牌以便于调试（默认 `false` ，需要设置 `LOG_LEVEL=debug` 或 `LOG_LEVEL=info,vaultwarden::sso=debug` ）
 
-回调 URL： `https://your.domain/identity/connect/oidc-signin`
+回调 URL 为： `https://your.domain/identity/connect/oidc-signin`
 
 ## 账户和电子邮箱处理 <a href="#account-and-email-handling" id="account-and-email-handling"></a>
 
@@ -79,11 +79,40 @@ TRUNCATE TABLE sso_users;
 
 ## 客户端缓存 <a href="#client-cache" id="client-cache"></a>
 
+默认情况下，客户端缓存是禁用的，因为它会导致签名密钥出现问题。
+
+这意味着每次我们需要与提供程序交互（生成 authorize\_url、交换授权代码、刷新令牌）时，都要再次调用发现端点。这种情况并不理想，因此 `SSO_CLIENT_CACHE_EXPIRATION` 允许您配置一个适合您的提供程序的过期时间。
+
+如果 `IdToken` 验证失败，客户端缓存就会失效（但您会定期遇到一个倒霉的用户 ^^），这是防止过期配置错误的一种保护措施。
+
 ### Google 示例（滚动密钥） <a href="#google-example-rolling-keys" id="google-example-rolling-keys"></a>
+
+以 Goole 为例，在检查发现[端点](https://accounts.google.com/.well-known/openid-configuration)响应报头时，我们可以看到缓存控制的 `max-age` 被设置为 `3600` 秒。而 [jwk\_uri](https://www.googleapis.com/oauth2/v3/certs) 响应头通常包含一个更大值的 `max-age`。结合用户[反馈](https://github.com/ramosbugs/openidconnect-rs/issues/152)，我们可以得出结论：Goole 每周都会更新签名密钥。
+
+缓存过期时间设置过高会导致回报率降低，但使用 `600`（10 分钟）这样的过期时间应该会带来很多好处。
 
 ### 手动滚动密钥 <a href="#rolling-keys-manually" id="rolling-keys-manually"></a>
 
+如果要滚动已使用的密钥，请先添加一个新的密钥，但不要立即开始使用它签名。等待在 `SSO_CLIENT_CACHE_EXPIRATION` 中配置的延迟时间，然后就可以开始使用它签名了。
+
+正如 Google 示例中提到的，即使不打算滚动密钥，设置过高的值也会导致回报率降低。
+
 ## Keycloak
+
+默认访问令牌有效期可能只有 `5min`，请设置更大的值，否则会与同样设置为 `5min`的 Bitwarden 前端过期检测冲突。
+
+在领域级别：
+
+* `Realm settings / Tokens / Access Token Lifespan` 至少设置为 `10min`（使用 `kcadm.sh` 时的 `accessTokenLifespan` 设置）。
+* `Realm settings / Sessions / SSO Session Idle/Max` 用于刷新令牌的生命周期
+
+或者对于在 `Clients / Client details / Advanced / Advanced settings` 中的特定客户端，可以找到 `Access Token Lifespan` 和 `Client Session Idle/Max`。
+
+服务器配置，无特定设置：
+
+* `SSO_AUTHORITY=https://${domain}/realms/${realm_name}`
+* `sso_client_id`
+* `sso_client_secret`
 
 ### 测试 <a href="#testing" id="testing"></a>
 
