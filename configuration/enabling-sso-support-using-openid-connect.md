@@ -108,31 +108,105 @@ TRUNCATE TABLE sso_users;
 
 或者对于在 `Clients / Client details / Advanced / Advanced settings` 中的特定客户端，可以找到 `Access Token Lifespan` 和 `Client Session Idle/Max`。
 
-服务器配置，无特定设置：
+服务器配置，无特别的设置：
 
 * `SSO_AUTHORITY=https://${domain}/realms/${realm_name}`
-* `sso_client_id`
-* `sso_client_secret`
+* `SSO_CLIENT_ID`
+* `SSO_CLIENT_SECRET`
 
 ### 测试 <a href="#testing" id="testing"></a>
 
+如果您想运行 Keycloak 的测试实例，可以使用 Playwright docker-compose。有关使用方法的更多详情，请参阅 README.md。
+
 ## Auth0
+
+由于以下问题而无法运行 [https://github.com/ramosbugs/openidconnect-rs/issues/23](https://github.com/ramosbugs/openidconnect-rs/issues/23)（它们似乎不符合规范）。有一个功能标志 (`oidc-accept-rfc3339-timestamps`) 可以绕过这个问题，但您需要用它来编译服务器。目前还没有计划始终激活该功能或为 Auth0 制作特定的发行版。
 
 ## Authelia
 
+要获取 `refresh_token` 以扩展会话，您需要添加 `Offline_Access` 范围。
+
+配置看起来如下：
+
+* `SSO_SCOPES="email profile offline_access"`
+
 ## Authentik
+
+默认访问令牌有效期可能只有 `5min`，请设置更大的值，否则会与同样设置为 `5min`的 Bitwarden 前端过期检测冲突。
+
+要更改令牌有效期，请转到 `Applications / Providers / Edit / Advanced protocol settings`。
+
+从 2024.2 版本开始，您需要添加 `Offline_Access` 范围，并确保在 `Applications / Providers / Edit / Advanced protocol settings / Scopes` 中选中它（[文档](https://docs.goauthentik.io/docs/providers/oauth2/#authorization_code)）。
+
+服务器配置看起来应如下：
+
+* `SSO_AUTHORITY=https://${domain}/application/o/${application_name}/`：尾部的 `/` 很重要
+* `SSO_SCOPES="email profile offline_access"`
+* `SSO_CLIENT_ID`
+* `SSO_CLIENT_SECRET`
 
 ### 疑难解答 <a href="#troubleshooting" id="troubleshooting"></a>
 
+* `Failed to discover OpenID provider:`  / `Failed to parse server response：`（ 检测 OpenID 提供程序失败 / 解析服务器响应失败）：
+  * 首先确保可以访问添加了 `/.well-known/openid-configuration` 的 Authority 端点。
+  * 然后检查文件是否返回了 `id_token_signing_alg_values_supported: ["RS256"]`。如果返回 `HS256`，那么再次选择默认签名密钥应该能解决该问题（[步骤](https://github.com/Timshel/vaultwarden/issues/107#issuecomment-3200007338)）。
+* `Failed to contact token endpoint: Parse(Error ... Invalid JSON web token: found 5 parts`：该错误可能是由加密令牌 (JWE) 导致的，请确保未使用加密密钥（[步骤](https://github.com/dani-garcia/vaultwarden/issues/6230#issuecomment-3245196399)）。
+
 ## Casdoor
+
+自版本 [v1.639.0](https://github.com/casdoor/casdoor/releases/tag/v1.639.0) 起应该可以工作（已使用版本 [v1.686.0](https://github.com/casdoor/casdoor/releases/tag/v1.686.0) 进行测试）。创建应用程序时，您需要选择 `Token format -> JWT-Standard`。
+
+然后使用以下内容配置您的服务器：
+
+* `SSO_AUTHORITY=https://${provider_host}`
+* `SSO_CLIENT_ID`
+* `SSO_CLIENT_SECRET`
 
 ## GitLab
 
+使用以下内容在 Gitlab 设置中创建一个应用程序：
+
+* `redirectURI`：[https://your.domain/identity/connect/oidc-signin](https://your.domain/identity/connect/oidc-signin)
+* `Confidential`：`true`
+* `scopes`：`openid`, `profile`, `email`
+
+然后使用以下内容配置您的服务器：
+
+* `SSO_AUTHORITY=https://gitlab.com`
+* `SSO_CLIENT_ID`
+* `SSO_CLIENT_SECRET`
+
 ## Google Auth
+
+Google [文档](https://developers.google.com/identity/openid-connect/openid-connect?hl=zh-cn)。默认情况下，如果没有额外配置，您将没有 `refresh_token`，会话时间将限制为 1 小时。
+
+使用以下内容配置您的服务器：
+
+* `SSO_AUTHORITY=https://accounts.google.com`
+* `SSO_AUTHORIZE_EXTRA_PARAMS="access_type=offline&prompt=consent"`
+* `SSO_CLIENT_ID`
+* `SSO_CLIENT_SECRET`
 
 ## Kanidm
 
+只需设置 `SSO_AUTHORITY`、`SSO_CLIENT_ID` 和 `SSO_CLIENT_SECRET`，无需任何其他特别的设置。
+
 ## Microsoft Entra ID
+
+1. 在 [Entra ID](https://entra.microsoft.com/) 中按照 [Identity | Applications | App registrations](https://entra.microsoft.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade/quickStartType//sourceType/Microsoft_AAD_IAM) 创建「应用程序注册」。
+2. 在「应用程序注册」的「概述」中，您需要「目录（租户）ID」以用于 `SSO_AUTHORITY` 变量，「应用程序（客户端）ID」以用于 `SSO_CLIENT_ID` 值。
+3. 在「证书和秘钥」中创建「应用程序秘钥」，您需要「秘钥值」以用于 `SSO_CLIENT_SECRET`。
+4. 在「身份验证」中添加 https://warden.example.org/identity/connect/oidc-signin 作为「网页重定向 URI」。
+5. 在「API 权限」中，确保在「API / 权限名称」下列出 `profile`、`email` 和 `offline_access`（`offline_access` 是必需的，否则不会返回 `refresh_token`，请参阅 [https://github.com/MicrosoftDocs/azure-docs/issues/17134](https://github.com/MicrosoftDocs/azure-docs/issues/17134)）。
+
+只有 v2 端点符合 OpenID 规范，请参阅 [https://github.com/MicrosoftDocs/azure-docs/issues/38427](https://github.com/MicrosoftDocs/azure-docs/issues/38427) 和 [https://github.com/ramosbugs/openidconnect-rs/issues/122](https://github.com/ramosbugs/openidconnect-rs/issues/122)。
+
+您的服务器配置看起来应如下：
+
+* `SSO_AUTHORITY=https://login.microsoftonline.com/${Directory_ID}/v2.0` #租户
+* `SSO_SCOPES=openid profile offline_access User.Read`
+* `SSO_CLIENT_ID=${Application_ID}` #客户端
+* `SSO_CLIENT_SECRET=${Secret_Value}`
 
 ## Rauthy
 
