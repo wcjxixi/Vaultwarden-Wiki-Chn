@@ -36,18 +36,16 @@ DATABASE_URL=postgresql://user_name:user_password@db_host:5432/vaultwarden?appli
 
 从 SQLite 迁移到 PostgreSQL 或 MySQL的方法比较简单，但请注意，**使用此方法风险自负，并且强烈建议备份您的安装和数据**！这**不受支持**，也没有经过强有力的测试。
 
-1、为 Vaultwarden 创建一个新的（空）数据库：
-
-```sql
-CREATE DATABASE vaultwarden;
-```
-
-2、创建一个新的数据库用户并授予数据库权限：
+1、创建一个新的数据库用户：
 
 ```sql
 CREATE USER vaultwarden WITH ENCRYPTED PASSWORD 'yourpassword';
-GRANT CONNECT ON DATABASE vaultwarden TO vaultwarden;
-ALTER SCHEMA public OWNER TO vaultwarden;
+```
+
+2、为 Vaultwarden 创建一个新的（空）数据库，将该用户设置为数据库所有者：
+
+```sql
+CREATE DATABASE vaultwarden OWNER vaultwarden;
 ```
 
 3、配置 Vaultwarden 并启动它，以便 [diesel](http://diesel.rs/) 可以运行迁移并设置正确的模式。除此之外不要做别的。
@@ -56,7 +54,9 @@ ALTER SCHEMA public OWNER TO vaultwarden;
 
 5、安装 [pgloader](http://pgloader.io/) 。
 
-6、使用如下内容创建 vaultwarden.load 文件：
+6、对 SQLite 数据库[禁用 WAL](running-without-wal-enabled.md#id-1-disable-wal-on-old-db)。
+
+7、使用如下内容创建 vaultwarden.load 文件：
 
 ```sql
 load database
@@ -68,9 +68,9 @@ load database
 ;
 ```
 
-7、运行 `pgloader vaultwarden.load` 命令，您可能会看到一些警告，（不用理会）迁移会成功完成。
+8、运行 `pgloader vaultwarden.load` 命令，您可能会看到一些警告，（不用理会）迁移会成功完成。
 
-8、重新启动 Vaultwarden。
+9、重新启动 Vaultwarden。
 
 ## 从 MySQL 迁移到 PostgreSQL <a href="#migrating-from-mysql-to-postgresql" id="migrating-from-mysql-to-postgresql"></a>
 
@@ -78,18 +78,16 @@ load database
 
 请注意，**使用此方法风险自负，并且强烈建议备份您的安装和数据**！这**不受支持**，也没有经过强有力的测试。
 
-1、为 Vaultwarden 创建一个新的（空）数据库：
-
-```sql
-CREATE DATABASE vaultwarden;
-```
-
-2、创建一个新的数据库用户并授予数据库权限：
+1、创建一个新的数据库用户：
 
 ```sql
 CREATE USER vaultwarden WITH ENCRYPTED PASSWORD 'yourpassword';
-GRANT ALL ON DATABASE vaultwarden TO vaultwarden;
-GRANT all privileges ON database vaultwarden TO vaultwarden;
+```
+
+2、为 Vaultwarden 创建一个新的（空）数据库，将该用户设置为数据库所有者：
+
+```sql
+CREATE DATABASE vaultwarden OWNER vaultwarden;
 ```
 
 3、配置 Vaultwarden 并启动它，以便 [diesel](http://diesel.rs/) 可以运行迁移并设置正确的模式。除此之外不要做别的。
