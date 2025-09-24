@@ -1,10 +1,10 @@
-# 3.预构建二进制
+# 1.预构建二进制
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Pre-built-binaries)
 {% endhint %}
 
-Vaultwarden 目前并没有提供独立的二进制文件作为单独的下载，但您可以从基于 Alpine 的官方 Docker 镜像中提取独立的、静态链接的二进制文件。每个 Docker 镜像还包括一个匹配的网页密码库构建（与平台无关）。
+Vaultwarden 目前并没有提供独立的二进制文件作为单独的下载，但您可以从基于 Alpine 的官方 Docker 镜像中提取独立的、静态链接的二进制文件。每个 Docker 镜像还包括一个相匹配的网页密码库构建（与平台无关）。
 
 ## 在已安装 Docker 情况下提取二进制文件 <a href="#extracting-binaries-with-docker-installed" id="extracting-binaries-with-docker-installed"></a>
 
@@ -69,4 +69,4 @@ drwx------ 8 user user     4096 Feb  6 21:46 output/web-vault/
 * ARMv7：`./docker-image-extract -p linux/arm/v7 docker.io/vaultwarden/server:latest-alpine`
 * ARMv8 / AArch64：`./docker-image-extract -p linux/arm64 docker.io/vaultwarden/server:latest-alpine`
 
-或使用 github actions 从[此存储库](https://github.com/czyt/vaultwarden-binary)自动提取二进制文件。
+~~或使用 github actions 从~~[~~此存储库~~](https://github.com/czyt/vaultwarden-binary)~~自动提取二进制文件。~~
