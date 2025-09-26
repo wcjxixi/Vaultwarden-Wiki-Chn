@@ -25,8 +25,8 @@ SQLite 后端是最广泛被使用/测试的后端，除非有特殊需要使用
 * `latest` - 跟踪最新发布的版本（即标记有版本号）。推荐大多数用户使用这个标签，因为它通常是最稳定的。
 * `testing` - 跟踪源代码库的最新提交的版本。这个标签推荐给想要提前获取最新功能或增强功能的用户。测试版一般都很稳定，但不可避免它偶尔也会出现一些问题。
 * `x.y.z` (例如 `1.30.0`) - 代表一个特定的发布版本。
-* `lastest-alpine` - 该镜像功能上与 `latest` 相同，但它是基于 Alpine 而非 Debian，因此镜像更小，基础应用程序更新。选择 `latest` 或 `lastest-alpine` 主要是一个喜好问题。
-* `x.y.z-alpine` (例如 `1.30.0-alpine`) - 与 `lastest-alpine` 类似，但它代表一个特定的发布版本。
+* `latest-alpine` - 该镜像功能上与 `latest` 相同，但它是基于 Alpine 而非 Debian，因此镜像更小，基础应用程序更新。选择 `latest` 或 `latest-alpine` 主要是一个喜好问题。
+* `x.y.z-alpine` (例如 `1.30.0-alpine`) - 与 `latest-alpine` 类似，但它代表一个特定的发布版本。
 * ~~`latest-arm32v6` - 与 `latest` 相同，但明确表示为 `arm32v6` 镜像。目前，对于使用 Armv6 板卡（如 Raspberry Pi 1 和 Zero）的用户来说，需要使用此标签。否则，Docker 会尝试拉取 `arm32v7` 镜像，这将无法正常工作（参阅~~ [~~moby/moby#41017~~](https://github.com/moby/moby/issues/41017)~~）。~~
 * ~~`testing-arm32v6` - 与 `testing` 相同，但明确表示为 `arm32v6` 镜像。~~
 * ~~`x.y.z-arm32v6` (例如 `1.16.0-arm32v6`) - 与 `latest-arm32v6` 类似，但它代表一个特定的发布版本。~~
