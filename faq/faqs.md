@@ -4,7 +4,7 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/FAQs)
 {% endhint %}
 
-## Vaultwarden 是否与 Bitwarden 项目或 Bitwarden, Inc 有关？ <a href="#is-vaultwarden-associated-with-the-bitwarden-project-or-bitwarden" id="is-vaultwarden-associated-with-the-bitwarden-project-or-bitwarden"></a>
+## Vaultwarden 是否与 Bitwarden 项目或 Bitwarden, Inc 有关联？ <a href="#is-vaultwarden-associated-with-the-bitwarden-project-or-bitwarden" id="is-vaultwarden-associated-with-the-bitwarden-project-or-bitwarden"></a>
 
 简短的回答，**没有**。两个项目的开发人员之间有时会有联系，但没有合作。除此之外，Vaultwarden 项目仅使用 Bitwarden, Inc 提供的 Web Vault 并打了一些[补丁](https://github.com/dani-garcia/bw_web_builds/tree/master/patches)，以使其与我们的实现兼容。
 
