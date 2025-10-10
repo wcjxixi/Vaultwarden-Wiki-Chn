@@ -1,4 +1,4 @@
-# 3.Docker Traefik ModSecurity 设置
+# 6.Docker Traefik ModSecurity 设置
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Docker---Traefik---ModSecurity-Setup)
@@ -89,7 +89,7 @@ services:
     container_name: vaultwarden
     restart: unless-stopped
     environment:
-      WEBSOCKET_ENABLED: "true"
+      ENABLE_WEBSOCKET: "true"
       SENDS_ALLOWED: "true"
       PASSWORD_ITERATIONS: 500000
       SIGNUPS_ALLOWED: "true"
