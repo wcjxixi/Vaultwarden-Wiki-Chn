@@ -26,12 +26,14 @@ Vaultwarden 是一个用于本地搭建 Bitwarden 服务器的第三方 Docker �
 
 Vaultwarden 很轻量，对于不希望使用官方的占用大量资源的自托管部署而言，它是理想的选择。
 
-## Vaultwarden 与 Bitwarden 的区别 <a href="#difference-between-vaultwarden-and-official-bitwarden" id="difference-between-vaultwarden-and-official-bitwarden"></a>
+## Vaultwarden 与 Bitwarden 的区别 <a href="#difference-between-vaultwarden-and-bitwarden" id="difference-between-vaultwarden-and-bitwarden"></a>
 
 * 除不支持 Bitwarden 官方企业版的部分功能（详情见[这里](home.md#missing-features)）外，其他大部分功能均**免费**支持。并跟随官方版本保持及时更新。
 * Vaultwarden 比 Bitwarden 官方版更轻量。官方版使用 .Net 开发，使用 MSSQL 数据库，要求至少 2GB 内存；Vaultwarden 使用 Rust 编写，改用 SQLite 数据库（现在也支持 MySQL 和 PostgreSQL），运行时只需要 10M 内存，可以说对硬件基本没有要求。
 
-## 公共实例 <a href="#public-instances" id="public-instances"></a>
+## 免费公共实例 <a href="#public-instances" id="public-instances"></a>
+
+使用 Vaultwarden 搭建的免费公共实例。更多实例请自行使用关键词「Vaultwarden Web Vault」进行网页搜索。
 
 {% hint style="danger" %}
 注意：请自行决定使用这些公共实例所存在的安全风险。
@@ -40,3 +42,4 @@ Vaultwarden 很轻量，对于不希望使用官方的占用大量资源的自�
 * [https://bitwarden.garudalinux.org/](https://bitwarden.garudalinux.org)
 * [https://vault.tedomum.net/](https://vault.tedomum.net)
 * [https://passwd.hostux.net/](https://passwd.hostux.net)
+* [  https://bitwarden.scutech.com](https://bitwarden.scutech.com)
