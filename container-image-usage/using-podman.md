@@ -1,4 +1,4 @@
-# 5.使用 Podman
+# 4.使用 Podman
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Using-Podman)
@@ -149,3 +149,146 @@ ROCKET_PORT=8080
 如果主机出现故障或容器崩溃，则 systemd 服务文件应自动停止现有容器并将其重新启动。可以通过 `journalctl --user -u container-vaultwarden -t 100` 来定位错误。
 
 在大多数情况下，我们可以通过简单地增加服务文件中的 podman 命令的超时时间来解决我们看到的错误。
+
+### 充分利用 Vaultwarden 和数据库的 quadlet 文件
+
+应用程序和 PostgreSQL 数据库被容器化并放置在 pod 中。应用程序通过 Podman 网络功能使用自己的网络。持久卷用于数据库数据和 Vaultwarden 应用程序数据。部署容器使用的机密由 Podman 机密功能管理。
+
+```mermaid
+flowchart TD
+    A(vaultwarden.network) --- B(vaultwarden.pod)
+    B --- C(vaultwarden-app.container)
+    B --- D(vaultwarden-db.container)
+    C --- G[/env_file=/etc/vaultwarden/config/]
+    C --- E[(vaultwarden-app.volume)]
+    D --- F[(vaultwarden-db.volume)]
+    D --- H[/env_file=/home/vaultwarden/vaultwarden/vaultwarden-db.env/]
+    C --- I{{podman-secret: database_url, admin_token}}
+    D --- J{{podman-secret: postgres_password}}
+    style A fill:#ffec99
+    style B fill:#ffc9c9
+    style C fill:#b2f2bb
+    style D fill:#b2f2bb
+    style E fill:#a5d8ff
+    style F fill:#a5d8ff
+    style G fill:#f08c00
+    style H fill:#f08c00
+    style I fill:#d0bfff
+    style J fill:#d0bfff
+```
+
+该基础设施使用以下 quadlet 文件定义：
+
+* vaultwarden-app.container
+* vaultwarden-app.volume
+* vaultwarden-db.container
+* vaultwarden-db.volume
+* vaultwarden.network
+* vaultwarden.pod
+
+#### Pod 的定义 <a href="#definition-of-the-pod" id="definition-of-the-pod"></a>
+
+创建 `~/.config/containers/systemd/vaultwarden.pod` 文件：
+
+```systemd
+[Pod]
+PodName=vaultwarden
+Network=vaultwarden.network
+PublishPort=8080:8080
+```
+
+#### 网络的定义 <a href="#definition-of-the-network" id="definition-of-the-network"></a>
+
+创建 `~/.config/containers/systemd/vaultwarden.network` 文件：
+
+```systemd
+[Network]
+NetworkName=vaultwarden
+Gateway=192.168.220.1
+Subnet=192.168.220.0/24
+```
+
+#### 持久卷的定义 <a href="#definition-of-the-persistent-volumes" id="definition-of-the-persistent-volumes"></a>
+
+创建 `~/.config/containers/systemd/vaultwarden-app.volume` 文件：
+
+```systemd
+[Volume]
+VolumeName=vaultwarden-app
+```
+
+以及 `~/.config/containers/systemd/vaultwarden-db.volume` 文件：
+
+```systemd
+[Volume]
+VolumeName=vaultwarden-db
+```
+
+#### 容器的定义 <a href="#definition-of-the-containers" id="definition-of-the-containers"></a>
+
+创建 `~/.config/containers/systemd/vaultwarden-app.container` 文件：
+
+```systemd
+[Container]
+ContainerName=vaultwarden-app
+EnvironmentFile=/etc/vaultwarden/config
+HealthCmd=/healthcheck.sh
+HealthInterval=120s
+HealthRetries=10
+HealthTimeout=45s
+Image=docker.io/vaultwarden/server:1.34.3
+Pod=vaultwarden.pod
+Secret=database_url,type=env,target=DATABASE_URL
+Secret=admin_token,type=env,target=ADMIN_TOKEN
+Volume=vaultwarden-app.volume:/data
+[Unit]
+Requires=vaultwarden-db.service
+After=vaultwarden-db.service
+
+[Install]
+WantedBy=default.target
+```
+
+以及 `~/.config/containers/systemd/vaultwarden-db.container` 文件：
+
+```systemd
+[Container]
+ContainerName=vaultwarden-db
+EnvironmentFile=/home/vaultwarden/vaultwarden/vaultwarden-db.env
+HealthCmd=/usr/bin/pg_isready -q -d vaultwarden -U vaultwarden
+HealthInterval=120s
+HealthRetries=10
+HealthTimeout=45s
+Image=docker.io/library/postgres:17
+Pod=vaultwarden.pod
+Secret=postgres_password,type=env,target=POSTGRES_PASSWORD
+Volume=vaultwarden-db.volume:/var/lib/postgresql/data
+
+[Install]
+WantedBy=default.target
+```
+
+#### 配置 <a href="#configuration" id="configuration"></a>
+
+使用环境文件 `/etc/vaultwarden/config` 和 `~/vaultwarden/vaultwarden-db.env` 完成配置。
+
+在 `~/vaultwarden/vaultwarden-db.env` 文件中设置变量 `POSTGRES_USER` 和 `POSTGRES_DB` 。
+
+#### 机密 <a href="#secrets" id="secrets"></a>
+
+您需要定义机密 `postgres_password`、`database_url` 和 `admin_token`：
+
+我假设 `POSTGRES_USER=vaultwarden` 和 `POSTGRES_DB=vaultwarden`&#x20;
+
+```bash
+openssl rand -base64 32|podman secret create postgres_password -
+echo "postgres://vaultwarden:$(podman secret inspect --showsecret --format '{{.SecretData}}' postgres_password)@vaultwarden-db/vaultwarden"|podman secret create database_url -
+echo -n "MySecretPassword" | argon2 "$(openssl rand -base64 32)" -e -id -k 65540 -t 3 -p 4|podman secret create admin_token -
+```
+
+#### 部署 <a href="#deploy" id="deploy"></a>
+
+```bash
+systemctl --user daemon-reload
+systemctl --user start vaultwarden-pod.service
+```
