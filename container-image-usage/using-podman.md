@@ -175,6 +175,30 @@ flowchart TD
     style H fill:#f08c00
     style I fill:#d0bfff
     style J fill:#d0bfff
+
+```
+
+```mermaid
+flowchart TD
+    A(vaultwarden.network) --- B(vaultwarden.pod)
+    B --- C(vaultwarden-app.container)
+    B --- D(vaultwarden-db.container)
+    C --- G[/env_file=/etc/vaultwarden/config/]
+    C --- E[(vaultwarden-app.volume)]
+    D --- F[(vaultwarden-db.volume)]
+    D --- H[/env_file=/home/vaultwarden/vaultwarden/vaultwarden-db.env/]
+    C --- I{{podman-secret: database_url, admin_token}}
+    D --- J{{podman-secret: postgres_password}}
+    style A fill:#ffec99
+    style B fill:#ffc9c9
+    style C fill:#b2f2bb
+    style D fill:#b2f2bb
+    style E fill:#a5d8ff
+    style F fill:#a5d8ff
+    style G fill:#f08c00
+    style H fill:#f08c00
+    style I fill:#d0bfff
+    style J fill:#d0bfff
 ```
 
 该基础设施使用以下 quadlet 文件定义：
