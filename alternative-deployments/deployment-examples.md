@@ -12,7 +12,7 @@
 
 ### 使用 Ansible 进行高可用性 Vaultwarden 部署 <a href="#highly-available-vaultwarden-deployment-with-ansible" id="highly-available-vaultwarden-deployment-with-ansible"></a>
 
-* [https://github.com/sudoix/vaultwarden-ansible](https://github.com/sudoix/vaultwarden-ansible)
+* [https://github.com/InfraArtists/vaultwarden-ansible](https://github.com/InfraArtists/vaultwarden-ansible)
 
 此 Ansible 部署使用以下组件设置高可用的 Vaultwarden 集群：
 
