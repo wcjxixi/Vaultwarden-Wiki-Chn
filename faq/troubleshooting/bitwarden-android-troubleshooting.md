@@ -1,4 +1,4 @@
-# 1.Bitwarden Android 故障排除
+# 2.Bitwarden Android 故障排除
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Bitwarden-Android-troubleshooting)
@@ -37,7 +37,7 @@
 
 安装这些工具并能连接到您的手机后，继续下一步。
 
-## 实际的调试 <a href="#the-actual-debugging" id="the-actual-debugging"></a>
+## 实际调试 <a href="#the-actual-debugging" id="the-actual-debugging"></a>
 
 现在一切设置完成，我们开始提取日志，希望这些日志能够帮助追踪问题。
 
@@ -96,7 +96,7 @@ adb logcat --pid=$(adb shell pidof -s com.x8bit.bitwarden.dev)
 这会提供更多详细信息，对于追踪问题将非常有帮助。
 
 {% hint style="danger" %}
-**dev 客户端的输出包含由 Vaultwarden 服务器发送的响应，可能包含敏感数据！**
+**Dev 客户端的输出包含由 Vaultwarden 服务器发送的响应，可能包含敏感数据！**
 
 虽然大多数项目都进行了加密，但一些项目如电子邮箱地址或您的 Vaultwarden 域名则没有加密！
 
@@ -109,7 +109,7 @@ adb logcat --pid=$(adb shell pidof -s com.x8bit.bitwarden.dev)
 
 我们建议使用以下安全的方式之一分享这些文件：
 
-1. （ _**推荐**_ ）通过我们的 Matrix 聊天室：[ ![Matrix Chat](https://camo.githubusercontent.com/9394bf2c04102038a60688af025f04eab4cf6306f4241ac21a8f42927d403401/68747470733a2f2f696d672e736869656c64732e696f2f6d61747269782f7661756c7477617264656e3a6d61747269782e6f72672e7376673f7374796c653d666c61742d737175617265266c6f676f3d6d6174726978266c6f676f436f6c6f723d66666626636f6c6f723d3935334230302663616368655365636f6e64733d3134343030)](https://matrix.to/#/#vaultwarden:matrix.org)
+1. （ _**推首选**_）通过我们的 Matrix 聊天室：[ ![Matrix Chat](https://camo.githubusercontent.com/9394bf2c04102038a60688af025f04eab4cf6306f4241ac21a8f42927d403401/68747470733a2f2f696d672e736869656c64732e696f2f6d61747269782f7661756c7477617264656e3a6d61747269782e6f72672e7376673f7374796c653d666c61742d737175617265266c6f676f3d6d6174726978266c6f676f436f6c6f723d66666626636f6c6f723d3935334230302663616368655365636f6e64733d3134343030)](https://matrix.to/#/#vaultwarden:matrix.org)
 2. 通过电子邮件，发送到 [![security-contact](https://github.com/dani-garcia/vaultwarden/raw/refs/heads/main/.github/security-contact.gif)](https://github.com/dani-garcia/vaultwarden/raw/refs/heads/main/.github/security-contact.gif)，以提供详细信息
 3. 通过您自托管的 Vaultwarden 的带有密码的 **Send**（使用 Matrix 或电子邮件分享）
 
