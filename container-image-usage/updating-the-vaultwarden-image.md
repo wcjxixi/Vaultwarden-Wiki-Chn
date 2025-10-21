@@ -1,4 +1,4 @@
-# 3.更新 Vaultwarden 镜像
+# 5.更新 Vaultwarden 镜像
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Updating-the-vaultwarden-image)
@@ -88,9 +88,9 @@ $ sudo crontab -e
 
 ## 使用 DietPi 时的更新 <a href="#updating-when-using-dietpi" id="updating-when-using-dietpi"></a>
 
-[DietPi](https://dietpi.com/) 是一个轻量级的基于 Debian 的发行版（镜像），适用于各种设备，例如 Raspberry Pi、Odroid、NanoPi 等。它提供了一个软件脚本，用于安装包括 Vaultwarden 在内的各种程序。这样可以让用户免去对安装命令的烦恼。
+[DietPi](https://dietpi.com/) 是一个轻量级的基于 Debian 的发行版（镜像），适用于各种设备，例如 Raspberry Pi、Odroid、NanoPi 等。它提供了一个软件脚本，用于安装包括 Vaultwarden 在内的各种程序。这样可以让用户免去使用安装命令的烦恼。
 
-Vaultwarden 的更新必须由用户在 DietPi 上手动启动，没有自动安装方式，运行 `apt update && apt upgrade` 也不会执行更新。要更新之前使用 DietPi 的软件安装脚本安装的 Vautwarden 实例，请在 DietPi 的命令行中输入以下命令：
+Vaultwarden 的更新必须由用户在 DietPi 上手动启动，没有自动安装方式，运行 `apt update && apt upgrade` 也不会执行更新。要更新以前使用 DietPi 软件安装脚本安装的 Vautwarden 实例，请在 DietPi 的命令行中输入以下命令：
 
 ```sh
 dietpi-software reinstall 183
