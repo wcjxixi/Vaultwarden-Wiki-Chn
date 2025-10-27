@@ -282,8 +282,8 @@ WantedBy=default.target
 
 ```bash
 openssl rand -base64 32|podman secret create postgres_password -
-echo "postgres://vaultwarden:$(podman secret inspect --showsecret --format '{{.SecretData}}' postgres_password)@vaultwarden-db/vaultwarden"|podman secret create database_url -
-echo -n "MySecretPassword" | argon2 "$(openssl rand -base64 32)" -e -id -k 65540 -t 3 -p 4|podman secret create admin_token -
+echo "postgres://vaultwarden:$(podman secret inspect --showsecret --format '{{.SecretData}}' postgres_password)@vaultwarden-db/vaultwarden" | tr -d '\n' | podman secret create database_url -
+echo -n "MySecretPassword" | argon2 "$(openssl rand -base64 32)" -e -id -k 65540 -t 3 -p 4| tr -d '\n' | podman secret create admin_token -
 ```
 
 #### 部署 <a href="#deploy" id="deploy"></a>
