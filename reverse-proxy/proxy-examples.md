@@ -153,7 +153,7 @@ $HTTP["host"] == "vault.example.net" {
 
 ```nginx
 server.modules += (
-"mod_openssl"
+"mod_openssl",
 "mod_redirect"
 )
 
