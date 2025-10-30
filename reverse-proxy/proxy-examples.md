@@ -149,9 +149,12 @@ $HTTP["host"] == "vault.example.net" {
 
 在这个示例中，通过 [https://shared.example.tld/vault/](https://shared.example.tld/vault/) 访问 Vaultwarden。如果您想使用其他子路径，如 `vaultwarden` 或 `secret-vault`，则应更修改下面示例中的 `vault` 以匹配。
 
+您还需要在 `DOMAIN` 环境变量的值中包含子路径（例如 `DOMAIN: "https://shared.example.tld/vault"`），才能使代理正常工作。
+
 ```nginx
 server.modules += (
 "mod_openssl"
+"mod_redirect"
 )
 
 $SERVER["socket"] == ":443" {  
@@ -164,7 +167,7 @@ $SERVER["socket"] == ":443" {
 $SERVER["socket"] == ":80" {  
         $HTTP["host"] =~ "shared.example.tld" {  
          url.redirect = ( "^/(.*)" => "https://shared.example.tld/$1" )  
-          server.name                 = "shared.example.tld"   
+         server.name = "shared.example.tld"   
         }  
 }
 
