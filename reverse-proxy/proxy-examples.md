@@ -165,10 +165,10 @@ $SERVER["socket"] == ":443" {
 
 # Redirect HTTP requests (port 80) to HTTPS (port 443)
 $SERVER["socket"] == ":80" {  
-        $HTTP["host"] =~ "shared.example.tld" {  
+    $HTTP["host"] =~ "shared.example.tld" {  
          url.redirect = ( "^/(.*)" => "https://shared.example.tld/$1" )  
          server.name = "shared.example.tld"   
-        }  
+    }  
 }
 
 server.modules += ( "mod_proxy" )
