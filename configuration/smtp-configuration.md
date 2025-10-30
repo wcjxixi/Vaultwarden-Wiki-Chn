@@ -15,6 +15,10 @@
 * `SMTP_SECURITY=force_tls` 等同于 `SMTP_EXPLICIT_TLS=true`
 {% endhint %}
 
+{% hint style="info" %}
+若您选择不配置 SMTP，当您通过网页密码库、浏览器扩展和移动 App 以外的方式（如 Bitwarden CLI）登录时，Vaultwarden 可能无法发送验证电子邮件，并可能拒绝验证请求。要规避此行为，请在您的账户中设置双重验证。请参阅：[https://github.com/dani-garcia/vaultwarden/discussions/6410](https://github.com/dani-garcia/vaultwarden/discussions/6410)
+{% endhint %}
+
 ***
 
 您可以配置 Vaultwarden 通过 SMTP 代理来发送电子邮件：
