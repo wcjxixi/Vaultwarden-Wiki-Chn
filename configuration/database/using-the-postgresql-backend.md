@@ -34,7 +34,9 @@ DATABASE_URL=postgresql://user_name:user_password@db_host:5432/vaultwarden?appli
 
 ## **从 SQLite 迁移到 PostgreSQL** <a href="#migrating-from-sqlite-to-postgresql" id="migrating-from-sqlite-to-postgresql"></a>
 
-从 SQLite 迁移到 PostgreSQL 或 MySQL的方法比较简单，但请注意，**使用此方法风险自负，并且强烈建议备份您的安装和数据**！这**不受支持**，也没有经过强有力的测试。
+> 使用 SQLite3 3.37.2、PostgreSQL 16.10 和 Vaultwarden 1.34.3 测试
+
+从 SQLite 迁移到 PostgreSQL 或 MySQL 的方法比较简单，但请注意，**使用此方法风险自负，并且强烈建议备份您的安装和数据**！这**不受支持**，也没有经过强有力的测试。
 
 1、创建一个新的数据库用户：
 
@@ -56,7 +58,7 @@ CREATE DATABASE vaultwarden OWNER vaultwarden;
 
 6、对 SQLite 数据库[禁用 WAL](running-without-wal-enabled.md#id-1-disable-wal-on-old-db)。
 
-7、使用如下内容创建 vaultwarden.load 文件：
+7、使用如下内容创建 `vaultwarden.load` 文件：
 
 ```sql
 load database
@@ -96,7 +98,7 @@ CREATE DATABASE vaultwarden OWNER vaultwarden;
 
 5、安装 [pgloader](http://pgloader.io/)。确保您使用的是最新版本的 pgloader，官方的 Ubuntu 存储库有一个过时的版本，它不能与新版本的 PostgreSQL 一起正常工作。最新版本可以从 [PostgreSQL Apt 存储库](https://www.postgresql.org/download/linux/ubuntu/)获取。
 
-6、使用如下内容创建 vaultwarden.load 文件：
+6、使用如下内容创建 `vaultwarden.load` 文件：
 
 ```sql
 load database
@@ -110,6 +112,6 @@ load database
 
 _如果您的连接需要 SSL，可以选择将 `?sslmode=require` 添加到 PostgreSQL 连接字符串中。_
 
-7、运行 `pgloader vaultwarden.load` 命令，然后您可能会看到一些警告，（不用理会）迁移会成功完成。如果有错误，很可能是您的 pgloader 版本过时了！
+7、运行 `pgloader vaultwarden.load` 命令，您可能会看到一些警告，（不用理会）迁移会成功完成。如果有错误，很可能是您的 pgloader 版本过时了！
 
 8、重新启动 Vaultwarden。
