@@ -14,7 +14,7 @@
 
 如果您想为您的网站条目添加自定义图标，您可以将它们放置在 `ICON_CACHE_FOLDER` 位置（默认为 `data/icon_cache` ）。命名规则基于条目的指定 IP 或完全限定域名 (FQDN)，即 Bitwarden 在[此图示](https://help.ppgg.in/password-manager/autofill/troubleshoot-autofill/forming-uris-for-autofill#match-detection-options)中叫做 Hostname 的字段：
 
-{% embed url="https://github.com/user-attachments/assets/47bdf0f1-46f9-41af-8030-d0f860e2a056" %}
+{% embed url="https://private-user-images.githubusercontent.com/509385/458084034-47bdf0f1-46f9-41af-8030-d0f860e2a056.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjI2NzQyNDksIm5iZiI6MTc2MjY3Mzk0OSwicGF0aCI6Ii81MDkzODUvNDU4MDg0MDM0LTQ3YmRmMGYxLTQ2ZjktNDFhZi04MDMwLWQwZjg2MGUyYTA1Ni5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMTA5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTEwOVQwNzM5MDlaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0yM2JmNTdlYjI1ODBhY2YxMWNlOGM2YThjMDMzYmFkNGRjOWQxNjZmMDQyYjhiZmE1YzlhNjc5ZTExYTM4NmExJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.rTshrHCrBceXaotiY-LZujnC61dct0L02FCYQumWo-M" %}
 
 这意味着在请求图标时将忽略方案和端口，因此您无法根据端口号提供不同的图标。
 
@@ -42,4 +42,4 @@
 
 默认情况下，出于安全考虑，Vaultwarden 会[屏蔽其认为非全局（即私有网络）的某些 IP 范围](https://github.com/dani-garcia/vaultwarden/blob/9059437c35e35ab8eb7d1d4716bf13eec0a4ee64/src/util.rs#L776-L819)。您还可以通过配置 `HTTP_REQUEST_BLOCK_REGEX` 来进一步配置 Vaultwarden 应额外屏蔽的主机。
 
-如果您设置了 `ICON_CACHE_NEGTTL=0`，则会禁用 miss 指示器过期，这意味着 Vaultwarden 将始终为指定的域名使用默认的备用图标。
+如果您设置了 `ICON_CACHE_NEGTTL=0`，则会禁用 `.miss` 指示器文件过期，这意味着如果存在 `.miss` 文件，Vaultwarden 将始终为指定的域名使用默认备用图标。
