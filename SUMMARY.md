@@ -70,7 +70,7 @@
   * [1.从 Keepass 或 KeepassX 导入数据](other-information/importing-data-from-keepass-or-keepassx.md)
   * [2.更改持久性数据位置](other-information/changing-persistent-data-location.md)
   * [3.从 LDAP 同步用户](other-information/syncing-users-from-ldap.md)
-  * [4.使用 Cloudflare DNS 的 Caddy 2.x](other-information/caddy-2.x-with-cloudflare-dns.md)
+  * [4.Cloudflare DNS Caddy 2.x](other-information/caddy-2.x-with-cloudflare-dns.md)
   * [5.转储示例](other-information/logrotate-example.md)
   * [\*使用非 root 用户运行 docker 容器](other-information/running-docker-container-with-non-root-user.md)
   * [\*使私有 CA 和自签名证书兼容 Chrome](other-information/private-ca-and-self-signed-certs-that-work-with-chrome.md)
