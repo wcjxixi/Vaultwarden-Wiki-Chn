@@ -58,7 +58,7 @@ GET 请求示例：
 
 ### 以非 root 用户运行 <a href="#run-as-a-non-root-user" id="run-as-a-non-root-user"></a>
 
-Vaultwarden Docker 镜像被配置为默认以 root 用户的身份运行容器进程。这允许 Vaultwarden 读取/写入 [bind-mounted](https://docs.docker.com/storage/bind-mounts/) 到容器中的任何数据，而无需权限问题，即使这些数据是由另一个用户（例如，你在 Docker 主机上的用户账户）拥有的。
+Vaultwarden Docker 镜像被配置为默认以 `root` 用户的身份运行容器进程。这允许 Vaultwarden 读取/写入 [bind-mounted](https://docs.docker.com/storage/bind-mounts/) 到容器中的任何数据，而无需权限问题，即使这些数据是由另一个用户（例如，您在 Docker 主机上的用户账户）拥有的。
 
 默认配置在安全性和可用性之间取得了很好的平衡 -- 在一个非特权 Docker 容器中以 root 身份运行，本身就提供了合理的隔离级别，同时也让那些不是非常精通如何在 Linux 上管理所有权/权限的用户更容易进行设置。然而，作为通用策略，从安全的角度来说，以所需的最低权限运行进程是更好的；对于用 Rust 等内存安全语言编写的程序来说，这一点就不那么重要了，但请注意，Vaultwarden 也使用了一些用 C 语言编写的库代码（例如 SQLite、OpenSSL、MySQL、PostgreSQL 等）。
 
@@ -77,6 +77,12 @@ services:
     container_name: bitwarden
     user: 1000:1000
     ... other configuration ...c
+```
+
+如果您使用 podman 作为无根用户运行 Vaultwarden，则主机（例如 1000:1000）上用户的 uid/gid将默认映射到容器 (0:0) 中的 root。您可以使用 `--userns keep-id` 选项进一步限制权限，该选项会将容器用户映射到与主机（例如 1000:1000）相同的 uid/gid 。
+
+```sh
+podman run --userns keep-id [other args] vaultwarden/server:latest
 ```
 
 在许多 Linux 发行版中，默认用户的 uid/gid 为 1000（运行 `id` 命令进行验证），所以如果您想在不换成其他用户的情况下轻松地访问您的 Vaultwarden 数据，这是一个很好的值，但你可以根据需要调整 uid/gid。请注意，您很可能需要指定一个数字 uid/gid，因为 Vaultwarden 容器不共享用户/组名到 uid/gid 的相同映射（例如，将容器中的 `/etc/passwd` 和 `/etc/group` 文件与 Docker 主机上的文件对比）。
