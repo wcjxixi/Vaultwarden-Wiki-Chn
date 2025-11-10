@@ -160,5 +160,4 @@ cd ~/backups || exit
 find . -type f -name '*.zip' ! -mtime -1 -exec rm {} +
 ```
 
-> 请始终测试恢复。要恢复，请将存档解压缩回 `/opt/vw-data` ，替换之前的数据目录。
-
+**请始终测试恢复**。要恢复，请将存档解压缩回 `/opt/vw-data`  替换之前的数据目录。
