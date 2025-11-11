@@ -274,7 +274,7 @@ Google [文档](https://developers.google.com/identity/openid-connect/openid-con
 
 在处理从浏览器（用于 SSO 登录）到应用程序的重定向方面存在一些问题。
 
-### Chrome
+## Chrome
 
 一些用户报告有说存在[问题](https://github.com/bitwarden/clients/issues/12929)。
 
