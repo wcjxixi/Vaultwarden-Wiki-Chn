@@ -44,15 +44,15 @@ DATABASE_URL=postgresql://user_name:user_password@db_host:5432/vaultwarden?appli
 CREATE USER vaultwarden WITH ENCRYPTED PASSWORD 'yourpassword';
 ```
 
-2、为 Vaultwarden 创建一个新的（空）数据库，将该用户设置为数据库所有者：
+2、为 Vaultwarden 创建一个新的（空）数据库，将该用户设置为数据库的所有者：
 
 ```sql
 CREATE DATABASE vaultwarden OWNER vaultwarden;
 ```
 
-3、配置 Vaultwarden 并启动它，以便 [diesel](http://diesel.rs/) 可以运行迁移并设置正确的模式。除此之外不要做别的。
+3、配置一个（新） Vaultwarden 实例然后启动它，以便 [diesel](http://diesel.rs/) 可以运行迁移并设置正确的模式。除此之外不要做别的。
 
-4、停止 Vaultwarden。
+4、停止新的 Vaultwarden 实例。
 
 5、安装 [pgloader](http://pgloader.io/) 。
 
@@ -86,15 +86,15 @@ load database
 CREATE USER vaultwarden WITH ENCRYPTED PASSWORD 'yourpassword';
 ```
 
-2、为 Vaultwarden 创建一个新的（空）数据库，将该用户设置为数据库所有者：
+2、为 Vaultwarden 创建一个新的（空）数据库，将该用户设置为数据库的所有者：
 
 ```sql
 CREATE DATABASE vaultwarden OWNER vaultwarden;
 ```
 
-3、配置 Vaultwarden 并启动它，以便 [diesel](http://diesel.rs/) 可以运行迁移并设置正确的模式。除此之外不要做别的。
+3、配置一个（新） Vaultwarden 实例然后启动它，以便 [diesel](http://diesel.rs/) 可以运行迁移并设置正确的模式。除此之外不要做别的。
 
-4、停止 Vaultwarden。
+4、停止新的 Vaultwarden 实例。
 
 5、安装 [pgloader](http://pgloader.io/)。确保您使用的是最新版本的 pgloader，官方的 Ubuntu 存储库有一个过时的版本，它不能与新版本的 PostgreSQL 一起正常工作。最新版本可以从 [PostgreSQL Apt 存储库](https://www.postgresql.org/download/linux/ubuntu/)获取。
 
