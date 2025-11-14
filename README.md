@@ -24,7 +24,7 @@
 
 Vaultwarden 是一个用于本地搭建 Bitwarden 服务器的第三方 Docker 项目。仅在部署的时候使用 Vaultwarden 镜像，桌面端、移动端、浏览器扩展等客户端均使用官方 Bitwarden 客户端。
 
-Vaultwarden 很轻量，对于不希望使用官方的占用大量资源的自托管部署而言，它是理想的选择。
+Vaultwarden 很轻量，对于不希望使用占用大量资源的官方 Bitwarden 自托管部署而言，它是理想的选择。
 
 ## Vaultwarden 与 Bitwarden 的区别 <a href="#difference-between-vaultwarden-and-bitwarden" id="difference-between-vaultwarden-and-bitwarden"></a>
 
@@ -42,4 +42,4 @@ Vaultwarden 很轻量，对于不希望使用官方的占用大量资源的自�
 * [https://bitwarden.garudalinux.org/](https://bitwarden.garudalinux.org)
 * [https://vault.tedomum.net/](https://vault.tedomum.net)
 * [https://passwd.hostux.net/](https://passwd.hostux.net)
-* [  https://bitwarden.scutech.com](https://bitwarden.scutech.com)
+* [https://bitwarden.scutech.com](https://bitwarden.scutech.com)
