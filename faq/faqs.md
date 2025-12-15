@@ -20,9 +20,9 @@
 
 [https://github.com/dani-garcia/vaultwarden/wiki/Bitwarden-clients-troubleshooting](https://github.com/dani-garcia/vaultwarden/wiki/Bitwarden-clients-troubleshootinghttps://github.com/dani-garcia/vaultwarden/wiki/Bitwarden-clients-troubleshooting)
 
-## 我对 Web-Vault（或任何其他客户端）有一个功能请求 <a href="#i-have-a-feature-request-for-the-web-vault-or-any-other-client" id="i-have-a-feature-request-for-the-web-vault-or-any-other-client"></a>
+## 我对 web-vault（或任何其他客户端）有一个功能请求 <a href="#i-have-a-feature-request-for-the-web-vault-or-any-other-client" id="i-have-a-feature-request-for-the-web-vault-or-any-other-client"></a>
 
-不幸的是我们不能在这里提供帮助。Vaultwarden 项目没有，也可能永远不会开发自定义客户端。我们尝试尽可能接近上游客户端的工作方式，并且由于我们只能向 Web-Vault 添加一些内容，这甚至可能会破坏其他客户端或导致与上游 Web-Vault 保持最新状态的问题。因此，我们不会向 Vaultwarden 添加任何需要在客户端处理的特殊或独特功能。
+不幸的是我们不能在这里提供帮助。Vaultwarden 项目没有，也可能永远不会开发自定义客户端。我们尝试尽可能接近上游客户端的工作方式，并且由于我们只能向 web-vault 添加一些内容，这甚至可能会破坏其他客户端或导致与上游 web-vault 保持最新状态的问题。因此，我们不会向 Vaultwarden 添加任何需要在客户端处理的特殊或独特功能。
 
 ## Vaultwarden 的下一个版本是什么时候？您能给出一个 ETA 吗？ <a href="#when-is-the-next-release-of-vaultwarden-can-you-give-an-eta" id="when-is-the-next-release-of-vaultwarden-can-you-give-an-eta"></a>
 
