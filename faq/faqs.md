@@ -12,6 +12,18 @@
 
 本项目不托管任何公共 Vaultwarden 实例，我们也不提倡使用任何此类网站。参见 [#3233](https://github.com/dani-garcia/vaultwarden/discussions/3233#discussioncomment-4917141) [#4142](https://github.com/dani-garcia/vaultwarden/discussions/4142) [#4367](https://github.com/dani-garcia/vaultwarden/discussions/4367#discussioncomment-8529763)
 
+## 我的 Bitwarden 客户端有问题，我需要在哪里报告这问题？ <a href="#i-have-an-issue-with-a-bitwarden-client-where-do-i-need-to-report-this" id="i-have-an-issue-with-a-bitwarden-client-where-do-i-need-to-report-this"></a>
+
+如果您使用 Vaultwarden 作为任何官方 Bitwarden 客户端的服务器，您将无法在 Bitwarden 报告此问题，因为他们一看到您使用 Vaultwarden 就会关闭该问题，这确实是合理的做法。
+
+要确定问题是服务器端还是客户端，请阅读以下 wiki 页面，以帮助 Vaultwarden 和 Bitwarden 确定问题以及在哪里和如何报告问题。
+
+[https://github.com/dani-garcia/vaultwarden/wiki/Bitwarden-clients-troubleshooting](https://github.com/dani-garcia/vaultwarden/wiki/Bitwarden-clients-troubleshootinghttps://github.com/dani-garcia/vaultwarden/wiki/Bitwarden-clients-troubleshooting)
+
+## 我对 Web-Vault（或任何其他客户端）有一个功能请求 <a href="#i-have-a-feature-request-for-the-web-vault-or-any-other-client" id="i-have-a-feature-request-for-the-web-vault-or-any-other-client"></a>
+
+不幸的是我们不能在这里提供帮助。Vaultwarden 项目没有，也可能永远不会开发自定义客户端。我们尝试尽可能接近上游客户端的工作方式，并且由于我们只能向 Web-Vault 添加一些内容，这甚至可能会破坏其他客户端或导致与上游 Web-Vault 保持最新状态的问题。因此，我们不会向 Vaultwarden 添加任何需要在客户端处理的特殊或独特功能。
+
 ## Vaultwarden 的下一个版本是什么时候？您能给出一个 ETA 吗？ <a href="#when-is-the-next-release-of-vaultwarden-can-you-give-an-eta" id="when-is-the-next-release-of-vaultwarden-can-you-give-an-eta"></a>
 
 Vaultwarden 没有发布时间表。如果维护者有时间并认为有必要发布新版本，那么可以立即发布，但鉴于这是一个由人们利用业余时间完成的项目，下一次发布可能需要几周甚至几个月的时间。

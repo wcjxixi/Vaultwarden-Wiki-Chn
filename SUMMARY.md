@@ -9,6 +9,7 @@
   * [故障排除](faq/troubleshooting/README.md)
     * [1.日志记录](faq/troubleshooting/logging.md)
     * [2.Bitwarden Android 故障排除](faq/troubleshooting/bitwarden-android-troubleshooting.md)
+    * [3.Bitwarden 客户端故障排除](faq/troubleshooting/bitwarden-clients-troubleshooting.md)
 * [容器镜像的使用](container-image-usage/README.md)
   * [1.容器镜像的选择](container-image-usage/which-container-image-to-use.md)
   * [2.启动容器](container-image-usage/starting-a-container.md)
