@@ -39,6 +39,7 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 * [目录连接器](https://help.ppgg.in/admin-console/user-management/directory-connector/about-directory-connector)支持
 * [管理员密码重置](https://help.ppgg.in/admin-console/user-management/account-recovery)
 * 用于移动客户端 (Android/iOS) 的[实时同步](https://bitwarden.com/blog/live-sync/)（推送通知）
+* [单点登录 (SSO)](https://help.ppgg.in/admin-console/login-with-sso/about-login-with-sso)，请参阅[文档](configuration/enabling-sso-support-using-openid-connect.md)
 * 某些企业策略：
   * [要求两步登录](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#require-two-step-login)
   * [主密码要求](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#master-password-requirements)
@@ -48,12 +49,6 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
   * [移除个人密码库](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#remove-individual-vault)
   * [禁用 Send](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#disable-send)
   * [Send 选项](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#send-options)
-
-## 测试的功能 <a href="#testing-features" id="testing-features"></a>
-
-`testing` docker 映像中的可用功能：
-
-* [单点登录 (SSO)](https://help.ppgg.in/admin-console/login-with-sso/about-login-with-sso)，请参阅[文档](configuration/enabling-sso-support-using-openid-connect.md)
 
 ## 缺少的功能 <a href="#missing-features" id="missing-features"></a>
 

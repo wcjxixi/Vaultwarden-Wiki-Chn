@@ -1,4 +1,4 @@
-# 4.启用管理页面
+# 2.启用管理页面
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-admin-page)
@@ -113,7 +113,7 @@ echo -n "MySecretPassword" | argon2 "$(openssl rand -base64 32)" -e -id -k 19456
     ADMIN_TOKEN: $$argon2id$$v=19$$m=19456,t=2,p=1$$UUZxK1FZMkZoRHFQRlVrTXZvS0E3bHpNQW55c2dBN2NORzdsa0Nxd1JhND0$$cUoId+JBUsJutlG4rfDZayExfjq4TCt48aBc9qsc3UI
 ```
 
-这可以自动完成，例如通过添加 `| sed 's#$#$$#g'` 到上面的 `argon2` 命令行的末尾。
+这可以自动完成，例如通过添加 `| sed 's#\$#\$\$#g'` 到上面的 `argon2` 命令行的末尾。
 
 否则您将收到警告消息并且变量将无法正确设置：
 

@@ -4,15 +4,6 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-SSO-support-using-OpenId-Connect)
 {% endhint %}
 
-{% hint style="danger" %}
-‼️ ‼️ ‼️
-
-SSO 目前仅适用于 `:testing` 标签的镜像！\
-当前的稳定版 `v1.34.3` **不包含** SSO 功能。
-
-‼️ ‼️ ‼️
-{% endhint %}
-
 ## 使用 OpenId Connect 的 SSO <a href="#sso-using-openid-connect" id="sso-using-openid-connect"></a>
 
 要使用外部身份验证源，您的 SSO 需要支持 OpenID Connect：
@@ -147,7 +138,7 @@ TRUNCATE TABLE sso_users;
 
 ### 疑难解答 <a href="#troubleshooting" id="troubleshooting"></a>
 
-* `Failed to discover OpenID provider:`  / `Failed to parse server response：`（ 检测 OpenID 提供程序失败 / 解析服务器响应失败）：
+* `Failed to discover OpenID provider`  / `Failed to parse server response`（ 检测 OpenID 提供程序失败 / 解析服务器响应失败）：
   * 首先确保可以访问添加了 `/.well-known/openid-configuration` 的 Authority 端点。
   * 然后检查文件是否返回了 `id_token_signing_alg_values_supported: ["RS256"]`。如果返回 `HS256`，那么再次选择默认签名密钥应该能解决该问题（[步骤](https://github.com/Timshel/vaultwarden/issues/107#issuecomment-3200007338)）。
 * `Failed to contact token endpoint: Parse(Error ... Invalid JSON web token: found 5 parts`：该错误可能是由加密令牌 (JWE) 导致的，请确保未使用加密密钥（[步骤](https://github.com/dani-garcia/vaultwarden/issues/6230#issuecomment-3245196399)）。
@@ -223,7 +214,7 @@ Google [文档](https://developers.google.com/identity/openid-connect/openid-con
 
 ## Slack
 
-您将需要在[https://api.slack.com/apps/](https://api.slack.com/apps/)中创建一个 App。
+您需要在 [https://api.slack.com/apps/](https://api.slack.com/apps/) 中创建一个 App。
 
 看起来返回的 `access_token` 不是 JWT 格式，并且没有使用它发送到期日期。因此，您需要使用默认的会话生命周期。
 
