@@ -180,7 +180,13 @@ Google [文档](https://developers.google.com/identity/openid-connect/openid-con
 
 ## Kanidm
 
-只需设置 `SSO_AUTHORITY`、`SSO_CLIENT_ID` 和 `SSO_CLIENT_SECRET`，无需任何其他特别的设置。
+无需特别的配置。
+
+使用以下内容配置您的服务器：
+
+* `SSO_AUTHORITY=https://your.domain/oauth2/openid/${SSO_CLIENT_ID}`
+* `SSO_CLIENT_ID`
+* `SSO_CLIENT_SECRET`
 
 ## Microsoft Entra ID
 
