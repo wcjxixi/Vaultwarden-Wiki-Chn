@@ -169,7 +169,7 @@ TRUNCATE TABLE sso_users;
 
 ## Google Auth
 
-Google [文档](https://developers.google.com/identity/openid-connect/openid-connect?hl=zh-cn)。默认情况下，如果没有额外配置，您将没有 `refresh_token`，会话时间将限制为 1 小时。
+Google [文档](https://developers.google.com/identity/openid-connect/openid-connect?hl=zh-cn)。默认情况下，如果没有额外[配置](https://developers.google.com/identity/protocols/oauth2/web-server#creatingclient)，您将没有 `refresh_token`，会话时间将限制为 1 小时。
 
 使用以下内容配置您的服务器：
 
