@@ -62,7 +62,7 @@ TRUNCATE TABLE sso_users;
 
 ### 对于 `SSO_ALLOW_UNKNOWN_EMAIL_VERIFICATION`  <a href="#on-sso_allow_unknown_email_verification" id="on-sso_allow_unknown_email_verification"></a>
 
-如果提供程序不发送电子邮件的验证状态（`email_verified` [claim](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims)），则需要激活此设置。
+如果提供程序不发送电子邮箱的验证状态（`email_verified` [claim](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims)），则需要激活此设置。
 
 如果设置为 `SSO_SIGNUPS_MATCH_EMAIL=true`（默认值），那么即使用户不控制电子邮箱地址，也可以与现有的非 SSO 账户关联。这样，用户就可以访问敏感信息，但仍需要主密码才能读取密码。
 
@@ -74,7 +74,7 @@ TRUNCATE TABLE sso_users;
 
 这意味着每次我们需要与提供程序交互（生成 authorize\_url、交换授权代码、刷新令牌）时，都要再次调用发现端点。这种情况并不理想，因此 `SSO_CLIENT_CACHE_EXPIRATION` 允许您配置一个适合您的提供程序的过期时间。
 
-如果 `IdToken` 验证失败，客户端缓存就会失效（但您会定期遇到一个倒霉的用户 ^^），这是防止过期配置错误的一种保护措施。
+如果 `IdToken` 验证失败，客户端缓存就会失效（但您会定期遇到一个倒霉的用户 ^^），这是防止过期时间配置错误的一种保护措施。
 
 ### Google 示例（滚动密钥） <a href="#google-example-rolling-keys" id="google-example-rolling-keys"></a>
 
@@ -90,7 +90,7 @@ TRUNCATE TABLE sso_users;
 
 ## Keycloak
 
-默认访问令牌有效期可能只有 `5min`，请设置更大的值，否则会与同样设置为 `5min`的 Bitwarden 前端过期检测冲突。
+默认访问令牌生命周期可能只有 `5min`，请设置更大的值，否则会与同样设置为 `5min`的 Bitwarden 前端过期检测冲突。
 
 在领域级别：
 
