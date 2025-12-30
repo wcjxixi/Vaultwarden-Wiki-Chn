@@ -107,11 +107,11 @@ TRUNCATE TABLE sso_users;
 
 ### 测试 <a href="#testing" id="testing"></a>
 
-如果您想运行 Keycloak 的测试实例，可以使用 Playwright docker-compose。有关使用方法的更多详情，请参阅 README.md。
+如果您想运行 Keycloak 的测试实例，可以使用 Playwright [docker-compose](https://github.com/dani-garcia/vaultwarden/blob/main/playwright/docker-compose.yml)。具体使用方法请参阅 [README.md](https://github.com/dani-garcia/vaultwarden/blob/main/playwright/README.md#openid-connect-test-setup)。
 
 ## Auth0
 
-由于以下问题而无法运行 [https://github.com/ramosbugs/openidconnect-rs/issues/23](https://github.com/ramosbugs/openidconnect-rs/issues/23)（它们似乎不符合规范）。有一个功能标志 (`oidc-accept-rfc3339-timestamps`) 可以绕过这个问题，但您需要用它来编译服务器。目前还没有计划始终激活该功能或为 Auth0 制作特定的发行版。
+由于以下问题 [https://github.com/ramosbugs/openidconnect-rs/issues/23](https://github.com/ramosbugs/openidconnect-rs/issues/23)（它们似乎没有遵循规范），其无法正常工作。目前提供了一个功能标志 (`oidc-accept-rfc3339-timestamps`) 可用于绕过这个问题，但您需要用它来编译服务器。目前还没有计划始终激活该功能或为 Auth0 制作专门的发行版本。
 
 ## Authelia
 
@@ -123,9 +123,9 @@ TRUNCATE TABLE sso_users;
 
 ## Authentik
 
-默认访问令牌有效期可能只有 `5min`，请设置更大的值，否则会与同样设置为 `5min`的 Bitwarden 前端过期检测冲突。
+默认访问令牌生命周期可能只有 `5min`，请设置更大的值，否则会与同样设置为 `5min` 的 Bitwarden 前端过期检测产生冲突。
 
-要更改令牌有效期，请转到 `Applications / Providers / Edit / Advanced protocol settings`。
+要更改令牌生命周期，请转到 `Applications / Providers / Edit / Advanced protocol settings`。
 
 从 2024.2 版本开始，您需要添加 `Offline_Access` 范围，并确保在 `Applications / Providers / Edit / Advanced protocol settings / Scopes` 中选中它（[文档](https://docs.goauthentik.io/docs/providers/oauth2/#authorization_code)）。
 
@@ -145,7 +145,7 @@ TRUNCATE TABLE sso_users;
 
 ## Casdoor
 
-自版本 [v1.639.0](https://github.com/casdoor/casdoor/releases/tag/v1.639.0) 起应该可以工作（已使用版本 [v1.686.0](https://github.com/casdoor/casdoor/releases/tag/v1.686.0) 进行测试）。创建应用程序时，您需要选择 `Token format -> JWT-Standard`。
+自版本 [v1.639.0](https://github.com/casdoor/casdoor/releases/tag/v1.639.0) 起应该可以正常工作（已使用版本 [v1.686.0](https://github.com/casdoor/casdoor/releases/tag/v1.686.0) 进行测试）。创建应用程序时，您需要选择 `Token format -> JWT-Standard`。
 
 然后使用以下内容配置您的服务器：
 
@@ -180,7 +180,7 @@ Google [文档](https://developers.google.com/identity/openid-connect/openid-con
 
 ## Kanidm
 
-无需特别的配置。
+不需要特殊配置。
 
 使用以下内容配置您的服务器：
 
@@ -216,7 +216,7 @@ Google [文档](https://developers.google.com/identity/openid-connect/openid-con
 * `SSO_AUTHORITY=http://${provider_host}/auth/v1`
 * `SSO_CLIENT_ID=${Client ID}`
 * `SSO_CLIENT_SECRET=${Client Secret}`
-* `SSO_AUTH_ONLY_NOT_SESSION=true`，仅在不使用 `DISABLE_REFRESH_TOKEN_NBF=true` 运行 `Rauthy` 时才需要
+* `SSO_AUTH_ONLY_NOT_SESSION=true`：仅在不使用 `DISABLE_REFRESH_TOKEN_NBF=true` 运行 `Rauthy` 时才需要
 
 ## Slack
 
@@ -251,7 +251,7 @@ Google [文档](https://developers.google.com/identity/openid-connect/openid-con
 
 ## 会话生命周期 <a href="#session-lifetime" id="session-lifetime"></a>
 
-会话生命周期取决于刷新令牌和调用 SSO 令牌端点（授权类型：`authorization_code`）后返回的访问令牌。如果没有返回刷新令牌，会话将仅限于访问令牌的有效期。
+会话生命周期取决于刷新令牌和调用 SSO 令牌端点（授权类型：`authorization_code`）后返回的访问令牌。如果没有返回刷新令牌，会话将仅限于访问令牌的生命周期。
 
 令牌不会持久保存在服务器中，而是封装在 JWT 令牌中并返回给应用程序（VW `identity/connect/token` 端点返回的 `refresh_token` 和 `access_token` 值）。请注意，出于与 Web 前端兼容的原因，服务器将始终返回一个 `refresh_token`，它的存在并不表明 SSO 返回了刷新令牌（但您可以使用 [https://jwt.io](https://jwt.io/) 对其值进行解码，然后检查 `token` 字段是否包含任何内容）。
 
@@ -261,7 +261,7 @@ Google [文档](https://developers.google.com/identity/openid-connect/openid-con
 
 ### 禁用 SSO 会话处理 <a href="#disabling-sso-session-handling" id="disabling-sso-session-handling"></a>
 
-如果无法获取 `efresh_token` 或出于其他原因，可以禁用 SSO 会话处理，以恢复到默认的处理方式。您需要启用 `SSO_AUTH_ONLY_NOT_SESSION=true`，然后访问令牌的有效期将为 2 小时，刷新令牌的空闲时间为 7 天（可无限期延长）。
+如果无法获取 `efresh_token` 或出于其他原因，可以禁用 SSO 会话处理，以恢复到默认的处理方式。您需要启用 `SSO_AUTH_ONLY_NOT_SESSION=true`，然后访问令牌的有效期将为 2 小时，刷新令牌的空闲时间为 7 天（可无限延长）。
 
 ### 调试信息 <a href="#debug-information" id="debug-information"></a>
 
