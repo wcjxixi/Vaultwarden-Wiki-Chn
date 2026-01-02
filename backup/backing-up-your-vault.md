@@ -28,12 +28,24 @@ data
 │   ├── example.com.png
 │   ├── example.net.png
 │   └── example.org.png
+├── log                  # 日志文件存储在此目录下。
+│   ├── vaultwarden.log
+│   └── vaultwarden.log-<date> 
 ├── rsa_key.der          # ‘rsa_key.*’ 文件用于签署验证令牌。
 ├── rsa_key.pem
 ├── rsa_key.pub.der
-└── sends                # 每一个 Send 的附件都作为单独的文件存储在此目录下。
-    └── <uuid>           # （如果未创建过 Send 附件，则此 sends 目录将不存在）
-        └── <random_id>
+├── rsa_key.pub.pem
+├── sends                # 每一个 Send 的附件都作为单独的文件存储在此目录下。
+│   └── <uuid>           # （如果未创建过 Send 附件，则此 sends 目录将不存在）
+│       └── <random_id>
+├── templates            # 
+│   ├── admin            # 自定义后台管理界面文件存储在此目录下。
+│   ├── email            # 自定义电子邮件模板文件存储在此目录下。
+│   ├── scss             # 自定义 Vaultwarden 的 CSS 样式文件存储在此目录下。
+│   │   ├── user.vaultwarden.scss.hbs
+│   │   └── vaultwarden.scss.hbs      # 此文件一般不应存在，因为它将覆盖内置的默认值。
+│   └── 404.hbs          # 自定义 404 页面。
+└── tmp
 ```
 
 当使用 MySQL 或 PostgreSQL 后端运行时，目录结构是一样的，只是没有 SQLite 文件。您仍然需要备份数据目录中的文件，以及 MySQL 或 PostgreSQL 表的转储。
