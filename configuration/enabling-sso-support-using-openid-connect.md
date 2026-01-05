@@ -146,7 +146,7 @@ TRUNCATE TABLE sso_users;
 
 1. 打开 **Authentik admin panel** > **Providers** > 打开您的 **Vaultwarden provider**
 2. 点击 **Edit** > 将 **Signing key** 更改为您的任意密钥
-   * 若不确定，请选择 Authentik 内置密钥
+   * 若不确定，请选择 Authentik 内置的 Signing key
 3. 点击 **Update**
 4. 重试
 
@@ -155,9 +155,9 @@ TRUNCATE TABLE sso_users;
 解决[步骤](https://github.com/dani-garcia/vaultwarden/issues/6230#issuecomment-3245196399)：
 
 1. 打开 **Authentik admin panel** > **Providers** > 打开您的 **Vaultwarden provider**
-2. 点击 **Edit** > 确保 Encryption Key 为空
-3. **若不为空**：请在下拉菜单中选择 -------
-4. 请勿修改 **Signing Key**，必须选择有效的证书
+2. 点击 **Edit** > 确保 **Encryption Key** 为空
+3. **若不为空**：请在下拉菜单中选择 **-------**
+4. 请勿修改 **Signing Key**，必须选择一个有效的证书
 5. 点击 **Update**
 6. 重试
 
