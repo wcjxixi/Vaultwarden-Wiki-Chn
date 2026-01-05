@@ -63,10 +63,10 @@ app-root img.new-logo-themed {
 }
 
 /* 在登录和锁定页面使用自定义左上角 logo */
-auth-anon-layout > main > a > bit-icon > svg {
+auth-anon-layout > main > div > a > bit-icon > svg {
   display: none !important;
 }
-auth-anon-layout > main > a > bit-icon::before {
+auth-anon-layout > main > div > a > bit-icon::before {
   display: block;
   content: "" !important;
   width: 175px !important;

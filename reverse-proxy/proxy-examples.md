@@ -624,7 +624,9 @@ server {
 
 请记得启用 `mod_proxy_http`，例如使用：`a2enmod proxy_http`。这要求 Apache >= 2.4.47。
 
-```apacheconf
+如果您通过公共 https 地址访问您的密码库（服务器内部再将请求重定向到 http（例如 80 端口）），则必须启用 `RequestHeader set X-Forwarded-Proto "https"`，否则，密码库虽然可以加载，但您的数据将无法加载。
+
+```apache
 <VirtualHost *:443>
     SSLEngine on
     ServerName vaultwarden.example.tld
@@ -662,7 +664,7 @@ DOMAIN=https://shared.example.tld/vault/
 
 请记得启用 `mod_proxy_http`，例如使用：`a2enmod proxy_http`。这要求 Apache >= 2.4.47。
 
-```apacheconf
+```apache
 <VirtualHost *:443>
     SSLEngine on
     ServerName $hostname.$domainname
@@ -694,7 +696,7 @@ DOMAIN=https://shared.example.tld/vault/
 
 复制上面的说明，除非使用更简单的...
 
-```apacheconf
+```apache
 <VirtualHost *:443>
   [ blah blah ]
   <Location /vault> #adjust here if necessary
@@ -768,7 +770,7 @@ labels:
 
 将这些行添加到您的 HAproxy 配置中。
 
-```yaml
+```nginx
 frontend vaultwarden
     bind 0.0.0.0:80
     option forwardfor header X-Real-IP

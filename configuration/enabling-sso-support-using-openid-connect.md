@@ -140,8 +140,26 @@ TRUNCATE TABLE sso_users;
 
 * `Failed to discover OpenID provider`  / `Failed to parse server response`（ 检测 OpenID 提供程序失败 / 解析服务器响应失败）：
   * 首先确保可以访问添加了 `/.well-known/openid-configuration` 的 Authority 端点。
-  * 然后检查文件是否返回了 `id_token_signing_alg_values_supported: ["RS256"]`。如果返回 `HS256`，那么再次选择默认签名密钥应该能解决该问题（[步骤](https://github.com/Timshel/vaultwarden/issues/107#issuecomment-3200007338)）。
-* `Failed to contact token endpoint: Parse(Error ... Invalid JSON web token: found 5 parts`：该错误可能是由加密令牌 (JWE) 导致的，请确保未使用加密密钥（[步骤](https://github.com/dani-garcia/vaultwarden/issues/6230#issuecomment-3245196399)）。
+  * 然后检查文件是否返回了 `id_token_signing_alg_values_supported: ["RS256"]`。如果返回 `HS256`，那么再次选择默认签名密钥应该能解决该问题。
+
+解决[步骤](https://github.com/Timshel/vaultwarden/issues/107#issuecomment-3200007338)：
+
+1. 打开 **Authentik admin panel** > **Providers** > 打开您的 **Vaultwarden provider**
+2. 点击 **Edit** > 将 **Signing key** 更改为您的任意密钥
+   * 若不确定，请选择 Authentik 内置密钥
+3. 点击 **Update**
+4. 重试
+
+* `Failed to contact token endpoint: Parse(Error ... Invalid JSON web token: found 5 parts`：该错误可能是由加密令牌 (JWE) 导致的，请确保未使用加密密钥。
+
+解决[步骤](https://github.com/dani-garcia/vaultwarden/issues/6230#issuecomment-3245196399)：
+
+1. 打开 **Authentik admin panel** > **Providers** > 打开您的 **Vaultwarden provider**
+2. 点击 **Edit** > 确保 Encryption Key 为空
+3. **若不为空**：请在下拉菜单中选择 -------
+4. 请勿修改 **Signing Key**，必须选择有效的证书
+5. 点击 **Update**
+6. 重试
 
 ## Casdoor
 
