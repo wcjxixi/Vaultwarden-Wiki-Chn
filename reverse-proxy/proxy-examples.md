@@ -799,7 +799,7 @@ backend vaultwarden_http
 
 将这些行添加到您的 HAproxy 配置中。
 
-```yaml
+```apache
 backend static-success-default
   mode http
   errorfile 503 /usr/local/etc/haproxy/static/index.static.default.html
@@ -1021,7 +1021,7 @@ use_backend VaultWarden-Notifications_ipvANY  if  !ACL4
 
 添加以下资源定义：
 
-```
+```yml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -1056,7 +1056,7 @@ spec:
 
 <summary>Istio k8s (by <a href="https://github.com/asenyaev">@asenyaev</a>)</summary>
 
-```javascript
+```yml
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
@@ -1111,7 +1111,7 @@ spec:
 
 <summary><del>Istio k8s - before v1.29.0 (by</del> <a href="https://github.com/dpoke"><del>@dpoke</del></a><del>)</del></summary>
 
-```javascript
+```yml
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
@@ -1315,7 +1315,7 @@ ingress:
 
 <summary>Pound</summary>
 
-```
+```apache
 Alive		15
 
 ListenHTTP

@@ -20,20 +20,20 @@
 * `SSO_ENABLED`：启用 SSO
 * `SSO_ONLY` ：禁用电子邮箱 + 主密码认证
 * `SSO_SIGNUPS_MATCH_EMAIL` ：在 SSO 注册时，如果存在具有相同电子邮件地址的用户，则进行关联（默认 `true` ）
-* `SSO_ALLOW_UNKNOWN_EMAIL_VERIFICATION` ：允许未知电子邮箱验证状态（默认 `false` ）。允许此功能与 `SSO_SIGNUPS_MATCH_EMAIL` 结合使用可能会带来账户接管的风险。
+* `SSO_ALLOW_UNKNOWN_EMAIL_VERIFICATION` ：允许未知电子邮箱验证状态（默认为 `false` ）。允许此功能与 `SSO_SIGNUPS_MATCH_EMAIL` 结合使用可能会带来账户接管的风险。
 * `SSO_AUTHORITY` ：您的 SSO 的 OpenID Connect Discovery 端点
   * 不应包含 `/.well-known/openid-configuration` 部分，且无 `/` 尾随
   * $SSO\_AUTHORITY/.well-known/openid-configuration 应返回一个 JSON 文档：[https://openid.net/specs/openid-connect-discovery-1\_0.html#ProviderConfigurationResponse](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse)
-* `SSO_SCOPES` ：可选。允许在需要时覆盖范围（默认 `"email profile"` ）
-* `SSO_AUTHORIZE_EXTRA_PARAMS` ：可选。允许在授权重定向时添加额外参数（默认 `""` ）
-* `SSO_PKCE` ：为授权代码流程激活 PKCE（默认 `true` ）。
+* `SSO_SCOPES` ：可选。允许在需要时覆盖范围（默认为 `"email profile"` ）
+* `SSO_AUTHORIZE_EXTRA_PARAMS` ：可选。允许在授权重定向时添加额外参数（默认为 `""` ）
+* `SSO_PKCE` ：为授权代码流程激活 PKCE（默认为 `true` ）。
 * `SSO_AUDIENCE_TRUSTED` ：可选。用于信任 ID Token 的额外受众的正则表达式（ `client_id` 始终受信任）。编写正则表达式时使用单引号： `'^$'` 。
 * `SSO_CLIENT_ID` ：客户端 ID
 * `SSO_CLIENT_SECRET` ：客户端机密
 * `SSO_MASTER_PASSWORD_POLICY` ：可选。主密码策略（不支持 `enforceOnLogin` ）。
 * `SSO_AUTH_ONLY_NOT_SESSION` ：启用的话表示仅用于身份验证，不用于会话生命周期
-* `SSO_CLIENT_CACHE_EXPIRATION` ：缓存对发现端点的调用，持续时间（秒）， `0` 禁用（默认 `0` ）;
-* `SSO_DEBUG_TOKENS` ：记录所有令牌以便于调试（默认 `false` ，需要设置 `LOG_LEVEL=debug` 或 `LOG_LEVEL=info,vaultwarden::sso=debug` ）
+* `SSO_CLIENT_CACHE_EXPIRATION` ：缓存对发现端点的调用，持续时间（秒）， `0` 禁用（默认为 `0` ）;
+* `SSO_DEBUG_TOKENS` ：记录所有令牌以便于调试（默认为 `false` ，需要设置 `LOG_LEVEL=debug` 或 `LOG_LEVEL=info,vaultwarden::sso=debug` ）
 
 回调 URL 为： `https://your.domain/identity/connect/oidc-signin`
 
