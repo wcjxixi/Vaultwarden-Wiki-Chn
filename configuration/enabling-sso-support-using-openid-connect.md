@@ -23,7 +23,7 @@
 * `SSO_ALLOW_UNKNOWN_EMAIL_VERIFICATION` ：允许未知电子邮箱验证状态（默认为 `false` ）。允许此功能与 `SSO_SIGNUPS_MATCH_EMAIL` 结合使用可能会带来账户接管的风险。
 * `SSO_AUTHORITY` ：您的 SSO 的 OpenID Connect Discovery 端点
   * 不应包含 `/.well-known/openid-configuration` 部分，且无 `/` 尾随
-  * $SSO\_AUTHORITY/.well-known/openid-configuration 应返回一个 JSON 文档：[https://openid.net/specs/openid-connect-discovery-1\_0.html#ProviderConfigurationResponse](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse)
+  * `$SSO_AUTHORITY/.well-known/openid-configuration` 应返回一个 JSON 文档：[https://openid.net/specs/openid-connect-discovery-1\_0.html#ProviderConfigurationRespons](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse)（具有 [HTTP 状态代码 200 OK](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse)！）
 * `SSO_SCOPES` ：可选。允许在需要时覆盖范围（默认为 `"email profile"` ）
 * `SSO_AUTHORIZE_EXTRA_PARAMS` ：可选。允许在授权重定向时添加额外参数（默认为 `""` ）
 * `SSO_PKCE` ：为授权代码流程激活 PKCE（默认为 `true` ）。
@@ -35,7 +35,7 @@
 * `SSO_CLIENT_CACHE_EXPIRATION` ：缓存对发现端点的调用，持续时间（秒）， `0` 禁用（默认为 `0` ）;
 * `SSO_DEBUG_TOKENS` ：记录所有令牌以便于调试（默认为 `false` ，需要设置 `LOG_LEVEL=debug` 或 `LOG_LEVEL=info,vaultwarden::sso=debug` ）
 
-回调 URL 为： `https://your.domain/identity/connect/oidc-signin`
+回调 URL 是从 `DOMAIN` 自动生成的。如果您设置 `DOMAIN=https://vaultwarden.example.tld`，您的回调 URL 将为 `https://vaultwarden.example.tld/identity/connect/oidc-signin`。
 
 ## 账户和电子邮箱处理 <a href="#account-and-email-handling" id="account-and-email-handling"></a>
 
@@ -43,7 +43,7 @@
 
 * 存储 SSO 标识对于防止因更改电子邮箱而导致账户被接管非常重要。
 * 我们不能使用标识符作为用户 uuid，因为它太长了（`sub` 部分最多 255 个字符，参见[规范](https://openid.net/specs/openid-connect-core-1_0.html#CodeIDToken)）。
-* 我们希望能根据电子邮箱关联现有账户，但仅限于用户首次登录时（由 `SSO_SIGNUPS_MATCH_EMAIL` 控制）。
+* 我们希望能基于他们的 `email` 关联现有账户，但仅限于用户首次登录时（由 `SSO_SIGNUPS_MATCH_EMAIL` 控制）。
 * 我们需要能够关联现有的存根账户，例如在邀请用户加入组织时创建的账户（只有在用户没有私钥的情况下才能关联）。
 
 此外：
@@ -52,7 +52,7 @@
 * 更改电子邮箱需要用户自己完成，因为这需要更新 `key`。登录时，如果提供程序返回的电子邮箱不是已保存的电子邮箱，系统将向用户发送一封电子邮件，要求他更新电子邮箱。
 * 如果设置了 `SIGNUPS_DOMAINS_WHITELIST`，则会在 SSO 注册和尝试更改电子邮箱时应用。
 
-这意味着，如果需要更改提供程序网址或提供程序本身，必须先删除关联，然后确保 `SSO_SIGNUPS_MATCH_EMAIL` 已激活，以允许新的关联。
+这意味着，如果需要更改提供程序 URL 或提供程序本身，必须先删除关联，然后确保 `SSO_SIGNUPS_MATCH_EMAIL` 已激活，以允许新的关联。
 
 要删除关联（这对 `Vaultwarden` 用户没有影响）：
 
@@ -62,7 +62,7 @@ TRUNCATE TABLE sso_users;
 
 ### 对于 `SSO_ALLOW_UNKNOWN_EMAIL_VERIFICATION`  <a href="#on-sso_allow_unknown_email_verification" id="on-sso_allow_unknown_email_verification"></a>
 
-如果提供程序不发送电子邮箱的验证状态（`email_verified` [claim](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims)），则需要激活此设置。
+如果提供程序不发送电子邮箱的验证状态（`email_verified` [claim](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims)），则您需要激活此设置。
 
 如果设置为 `SSO_SIGNUPS_MATCH_EMAIL=true`（默认值），那么即使用户不控制电子邮箱地址，也可以与现有的非 SSO 账户关联。这样，用户就可以访问敏感信息，但仍需要主密码才能读取密码。
 
@@ -101,7 +101,7 @@ TRUNCATE TABLE sso_users;
 
 服务器配置，无特别的设置：
 
-* `SSO_AUTHORITY=https://${domain}/realms/${realm_name}`
+* `SSO_AUTHORITY=https://${keycloak_domain}/realms/${realm_name}`
 * `SSO_CLIENT_ID`
 * `SSO_CLIENT_SECRET`
 
@@ -131,16 +131,18 @@ TRUNCATE TABLE sso_users;
 
 服务器配置看起来应如下：
 
-* `SSO_AUTHORITY=https://${domain}/application/o/${application_name}/`：尾部的 `/` 很重要
+* `SSO_AUTHORITY=https://${authentik_domain}/application/o/${application_name}/`：尾部的 `/` 很重要
 * `SSO_SCOPES="email profile offline_access"`
 * `SSO_CLIENT_ID`
 * `SSO_CLIENT_SECRET`
 
 ### 疑难解答 <a href="#troubleshooting" id="troubleshooting"></a>
 
-* `Failed to discover OpenID provider`  / `Failed to parse server response`（ 检测 OpenID 提供程序失败 / 解析服务器响应失败）：
-  * 首先确保可以访问添加了 `/.well-known/openid-configuration` 的 Authority 端点。
-  * 然后检查文件是否返回了 `id_token_signing_alg_values_supported: ["RS256"]`。如果返回 `HS256`，那么再次选择默认签名密钥应该能解决该问题。
+#### **`Failed to discover OpenID provider`  / `Failed to parse server response`**：
+
+首先确保可以访问添加了 `/.well-known/openid-configuration` 的 Authority 端点。
+
+然后检查文件是否返回了 `id_token_signing_alg_values_supported: ["RS256"]`。如果返回 `HS256`，那么再次选择默认签名密钥应该能解决该问题。
 
 解决[步骤](https://github.com/Timshel/vaultwarden/issues/107#issuecomment-3200007338)：
 
@@ -150,7 +152,9 @@ TRUNCATE TABLE sso_users;
 3. 点击 **Update**
 4. 重试
 
-* `Failed to contact token endpoint: Parse(Error ... Invalid JSON web token: found 5 parts`：该错误可能是由加密令牌 (JWE) 导致的，请确保未使用加密密钥。
+#### **`Failed to contact token endpoint: Parse(Error ... Invalid JSON web token: found 5 parts`：**
+
+该错误可能是由加密令牌 (JWE) 导致的，请确保未使用加密密钥。
 
 解决[步骤](https://github.com/dani-garcia/vaultwarden/issues/6230#issuecomment-3245196399)：
 
@@ -163,7 +167,7 @@ TRUNCATE TABLE sso_users;
 
 ## Casdoor
 
-自版本 [v1.639.0](https://github.com/casdoor/casdoor/releases/tag/v1.639.0) 起应该可以正常工作（已使用版本 [v1.686.0](https://github.com/casdoor/casdoor/releases/tag/v1.686.0) 进行测试）。创建应用程序时，您需要选择 `Token format -> JWT-Standard`。
+创建应用程序时，您需要选择 `Token format -> JWT-Standard`。自版本 [v1.639.0](https://github.com/casdoor/casdoor/releases/tag/v1.639.0) 起应该这可以正常运行（已使用版本 [v1.686.0](https://github.com/casdoor/casdoor/releases/tag/v1.686.0) 进行测试）。
 
 然后使用以下内容配置您的服务器：
 
@@ -175,7 +179,7 @@ TRUNCATE TABLE sso_users;
 
 使用以下内容在 Gitlab 设置中创建一个应用程序：
 
-* `redirectURI`：[https://your.domain/identity/connect/oidc-signin](https://your.domain/identity/connect/oidc-signin)
+* `redirectURI`：`https://vaultwarden.example.tld/identity/connect/oidc-signin`
 * `Confidential`：`true`
 * `scopes`：`openid`, `profile`, `email`
 
@@ -202,7 +206,7 @@ Google [文档](https://developers.google.com/identity/openid-connect/openid-con
 
 使用以下内容配置您的服务器：
 
-* `SSO_AUTHORITY=https://your.domain/oauth2/openid/${SSO_CLIENT_ID}`
+* `SSO_AUTHORITY=https://{AUTHORITY_DOMAIN}/oauth2/openid/${SSO_CLIENT_ID}`
 * `SSO_CLIENT_ID`
 * `SSO_CLIENT_SECRET`
 
@@ -211,7 +215,7 @@ Google [文档](https://developers.google.com/identity/openid-connect/openid-con
 1. 在 [Entra ID](https://entra.microsoft.com/) 中按照 [Identity | Applications | App registrations](https://entra.microsoft.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade/quickStartType//sourceType/Microsoft_AAD_IAM) 创建「应用程序注册」。
 2. 在「应用程序注册」的「概述」中，您需要「目录（租户）ID」以用于 `SSO_AUTHORITY` 变量，「应用程序（客户端）ID」以用于 `SSO_CLIENT_ID` 值。
 3. 在「证书和秘钥」中创建「应用程序秘钥」，您需要「秘钥值」以用于 `SSO_CLIENT_SECRET`。
-4. 在「身份验证」中添加 https://warden.example.org/identity/connect/oidc-signin 作为「网页重定向 URI」。
+4. 在「身份验证」中添加 `https://vaultwarden.example.tld/identity/connect/oidc-signin` 作为「网页重定向 URI」。
 5. 在「API 权限」中，确保在「API / 权限名称」下列出 `profile`、`email` 和 `offline_access`（`offline_access` 是必需的，否则不会返回 `refresh_token`，请参阅 [https://github.com/MicrosoftDocs/azure-docs/issues/17134](https://github.com/MicrosoftDocs/azure-docs/issues/17134)）。
 
 只有 v2 端点符合 OpenID 规范，请参阅 [https://github.com/MicrosoftDocs/azure-docs/issues/38427](https://github.com/MicrosoftDocs/azure-docs/issues/38427) 和 [https://github.com/ramosbugs/openidconnect-rs/issues/122](https://github.com/ramosbugs/openidconnect-rs/issues/122)。
@@ -271,7 +275,7 @@ Google [文档](https://developers.google.com/identity/openid-connect/openid-con
 
 会话生命周期取决于刷新令牌和调用 SSO 令牌端点（授权类型：`authorization_code`）后返回的访问令牌。如果没有返回刷新令牌，会话将仅限于访问令牌的生命周期。
 
-令牌不会持久保存在服务器中，而是封装在 JWT 令牌中并返回给应用程序（VW `identity/connect/token` 端点返回的 `refresh_token` 和 `access_token` 值）。请注意，出于与 Web 前端兼容的原因，服务器将始终返回一个 `refresh_token`，它的存在并不表明 SSO 返回了刷新令牌（但您可以使用 [https://jwt.io](https://jwt.io/) 对其值进行解码，然后检查 `token` 字段是否包含任何内容）。
+令牌不会持久保存在服务器中，而是封装在 JWT 令牌中并返回给应用程序（Vaultwarden `identity/connect/token` 端点返回的 `refresh_token` 和 `access_token` 值）。请注意，出于与 Web 前端兼容的原因，服务器将始终返回一个 `refresh_token`，它的存在并不表明 SSO 返回了刷新令牌（但您可以使用 [https://jwt.io](https://jwt.io/) 对其值进行解码，然后检查 `token` 字段是否包含任何内容）。
 
 有了刷新令牌，应用程序中的活动就会在访问令牌快过期时（网页客户端为 [5 分钟](https://github.com/bitwarden/clients/blob/0bcb45ed5caa990abaff735553a5046e85250f24/libs/common/src/auth/services/token.service.ts#L126)）触发刷新。
 
@@ -295,7 +299,7 @@ Google [文档](https://developers.google.com/identity/openid-connect/openid-con
 
 ## Firefox
 
-在 Windows 系统中，首次登录时会出现一个提示，以确认应启动哪个应用程序（但目前存在一个 bug，即登录后可能会出现空密码库）。
+在 Windows 系统中，首次登录时会出现一个提示，以确认应启动哪个应用程序（但目前存在一个 bug，即登录后可能会出现空的密码库）。
 
 在 Linux 系统上，稍微麻烦些。首先，您需要在 `about:config` 中添加一些配置：
 
