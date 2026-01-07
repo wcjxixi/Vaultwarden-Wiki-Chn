@@ -140,9 +140,11 @@ TRUNCATE TABLE sso_users;
 
 #### **`Failed to discover OpenID provider`  / `Failed to parse server response`**：
 
-首先确保可以访问添加了 `/.well-known/openid-configuration` 的 Authority 端点。
+首先确保可以从 Vaultwarden 容器访问附加了 `/.well-known/openid-configuration` 的 Authority 端点。
 
-然后检查文件是否返回了 `id_token_signing_alg_values_supported: ["RS256"]`。如果返回 `HS256`，那么再次选择默认签名密钥应该能解决该问题。
+接下来检查响应是否包含 `id_token_signing_alg_values_supported: ["RS256"]`。
+
+如果返回 `HS256`，那么然后选择默认签名密钥应该能解决该问题。
 
 解决[步骤](https://github.com/Timshel/vaultwarden/issues/107#issuecomment-3200007338)：
 
