@@ -1,4 +1,4 @@
-# 6.Git hooks
+# 3.Git hooks
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Git-hooks)
@@ -6,7 +6,7 @@
 
 以下提交 hooks 可能对您有所帮助，请自行斟酌使用。
 
-## pre-commit
+## `pre-commit`
 
 ```bash
 #!/bin/bash
@@ -40,7 +40,7 @@ echo "Format your code with: ${colok}cargo fmt --all --${colreset}"
 exit 1
 ```
 
-## commit-msg
+## `commit-msg`
 
 ```bash
 #!/bin/bash

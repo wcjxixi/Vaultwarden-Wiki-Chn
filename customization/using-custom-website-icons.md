@@ -14,7 +14,7 @@
 
 如果您想为您的网站条目添加自定义图标，您可以将它们放置在 `ICON_CACHE_FOLDER` 位置（默认为 `data/icon_cache` ）。命名规则基于条目的指定 IP 或完全限定域名 (FQDN)，即 Bitwarden 在[此图示](https://help.ppgg.in/password-manager/autofill/troubleshoot-autofill/forming-uris-for-autofill#match-detection-options)中叫做 Hostname 的字段：
 
-{% embed url="https://private-user-images.githubusercontent.com/509385/458084034-47bdf0f1-46f9-41af-8030-d0f860e2a056.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjU3Njk1MDQsIm5iZiI6MTc2NTc2OTIwNCwicGF0aCI6Ii81MDkzODUvNDU4MDg0MDM0LTQ3YmRmMGYxLTQ2ZjktNDFhZi04MDMwLWQwZjg2MGUyYTA1Ni5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMjE1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTIxNVQwMzI2NDRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1lOGY5YmFjZmQyYzI1MThmYTU2N2Y4N2UyYjNjNTczMTViNTUxZGQyYTliMmU4MTFiYWI4NmY4M2MyYTA2MzgyJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.Iq4wMKoJOLtXm-7bLe0p5Q9PR7Cz8FcV0LzmVDWA8PM" %}
+<figure><img src="https://github.com/user-attachments/assets/47bdf0f1-46f9-41af-8030-d0f860e2a056" alt=""><figcaption></figcaption></figure>
 
 这意味着在请求图标时将忽略方案和端口，因此您无法根据端口号提供不同的图标。
 

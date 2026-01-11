@@ -57,7 +57,7 @@ docker compose up -d vaultwarden
 ## 从美国服务器切换到欧盟服务器（反之亦然） <a href="#switching-from-us-to-eu-servers-or-vice-versa" id="switching-from-us-to-eu-servers-or-vice-versa"></a>
 
 {% hint style="danger" %}
-在进行此更改之前，请确保您使用的是最新版本[![GitHub Release](https://img.shields.io/github/release/dani-garcia/vaultwarden.svg)](https://github.com/dani-garcia/vaultwarden/releases/latest)。
+在进行此更改之前，请确保您使用的是最新版本 [![GitHub Release](https://img.shields.io/github/release/dani-garcia/vaultwarden.svg)](https://github.com/dani-garcia/vaultwarden/releases/latest)。
 {% endhint %}
 
 要从一个数据区域切换到另一数据区域，您必须：

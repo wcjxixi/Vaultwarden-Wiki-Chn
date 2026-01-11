@@ -12,9 +12,11 @@
 
 如果您使用 [Docker Compose](https://docs.docker.com/compose/) 将容器化的服务（例如，Vaultwarden 与反向代理）链接在一起，您必须调整示例代码以考虑到这一点（例如，将 `127.0.0.1:8000` 改为 `service_name:80`，而 `service_name` 通常是 `vaultwarden`）。请参阅[使用 Docker Compose](../container-image-usage/using-docker-compose.md) 了解这方面的示例。
 
-{% hint style="info" %}
-可以使用 Mozilla 的 [SSL Configuration Generator](https://ssl-config.mozilla.org/) 来生成 Web 服务器的安全 TLS 协议和密码配置。已知所有受支持的浏览器和移动应用程序都可以使用这种「现代化的」配置。
+{% hint style="success" %}
+可以使用 Mozilla 的 [SSL Configuration Generator](https://ssl-config.mozilla.org/) 来生成用于网页服务器的安全 TLS 协议和密码配置。已知所有受支持的浏览器和移动应用程序都可以使用这种「现代化的」配置。
 {% endhint %}
+
+***
 
 <details>
 
