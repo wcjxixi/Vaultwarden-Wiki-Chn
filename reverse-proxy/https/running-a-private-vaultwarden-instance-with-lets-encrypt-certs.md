@@ -6,24 +6,24 @@
 
 假设您希望运行一个只能从本地网络访问的 Vaultwarden 实例，但您又希望此实例启用由一个被广泛接受的 CA 而不是你自己的[私有 CA](../../other-information/private-ca-and-self-signed-certs-that-work-with-chrome.md) 来签署的 HTTPS（以避免将专用 CA 证书加载到所有设备中的麻烦）。
 
-本文将演示如何使用 [Caddy](https://caddyserver.com/) Web 服务器创建这样的设置，Caddy 内置了对诸多 DNS 提供商的 ACME 支持。我们将通过 ACME [DNS 验证方式](https://letsencrypt.org/docs/challenge-types/#dns-01-challenge)获取 Let's Encrypt 证书来配置 Caddy -- 在这里使用通常的 HTTP 验证方式的话会有问题，因为它依赖于 Let's Encrypt 服务器能够访问到您的内部 Web 服务器。
+本文将演示如何使用 [Caddy](https://caddyserver.com/) 网页服务器创建这样的设置，Caddy 内置了对诸多 DNS 提供程序的 ACME 支持。我们将通过 ACME [DNS 验证方式](https://letsencrypt.org/docs/challenge-types/#dns-01-challenge)获取 Let's Encrypt 证书来配置 Caddy -- 在这里使用普通的 HTTP 验证方式的话会有问题，因为它依赖于 Let's Encrypt 服务器能够访问到您的内部网页服务器。
 
 {% hint style="danger" %}
 本文涵盖了更通用的 DNS 验证设置，但许多用户可能会发现使用 Docker Compose 来集成 Caddy 和 Vaultwarden 是最简单的。具体的例子请参见[使用 Docker Compose](../../container-image-usage/using-docker-compose.md#caddy-with-dns-challenge)。
 {% endhint %}
 
-涵盖了两个 DNS 提供商：
+涵盖了两个 DNS 提供程序：
 
 * [Duck DNS](https://www.duckdns.org/) -- 为你提供一个 `duckdns.org` 下的子域名（例如 `my-bwrs.duckdns.org`）。如果您没有自己的域名，此选项是最简单的。
-* [Cloudflare](https://www.cloudflare.com/) -- 这可以让您把您的 Vaultwarden 实例放在您拥有或控制的域名下。请注意，Cloudflare 可以只作为一个 DNS 提供商使用（即不使用 Cloudflare 最著名的代理功能）。如果您目前没有自己的域名，您也许可以在 [Freenom](https://www.freenom.com/) 获得一个免费的域名。
+* [Cloudflare](https://www.cloudflare.com/) -- 这可以让您把您的 Vaultwarden 实例放在您拥有或控制的域名下。请注意，Cloudflare 可以只作为一个 DNS 提供程序使用（即不使用 Cloudflare 最著名的代理功能）。如果您目前没有自己的域名，您也许可以在 [Freenom](https://www.freenom.com/) 获得一个免费的域名。
 
-当然也可以使用其他的网络服务器、[ACME 客户端](https://letsencrypt.org/docs/client-options/)和 DNS 提供商的组合来创建类似的设置，但您必须解决细节上的差异。
+当然也可以使用其他的网络服务器、[ACME 客户端](https://letsencrypt.org/docs/client-options/)和 DNS 提供程序的组合来创建类似的设置，但您必须解决细节上的差异。
 
 ## 获取自定义 Caddy 构建 <a href="#getting-a-custom-caddy-build" id="getting-a-custom-caddy-build"></a>
 
-由于大多数人不使用 DNS 验证方式，为每个 DNS 提供商自定义实现，因此 Caddy 默认没有内置此验证方式的支持。
+Caddy 默认情况下没有内置 DNS 验证挑战支持，因为大多数人不使用这种验证挑战方式，并且它需要为每个 DNS 提供程序进行自定义实现。
 
-最简单的方式是通过 [https://caddyserver.com/download](https://caddyserver.com/download) 获取带有 DNS 验证模块的 Caddy 版本。选择您的平台，选中 `github.com/caddy-dns/cloudflare`（用于 Cloudflare）和/或 `github.com/caddy-dns/duckdns`（用于 Duck DNS），然后点击下载。
+最简单的方式是通过 [https://caddyserver.com/download](https://caddyserver.com/download) 获取带有 DNS 验证挑战模块的 Caddy 版本。选择您的平台，选中 `github.com/caddy-dns/cloudflare`（用于 Cloudflare）和/或 `github.com/caddy-dns/duckdns`（用于 Duck DNS），然后点击下载。
 
 如果您喜欢从源代码构建，可以使用 [`xcaddy`](https://caddyserver.com/docs/build#xcaddy)。例如，要创建一个包含 Cloudflare 和 Duck DNS 支持的构建：
 
@@ -35,7 +35,7 @@ xcaddy build --with github.com/caddy-dns/cloudflare --with github.com/caddy-dns/
 
 ## Duck DNS 设置 <a href="#duck-dns-setup" id="duck-dns-setup"></a>
 
-如果您还没有账户，请在 [https://www.duckdns.org/](https://www.duckdns.org/) 创建一个。给您的 Vaultwarden 实例创建一个子域名（例如，`my-vw.duckdns.org`），将其 IP 地址设置为您的 Vaultwarden 主机的私有 IP（例如，`192.168.1.100`）。记下您的账户的 token 值（[UUID](https://en.wikipedia.org/wiki/UUID) 格式的字符串）。Caddy 将需要此 token 来完成 DNS 验证。
+如果您还没有账户，请在 [https://www.duckdns.org/](https://www.duckdns.org/) 创建一个。给您的 Vaultwarden 实例创建一个子域名（例如，`my-vw.duckdns.org`），将其 IP 地址设置为您的 Vaultwarden 主机的私有 IP（例如，`192.168.1.100`）。记下您的账户的 token 值（[UUID](https://en.wikipedia.org/wiki/UUID) 格式的字符串）。Caddy 将需要此 token 来完成 DNS 验证挑战。
 
 在 Caddy 可执行文件所在的同一目录中创建一个名为 `Caddyfile`（大写 C，无文件扩展名）的文件，其中包含以下内容，并将 `localhost:` 端口替换为 Vaultwarden 在其 `ROCKET_PORT=` 指令中使用的端口（Vaultwarden 的默认 Rocket\_port 为 8001）：
 
@@ -61,7 +61,7 @@ DUCKDNS_TOKEN=00112233-4455-6677-8899-aabbccddeeff
 caddy run --envfile caddy.env
 ```
 
-Duck DNS 域名（例如 `my-vw.duckns.org`）的 Caddy 首次启动需要几秒钟的时间来解决 DNS 挑战和获取 HTTPS 证书。Caddy 通常将它们存储在 `/root/.local/share/caddy` 中，以及 Caddy 的配置会自动保存到 `/root/.config/caddy`。
+Duck DNS 域名（例如 `my-vw.duckns.org`）的 Caddy 首次启动需要几秒钟的时间来解决 DNS 验证挑战和获取 HTTPS 证书。Caddy 通常将它们存储在 `/root/.local/share/caddy` 中，以及 Caddy 的配置会自动保存到 `/root/.config/caddy`。
 
 运行命令以启动 `vaultwarden`：
 
@@ -91,7 +91,7 @@ caddy start --envfile caddy.env
 
 <figure><img src="https://i.imgur.com/BBvy4Yj.png" alt=""><figcaption></figcaption></figure>
 
-创建一个用于 DNS 验证的 API token（更多背景知识，请参阅 [https://github.com/libdns/cloudflare/blob/master/README.md](https://github.com/libdns/cloudflare/blob/master/README.md)）：
+创建一个用于 DNS 验证挑战的 API token（更多背景知识，请参阅 [https://github.com/libdns/cloudflare/blob/master/README.md](https://github.com/libdns/cloudflare/blob/master/README.md)）：
 
 1. 点击右上角的个人图标并导航到 `My Profile`，然后选择 `API Tokens` 选项卡。
 2. 点击 `Create Token` 按钮，然后点击`Edit zone DNS` 右边的 `Use template`。
@@ -143,7 +143,7 @@ export ROCKET_PORT=8080
 
 ## 使用 `lego` CLI 获取证书 <a href="#getting-certs-using-the-lego-cli" id="getting-certs-using-the-lego-cli"></a>
 
-在上面的 DuckDNS 例子中，Caddy 使用 `lego` 库通过 DNS 验证获取证书。`lego` 也有一个 CLI，你可以直接使用它来获取证书，例如，如果你想使用 Caddy 以外的反向代理。 (注意：这个例子使用 `lego`，但也有其他独立的 ACME 客户端支持 DNS 验证方式（参阅 [DNS 验证](running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md#dns-challenge)部分）。
+在上面的 DuckDNS 例子中，Caddy 使用 `lego` 库通过 DNS 验证获取证书。`lego` 也有一个 CLI，您可以直接使用它来获取证书，例如，如果你想使用 Caddy 以外的反向代理。 (注意：这个例子使用 `lego`，但也有其他独立的 ACME 客户端支持 DNS 验证挑战方式（参阅 [DNS 验证](running-a-private-vaultwarden-instance-with-lets-encrypt-certs.md#dns-challenge)部分）。
 
 下面是一个如何做到这一点的例子。
 
@@ -193,7 +193,7 @@ DOMAIN=https://my-vw.duckdns.org
 
 ## 参考 <a href="#references" id="references"></a>
 
-### DNS 验证 <a href="#dns-challenge" id="dns-challenge"></a>
+### DNS 验证挑战 <a href="#dns-challenge" id="dns-challenge"></a>
 
 * [https://caddy.community/t/how-to-use-dns-provider-modules-in-caddy-2/8148](https://caddy.community/t/how-to-use-dns-provider-modules-in-caddy-2/8148)
 * [https://community.letsencrypt.org/t/dns-providers-who-easily-integrate-with-lets-encrypt-dns-validation/86438](https://community.letsencrypt.org/t/dns-providers-who-easily-integrate-with-lets-encrypt-dns-validation/86438)
