@@ -31,13 +31,13 @@
 xcaddy build --with github.com/caddy-dns/cloudflare --with github.com/caddy-dns/duckdns
 ```
 
-将 `caddy` 二进制 移动到 `/usr/local/bin/caddy` 或其他合适的目录中。使文件可执行。（可选）运行语句 `sudo setcap cap_net_bind_service=+ep /usr/local/bin/caddy` 以允许 `caddy` 在特权端口 (< 1024) 上监听，而无须以 root 身份运行。
+将 `caddy` 二进制移动到 `/usr/local/bin/caddy` 或其他合适的目录中。使文件可执行。（可选）运行语句 `sudo setcap cap_net_bind_service=+ep /usr/local/bin/caddy` 以允许 `caddy` 在特权端口 (< 1024) 上监听，而无须以 root 身份运行。
 
 ## Duck DNS 设置 <a href="#duck-dns-setup" id="duck-dns-setup"></a>
 
-如果您还没有账户，请在 [https://www.duckdns.org/](https://www.duckdns.org/) 创建一个。给您的 Vaultwarden 实例创建一个子域名（例如，`my-vw.duckdns.org`），将其 IP 地址设置为您的 Vaultwarden 主机的私有 IP（例如，192.168.1.100）。记下您的账户的 token 值（[UUID](https://en.wikipedia.org/wiki/UUID) 格式的字符串）。Caddy 将需要此 token 来完成 DNS 验证。
+如果您还没有账户，请在 [https://www.duckdns.org/](https://www.duckdns.org/) 创建一个。给您的 Vaultwarden 实例创建一个子域名（例如，`my-vw.duckdns.org`），将其 IP 地址设置为您的 Vaultwarden 主机的私有 IP（例如，`192.168.1.100`）。记下您的账户的 token 值（[UUID](https://en.wikipedia.org/wiki/UUID) 格式的字符串）。Caddy 将需要此 token 来完成 DNS 验证。
 
-在 caddy 可执行文件所在的同一目录中创建一个名为 `Caddyfile`（大写 C，无文件扩展名）的文件，其中包含以下内容，并将 `localhost:` 端口替换为 Vaultwarden 在其 `ROCKET_PORT=` 指令中使用的端口（Vaultwarden 的默认 Rocket\_port 为 8001）：
+在 Caddy 可执行文件所在的同一目录中创建一个名为 `Caddyfile`（大写 C，无文件扩展名）的文件，其中包含以下内容，并将 `localhost:` 端口替换为 Vaultwarden 在其 `ROCKET_PORT=` 指令中使用的端口（Vaultwarden 的默认 Rocket\_port 为 8001）：
 
 ```nginx
 {$DOMAIN}:443 {
@@ -61,7 +61,7 @@ DUCKDNS_TOKEN=00112233-4455-6677-8899-aabbccddeeff
 caddy run --envfile caddy.env
 ```
 
-Duck DNS 域名（例如 my-vw.duckns.org）的 caddy 首次启动需要几秒钟的时间来解决 DNS 挑战和获取 HTTPS 证书。Caddy 通常将它们存储在 `/root/.local/share/caddy` 中，以及 caddy 的配置会自动保存到 `/root/.config/caddy`。
+Duck DNS 域名（例如 `my-vw.duckns.org`）的 Caddy 首次启动需要几秒钟的时间来解决 DNS 挑战和获取 HTTPS 证书。Caddy 通常将它们存储在 `/root/.local/share/caddy` 中，以及 Caddy 的配置会自动保存到 `/root/.config/caddy`。
 
 运行命令以启动 `vaultwarden`：
 
@@ -75,9 +75,9 @@ export ROCKET_PORT=8001
 在设置 Caddy 之前，Vaultwarden 是否已运行并不重要。
 {% endhint %}
 
-您现在应该可以通过 `https://my-vw.duckdns.org` 访问到您的 Vaultwarden 实例了。如果没有，请检查 caddy 的输出。
+您现在应该可以通过 `https://my-vw.duckdns.org` 访问到您的 Vaultwarden 实例了。如果没有，请检查 Caddy 的输出。
 
-您可以使用 \[STRG]-\[C] 来停止 caddy。接下来通过以下命令在后台启动 caddy：
+您可以使用 \[STRG]-\[C] 来停止 caddy。接下来通过以下命令在后台启动 Caddy：
 
 ```sh
 caddy start --envfile caddy.env
