@@ -98,7 +98,7 @@ caddy start --envfile caddy.env
 3. 编辑 `Token name` 字段（如果您希望使用更具描述性的名称）。
 4. 在 `Permissions` 下应出现一个权限：`Zone / DNS / Edit`。添加其他权限：`Zone / Zone / Read`。
 5. 在 `Zone Resources` 下，设置 `Include / Specific zone / example.com`（使用您自己的域名替换 `example.com`）。
-6. 在 `TTL` 下，为您的 tokan 设置一个变为非活动状态的 End Date。您也可以在以后设置。
+6. 在 `TTL` 下，为您的 tokan 设置一个变为非活动状态的 End Date（结束日期）。您也可以在以后设置。
 7. 创建 token 并复制 token 值。
 
 您的 token 列表看起来应该像这样：
