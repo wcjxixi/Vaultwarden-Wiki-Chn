@@ -89,6 +89,8 @@ caddy start --envfile caddy.env
 
 如果您还没有账户，请在 [https://www.cloudflare.com/](https://www.cloudflare.com/) 创建一个；您还需要到您的域名注册商那里将名称服务器设置为 Cloudflare 分配给您的值。为您的 Vaultwarden 实例创建一个子域名（例如，`vw.example.com`），将其 IP 地址设置为您的 Vaultwarden 主机的私有 IP（例如，`192.168.1.100`）。例如：
 
+{% embed url="https://i.imgur.com/BBvy4Yj.png" %}
+
 <figure><img src="https://camo.githubusercontent.com/51b60d7ebd08c95a06fa4bd9db5414d805a2465c310e0cfc4c490263dc987fd6/68747470733a2f2f692e696d6775722e636f6d2f4242767934596a2e706e67" alt=""><figcaption></figcaption></figure>
 
 创建一个用于 DNS 验证的 API token（更多背景知识，请参阅 [https://github.com/libdns/cloudflare/blob/master/README.md](https://github.com/libdns/cloudflare/blob/master/README.md)）：
