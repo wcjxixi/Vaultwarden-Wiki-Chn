@@ -10,25 +10,17 @@
 
 1、访问 [https://bitwarden.com/host/](https://bitwarden.com/host/)，输入您的电子邮箱地址，然后您将获得一个 INSTALLATION ID 和 KEY。
 
-{% hint style="info" %}
-~~在~~ [~~#3752~~](https://github.com/dani-garcia/vaultwarden/pull/3752) ~~实施之前，请确保选择 `bitwarden.com（美国）`作为数据区域。~~
-{% endhint %}
-
-{% hint style="warning" %}
-~~Vaultwarden 目前**不支持**欧盟数据区域。如果您已请求 `bitwarden.eu（欧盟）`的 INSTALLATION ID 和 KEY，您需要等到 PR 合并和发布后，自己~~[~~构建 Vaultwarden~~](../deployment/building-your-own-docker-image.md) ~~并进行必要的更改，或者您可以简单地请求一个用于美国数据区域的新的 ID/KEY 对。~~
-{% endhint %}
-
 2、将以下设置添加到 `docker-compose.yml`（并确保插入上一步获取到的正确 ID 和 KEY）：
 
 ```yaml
     environment:
       - PUSH_ENABLED=true
       - PUSH_INSTALLATION_ID=
-      - PUSH_INSTALLATION_KEY=
+      - PUSH_INSTALLATION_KEY= 
 ```
 
 {% hint style="info" %}
-如果您在上一步中请求了 `bitwarden.eu（欧盟）` 的安装 ID 和 kEY，您还必须设置
+如果您在上一步中请求了 `bitwarden.eu (European Union)` 的安装 ID 和 KEY，您还必须设置：
 
 ```yaml
       - PUSH_RELAY_URI=https://api.bitwarden.eu
