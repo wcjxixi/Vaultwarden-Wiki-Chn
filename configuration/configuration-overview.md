@@ -4,9 +4,9 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Configuration-overview)
 {% endhint %}
 
-> \[**译者注**]：
+> **\[译者注]**：
 >
-> 1. 某些设置只能通过环境变量配置，如管理页面中 `Read-Only Config` 部分的配置（如日志记录）
+> 1. 某些设置只能通过环境变量配置，如管理页面 `Read-Only Config` 中的配置
 > 2. 通过管理页面修改配置后马上生效
 > 3. 若直接修改 `config.json` 文件，则需要重启 Vaultwarden 才能生效（因为只有启动时才会读取 `config.json` 文件）
 
