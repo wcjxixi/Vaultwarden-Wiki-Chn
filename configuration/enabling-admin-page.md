@@ -167,7 +167,7 @@ $argon2id$v=19$m=65540,t=3,p=4$bXBGMENBZUVzT3VUSFErTzQzK25Jck1BN2Z0amFuWjdSdVlIQ
 
 您在管理页面首次保存配置时，将在您的 `DATA_FOLDER` 中生成一个名为 `config.json` 的文件。该文件中的值将优先于相应的环境变量。
 
-{% hint style="danger" %}
+{% hint style="warning" %}
 创建 `config.json` 会为当前配置中的大多数值设置默认值，因此您将来需要使用管理面板来配置您的实例。唯一的例外是只读部分中的配置选项以及更高级的配置选项。
 {% endhint %}
 
@@ -175,7 +175,7 @@ $argon2id$v=19$m=65540,t=3,p=4$bXBGMENBZUVzT3VUSFErTzQzK25Jck1BN2Z0amFuWjdSdVlIQ
 
 ### 用户 <a href="#users" id="users"></a>
 
-用户概览允许您管理所有用户账户，并检查他们是否已完成注册，他们加入了哪些组织以及他们的用户角色是什么。组织的颜色表示用户的当前角色：蓝色表示普通用户，绿色表示经理/自定义角色，紫色表示管理员，橙色表示所有者。
+用户概览允许您管理所有用户账户，并检查他们是否已完成注册，他们加入了哪些组织以及他们的用户角色是什么。组织的颜色表示用户的当前角色：<mark style="color:blue;">蓝色</mark>表示普通用户，<mark style="color:green;">绿色</mark>表示经理/自定义角色，<mark style="color:purple;">紫色</mark>表示管理员，<mark style="color:orange;">橙色</mark>表示所有者。
 
 {% embed url="https://github.com/user-attachments/assets/ffb94abc-9ce4-4be5-ac87-d89e51e5b7b1" %}
 
