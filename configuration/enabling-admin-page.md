@@ -177,13 +177,13 @@ $argon2id$v=19$m=65540,t=3,p=4$bXBGMENBZUVzT3VUSFErTzQzK25Jck1BN2Z0amFuWjdSdVlIQ
 
 用户概览允许您管理所有用户账户，并检查他们是否已完成注册，他们加入了哪些组织以及他们的用户角色是什么。组织的颜色表示用户的当前角色：<mark style="color:blue;">蓝色</mark>表示普通用户，<mark style="color:green;">绿色</mark>表示经理/自定义角色，<mark style="color:purple;">紫色</mark>表示管理员，<mark style="color:orange;">橙色</mark>表示所有者。
 
-{% embed url="https://github.com/user-attachments/assets/ffb94abc-9ce4-4be5-ac87-d89e51e5b7b1" %}
+<figure><img src="https://github.com/user-attachments/assets/ffb94abc-9ce4-4be5-ac87-d89e51e5b7b1" alt=""><figcaption></figcaption></figure>
 
 通过右侧的操作，您可以移除 2FA 提供程序，为用户取消授权任何现有会话，以及禁用或删除任何用户。
 
 如果您点击组织按钮，也可以更改指定成员的角色。
 
-{% embed url="https://github.com/user-attachments/assets/1910822f-a297-431a-9309-8262c6563b5e" %}
+<div align="left"><figure><img src="https://github.com/user-attachments/assets/1910822f-a297-431a-9309-8262c6563b5e" alt=""><figcaption></figcaption></figure></div>
 
 由于组织至少需要一位所有者，因此您无法移除最后一位所有者的所有者角色。
 
@@ -193,7 +193,7 @@ $argon2id$v=19$m=65540,t=3,p=4$bXBGMENBZUVzT3VUSFErTzQzK25Jck1BN2Z0amFuWjdSdVlIQ
 
 在组织概览中，您可以删除任何组织。由于您无法删除组织的最后一位所有者，您可能必须先删除所有者的组织。
 
-{% embed url="https://github.com/user-attachments/assets/88444e11-04ca-430c-a2e4-8fba2f126ad9" %}
+<figure><img src="https://github.com/user-attachments/assets/88444e11-04ca-430c-a2e4-8fba2f126ad9" alt=""><figcaption></figcaption></figure>
 
 ### 诊断 <a href="#diagnostics" id="diagnostics"></a>
 
