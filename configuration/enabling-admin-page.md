@@ -10,7 +10,7 @@
 
 Vaultwarden 管理面板允许服务器管理员配置 Vaultwarden，查看所有已注册的用户和组织，以及删除它们。它也允许邀请新用户，即使禁用了注册功能。它还提供了一个诊断页面，您可以在其中生成支持字符串。
 
-{% embed url="https://github.com/user-attachments/assets/7deeb859-b84a-45d6-97ab-50932ce8a6a0" %}
+<figure><img src="https://github.com/user-attachments/assets/7deeb859-b84a-45d6-97ab-50932ce8a6a0" alt=""><figcaption></figcaption></figure>
 
 ## 如何启用管理页面 <a href="#how-to-enable-the-admin-page" id="how-to-enable-the-admin-page"></a>
 
