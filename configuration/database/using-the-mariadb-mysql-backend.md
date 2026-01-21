@@ -8,7 +8,7 @@
 ⚠️ 💩 ⚠️尽管 MySQL 数据库工作正常，但请注意，我们的构建基于 MariaDB 客户端库，因为这是 Debian 提供的。⚠️ 💩 ⚠️
 {% endhint %}
 
-要使用 MySQL 后端，你可以使用[官方 Docker 镜像](https://hub.docker.com/r/bitwardenrs/server-mysql)，也可以构建您自己的[启用了 MySQL](../../deployment/building-binary.md#mysql-backend) 的二进制。
+要使用 MySQL 后端，你可以使用[官方 Docker 镜像](https://hub.docker.com/r/bitwardenrs/server-mysql)，也可以构建您自己的[启用了 MySQL](../../development/building-binary.md#mysql-backend) 的二进制。
 
 要运行二进制或容器，请确保已设置 `DATABASE_URL` 环境变量（即 `DATABASE_URL='mysql://<user>:<password>@mysql/vaultwarden[?ssl_mode=(disabled|required|preferred)&ssl_ca=/path/to/cart.(crt|pem)]'`）。
 

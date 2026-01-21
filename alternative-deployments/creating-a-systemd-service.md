@@ -4,7 +4,7 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Setup-as-a-systemd-service)
 {% endhint %}
 
-这部分的内容要求您已经[编译了 Vaultwarden 二进制](../deployment/building-binary.md)。如果您已生成了 docker 镜像，则需要查看[使用 systemd-docker 运行](../other-information/running-with-systemd-docker.md)。
+这部分的内容要求您已经[编译了 Vaultwarden 二进制](../development/building-binary.md)。如果您已生成了 docker 镜像，则需要查看[使用 systemd-docker 运行](../other-information/running-with-systemd-docker.md)。
 
 ## 设置 <a href="#setup" id="setup"></a>
 
