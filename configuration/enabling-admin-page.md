@@ -36,7 +36,7 @@ Vaultwarden 管理面板允许服务器管理员配置 Vaultwarden，查看所�
 
 > **\[译者注]**：此功能自 [1.28.0+](https://github.com/dani-garcia/vaultwarden/releases/tag/1.28.0) 后可用。
 
-您可以使用 Argon2 通过生成 [PHC 字符串](https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md)来对 `ADMIN_TOKEN` 进行哈希处理。
+您可以通过使用 Argon2 生成 [PHC 字符串](https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md)来对 `ADMIN_TOKEN` 进行哈希处理。
 
 PHC 字符串可以通过[使用内置的 `hash` 命令](enabling-admin-page.md#using-vaultwarden-hash)或[使用 `argon2` CLI 工具](enabling-admin-page.md#using-argon2)生成。
 
@@ -89,7 +89,7 @@ echo -n "MySecretPassword" | argon2 "$(openssl rand -base64 32)" -e -id -k 19456
 
 ### 如何防止 `docker-compose.yml` 中的变量插值 <a href="#how-to-prevent-variable-interpolation-in-docker-compose.yml" id="how-to-prevent-variable-interpolation-in-docker-compose.yml"></a>
 
-当[使用 Docker Compose](../container-image-usage/using-docker-compose.md) 并通过 `environment` 指令配置 `ADMIN_TOKEN` 时，您需要使用两个美元符号 `$$` 来转义已生成的 argon2 PHC 字符串中出现的所有五个美元符号 `$` 以防止[变量插值](https://docs.docker.com/compose/compose-file/#interpolation)，例如：
+当[使用 Docker Compose](../container-image-usage/using-docker-compose.md) 并且您通过 `environment` 指令配置 `ADMIN_TOKEN` 时，您需要使用两个美元符号 `$$` 来转义已生成的 argon2 PHC 字符串中出现的所有五个美元符号 `$` 以防止[变量插值](https://docs.docker.com/compose/compose-file/#interpolation)，例如：
 
 ```yaml
   environment:
@@ -146,7 +146,7 @@ services:
 
 如果您一直收到 `You are using a plain text ADMIN_TOKEN which is insecure.` 消息，则说明您要么已经通过管理界面保存了设置，环境变量将不会被使用（请参阅配置优先级）。或者您需要验证是否使用了正确的格式。
 
-您需要确保配置的 PHC 字符串被正确传递给 Vaultwarden，以避免实际值被加上不必要的引号（如 `'` 或 `"` ）包围，并且美元符号 `$` 没有被重复转义为 `$$`，比如把\
+您需要确保配置的 PHC 字符串被正确传递给 Vaultwarden，以避免实际值被加上不必要的引号（如 `'` 或 `"` ）包围，以及避免美元符号 `$` 被重复转义为 `$$`，比如把\
 `$argon2id$v=19$m=65540…` 变成 `$$argon2id$$v=19$$m=65540…` 。
 
 如果您使用环境变量传递了该配置，可以通过调用 `printenv ADMIN_TOKEN` （或者如果您使用 Docker，则运行 `docker exec vwcontainer printenv ADMIN_TOKEN` ）来检查输出结果是否仅返回配置的 PHC 字符串，例如：
