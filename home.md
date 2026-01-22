@@ -19,8 +19,8 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 * 网页界面（等效于 [https://vault.bitwarden.com/](https://vault.bitwarden.com/\))）
 * 个人密码库支持
 * [组织](https://help.ppgg.in/admin-console/organizations-quick-start)密码库支持
-* [群组](https://help.ppgg.in/admin-console/organization-basics/groups)（~~不稳定 (~~[~~#3624~~](https://github.com/dani-garcia/vaultwarden/issues/3624)~~,~~ [~~#3413~~](https://github.com/dani-garcia/vaultwarden/issues/3413)~~)，~~需要设置[环境变量](https://github.com/dani-garcia/vaultwarden/blob/bb2412d0339e1da5dee99fc566a2b2aab5d2808c/.env.template#L409-L414)才能启用它）
-* [事件日志](https://help.ppgg.in/admin-console/reporting/event-logs)
+* [群组](https://help.ppgg.in/admin-console/organization-basics/groups)（需要设置[环境变量](https://github.com/dani-garcia/vaultwarden/blob/main/.env.template#L409-L414)才能启用它）
+* [事件日志](https://help.ppgg.in/admin-console/reporting/event-logs)（需要设置[环境变量](https://github.com/dani-garcia/vaultwarden/blob/main/.env.template#L275-L278)才能启用它）
 * [密码共享](https://help.ppgg.in/password-manager/vault-basics/sharing)和[访问控制](https://help.ppgg.in/admin-console/user-management/member-roles-and-permissions)
 * [集合](https://help.ppgg.in/admin-console/organization-basics/collections)
 * [文件附件](https://help.ppgg.in/password-manager/vault-basics/file-attachments)
@@ -30,25 +30,27 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 * [Bitwarden 验证器 (TOTP)](https://help.ppgg.in/password-manager/vault-basics/totp)
 * [Bitwarden Send](https://help.ppgg.in/password-manager/bitwarden-send/about-send)
 * [紧急访问](https://help.ppgg.in/my-account/more/emergency-access)
-* 用于桌面端/浏览器客户端/扩展的[实时同步](https://bitwarden.com/blog/live-sync/)（仅 WebSocket）
-* [回收站](https://help.ppgg.in/password-manager/vault-basics/vault-items#vault-trash)（软删除）
+* [回收站](https://help.ppgg.in/password-manager/vault-basics/vault-items#vault-trash)（软删除，您可以[配置自动删除的等待天数](https://github.com/dani-garcia/vaultwarden/blob/main/.env.template#L234-L237)）
 * [主密码重新提示](https://help.ppgg.in/password-manager/vault-basics/vault-items#protect-individual-items)
 * [个人 API 密钥](https://help.ppgg.in/password-manager/developer-tools/personal-api-key-for-cli-authentication)
 * [电子邮件](https://help.ppgg.in/my-account/two-step-login/setup-guides/two-step-login-via-email)、[Duo](https://help.ppgg.in/my-account/two-step-login/setup-guides/two-step-login-via-duo)、[Yubikey](https://help.ppgg.in/my-account/two-step-login/setup-guides/two-step-login-via-yubikey) 和 [FIDO2 WebAuthn](https://help.ppgg.in/my-account/two-step-login/setup-guides/two-step-login-via-fido)（包括 Nitrokeys 和 Solokeys）方式的两步登录
-* 使用 SimpleLogin、AnonAddy 或 Firefox Relay 的用户名生成器集成
+* SimpleLogin、AnonAddy 或 Firefox Relay 的用户名生成器集成
 * [目录连接器](https://help.ppgg.in/admin-console/user-management/directory-connector/about-directory-connector)支持
-* [管理员密码重置](https://help.ppgg.in/admin-console/user-management/account-recovery)
-* 用于移动客户端 (Android/iOS) 的[实时同步](https://bitwarden.com/blog/live-sync/)（推送通知）
+* [账户恢复](https://help.ppgg.in/docs/admin-console/manage-members/account-recovery/about-account-recovery)（这需要[启用电子邮件功能](configuration/smtp-configuration.md)）
+* 用于桌面端/浏览器客户端/扩展的[实时同步](https://bitwarden.com/blog/live-sync/)（仅 WebSocket）
+* 用于移动客户端 (Android/iOS) 的[实时同步](https://bitwarden.com/blog/live-sync/)（[推送通知](configuration/enabling-mobile-client-push-notification.md)）
 * [单点登录 (SSO)](https://help.ppgg.in/admin-console/login-with-sso/about-login-with-sso)，请参阅[文档](configuration/enabling-sso-support-using-openid-connect.md)
 * 某些企业策略：
   * [要求两步登录](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#require-two-step-login)
   * [主密码要求](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#master-password-requirements)
-  * [主密码重置](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#account-recovery-administration)
+  * [账户恢复管理](https://help.ppgg.in/docs/admin-console/oversight-visibility/enterprise-policies#account-recovery-administration)（仅在启用了电子邮件时可用）
   * [密码生成器](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#password-generator)
   * [单一组织](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#single-organization)
-  * [移除个人密码库](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#remove-individual-vault)
+  * [禁用个人密码库](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#remove-individual-vault)
   * [禁用 Send](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#disable-send)
   * [Send 选项](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#send-options)
+  * [禁用支付卡项目类型](https://help.ppgg.in/docs/admin-console/oversight-visibility/enterprise-policies#remove-card-item-type)
+  * [默认 URI 匹配检查](https://help.ppgg.in/docs/admin-console/oversight-visibility/enterprise-policies#default-uri-match-detection)
 
 ## 缺少的功能 <a href="#missing-features" id="missing-features"></a>
 
@@ -58,7 +60,9 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 
 在时间允许的情况下，可能会添加的功能（欢迎贡献）：
 
-* [Bitwarden 公共 API](https://help.ppgg.in/organizations/bitwarden-public-api) / [组织 API 密钥](https://help.ppgg.in/admin-console/bitwarden-public-api#authentication)。此功能做了部分添加，并且仅支持 Bitwarden Directory Connector。
+* [Bitwarden 公共 API](https://help.ppgg.in/organizations/bitwarden-public-api) / [组织 API 密钥](https://help.ppgg.in/admin-console/bitwarden-public-api#authentication)。此功能做了部分添加，并且仅支持 Bitwarden Directory Connector
+* [使用通行密钥登录](https://help.ppgg.in/docs/account/log-in-and-unlock/more-log-in-options/log-in-with-passkeys)。参阅 [#5929](https://github.com/dani-garcia/vaultwarden/pull/5929)
+* [新设备登录保护](https://help.ppgg.in/docs/account/log-in-and-unlock/new-device-protection)
 
 除非做出贡献，否则可能不会添加的功能：
 
