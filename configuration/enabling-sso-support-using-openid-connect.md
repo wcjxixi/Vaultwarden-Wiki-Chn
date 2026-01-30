@@ -90,20 +90,23 @@ TRUNCATE TABLE sso_users;
 
 ## Keycloak
 
-默认访问令牌生命周期可能只有 `5min`，请设置更大的值，否则会与同样设置为 `5min`的 Bitwarden 前端过期检测冲突。
+默认访问令牌生命周期可能只有 `5min`，请将其设置为更长的时间，否则会与同样设置为 `5min` 的 Bitwarden 前端过期检测发生冲突
 
-在领域级别：
+在 realm 级别：
 
 * `Realm settings / Tokens / Access Token Lifespan` 至少设置为 `10min`（使用 `kcadm.sh` 时的 `accessTokenLifespan` 设置）。
 * `Realm settings / Sessions / SSO Session Idle/Max` 用于刷新令牌的生命周期
 
 或者对于在 `Clients / Client details / Advanced / Advanced settings` 中的特定客户端，可以找到 `Access Token Lifespan` 和 `Client Session Idle/Max`。
 
-服务器配置，无特别的设置：
+服务器配置：
 
 * `SSO_AUTHORITY=https://${keycloak_domain}/realms/${realm_name}`
-* `SSO_CLIENT_ID`
-* `SSO_CLIENT_SECRET`
+* `SSO_SCOPES="email profile offline_access"`&#x20;
+* `SSO_CLIENT_ID`&#x20;
+* `SSO_CLIENT_SECRET`&#x20;
+
+注意：默认情况下，可以在 `Clients / Client details / Client scopes` 中的的客户端级别或者在 `Realm settings / Client scopes` 中的 realm 级别分配 `offline_access` 范围，否则必须通过 `SSO_SCOPES` 显式请求才能使刷新令牌生效。
 
 ### 测试 <a href="#testing" id="testing"></a>
 
