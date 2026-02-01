@@ -84,7 +84,7 @@ TRUNCATE TABLE sso_users;
 
 ### 手动滚动密钥 <a href="#rolling-keys-manually" id="rolling-keys-manually"></a>
 
-如果要滚动已使用的密钥，请先添加一个新的密钥，但不要立即开始使用它签名。等待在 `SSO_CLIENT_CACHE_EXPIRATION` 中配置的延迟时间，然后就可以开始使用它签名了。
+如果要滚动已使用的密钥，请先添加一个新的密钥，但不要立即开始使用它签名。等待在 `SSO_CLIENT_CACHE_EXPIRATION` 中配置的延迟时间后，然后就可以开始使用它签名了。
 
 正如 Google 示例中提到的，即使不打算滚动密钥，设置过高的值也会导致回报率降低。
 
@@ -92,7 +92,7 @@ TRUNCATE TABLE sso_users;
 
 默认访问令牌生命周期可能只有 `5min`，请将其设置为更长的时间，否则会与同样设置为 `5min` 的 Bitwarden 前端过期检测发生冲突
 
-在 realm 级别：
+在 Realm 级别：
 
 * `Realm settings / Tokens / Access Token Lifespan` 至少设置为 `10min`（使用 `kcadm.sh` 时的 `accessTokenLifespan` 设置）。
 * `Realm settings / Sessions / SSO Session Idle/Max` 用于刷新令牌的生命周期
@@ -106,7 +106,7 @@ TRUNCATE TABLE sso_users;
 * `SSO_CLIENT_ID`&#x20;
 * `SSO_CLIENT_SECRET`&#x20;
 
-注意：默认情况下，可以在 `Clients / Client details / Client scopes` 中的的客户端级别或者在 `Realm settings / Client scopes` 中的 realm 级别分配 `offline_access` 范围，否则必须通过 `SSO_SCOPES` 显式请求才能使刷新令牌生效。
+注意：默认情况下，可以在 `Clients / Client details / Client scopes` 中的的客户端级别或者在 `Realm settings / Client scopes` 中的 Realm 级别分配 `offline_access` 范围，否则必须通过 `SSO_SCOPES` 显式请求才能使刷新令牌生效。
 
 ### 测试 <a href="#testing" id="testing"></a>
 
@@ -165,7 +165,7 @@ TRUNCATE TABLE sso_users;
 
 1. 打开 **Authentik admin panel** > **Providers** > 打开您的 **Vaultwarden provider**
 2. 点击 **Edit** > 确保 **Encryption Key** 为空
-3. **若不为空**：请在下拉菜单中选择 **-------**
+3. **若不为空**：请在下拉菜单中选择 `-------`
 4. 请勿修改 **Signing Key**，必须选择一个有效的证书
 5. 点击 **Update**
 6. 重试
@@ -196,7 +196,9 @@ TRUNCATE TABLE sso_users;
 
 ## Google Auth
 
-Google [文档](https://developers.google.com/identity/openid-connect/openid-connect?hl=zh-cn)。默认情况下，如果没有额外[配置](https://developers.google.com/identity/protocols/oauth2/web-server#creatingclient)，您将没有 `refresh_token`，会话时间将限制为 1 小时。
+Google [文档](https://developers.google.com/identity/openid-connect/openid-connect?hl=zh-cn)。
+
+默认情况下，如果没有额外[配置](https://developers.google.com/identity/protocols/oauth2/web-server#creatingclient)，您将没有 `refresh_token`，会话时间将限制为 1 小时。
 
 使用以下内容配置您的服务器：
 
