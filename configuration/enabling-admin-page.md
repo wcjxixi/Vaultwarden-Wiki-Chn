@@ -61,7 +61,7 @@ docker exec -it vwcontainer /vaultwarden hash
 
 ### 使用 `argon2` <a href="#using-argon2" id="using-argon2"></a>
 
-您还可以使用大多数 Linux 发行版上提供的 `argon2` CLI。
+您还可以使用大多数 Linux 发行版上提供的 `argon2` 命令行。
 
 ```sh
 # 使用 Bitwarden 默认
@@ -108,7 +108,7 @@ WARNING: The m variable is not set. Defaulting to a blank string.
 ```
 
 {% hint style="info" %}
-当为 `docker-compose.yaml` 使用 `.env` 文件时，不需要变量插值。如下面的示例所示。在这种情况下，只需使用单个 `$` 变体。与使用 docker/podman CLI 时使用 `-e ADMIN_TOKEN` ，或者在[配置为 Vaultwarden 使用 `ENV_FILE`](configuration-overview.md#using-an-env_file) 的方式相同。
+当为 `docker-compose.yaml` 使用 `.env` 文件时，不需要变量插值。如下面的示例所示。在这种情况下，只需使用单个 `$` 变体。与使用 docker/podman CLI 时使用 `-e ADMIN_TOKEN`，或者在[配置为 Vaultwarden 使用 `ENV_FILE`](configuration-overview.md#using-an-env_file) 的方式相同。
 {% endhint %}
 
 ```
@@ -140,7 +140,7 @@ services:
       - ADMIN_TOKEN=${VAULTWARDEN_ADMIN_TOKEN}
 ```
 
-您可以通过调用 `docker compose config` 来检查您的配置，您应该会看到 `$` 符号已转义成了两个 `$$`。
+您可以通过调用 `docker compose config` 来检查您的配置，您应该会看到 `$` 符号已自动转义成了两个 `$$`。
 
 ### 故障排除提示 <a href="#troubleshooting-tips" id="troubleshooting-tips"></a>
 
