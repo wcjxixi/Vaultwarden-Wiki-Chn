@@ -30,71 +30,93 @@
 **以下是可以将其放入 `user.vaultwarden.scss.hbs` 中的示例代码片段：**
 
 ```css
-/* 隐藏 "验证器 App" 2FA */
-.providers-2fa-0 {
-  @extend %vw-hide;
+/* 文件位置: /data/templates/scss/user.vaultwarden.scss.hbs */
+
+/* --- 变量 --- */
+/* 您可以为密码库（用户）和管理控制台（组织）设置不同的 Logo */
+$logo-default: url('/vw_static/logo-gray.png');
+$logo-admin:   url('/vw_static/logo-gray.png'); 
+
+/* 侧边栏定制 */
+$sidebar-width: 15rem; /* Set this to match your logo width if needed */
+
+/* --- 混入 --- */
+@mixin hide-element { display: none !important; }
+
+/* --- 隐藏 2FA 提供程序 --- */
+/* 0: Authenticator App, 1: Email, 2: Duo, 3: YubiKey OTP, 7: FIDO2 WebAuthn */
+.providers-2fa-0, .providers-2fa-1, .providers-2fa-2, .providers-2fa-3, .providers-2fa-7 {
+  @include hide-element;
 }
 
-/* 隐藏 "YubiKey OTP 安全密钥" 2FA */
-/* 注意：如果未配置 Yubikey，该选项将自动隐藏 */
-.providers-2fa-3 {
-  @extend %vw-hide;
+/* --- 加载界面 --- */
+app-root img.new-logo-themed { content: $logo-default !important; }
+
+/* --- 登录界面 --- */
+auth-anon-layout bit-landing-header {
+  bit-icon {
+    /* 隐藏原始 SVG */
+    > svg { @include hide-element; }
+
+    /* 注入自定义 Logo */
+    &::before {
+      display: block !important;
+      content: "" !important;
+      width: 100% !important;
+      height: 42px !important;
+      background: $logo-default no-repeat center left !important;
+      background-size: contain !important;
+    }
+  }
 }
 
-/* 隐藏 "Duo" 2FA */
-.providers-2fa-2 {
-  @extend %vw-hide;
+/* --- 仪表板侧边栏 --- */
+bit-nav-logo {
+  /* 
+    如果您希望 Logo 在最小化时减少裁剪，请应
+    如果您有类似 Vaultwarden 和 Bitwarden 的徽标
+  */
+  /* > div { padding-right: 2px !important; } */
+
+  bit-icon {
+    > svg { @include hide-element; }
+
+    &::before {
+      display: block !important;
+      content: "" !important;
+      width: 100% !important;
+      height: 42px !important;
+      background-repeat: no-repeat !important;
+      background-size: auto 42px !important;
+      background-position: center left !important;
+    }
+  }
 }
 
-/* 隐藏 "FIDO2 WebAuthn" 2FA */
-.providers-2fa-7 {
-  @extend %vw-hide;
-}
+/* --- 仪表板侧边栏 --- */
+app-user-layout bit-nav-logo bit-icon::before { background-image: $logo-default !important; }
+app-organization-layout bit-nav-logo bit-icon::before { background-image: $logo-admin !important; }
 
-/* 隐藏 "Email" 2FA */
-/* 注意：如果未启用电子邮箱功能，该选项将自动隐藏。 */
-.providers-2fa-1 {
-  @extend %vw-hide;
-}
+/* --- 侧边栏布局 & 逻辑 --- */
+#bit-side-nav {
+  /*
+    仅当宽度与默认的 '18rem' 内联样式匹配时才覆盖宽度。
+    这确保我们不会破坏 '折叠' 状态 (4.5rem) 或手动调整大小。
+  */
+  &[style*="18rem"] { max-width: $sidebar-width !important; }
 
-/* 使用自定义登录 logo */
-app-root img.new-logo-themed {
-	content: url(../images/my-custom-login-logo.png) !important;
-}
-
-/* 在登录和锁定页面使用自定义左上角 logo */
-auth-anon-layout > main > div > a > bit-icon > svg {
-  display: none !important;
-}
-auth-anon-layout > main > div > a > bit-icon::before {
-  display: block;
-  content: "" !important;
-  width: 175px !important;
-  height: 36px !important;
-  background-image: url(../images/my-custom-global-logo.png) !important;
-  background-repeat: no-repeat !important;
-  background-size: contain;
-}
-
-/* 在密码库 / 管理页面使用不同的自定义左上角 logo */
-app-user-layout bit-nav-logo bit-icon > svg,
-app-organization-layout bit-nav-logo bit-icon > svg {
-  display: none !important;
-}
-app-user-layout bit-nav-logo bit-icon::before,
-app-organization-layout bit-nav-logo bit-icon::before {
-  display: block;
-  content: "" !important;
-  width: 200px !important;
-  height: 50px !important;
-  background-repeat: no-repeat !important;
-  background-size: contain;
-}
-app-user-layout bit-nav-logo bit-icon::before {
-  background-image: url(../images/my-custom-password-manager-logo.png) !important;
-}
-app-organization-layout bit-nav-logo bit-icon::before {
-  background-image: url(../images/my-custom-admin-console-logo.png) !important;
+  /*
+    当侧边栏折叠时（宽度通常为 4.5rem），隐藏自定义 Logo
+    以便让它看起来不会破坏或被裁剪。
+  */
+  &[style*="4.5rem"] {
+    bit-nav-logo bit-icon::before { display: none !important; }
+    /*
+      可选：最小化时再次显示原始图标？
+      删除下面的注释以启用：
+    */
+    /* bit-nav-logo bit-icon > svg { display: block !important; } */
+  }
 }
 ```
 

@@ -1,4 +1,4 @@
-# 4.第三方包
+# 3.第三方包
 
 {% hint style="success" %}
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Third-party-packages)
@@ -28,7 +28,7 @@
 
 一个基于 docker 的工具链，可用于构建 debian 包：[https://github.com/greizgh/vaultwarden-debian](https://github.com/greizgh/vaultwarden-debian)。它捆绑了服务器和网页版密码库。
 
-带有纯编译工具链的 Debian 源代码（无 docker）：[https://github.com/dionysius/vaultwarden-deb](https://github.com/dionysius/vaultwarden-deb) 和 [https://github.com/dionysius/vaultwarden-web-vault-deb](https://github.com/dionysius/vaultwarden-web-vault-deb)，它为最新的 Ubuntu LTS 和 Debian 稳定版提供预构建包。
+带有纯编译工具链的 Debian 源（无 docker）：[https://github.com/dionysius/vaultwarden-deb](https://github.com/dionysius/vaultwarden-deb)。适用于多种可用发行版和架构的预构建包和 apt 存储库。
 
 ## DietPi（高度优化的最小化 Debian 操作系统） <a href="#dietpi-highly-optimised-minimal-debian-os" id="dietpi-highly-optimised-minimal-debian-os"></a>
 
@@ -55,7 +55,7 @@ dnf install vaultwarden vaultwarden-webvault
 
 ## Gentoo
 
-用户可以自定义（是否使用 mysql/sqlite/postgresql 或者 web/cli）使用 USE 标记构建 Vaultwarden。首先按照[此 wiki](https://wiki.gentoo.org/wiki/Project:GURU/Information_for_End_Users) 启用 GURU 覆盖。使用 `equery uses vaultwarden` 查看 Vaultwarden 可用的 USE 标记。
+用户可以自定义（是否使用 mysql/sqlite/postgresql 或者 web/cli）使用 USE 标记构建 Vaultwarden。使用 `equery uses vaultwarden` 查看 Vaultwarden 可用的 USE 标记。
 
 ```sh
 echo "app-admin/vaultwarden <your USE flags here>" >> /etc/portage/package.use/vaultwarden
