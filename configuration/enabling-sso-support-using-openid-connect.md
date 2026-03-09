@@ -61,7 +61,7 @@ TRUNCATE TABLE sso_users;
 
 ### 对于 `SSO_ALLOW_UNKNOWN_EMAIL_VERIFICATION`  <a href="#on-sso_allow_unknown_email_verification" id="on-sso_allow_unknown_email_verification"></a>
 
-如果提供程序不发送电子邮箱的验证状态（`email_verified` [claim](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims)），则您需要激活此设置。
+如果提供程序不发送电子邮箱的验证状态 (`email_verified` [claim](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims))，则您需要激活此设置。
 
 如果设置为 `SSO_SIGNUPS_MATCH_EMAIL=true`（默认值），那么即使用户不控制电子邮箱地址，也可以与现有的非 SSO 账户关联。这样，用户就可以访问敏感信息，但仍需要主密码才能读取密码。
 
@@ -322,4 +322,4 @@ network.protocol-handler.external.bitwarden=true
 data:text/html,<a href="bitwarden:///dummy">Click me to register Bitwarden</a>
 ```
 
-从现在起，重定向应该可以正常工作了。如果需要更改启动的应用程序，现在可以使用搜索功能在 `Settings`  中输入 `application` 进行查找。
+从现在起，重定向应该可以正常工作了。如果需要更改启动的应用程序，现在可以使用搜索功能在 `Settings` 中输入 `application` 进行查找。
