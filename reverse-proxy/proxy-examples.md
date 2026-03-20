@@ -638,8 +638,8 @@ server {
     SSLCACertificateFile ${SSLCA}
     ${SSLCHAIN}
 
-    ErrorLog \${APACHE_LOG_DIR}/vaultwarden-error.log
-    CustomLog \${APACHE_LOG_DIR}/vaultwarden-access.log combined
+    ErrorLog ${APACHE_LOG_DIR}/vaultwarden-error.log
+    CustomLog ${APACHE_LOG_DIR}/vaultwarden-access.log combined
 
     ProxyPass / http://127.0.0.1:8000/ upgrade=websocket
 
