@@ -54,7 +54,7 @@
     }
   }
 
-  # 如果你想通过 ACME（Let's Encrypt 或 ZeroSSL）获获取证书，请取消注释
+  # 如果您想通过 ACME（Let's Encrypt 或 ZeroSSL）获取证书，请取消注释
   # tls {$EMAIL}
 
   # 或者如果您提供自己的证书，请取消注释
@@ -197,8 +197,8 @@ $HTTP["host"] == "shared.example.tld" {
 <summary>Nginx (by <a href="https://github.com/BlackDex">@BlackDex</a>)</summary>
 
 ```nginx
-# 'upstream' 指令确保你有一个 http/1.1 连接
-# 这里启用了 keepalive 选项并拥有更好的性能
+# 'upstream' 指令确保您有一个 http/1.1 连接
+# 这里启用了 keepalive 选项以拥有更好的性能
 #
 # 此处定义服务器的 IP 和端口。
 upstream vaultwarden-default {
@@ -209,7 +209,7 @@ upstream vaultwarden-default {
 
 # 要支持 websocket 连接的话才需要
 # 参阅：https://nginx.org/en/docs/http/websocket.html
-# 我们不发送上述链接中所说的 "close"，而是发送一个空值。
+# 我们不发送上述链接中所说的 "close"，而是发送一个空值，
 # 否则所有的 keepalive 连接都将无法工作。
 map $http_upgrade $connection_upgrade {
     default upgrade;
@@ -304,20 +304,20 @@ DOMAIN=https://shared.example.tld/vault/
 ```
 
 ```nginx
-# 'upstream' 指令确保你有一个 http/1.1 连接
-# 这里启用了 keepalive 选项并拥有更好的性能
+# 'upstream' 指令确保您有一个 http/1.1 连接
+# 这里启用了 keepalive 选项以拥有更好的性能
 #
-# 此处定义服务器的 IP 和端口。
+# 此处定义服务器的 IP 和端口
 upstream vaultwarden-default {
   zone vaultwarden-default 64k;
   server 127.0.0.1:8000;
   keepalive 2;
 }
 
-# 要支持 websocket 连接的话才需要
+# 需要这些以支持 websocket 连接
 # 参阅：https://nginx.org/en/docs/http/websocket.html
-# 我们不发送上述链接中所说的 "close"，而是发送一个空值。
-# 否则所有的 keepalive 连接都将无法工作。
+# 我们发送的是空值，而不是上述链接中的 "close"
+# 否则所有 keepalive 连接都将失效
 map $http_upgrade $connection_upgrade {
     default upgrade;
     ''      "";
@@ -354,9 +354,9 @@ server {
     client_max_body_size 525M;
 
     ## 使用子路径配置
-    # 到你的安装的 root 目录的路径
-    # 一定要加上尾部的 /，否则您会遇到问题
-    # 但仅限于这个位置，所有其他位置都不应该添加这个。
+    # 您的安装的 root 目录的路径
+    # 请务必添加尾部的 /，否则您可能会遇到问题
+    # 但仅限于这个位置，所有其他位置不应添加这些内容
     location /vault/ {
       proxy_http_version 1.1;
       proxy_set_header Upgrade $http_upgrade;
@@ -439,7 +439,7 @@ nginx__servers:
         options: |-
           return 307 $scheme://$host$request_uri/;
 
-      ## All the security HTTP headers would then need to be set by nginx as well.
+      ## 所有安全 HTTP 标头也需要由 nginx 设置。
       # - pattern: '/{{ vaultwarden__http_psk_subpath }}/'
       #   options: |-
       #     alias /usr/share/vaultwarden/web-vault/;
@@ -478,8 +478,7 @@ nginx__servers:
 
           proxy_pass http://vaultwarden-ws;
 
-      # Do not use the icons features as long as it reveals all domains from
-      # our credentials to the server.
+      # 不要使用图标功能，因为它会显示从我们的凭据到服务器的所有域名
       - pattern: '/{{ vaultwarden__http_psk_subpath }}/icons/'
         options: |-
           access_log off;
@@ -555,14 +554,14 @@ devices:
 <pre class="language-nginx"><code class="lang-nginx"># proxy_protocol 相关:
 
 set_real_ip_from ::1; # 要信任哪个下游代理，请在前面输入您的代理地址
-real_ip_header proxy_protocol; # 可选，如果您希望 nginx 使用来自 proxy_protocol 的信息覆盖 remote_addr。 取决于您在日志模板和服务器或流块中使用的关于远程地址的变量。
+real_ip_header proxy_protocol; # 可选。如果您希望 nginx 使用来自 proxy_protocol 的信息覆盖 remote_addr。 取决于您在日志模板和服务器或流块中使用的关于远程地址的变量。
 
 # 以下基于 blackdex 的示例:
 
-# `upstream` 指令确保您有一个 http/1.1 连接
-# 这启用了 keepalive 选项和更好的性能
+# 'upstream' 指令确保您有一个 http/1.1 连接
+# 这里启用了 keepalive 选项以拥有更好的性能
 #
-# 这里定义服务器 IP 和端口.
+# 这里定义服务器 IP 和端口
 upstream vaultwarden-default {
   zone vaultwarden-default 64k;
   server 127.0.0.1:8000;
@@ -599,10 +598,10 @@ server {
 
     client_max_body_size 525M;
 
-    ## 使用子路径 Config
-    # 您的安装的根目录路径
-    # 请务必添加尾随 /，否则您可能会遇到问题
-    # 但仅限于此位置，所有其他位置不应添加这些内容
+    ## 使用子路径配置
+    # 您的安装的 root 目录的路径
+    # 请务必添加尾部的 /，否则您可能会遇到问题
+    # 但仅限于这个位置，所有其他位置不应添加这些内容
     location /vault/ {
       proxy_http_version 1.1;
       proxy_set_header Upgrade $http_upgrade;
@@ -1011,7 +1010,7 @@ use_backend VaultWarden-Notifications_ipvANY  if  ACL3
 use_backend VaultWarden-Notifications_ipvANY  if  !ACL4 
 ```
 
-为了进行测试，如果您在浏览器中导航到 /notifications/hub，那么您应该会看到一个页面，上面写着「WebSocket Protocol Error: Unable to parse WebSocket key.」（WebSocket 协议错误：无法解析 WebSocket 密钥。） ……这意味着它可以正常工作！ - 所有其他子页面都应该出现 Rocket 错误。
+为了进行测试，如果您在浏览器中导航到 /notifications/hub，那么您应该会看到一个页面，上面写着「WebSocket Protocol Error: Unable to parse WebSocket key.」（WebSocket 协议错误：无法解析 WebSocket 密钥）……这意味着它可以正常工作！ - 所有其他子页面都应该出现 Rocket 错误。
 
 </details>
 
@@ -1066,7 +1065,7 @@ metadata:
   namespace: vaultwarden
 spec:
   selector:
-    istio: ingressgateway-internal # use Istio default gateway implementation
+    istio: ingressgateway-internal # 使用 Istio 默认网关实现
   servers:
   - hosts:
     - vw.k8s.prod
@@ -1121,7 +1120,7 @@ metadata:
   namespace: vaultwarden
 spec:
   selector:
-    istio: ingressgateway-internal # use Istio default gateway implementation
+    istio: ingressgateway-internal # 使用 Istio 默认网关实现
   servers:
   - hosts:
     - vw.k8s.prod
