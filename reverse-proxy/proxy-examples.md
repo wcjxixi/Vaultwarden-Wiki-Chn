@@ -675,8 +675,8 @@ DOMAIN=https://shared.example.tld/vault/
     SSLCACertificateFile ${SSLCA}
     ${SSLCHAIN}
 
-    ErrorLog \${APACHE_LOG_DIR}/error.log
-    CustomLog \${APACHE_LOG_DIR}/access.log combined
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
 
     <Location /vault> # 如果需要，调整此处
         ProxyPass http://127.0.0.1:8000/vault/ upgrade=websocket
