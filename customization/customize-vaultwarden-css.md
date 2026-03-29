@@ -45,9 +45,11 @@ $sidebar-width: 15rem; /* Set this to match your logo width if needed */
 
 /* --- 隐藏 2FA 提供程序 --- */
 /* 0: Authenticator App, 1: Email, 2: Duo, 3: YubiKey OTP, 7: FIDO2 WebAuthn */
-.providers-2fa-0, .providers-2fa-1, .providers-2fa-2, .providers-2fa-3, .providers-2fa-7 {
+/*
+ .providers-2fa-0, .providers-2fa-1, .providers-2fa-2, .providers-2fa-3, .providers-2fa-7 {
   @include hide-element;
 }
+*/
 
 /* --- 加载界面 --- */
 app-root img.new-logo-themed { content: $logo-default !important; }
@@ -113,7 +115,7 @@ app-organization-layout bit-nav-logo bit-icon::before { background-image: $logo-
     bit-nav-logo bit-icon::before { display: none !important; }
     /*
       可选：最小化时再次显示原始图标？
-      删除下面的注释以启用：
+      移除下面的注释以启用：
     */
     /* bit-nav-logo bit-icon > svg { display: block !important; } */
   }
