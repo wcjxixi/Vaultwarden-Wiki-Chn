@@ -141,6 +141,7 @@ _**可选备份。**_
 * [https://github.com/jjlin/vaultwarden-backup](https://github.com/jjlin/vaultwarden-backup)
 * [https://github.com/jmqm/vaultwarden\_backup](https://github.com/jmqm/vaultwarden_backup)
 * [https://github.com/Guru-25/bitwarden-export](https://github.com/Guru-25/bitwarden-export)
+* [https://github.com/dockers-x/rclone-backup](https://github.com/dockers-x/rclone-backup)
 
 ## 基于 Docker 的自动备份（示例） <a href="#docker-based-automated-backups-example" id="docker-based-automated-backups-example"></a>
 

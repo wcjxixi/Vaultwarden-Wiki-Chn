@@ -34,7 +34,9 @@
 * `SSO_CLIENT_CACHE_EXPIRATION`：缓存对发现端点的调用，持续时间（秒）， `0` 禁用（默认为 `0`）;
 * `SSO_DEBUG_TOKENS`：记录所有令牌以便于调试（默认为 `false` ，需要设置 `LOG_LEVEL=debug` 或 `LOG_LEVEL=info,vaultwarden::sso=debug`）
 
-回调 URL 是从 `DOMAIN` [自动生成](https://github.com/dani-garcia/vaultwarden/blob/1e1f9957cd037fad87e5cd33245720f865942016/src/config.rs#L1333)的。如果您设置 `DOMAIN=https://vaultwarden.example.tld`，您的回调 URL 将为 `https://vaultwarden.example.tld/identity/connect/oidc-signin`。
+回调 URL 是从 `DOMAIN` [自动生成](https://github.com/dani-garcia/vaultwarden/blob/1e1f9957cd037fad87e5cd33245720f865942016/src/config.rs#L1333)的。如果您设置 `DOMAIN=https://vaultwarden.example.tld`，则您的回调 URL 将是 `https://vaultwarden.example.tld/identity/connect/oidc-signin`。
+
+如果您在您的 SSO 权威上使用的是私有证书权威或自签名证书，则需要将根证书添加到 `/etc/ssl/certs` 中，或者将 `SSL_CERT_DIR` 或 `SSL_CERT_FILE` 环境变量指向它。
 
 ## 账户和电子邮箱处理 <a href="#account-and-email-handling" id="account-and-email-handling"></a>
 
@@ -138,7 +140,7 @@ TRUNCATE TABLE sso_users;
 * `SSO_CLIENT_ID`
 * `SSO_CLIENT_SECRET`
 
-### 疑难解答 <a href="#troubleshooting" id="troubleshooting"></a>
+### 故障排除 <a href="#troubleshooting" id="troubleshooting"></a>
 
 #### **`Failed to discover OpenID provider`  / `Failed to parse server response`**：
 
