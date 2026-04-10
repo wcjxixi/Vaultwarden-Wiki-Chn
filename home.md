@@ -33,24 +33,24 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 * [回收站](https://help.ppgg.in/password-manager/vault-basics/vault-items#vault-trash)（软删除，您可以[配置自动删除的等待天数](https://github.com/dani-garcia/vaultwarden/blob/main/.env.template#L234-L237)）
 * [主密码重新提示](https://help.ppgg.in/password-manager/vault-basics/vault-items#protect-individual-items)
 * [个人 API 密钥](https://help.ppgg.in/password-manager/developer-tools/personal-api-key-for-cli-authentication)
-* [电子邮件](https://help.ppgg.in/my-account/two-step-login/setup-guides/two-step-login-via-email)、[Duo](https://help.ppgg.in/my-account/two-step-login/setup-guides/two-step-login-via-duo)、[Yubikey](https://help.ppgg.in/my-account/two-step-login/setup-guides/two-step-login-via-yubikey) 和 [FIDO2 WebAuthn](https://help.ppgg.in/my-account/two-step-login/setup-guides/two-step-login-via-fido)（包括 Nitrokeys 和 Solokeys）方式的两步登录
+* [电子邮件](https://help.ppgg.in/my-account/two-step-login/setup-guides/two-step-login-via-email)、[Duo](https://help.ppgg.in/my-account/two-step-login/setup-guides/two-step-login-via-duo)、[YubiKey](https://help.ppgg.in/my-account/two-step-login/setup-guides/two-step-login-via-yubikey) 和 [FIDO2 WebAuthn](https://help.ppgg.in/my-account/two-step-login/setup-guides/two-step-login-via-fido)（包括 Nitrokeys 和 Solokeys）方式的两步登录
 * SimpleLogin、AnonAddy 或 Firefox Relay 的用户名生成器集成
-* [目录连接器](https://help.ppgg.in/admin-console/user-management/directory-connector/about-directory-connector)支持
-* [账户恢复](https://help.ppgg.in/docs/admin-console/manage-members/account-recovery/about-account-recovery)（这需要[启用电子邮件功能](configuration/smtp-configuration.md)）
+* [Directory Connector](https://help.ppgg.in/docs/admin-console/manage-members/directory-connector/about-directory-connector) 支持
+* [账户恢复](https://help.ppgg.in/docs/admin-console/manage-members/account-recovery/about-account-recovery)（这需要[启用电子邮箱](configuration/smtp-configuration.md)）
 * 用于桌面端/浏览器客户端/扩展的[实时同步](https://bitwarden.com/blog/live-sync/)（仅 WebSocket）
 * 用于移动客户端 (Android/iOS) 的[实时同步](https://bitwarden.com/blog/live-sync/)（[推送通知](configuration/enabling-mobile-client-push-notification.md)）
 * [单点登录 (SSO)](https://help.ppgg.in/admin-console/login-with-sso/about-login-with-sso)，请参阅[文档](configuration/enabling-sso-support-using-openid-connect.md)
 * 某些企业策略：
   * [要求两步登录](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#require-two-step-login)
   * [主密码要求](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#master-password-requirements)
-  * [账户恢复管理](https://help.ppgg.in/docs/admin-console/oversight-visibility/enterprise-policies#account-recovery-administration)（仅在启用了电子邮件时可用）
+  * [账户恢复管理](https://help.ppgg.in/docs/admin-console/oversight-visibility/enterprise-policies#account-recovery-administration)（仅在启用了电子邮箱时可用）
   * [密码生成器](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#password-generator)
   * [单一组织](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#single-organization)
   * [禁用个人密码库](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#remove-individual-vault)
   * [禁用 Send](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#disable-send)
   * [Send 选项](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#send-options)
   * [禁用支付卡项目类型](https://help.ppgg.in/docs/admin-console/oversight-visibility/enterprise-policies#remove-card-item-type)
-  * [默认 URI 匹配检查](https://help.ppgg.in/docs/admin-console/oversight-visibility/enterprise-policies#default-uri-match-detection)
+  * [默认 URI 匹配检测](https://help.ppgg.in/docs/admin-console/oversight-visibility/enterprise-policies#default-uri-match-detection)
 
 ## 缺少的功能 <a href="#missing-features" id="missing-features"></a>
 
