@@ -80,13 +80,11 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 
 我们通常在 [#vaultwarden:matrix.org](https://matrix.to/#/#vaultwarden:matrix.org) 房间闲逛，如果您喜欢聊天，欢迎随时加入我们！
 
-{% columns %}
-{% column width="91.66666666666666%" %}
 ***
 
 <p align="center">🛡️ Vaultwarden — 一款使用 Rust 重构的 Bitwarden 服务器</p>
 
-<p align="center"><sub><strong>🏠 Wiki 首页</strong> · <strong>📖 FAQ</strong> · <strong>⚙️ 配置</strong> · <strong>🔒 强化指南</strong> · <strong>🐳 Docker</strong></sub></p>
+<p align="center"><sub><strong>🏠</strong></sub> <a href="home.md"><sub><strong>Wiki 首页</strong></sub></a> <sub>· <strong>📖</strong></sub><a href="faq/faqs.md"> <sub><strong>FAQ</strong></sub></a> <sub>· <strong>⚙️</strong></sub> <a href="configuration/configuration-overview.md"><sub><strong>配置</strong></sub></a> <sub>· <strong>🔒</strong></sub> <a href="configuration/security/hardening-guide.md"><sub><strong>强化指南</strong></sub></a> <sub>· <strong>🐳</strong></sub> <a href="container-image-usage/using-docker-compose.md"><sub><strong>Docker</strong></sub></a></p>
 
 ***
 
@@ -96,40 +94,10 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 
 ***
 
-<p align="center"><sub><strong>❤️ 喜欢</strong> Vaultwarden <strong>吗？</strong>考虑支持上游的Bitwarden — 没有他们的工作，这个项目就不会存在。</sub></p>
+<p align="center"><sub><strong>❤️ 喜欢</strong> Vaultwarden <strong>吗？</strong>考虑</sub><a href="faq/supporting-upstream-development.md"><sub>支持上游的 Bitwarden</sub></a> <sub>— 没有他们的工作，这个项目就不会存在。</sub></p>
 
-<p align="center"><sup><sub>Vaultwarden 是一个</sub><sub><strong>非官方</strong></sub><sub>的、由社区驱动的兼容 Bitwarden 的服务器。它与 Bitwarden, Inc 没有任何关联、亦未获得其认可</sub></sup></p>
+<p align="center"><sup><sub>Vaultwarden 是一个</sub><sub><strong>非官方</strong></sub><sub>的、由社区驱动的兼容 Bitwarden 的服务器。它与 Bitwarden, Inc 无任何关联、附属，亦未获得其认可 —「Bitwarden」是 Bitwarden, Inc 的商标。</sub></sup></p>
 
-<p align="center"><sup><sub>—「Bitwarden」是 Bitwarden, Inc 的商标。</sub></sup></p>
-
-<p align="center"><sup><sub>由 @dani-garcia 和贡献者精心维护 · 维基内容遵循项目条款授权</sub></sup></p>
-{% endcolumn %}
-
-{% column width="8.333333333333343%" %}
-
-{% endcolumn %}
-{% endcolumns %}
-
-***
-
-<p align="center">🛡️ Vaultwarden — 一款使用 Rust 重构的 Bitwarden 服务器</p>
-
-<p align="center"><sub><strong>🏠 Wiki 首页</strong> · <strong>📖 FAQ</strong> · <strong>⚙️ 配置</strong> · <strong>🔒 强化指南</strong> · <strong>🐳 Docker</strong></sub></p>
-
-***
-
-<p align="center"><sub><strong>💬 联系我们</strong></sub></p>
-
-<p align="center"><a href="https://vaultwarden.discourse.group/"><img src="https://camo.githubusercontent.com/765e304c5ba051b74fd1ed0262d20e8c08523e0855b802e23d9d88c5c4ad85f0/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f466f72756d2d446973636f757273652d3235393662653f7374796c653d666c61742d737175617265266c6f676f3d646973636f75727365" alt="Forum"></a> <a href="https://matrix.to/#/#vaultwarden:matrix.org"><img src="https://camo.githubusercontent.com/49c753898876a5f895bfdd8ee1ebfabdcca4f1789652998fd55e400ce4cda88a/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f436861742d2532337661756c7477617264656e2533416d61747269782e6f72672d3064626438623f7374796c653d666c61742d737175617265266c6f676f3d6d6174726978" alt="Matrix"></a> <a href="https://github.com/dani-garcia/vaultwarden/issues"><img src="https://camo.githubusercontent.com/fbdda3c37b06d0bb5d65af5d0621973db08d963f4e4cb1de525f4ad50c59f680/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6973737565732f64616e692d6761726369612f7661756c7477617264656e3f7374796c653d666c61742d737175617265266c6f676f3d676974687562" alt="Issues"></a> <a href="https://github.com/dani-garcia/vaultwarden/stargazers"><img src="https://camo.githubusercontent.com/325e1350f77def0d7dc32c11fc5ba604fb0456bc1aa2fd42dda84ee6177b7d5b/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f73746172732f64616e692d6761726369612f7661756c7477617264656e3f7374796c653d666c61742d737175617265266c6f676f3d676974687562" alt="Stars"></a> <a href="https://github.com/dani-garcia/vaultwarden/blob/main/LICENSE.txt"><img src="https://camo.githubusercontent.com/21f489b23b45334005af96c4ea5b058b0628f4eddbf59d8b40ce40e187791e51/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6963656e73652f64616e692d6761726369612f7661756c7477617264656e3f7374796c653d666c61742d737175617265" alt="License"></a></p>
-
-***
-
-<p align="center"><sub><strong>❤️ 喜欢</strong> Vaultwarden <strong>吗？</strong>考虑支持上游的Bitwarden — 没有他们的工作，这个项目就不会存在。</sub></p>
-
-<p align="center"><sup><sub>Vaultwarden 是一个</sub><sub><strong>非官方</strong></sub><sub>的、由社区驱动的兼容 Bitwarden 的服务器。它与 Bitwarden, Inc 没有任何关联、亦未获得其认可</sub></sup></p>
-
-<p align="center"><sup><sub>—「Bitwarden」是 Bitwarden, Inc 的商标。</sub></sup></p>
-
-<p align="center"><sup><sub>由 @dani-garcia 和贡献者精心维护 · 维基内容遵循项目条款授权</sub></sup></p>
+<p align="center"><sup><sub>由</sub></sup> <a href="https://github.com/dani-garcia"><sup><sub>@dani-garcia</sub></sup></a> <sup><sub>和</sub></sup><a href="https://github.com/dani-garcia/vaultwarden/graphs/contributors"><sup><sub>贡献者</sub></sup></a><sup><sub>精心维护 · Wiki 内容遵循项目条款授权</sub></sup></p>
 
 ***
