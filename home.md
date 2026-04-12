@@ -84,7 +84,7 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 
 <p align="center">🛡️ Vaultwarden — 一款使用 Rust 重构的 Bitwarden 服务器</p>
 
-<p align="center"><sup><sub><strong>🏠</strong></sub></sup> <a href="home.md"><sup><sub><strong>Wiki 首页</strong></sub></sup></a> <sup><sub>·</sub><sub> </sub><sub><strong>📖</strong></sub></sup><a href="faq/faqs.md"> <sup><sub><strong>FAQ</strong></sub></sup></a> <sup><sub>· <strong>⚙️</strong></sub></sup> <a href="configuration/configuration-overview.md"><sup><sub><strong>配置</strong></sub></sup></a> <sup><sub>· <strong>🔒</strong></sub></sup> <a href="configuration/security/hardening-guide.md"><sup><sub><strong>强化指南</strong></sub></sup></a> <sup><sub>· <strong>🐳</strong></sub></sup> <a href="container-image-usage/using-docker-compose.md"><sup><sub><strong>Docker</strong></sub></sup></a></p>
+<p align="center"><a href="home.md"><sup><sub><strong>🏠 Wiki 首页</strong></sub></sup></a> <sup><sub>· <strong>📖 FAQ</strong> · <strong>⚙️ 配置</strong> · <strong>🔒 强化指南</strong> ·</sub></sup> <a href="container-image-usage/using-docker-compose.md"><sup><sub><strong>🐳 Docker</strong></sub></sup></a></p>
 
 ***
 
