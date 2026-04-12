@@ -84,7 +84,7 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 
 <p align="center">🛡️ Vaultwarden — 一款使用 Rust 重构的 Bitwarden 服务器</p>
 
-<p align="center"><sub><strong>🏠</strong></sub> <a href="home.md"><sub><strong>Wiki 首页</strong></sub></a> <sub>· <strong>📖</strong></sub><a href="faq/faqs.md"> <sub><strong>FAQ</strong></sub></a> <sub>· <strong>⚙️</strong></sub> <a href="configuration/configuration-overview.md"><sub><strong>配置</strong></sub></a> <sub>· <strong>🔒</strong></sub> <a href="configuration/security/hardening-guide.md"><sub><strong>强化指南</strong></sub></a> <sub>· <strong>🐳</strong></sub> <a href="container-image-usage/using-docker-compose.md"><sub><strong>Docker</strong></sub></a></p>
+<p align="center"><sup><strong>🏠</strong></sup> <a href="home.md"><sup><strong>Wiki 首页</strong></sup></a> <sup>· <strong>📖</strong></sup><a href="faq/faqs.md"> <sup><strong>FAQ</strong></sup></a> <sup>· <strong>⚙️</strong></sup> <a href="configuration/configuration-overview.md"><sup><strong>配置</strong></sup></a> <sup>· <strong>🔒</strong></sup> <a href="configuration/security/hardening-guide.md"><sup><strong>强化指南</strong></sup></a> <sup>· <strong>🐳</strong></sup> <a href="container-image-usage/using-docker-compose.md"><sup><strong>Docker</strong></sup></a></p>
 
 ***
 
@@ -94,7 +94,7 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 
 ***
 
-<p align="center"><sup><strong>❤️ 喜欢</strong> Vaultwarden <strong>吗？</strong>考虑</sup><a href="faq/supporting-upstream-development.md"><sup>支持上游的 Bitwarden</sup></a> <sup>— 没有他们的工作，这个项目就不会存在。</sup></p>
+<p align="center"><sup><sub><strong>❤️ 喜欢</strong></sub><sub> </sub><sub>Vaultwarden</sub><sub> </sub><sub><strong>吗？</strong></sub><sub>考虑</sub></sup><a href="faq/supporting-upstream-development.md"><sup><sub>支持上游的 Bitwarden</sub></sup></a> <sup><sub>— 没有他们的工作，这个项目就不会存在。</sub></sup></p>
 
 <p align="center"><sup><sub>Vaultwarden 是一个</sub><sub><strong>非官方</strong></sub><sub>的、由社区驱动的兼容 Bitwarden 的服务器。它与 Bitwarden, Inc 无任何关联、附属，亦未获得其认可 —「Bitwarden」是 Bitwarden, Inc 的商标。</sub></sup></p>
 
