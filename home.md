@@ -94,7 +94,7 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 
 ***
 
-<p align="center"><sub><strong>❤️ 喜欢</strong> Vaultwarden <strong>吗？</strong>考虑</sub><a href="faq/supporting-upstream-development.md"><sub>支持上游的 Bitwarden</sub></a> <sub>— 没有他们的工作，这个项目就不会存在。</sub></p>
+<p align="center"><sup><strong>❤️ 喜欢</strong> Vaultwarden <strong>吗？</strong>考虑</sup><a href="faq/supporting-upstream-development.md"><sup>支持上游的 Bitwarden</sup></a> <sup>— 没有他们的工作，这个项目就不会存在。</sup></p>
 
 <p align="center"><sup><sub>Vaultwarden 是一个</sub><sub><strong>非官方</strong></sub><sub>的、由社区驱动的兼容 Bitwarden 的服务器。它与 Bitwarden, Inc 无任何关联、附属，亦未获得其认可 —「Bitwarden」是 Bitwarden, Inc 的商标。</sub></sup></p>
 
