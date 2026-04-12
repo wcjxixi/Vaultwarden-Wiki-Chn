@@ -98,8 +98,8 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 
 <p align="center"><sup><sub><strong>❤️ 喜欢</strong></sub><sub> </sub><sub>Vaultwarden</sub><sub> </sub><sub><strong>吗？</strong></sub><sub>考虑</sub></sup><a href="faq/supporting-upstream-development.md"><sup><sub>支持上游的 Bitwarden</sub></sup></a> <sup><sub>— 没有他们的工作，这个项目就不会存在。</sub></sup></p>
 
-<p align="center"><sup><sub>Vaultwarden 是一个<strong>非官方</strong>的、由社区驱动的兼容 Bitwarden 的服务器。它与 Bitwarden, Inc 无任何关联、附属，亦未获得其认可</sub></sup><br><sup><sub>—「Bitwarden」是 Bitwarden, Inc 的商标。</sub></sup></p>
+<p align="center"><sup><sub>Vaultwarden 是一款<strong>非官方</strong>的、由社区驱动的兼容 Bitwarden 的服务器。它与 Bitwarden, Inc 无任何关联、附属，亦未获得其认可。</sub></sup><br><sup><sub>—「Bitwarden」是 Bitwarden, Inc 的商标。</sub></sup></p>
 
-<p align="center"><sup><sub>由</sub></sup> <a href="https://github.com/dani-garcia"><sup><sub>@dani-garcia</sub></sup></a> <sup><sub>和</sub></sup><a href="https://github.com/dani-garcia/vaultwarden/graphs/contributors"><sup><sub>贡献者</sub></sup></a><sup><sub>精心维护 · Wiki 内容遵循项目条款授权</sub></sup></p>
+<p align="center"><sup><sub>由</sub></sup> <a href="https://github.com/dani-garcia"><sup><sub>@dani-garcia</sub></sup></a> <sup><sub>和</sub></sup><a href="https://github.com/dani-garcia/vaultwarden/graphs/contributors"><sup><sub>贡献者</sub></sup></a><sup><sub>精心维护 · Wiki 内容遵循项目条款许可</sub></sup></p>
 
 ***
