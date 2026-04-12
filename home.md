@@ -72,7 +72,7 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
   * [密码库超时](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#vault-timeout)
   * [禁用个人密码库导出](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#disable-personal-vault-export)
 
-## 联系我们 <a href="#get-in-touch" id="get-in-touch"></a>
+## 保持联系 <a href="#get-in-touch" id="get-in-touch"></a>
 
 要提出问题、提供建议、请求新功能或获得有关配置或安装软件的帮助，请[使用论坛](https://vaultwarden.discourse.group)。
 
@@ -82,13 +82,13 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 
 ***
 
-<p align="center">🛡️ Vaultwarden — 一款使用 Rust 重构的 Bitwarden 服务器</p>
+<p align="center"><strong>🛡️ Vaultwarden — 一款使用 Rust 重构的 Bitwarden 服务器</strong></p>
 
-<p align="center"><a href="home.md"><sup><sub><strong>🏠 Wiki 首页</strong></sub></sup></a> <sup><sub>· <strong>📖 FAQ</strong> · <strong>⚙️ 配置</strong> · <strong>🔒 强化指南</strong> ·</sub></sup> <a href="container-image-usage/using-docker-compose.md"><sup><sub><strong>🐳 Docker</strong></sub></sup></a></p>
+<p align="center"><a href="home.md"><sup><sub><strong>🏠 Wiki 首页</strong></sub></sup></a> <sup><sub>·</sub></sup> <a href="faq/faqs.md"><sup><sub><strong>📖 FAQ</strong></sub></sup></a> <sup><sub>·</sub></sup> <a href="configuration/configuration-overview.md"><sup><sub><strong>⚙️ 配置</strong></sub></sup></a> <sup><sub>·</sub></sup> <a href="configuration/security/hardening-guide.md"><sup><sub><strong>🔒 强化指南</strong></sub></sup></a> <sup><sub>·</sub></sup> <a href="container-image-usage/using-docker-compose.md"><sup><sub><strong>🐳 Docker</strong></sub></sup></a></p>
 
 ***
 
-<p align="center"><sup><sub><strong>💬 联系我们</strong></sub></sup></p>
+<p align="center"><sup><sub><strong>💬 保持联系</strong></sub></sup></p>
 
 <p align="center"><a href="https://vaultwarden.discourse.group/"><img src="https://camo.githubusercontent.com/765e304c5ba051b74fd1ed0262d20e8c08523e0855b802e23d9d88c5c4ad85f0/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f466f72756d2d446973636f757273652d3235393662653f7374796c653d666c61742d737175617265266c6f676f3d646973636f75727365" alt="Forum"></a> <a href="https://matrix.to/#/#vaultwarden:matrix.org"><img src="https://camo.githubusercontent.com/49c753898876a5f895bfdd8ee1ebfabdcca4f1789652998fd55e400ce4cda88a/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f436861742d2532337661756c7477617264656e2533416d61747269782e6f72672d3064626438623f7374796c653d666c61742d737175617265266c6f676f3d6d6174726978" alt="Matrix"></a> <a href="https://github.com/dani-garcia/vaultwarden/issues"><img src="https://camo.githubusercontent.com/fbdda3c37b06d0bb5d65af5d0621973db08d963f4e4cb1de525f4ad50c59f680/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6973737565732f64616e692d6761726369612f7661756c7477617264656e3f7374796c653d666c61742d737175617265266c6f676f3d676974687562" alt="Issues"></a> <a href="https://github.com/dani-garcia/vaultwarden/stargazers"><img src="https://camo.githubusercontent.com/325e1350f77def0d7dc32c11fc5ba604fb0456bc1aa2fd42dda84ee6177b7d5b/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f73746172732f64616e692d6761726369612f7661756c7477617264656e3f7374796c653d666c61742d737175617265266c6f676f3d676974687562" alt="Stars"></a> <a href="https://github.com/dani-garcia/vaultwarden/blob/main/LICENSE.txt"><img src="https://camo.githubusercontent.com/21f489b23b45334005af96c4ea5b058b0628f4eddbf59d8b40ce40e187791e51/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6963656e73652f64616e692d6761726369612f7661756c7477617264656e3f7374796c653d666c61742d737175617265" alt="License"></a></p>
 
