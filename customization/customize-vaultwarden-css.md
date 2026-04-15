@@ -38,7 +38,7 @@ $logo-default: url('/vw_static/logo-gray.png');
 $logo-admin:   url('/vw_static/logo-gray.png'); 
 
 /* 侧边栏定制 */
-$sidebar-width: 15rem; /* Set this to match your logo width if needed */
+$sidebar-width: 15rem; /* 如果需要，将其设置为匹配您的徽标的宽度 */
 
 /* --- 混入 --- */
 @mixin hide-element { display: none !important; }
@@ -56,7 +56,7 @@ app-root img.new-logo-themed { content: $logo-default !important; }
 
 /* --- 登录界面 --- */
 auth-anon-layout bit-landing-header {
-  bit-icon {
+  bit-svg {
     /* 隐藏原始 SVG */
     > svg { @include hide-element; }
 
@@ -80,7 +80,7 @@ bit-nav-logo {
   */
   /* > div { padding-right: 2px !important; } */
 
-  bit-icon {
+  bit-svg {
     > svg { @include hide-element; }
 
     &::before {
@@ -96,8 +96,8 @@ bit-nav-logo {
 }
 
 /* --- 仪表板侧边栏 --- */
-app-user-layout bit-nav-logo bit-icon::before { background-image: $logo-default !important; }
-app-organization-layout bit-nav-logo bit-icon::before { background-image: $logo-admin !important; }
+app-user-layout bit-nav-logo bit-svg::before { background-image: $logo-default !important; }
+app-organization-layout bit-nav-logo bit-svg::before { background-image: $logo-admin !important; }
 
 /* --- 侧边栏布局 & 逻辑 --- */
 #bit-side-nav {
@@ -112,12 +112,12 @@ app-organization-layout bit-nav-logo bit-icon::before { background-image: $logo-
     以便让它看起来不会破坏或被裁剪。
   */
   &[style*="4.5rem"] {
-    bit-nav-logo bit-icon::before { display: none !important; }
+    bit-nav-logo bit-svg::before { display: none !important; }
     /*
       可选：最小化时再次显示原始图标？
       移除下面的注释以启用：
     */
-    /* bit-nav-logo bit-icon > svg { display: block !important; } */
+    /* bit-nav-logo bit-svg > svg { display: block !important; } */
   }
 }
 ```
