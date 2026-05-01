@@ -63,15 +63,14 @@ docker exec -it vwcontainer /vaultwarden hash
 
 您还可以使用大多数 Linux 发行版上提供的 `argon2` 命令。
 
-```sh
-# 使用 Bitwarden 默认
-echo -n "MySecretPassword" | argon2 "$(openssl rand -base64 32)" -e -id -k 65540 -t 3 -p 4
-# 输出：$argon2id$v=19$m=65540,t=3,p=4$bXBGMENBZUVzT3VUSFErTzQzK25Jck1BN2Z0amFuWjdSdVlIQVZqYzAzYz0$T9m73OdD2mz9+aJKLuOAdbvoARdaKxtOZ+jZcSL9/N0
+<pre class="language-sh"><code class="lang-sh"># 使用 Bitwarden 默认
+<strong>echo -n 'MySecretPassword' | argon2 "$(openssl rand -base64 32)" -e -id -k 65540 -t 3 -p 4
+</strong># 输出：$argon2id$v=19$m=65540,t=3,p=4$bXBGMENBZUVzT3VUSFErTzQzK25Jck1BN2Z0amFuWjdSdVlIQVZqYzAzYz0$T9m73OdD2mz9+aJKLuOAdbvoARdaKxtOZ+jZcSL9/N0
 
 # 使用 OWASP 最低的推荐设置
-echo -n "MySecretPassword" | argon2 "$(openssl rand -base64 32)" -e -id -k 19456 -t 2 -p 1
+echo -n 'MySecretPassword' | argon2 "$(openssl rand -base64 32)" -e -id -k 19456 -t 2 -p 1
 # 输出：$argon2id$v=19$m=19456,t=2,p=1$cXpKdUxHSWhlaUs1QVVsSStkbTRPQVFPSmdpamFCMHdvYjVkWTVKaDdpYz0$E1UgBKjUCD2Roy0jdHAJvXihugpG+N9WcAaR8P6Qn/8
-```
+</code></pre>
 
 ### 使用已生成的 PHC 字符串 <a href="#using-the-generated-phc-string" id="using-the-generated-phc-string"></a>
 
