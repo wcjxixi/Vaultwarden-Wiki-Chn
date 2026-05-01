@@ -10,7 +10,7 @@
 
 Vaultwarden 管理面板允许服务器管理员配置 Vaultwarden，查看所有已注册的用户和组织，以及删除它们。它也允许邀请新用户，即使禁用了注册功能。它还提供了一个诊断页面，您可以在其中生成支持字符串。
 
-<figure><img src="https://github.com/user-attachments/assets/7deeb859-b84a-45d6-97ab-50932ce8a6a0" alt=""><figcaption></figcaption></figure>
+<div align="left" data-with-frame="true"><figure><img src="https://github.com/user-attachments/assets/7deeb859-b84a-45d6-97ab-50932ce8a6a0" alt=""><figcaption></figcaption></figure></div>
 
 ## 如何启用管理页面 <a href="#how-to-enable-the-admin-page" id="how-to-enable-the-admin-page"></a>
 
@@ -63,22 +63,23 @@ docker exec -it vwcontainer /vaultwarden hash
 
 您还可以使用大多数 Linux 发行版上提供的 `argon2` 命令。
 
-<pre class="language-sh"><code class="lang-sh"># 使用 Bitwarden 默认
-<strong>echo -n 'MySecretPassword' | argon2 "$(openssl rand -base64 32)" -e -id -k 65540 -t 3 -p 4
-</strong># 输出：$argon2id$v=19$m=65540,t=3,p=4$bXBGMENBZUVzT3VUSFErTzQzK25Jck1BN2Z0amFuWjdSdVlIQVZqYzAzYz0$T9m73OdD2mz9+aJKLuOAdbvoARdaKxtOZ+jZcSL9/N0
+```sh
+# 使用 Bitwarden 默认
+echo -n 'MySecretPassword' | argon2 "$(openssl rand -base64 32)" -e -id -k 65540 -t 3 -p 4
+# 输出：$argon2id$v=19$m=65540,t=3,p=4$bXBGMENBZUVzT3VUSFErTzQzK25Jck1BN2Z0amFuWjdSdVlIQVZqYzAzYz0$T9m73OdD2mz9+aJKLuOAdbvoARdaKxtOZ+jZcSL9/N0
 
 # 使用 OWASP 最低的推荐设置
 echo -n 'MySecretPassword' | argon2 "$(openssl rand -base64 32)" -e -id -k 19456 -t 2 -p 1
 # 输出：$argon2id$v=19$m=19456,t=2,p=1$cXpKdUxHSWhlaUs1QVVsSStkbTRPQVFPSmdpamFCMHdvYjVkWTVKaDdpYz0$E1UgBKjUCD2Roy0jdHAJvXihugpG+N9WcAaR8P6Qn/8
-</code></pre>
+```
 
 ### 使用已生成的 PHC 字符串 <a href="#using-the-generated-phc-string" id="using-the-generated-phc-string"></a>
 
 在环境变量中使用已生成的 PHC 字符串作为管理令牌，或者将 PHC 字符串传递给 docker/podman CLI 命令。对于 `docker-compose.yml` 文件，请按照以下说明操作。
 
-如果您通过 `/admin` 页面配置了 Vaultwarden，您应该将字符串粘贴到 `Admin token/Argon2 PHC` 字段（在 General settings 中）：
+如果您通过 `/admin` 页面配置了 Vaultwarden，您应该将字符串粘贴到 `Admin token/Argon2 PHC` 字段（位于 General settings）：
 
-<figure><img src="https://github.com/user-attachments/assets/52bf60df-1880-41b2-aab7-eac9982f7505" alt=""><figcaption></figcaption></figure>
+<div align="left" data-with-frame="true"><figure><img src="https://github.com/user-attachments/assets/52bf60df-1880-41b2-aab7-eac9982f7505" alt=""><figcaption></figcaption></figure></div>
 
 设置 PHC 字符串后，您可以使用生成该 PHC 字符串时使用的密码进行登录，例如上述示例中的 `MySecretPassword`。
 
@@ -178,13 +179,13 @@ $argon2id$v=19$m=65540,t=3,p=4$bXBGMENBZUVzT3VUSFErTzQzK25Jck1BN2Z0amFuWjdSdVlIQ
 
 用户概览允许您管理所有用户账户，并检查他们是否已完成注册，他们加入了哪些组织以及他们的用户角色是什么。组织的颜色表示用户的当前角色：<mark style="color:blue;">蓝色</mark>表示普通用户，<mark style="color:green;">绿色</mark>表示经理/自定义角色，<mark style="color:purple;">紫色</mark>表示管理员，<mark style="color:orange;">橙色</mark>表示所有者。
 
-<figure><img src="https://github.com/user-attachments/assets/ffb94abc-9ce4-4be5-ac87-d89e51e5b7b1" alt=""><figcaption></figcaption></figure>
+<div align="left" data-with-frame="true"><figure><img src="https://github.com/user-attachments/assets/ffb94abc-9ce4-4be5-ac87-d89e51e5b7b1" alt=""><figcaption></figcaption></figure></div>
 
 通过右侧的操作，您可以移除 2FA 提供程序，为用户取消授权任何现有会话，以及禁用或删除任何用户。
 
 如果您点击组织按钮，也可以更改指定成员的角色。
 
-<div align="left"><figure><img src="https://github.com/user-attachments/assets/1910822f-a297-431a-9309-8262c6563b5e" alt=""><figcaption></figcaption></figure></div>
+<div align="left" data-with-frame="true"><figure><img src="https://github.com/user-attachments/assets/1910822f-a297-431a-9309-8262c6563b5e" alt=""><figcaption></figcaption></figure></div>
 
 由于组织至少需要一位所有者，因此您无法移除最后一位所有者的所有者角色。
 
@@ -194,7 +195,7 @@ $argon2id$v=19$m=65540,t=3,p=4$bXBGMENBZUVzT3VUSFErTzQzK25Jck1BN2Z0amFuWjdSdVlIQ
 
 在组织概览中，您可以删除任何组织。由于您无法删除组织的最后一位所有者，您可能必须先删除所有者的组织。
 
-<figure><img src="https://github.com/user-attachments/assets/88444e11-04ca-430c-a2e4-8fba2f126ad9" alt=""><figcaption></figcaption></figure>
+<div align="left" data-with-frame="true"><figure><img src="https://github.com/user-attachments/assets/88444e11-04ca-430c-a2e4-8fba2f126ad9" alt=""><figcaption></figcaption></figure></div>
 
 ### 诊断 <a href="#diagnostics" id="diagnostics"></a>
 

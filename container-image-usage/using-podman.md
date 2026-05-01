@@ -18,12 +18,12 @@
 
 注意：此文件包含机密，请确保只有 root 拥有访问权限！
 
-```sh
+```shell
 sudo install -o0 -g0 -m600 /dev/null /etc/vaultwarden.env
 sudo vi /etc/vaultwarden.env
 ```
 
-```sh
+```systemd
 # Contents of /etc/vaultwarden.env
 ROCKET_PORT=8080
 

@@ -109,7 +109,7 @@ adb logcat --pid=$(adb shell pidof -s com.x8bit.bitwarden.dev)
 
 我们建议使用以下安全的方式之一分享这些文件：
 
-1. （ _**推首选**_）通过我们的 Matrix 聊天室：[![Matrix Chat](https://img.shields.io/matrix/vaultwarden:matrix.org.svg?style=flat-square\&logo=matrix\&logoColor=fff\&color=953B00\&cacheSeconds=14400)](https://matrix.to/#/#vaultwarden:matrix.org)
+1. （ _**首选**_）通过我们的 Matrix 聊天室：[![Matrix Chat](https://img.shields.io/matrix/vaultwarden:matrix.org.svg?style=flat-square\&logo=matrix\&logoColor=fff\&color=953B00\&cacheSeconds=14400)](https://matrix.to/#/#vaultwarden:matrix.org)
 2. 通过电子邮件，发送到 [![security-contact](https://github.com/dani-garcia/vaultwarden/raw/refs/heads/main/.github/security-contact.gif)](https://github.com/dani-garcia/vaultwarden/raw/refs/heads/main/.github/security-contact.gif)，以提供详细信息
 3. 通过您自托管的 Vaultwarden 的带有密码的 **Send**（使用 Matrix 或电子邮件分享）
 

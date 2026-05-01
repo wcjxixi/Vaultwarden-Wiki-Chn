@@ -22,7 +22,7 @@ touch /opt/docker/waf-rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf && touch
 
 `/opt/docker/docker-compose.yml`：
 
-```batch
+```yml
 services:
   traefik:
     image: traefik:latest

@@ -4,7 +4,7 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Using-the-MariaDB-\(MySQL\)-Backend)
 {% endhint %}
 
-{% hint style="warning" %}
+{% hint style="danger" %}
 ⚠️ 💩 ⚠️尽管 MySQL 数据库工作正常，但请注意，我们的构建基于 MariaDB 客户端库，因为这是 Debian 提供的。⚠️ 💩 ⚠️
 {% endhint %}
 
@@ -36,7 +36,7 @@ docker run --name mysql --net <some-docker-network>\
  -e MYSQL_USER=<vaultwarden_user>\
  -e MYSQL_PASSWORD=<vaultwarden_pw> -d mysql:5.7
 
-# 使用 MySQL 环境变量值启动 vaultwarden
+# 使用 MySQL 环境变量值启动 Vaultwarden
 docker run -d --name vaultwarden --net <some-docker-network>\
  -v $(pwd)/vw-data/:/data/ -v <Path to ssl certs>:/ssl/\
  -p 443:80 -e ROCKET_TLS='{certs="/ssl/<your ssl cert>",key="/ssl/<your ssl key>"}'\
@@ -47,14 +47,14 @@ docker run -d --name vaultwarden --net <some-docker-network>\
 
 ### 使用非 Docker MySQL 服务器的示例 <a href="#example-using-non-docker-mysql-server" id="example-using-non-docker-mysql-server"></a>
 
-```systemd
+```shell
 Server IP/Port 192.168.1.10:3306 UN: dbuser / PW: yourpassword / DB: vaultwarden
 mysql://dbuser:yourpassword@192.168.1.10:3306/vaultwarden
 ```
 
 ### 使用 docker-compose 的示例 <a href="#example-using-docker-compose" id="example-using-docker-compose"></a>
 
-```batch
+```yml
 services:
  vaultwarden-db:
   image: "mariadb" # or "mysql"

@@ -259,7 +259,7 @@ docker exec -it vaultwarden sh
 * 以 `root` 用户身份（或使用 `sudo`），使用 `gpasswd -a vaultwarden postdrop` 命令将 `vaultwarden` 用户加入到 `postdrop` 组
 * 使用 `systemctl edit vaultwarden` 编辑 vaultwarden systemd 服务然后在 `[Service]` 部分添加如下两行：
 
-```
+```systemd
 RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_LOCAL AF_NETLINK
 ReadWritePaths=/var/lib/vaultwarden /var/log/vaultwarden.log /var/spool/postfix/maildrop
 ```

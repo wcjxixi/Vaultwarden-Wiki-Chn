@@ -36,6 +36,8 @@
 
 回调 URL 是从 `DOMAIN` [自动生成](https://github.com/dani-garcia/vaultwarden/blob/1e1f9957cd037fad87e5cd33245720f865942016/src/config.rs#L1333)的。如果您设置 `DOMAIN=https://vaultwarden.example.tld`，则您的回调 URL 将是 `https://vaultwarden.example.tld/identity/connect/oidc-signin`。
 
+要正确填充账户名称，您需要配置 IdP 以将声明的 `preferred_username` 作为显示名称提供。
+
 如果您在您的 SSO 权威上使用的是私有证书权威或自签名证书，则需要将根证书添加到 `/etc/ssl/certs` 中，或者将 `SSL_CERT_DIR` 或 `SSL_CERT_FILE` 环境变量指向它。
 
 ## 账户和电子邮箱处理 <a href="#account-and-email-handling" id="account-and-email-handling"></a>
