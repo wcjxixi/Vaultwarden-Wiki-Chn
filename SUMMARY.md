@@ -73,6 +73,7 @@
   * [3.从 LDAP 同步用户](other-information/syncing-users-from-ldap.md)
   * [4.Cloudflare DNS Caddy 2.x](other-information/caddy-2.x-with-cloudflare-dns.md)
   * [5.转储示例](other-information/logrotate-example.md)
+  * [\*Kubernetes 部署](other-information/kubernetes-deployment.md)
   * [\*使用非 root 用户运行 docker 容器](other-information/running-docker-container-with-non-root-user.md)
   * [\*使私有 CA 和自签名证书兼容 Chrome](other-information/private-ca-and-self-signed-certs-that-work-with-chrome.md)
   * [\*测试 SSO](other-information/testing-sso.md)
