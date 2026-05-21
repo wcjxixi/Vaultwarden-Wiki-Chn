@@ -4,18 +4,20 @@
 对应的[官方页面地址](https://github.com/dani-garcia/vaultwarden/wiki/Allow-icon-fetching-from-internal-services)
 {% endhint %}
 
-此配置适用于自托管环境，Vaultwarden 需要从托管在内部/私有网络上的服务中获取图标，例如：
+此配置适用于 Vaultwarden 需要从托管在内部/私有网络上的服务中获取图标的自托管环境，例如：
 
-* 托管多个自托管应用程序的 NAS 或服务器
+* 托管了多个自托管应用程序的 NAS 或服务器
 * 通过本地网络访问的各种服务
 * 仅通过 VPN（例如 Tailscale）才能访问的服务
-* 使用内部 IP 或拆分 DNS 的反向代理设置
+* 使用内部 IP 或拆分式 DNS 的反向代理设置
 
 默认情况下，Vaultwarden 会出于安全考虑阻止对非全局/私有 IP 地址的请求。因此，解析到以下地址的服务图标可能无法加载：
 
 * 局域网 IP 地址（`192.168.x.x`、`10.x.x.x` 等）
 * Tailscale/CGNAT 范围（`100.x.x.x`）
 * 其他仅供内部使用的地址
+
+> **\[译者注]**：[CGNAT](https://zh.wikipedia.org/wiki/%E7%94%B5%E4%BF%A1%E7%BA%A7NAT) - 电信级 NAT 或运营商级 NAT（Carrier-grade NAT，缩写为 CGNAT 或 CGN），也称大规模 NAT（large-scale NAT，缩写 LSN），是运营商为了缓解 IPv4 地址枯竭问题，向客户分配私网 IPv4 地址而非公网地址，并通过自身的中间件完成的网络地址转换 (NAT) 操作。电信级 NAT 可以让更多的终端设备共享一个公共地址。
 
 ## 配置 <a href="#configuration" id="configuration"></a>
 
@@ -38,6 +40,10 @@ ICON_BLACKLIST_NON_GLOBAL_IPS=false
 ## TrueNAS SCALE 重要提示 <a href="#truenas-scale-important-note" id="truenas-scale-important-note"></a>
 
 当将 Vaultwarden 作为 TrueNAS SCALE App 来运行时，仅设置环境变量可能还不够。
+
+> **\[译者注]**：[TrueNAS](https://www.truenas.com/) 是一个基于 ZFS 的开源 NAS（网络附加存储）系统，类似于群晖 DSM、威联通 QNAP。TrueNAS  由 [iXsystems](https://www.ixsystems.com/) 开发。
+>
+> 两个主要版本是 TrueNAS CORE（原 FreeNAS）和 TrueNAS SCALE。TrueNAS CORE 基于 FreeBSD，TrueNAS SCALE 基于 Linux。
 
 TrueNAS 可以通过应用程序配置界面来覆盖 Vaultwarden 的一些内部设置。
 
