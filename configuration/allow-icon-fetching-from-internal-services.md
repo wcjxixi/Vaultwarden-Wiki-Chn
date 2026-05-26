@@ -27,14 +27,6 @@
 HTTP_REQUEST_BLOCK_NON_GLOBAL_IPS=false
 ```
 
-根据 Vaultwarden 版本，您可能还需要设置：
-
-```systemd
-ICON_BLACKLIST_NON_GLOBAL_IPS=false
-```
-
-但是，`ICON_BLACKLIST_NON_GLOBAL_IPS` 已弃用，新版本 Vaultwarden 使用 `HTTP_REQUEST_BLOCK_NON_GLOBAL_IPS`。
-
 然后重启/重新部署 Vaultwarden。
 
 ## TrueNAS SCALE 重要提示 <a href="#truenas-scale-important-note" id="truenas-scale-important-note"></a>
