@@ -54,9 +54,9 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
 
 ## 缺少的功能 <a href="#missing-features" id="missing-features"></a>
 
-话题 [#246](https://github.com/dani-garcia/vaultwarden/issues/246) 包含了完整的功能请求列表，其中既有官方服务器在 Vaultwarden 中缺失的功能，也有 Vaultwarden 中特有的增强功能。
+话题 [#246](https://github.com/dani-garcia/vaultwarden/issues/246) 包含了完整的功能请求列表，既包含官方服务器已具备但 Vaultwarden 尚未实现的功能，也包含 Vaultwarden 中特有的增强功能。
 
-为了与官方服务器做简单的比较，本章节总结了官方服务器中已经实现但在 Vaultwarden 中目前还没有实现的功能。
+为了与官方服务器做简单的比较，本章节汇总了官方服务器中已经实现但在 Vaultwarden 中目前还没有实现的功能。
 
 在时间允许的情况下，可能会添加的功能（欢迎贡献）：
 
