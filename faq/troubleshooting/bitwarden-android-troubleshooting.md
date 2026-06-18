@@ -29,6 +29,14 @@
 
 如果上述步骤没有解决您的问题，那么可能 Vaultwarden 返回的数据还是存在问题。这种情况下，请继续以下步骤。
 
+## 使用 Flight Recorder <a href="#use-the-flight-recorder" id="use-the-flight-recorder"></a>
+
+最新版的 Bitwarden 移动客户端新增了一项名为 Flight Recording 的功能，旨在帮助排查问题。这项功能对 Vaultwarden 也同样适用，因为它可以帮助显示客户端预期收到但实际未收到的内容。
+
+如需了解关于此功能的更多信息，请访问 Bitwarden 文档：[https://bitwarden.com/help/flight-recorder/](https://bitwarden.com/help/flight-recorder/)
+
+但请谨慎分享此日志，因为它可能包含个人或隐私信息，例如您的密码库地址。
+
 ## 安装 Android 调试工具 (adb) <a href="#install-android-debugging-tools-adb" id="install-android-debugging-tools-adb"></a>
 
 大多数（并非全部）的 Android 设备都可以通过将设备连接到装有合适工具的计算机来提取设备日志。您可以在以下链接中找到各个平台的详细指南以了解如何安装这些工具：[https://www.xda-developers.com/install-adb-windows-macos-linux/](https://www.xda-developers.com/install-adb-windows-macos-linux/)。
