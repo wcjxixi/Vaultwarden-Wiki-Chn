@@ -27,7 +27,7 @@
 7. 配置 App 以连接到您的自托管实例
 8. 登录并祈祷
 
-如果上述步骤没有解决您的问题，那么可能 Vaultwarden 返回的数据还是存在问题。这种情况下，请继续以下步骤。
+如果上述步骤没有解决您的问题，那可能是 Vaultwarden 返回的数据还是存在问题。这种情况下，请继续以下步骤。
 
 ## 使用 Flight Recorder <a href="#use-the-flight-recorder" id="use-the-flight-recorder"></a>
 
