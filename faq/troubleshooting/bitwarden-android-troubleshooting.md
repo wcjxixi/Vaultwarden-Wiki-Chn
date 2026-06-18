@@ -16,9 +16,9 @@
 
 ## 首先尝试的事情 <a href="#things-to-try-first" id="things-to-try-first"></a>
 
-首先要确保客户端本地没有无效的缓存 JSON。这是在同步请求完成之前加载的，可能会导致我们无法在服务器端解决的问题。
+首先要确保客户端本地没有无效的缓存 JSON。这是在同步请求完成之前加载的，可能会导致我们无法解决服务器端的问题。
 
-1. 确保安装了最新版本的 Android 客户端。查看已发布的版本： [https://github.com/bitwarden/android/releases](https://github.com/bitwarden/android/releases)
+1. 确保安装了最新版本的 Android 客户端。查看已发布的版本：[https://github.com/bitwarden/android/releases](https://github.com/bitwarden/android/releases)
 2. 从移动客户端注销
 3. 清除 Bitwarden App 的缓存和数据
 4. 卸载 Bitwarden App
