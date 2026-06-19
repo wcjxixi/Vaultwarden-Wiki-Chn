@@ -48,3 +48,4 @@ Vaultwarden 很轻量，对于不希望使用占用大量资源的官方 Bitward
 
 ## 比较 <a href="#comparison" id="comparison"></a>
 
+<table><thead><tr><th>功能</th><th>Bitwarden</th><th>Vaultwarden</th><th width="149">NodeWarden</th><th>Warden</th></tr></thead><tbody><tr><td>网页密码库</td><td>Bitwarden 官方</td><td>Bitwarden 官方代码</td><td>原创 Web Vault 界面</td><td>Vaultwarden 代码</td></tr><tr><td>部署方式</td><td>自托管+官方服务</td><td>自托管</td><td>Cloudflare Workers</td><td>Cloudflare Workers</td></tr><tr><td>兼容 Bitwarden 官方客户端</td><td>是</td><td>是</td><td>是</td><td>是</td></tr></tbody></table>
