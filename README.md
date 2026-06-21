@@ -31,7 +31,7 @@ Vaultwarden 很轻量，对于不希望使用占用大量资源的官方 Bitward
 * 除不支持 Bitwarden 官方企业版的部分功能（详情见[这里](home.md#missing-features)）外，其他大部分功能均**免费**支持。并跟随官方版本保持及时更新。
 * Vaultwarden 比 Bitwarden 官方版更轻量。官方版使用 .Net 开发，使用 MSSQL 数据库，要求至少 2GB 内存；Vaultwarden 使用 Rust 编写，改用 SQLite 数据库（现在也支持 MySQL 和 PostgreSQL），运行时只需要 10M 内存，可以说对硬件基本没有要求。
 
-> [NodeWarden](https://github.com/shuaiplus/nodewarden) 是另一个与 Vaultwarden 类似的 Bitwarden 兼容的服务端，它运行在 Cloudflare Workers 上。原创网页密码库界面。NodeWarden 比 Vaultwarden 更轻量。类似的还有 [Warden](https://github.com/qaz741wsd856/warden-worker)，是运行在 Cloudflare Workers 上的 Vaultwarden。均兼容 Bitwarden 官方客户端。
+> [NodeWarden](https://github.com/shuaiplus/nodewarden) 是另一个与 Vaultwarden 类似的 Bitwarden 兼容的服务端。它运行在 Cloudflare Workers 上，原创 Web Vault 界面，比 Vaultwarden 更轻量。类似的还有 [Warden](https://github.com/qaz741wsd856/warden-worker)，是运行在 Cloudflare Workers 上的 Vaultwarden。它们均兼容 Bitwarden 官方客户端。
 >
 > 除官方客户端外，还有兼容  Bitwarden 的第三方客户端。[Keyguard](https://github.com/AChep/keyguard-app) 是一款面向 Bitwarden® 平台和 KeePass (KDBX) 的多客户端 App。KeyGuard 通过兼容 Bitwarden 的 API 来实现密码管理功能，支持 Android、Windows、Mac、Linux。
 
