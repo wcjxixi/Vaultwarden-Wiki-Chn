@@ -201,9 +201,14 @@ TRUNCATE TABLE sso_users;
 
 Google [文档](https://developers.google.com/identity/openid-connect/openid-connect?hl=zh-cn)。
 
-默认情况下，如果没有额外[配置](https://developers.google.com/identity/protocols/oauth2/web-server#creatingclient)，您将没有 `refresh_token`，会话时间将限制为 1 小时。
+默认情况下，如果没有额外的[配置](https://developers.google.com/identity/protocols/oauth2/web-server#creatingclient)，您将没有 `refresh_token`，并且会话时间将被限制为 1 小时。
 
-使用以下内容配置您的服务器：
+在 _Google Auth Platform_ > _Clients_ 中，使用以下内容创建一个新的 Client ID：
+
+* 已授权的 JavaScript 来源：`https://vaultwarden.example.tld`
+* 已授权的重定向 URI：`https://vaultwarden.example.tld/identity/connect/oidc-signin`
+
+然后，使用以下内容配置您的服务器：
 
 * `SSO_AUTHORITY=https://accounts.google.com`
 * `SSO_AUTHORIZE_EXTRA_PARAMS="access_type=offline&prompt=consent"`
