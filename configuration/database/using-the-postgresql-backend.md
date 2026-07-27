@@ -96,7 +96,7 @@ CREATE DATABASE vaultwarden OWNER vaultwarden;
 
 4、停止新的 Vaultwarden 实例。
 
-5、安装 [pgloader](http://pgloader.io/)。确保您使用的是最新版本的 pgloader，官方的 Ubuntu 存储库有一个过时的版本，它不能与新版本的 PostgreSQL 一起正常工作。最新版本可以从 [PostgreSQL Apt 存储库](https://www.postgresql.org/download/linux/ubuntu/)获取。
+5、安装 [pgloader](http://pgloader.io/)。确保您使用的是最新 3.x 版本的 pgloader，官方的 Ubuntu 存储库有一个过时的版本，它不能与新版本的 PostgreSQL 一起正常工作。最新版本可以从 [PostgreSQL Apt 存储库](https://www.postgresql.org/download/linux/ubuntu/)获取。
 
 6、使用如下内容创建 `vaultwarden.load` 文件：
 
