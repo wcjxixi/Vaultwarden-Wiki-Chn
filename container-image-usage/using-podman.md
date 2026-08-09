@@ -140,7 +140,7 @@ WantedBy=multi-user.target default.target
 ROCKET_PORT=8080
 ```
 
-如果您希望此容器拥有特定的名称，则需要添加 `ExecStartPre=/usr/bin/podman rm -i -f vaultwarden`，如果进程未被正确清理的话。注意，此方式当前无法与具有 `User=` 选项的用户一起正常工作（见 [https://github.com/containers/podman/issues/5572](%20https:/github.com/containers/podman/issues/5572/)）。
+如果您希望此容器拥有特定的名称，则需要添加 `ExecStartPre=/usr/bin/podman rm -i -f vaultwarden`，如果进程未被正确清理的话。注意，此方式当前无法与具有 `User=` 选项的用户一起正常工作（见 [https://github.com/containers/podman/issues/5572](https://github.com/wcjxixi/Vaultwarden-Wiki-Chn/blob/master/container-image-usage/%20https:/github.com/containers/podman/issues/5572/README.md)）。
 
 ## 故障排除 <a href="#troubleshooting" id="troubleshooting"></a>
 
