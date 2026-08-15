@@ -65,11 +65,11 @@ docker exec -it vwcontainer /vaultwarden hash
 
 ```sh
 # 使用 Bitwarden 默认
-echo -n 'MySecretPassword' | argon2 "$(openssl rand -base64 32)" -e -id -k 65540 -t 3 -p 4
+echo -n <YOUR_PASSWORD> | argon2 "$(openssl rand -base64 32)" -e -id -k 65540 -t 3 -p 4
 # 输出：$argon2id$v=19$m=65540,t=3,p=4$bXBGMENBZUVzT3VUSFErTzQzK25Jck1BN2Z0amFuWjdSdVlIQVZqYzAzYz0$T9m73OdD2mz9+aJKLuOAdbvoARdaKxtOZ+jZcSL9/N0
 
 # 使用 OWASP 最低的推荐设置
-echo -n 'MySecretPassword' | argon2 "$(openssl rand -base64 32)" -e -id -k 19456 -t 2 -p 1
+echo -n <YOUR_PASSWORD> | argon2 "$(openssl rand -base64 32)" -e -id -k 19456 -t 2 -p 1
 # 输出：$argon2id$v=19$m=19456,t=2,p=1$cXpKdUxHSWhlaUs1QVVsSStkbTRPQVFPSmdpamFCMHdvYjVkWTVKaDdpYz0$E1UgBKjUCD2Roy0jdHAJvXihugpG+N9WcAaR8P6Qn/8
 ```
 
@@ -81,7 +81,7 @@ echo -n 'MySecretPassword' | argon2 "$(openssl rand -base64 32)" -e -id -k 19456
 
 <div align="left" data-with-frame="true"><figure><img src="https://github.com/user-attachments/assets/52bf60df-1880-41b2-aab7-eac9982f7505" alt=""><figcaption></figcaption></figure></div>
 
-设置 PHC 字符串后，您可以使用生成该 PHC 字符串时使用的密码进行登录，例如上述示例中的 `MySecretPassword`。
+设置 PHC 字符串后，您可以使用生成该 PHC 字符串时使用的密码进行登录，例如上述示例中的 \<YOUR\_PASSWORD>。
 
 {% hint style="info" %}
 如果您可以将整个 `$argon2id$…` PHC 字符串作为管理密码输入，那么您可能正在使用一个过时的 Vaultwarden 版本，该版本尚未支持 argon2id。请确保您使用的至少是[最新版本](https://github.com/dani-garcia/vaultwarden/releases/latest)。
