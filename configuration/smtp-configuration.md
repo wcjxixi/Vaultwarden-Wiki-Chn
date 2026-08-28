@@ -55,10 +55,10 @@ docker run -d --name vaultwarden \
 
 这里有几个对于大部分使用场景来说已经足够的免费服务：
 
-* [~~SendGrid~~](https://sendgrid.com)~~（每天 100 封电子邮件）~~
 * [MailJet](https://www.mailjet.com)（每天 200 封电子邮件）
-* [SendinBlue](https://www.sendinblue.com/)（每天 200 封电子邮件）
+* [SendinBlue](https://www.sendinblue.com/)（每天 300 封电子邮件）
 * [SMTP2GO](https://www.smtp2go.com/)（每月 1000 封电子邮件）
+* [Ahasend](https://ahasend.com/)（每月 1000 封电子邮件）
 
 ## 一些知名服务的默认设置 <a href="#here-some-sane-defaults-for-well-known-services" id="here-some-sane-defaults-for-well-known-services"></a>
 
