@@ -34,6 +34,8 @@ Vaultwarden 没有发布时间表。如果维护者有时间并认为有必要�
 
 ## Vaultwarden 能连接到 Oracle MySQL V8.x 数据库吗？ <a href="#can-bitwarden_rs-connect-to-an-oracle-mysql-v-8-x-database" id="can-bitwarden_rs-connect-to-an-oracle-mysql-v-8-x-database"></a>
 
+**注意**：Vaultwarden 1.35.5 或更高版本不会出现此警告，因此 1.35.5 及之后版本不再需要进行下面所描述的更改，这些版本已支持「caching\_sha2\_password」。
+
 在使用 Oracle MySQL v8.x 时，当您试图启动 Vaultwarden，可能会出现以下警告：
 
 ```
@@ -61,7 +63,7 @@ ALTER USER 'vaultwarden'@'localhost' IDENTIFIED WITH mysql_native_password BY 'y
 
 另外可参阅：[使用 MariaDB - 创建数据库和用户](../configuration/database/using-the-mariadb-mysql-backend.md#create-database-and-user)
 
-在版本 1.35.5 之后不再需要进行此更改，该版本支持「caching\_sha2\_password」。
+1.35.5 之后版本不再需要进行下面所描述的更改，该版本支持「caching\_sha2\_password」。
 
 ## 客户端（桌面端、移动端、网页端）无法正常工作，无法登录或提示证书无效。 <a href="#my-client-desktop-mobile-web-does-not-work-i-can-not-login-or-it-complains-about-invalid-certificate" id="my-client-desktop-mobile-web-does-not-work-i-can-not-login-or-it-complains-about-invalid-certificate"></a>
 
