@@ -36,7 +36,7 @@ Vaultwarden 没有发布时间表。如果维护者有时间并认为有必要�
 
 **注意**：Vaultwarden 1.35.5 或更高版本不会出现此警告，因此 1.35.5 及之后版本不再需要进行下面所描述的更改，这些版本已支持「caching\_sha2\_password」。
 
-在使用 Oracle MySQL v8.x 时，当您试图启动 Vaultwarden，可能会出现以下警告：
+在使用 Oracle MySQL v8.x 时，当您尝试启动 Vaultwarden 时，可能会出现以下警告：
 
 ```
 [vaultwarden::util][WARN] Can't connect to database, retrying: DieselConError.
@@ -45,7 +45,7 @@ Vaultwarden 没有发布时间表。如果维护者有时间并认为有必要�
 )
 ```
 
-默认情况下，Oracle MySQL v8.x 使用更安全的密码散列方法，这是好事，但我们的构建目前不支持它。
+默认情况下，Oracle MySQL v8.x 使用更安全的密码散列方法，这是好事，但我们的构建目前还不支持它。
 
 您需要以一种特定的方法创建 Vaultwarden 用户，以便它能使用旧的原生密码散列：
 
@@ -62,8 +62,6 @@ ALTER USER 'vaultwarden'@'localhost' IDENTIFIED WITH mysql_native_password BY 'y
 ```
 
 另外可参阅：[使用 MariaDB - 创建数据库和用户](../configuration/database/using-the-mariadb-mysql-backend.md#create-database-and-user)
-
-1.35.5 之后版本不再需要进行下面所描述的更改，该版本支持「caching\_sha2\_password」。
 
 ## 客户端（桌面端、移动端、网页端）无法正常工作，无法登录或提示证书无效。 <a href="#my-client-desktop-mobile-web-does-not-work-i-can-not-login-or-it-complains-about-invalid-certificate" id="my-client-desktop-mobile-web-does-not-work-i-can-not-login-or-it-complains-about-invalid-certificate"></a>
 
