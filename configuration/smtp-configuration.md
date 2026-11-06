@@ -55,10 +55,12 @@ docker run -d --name vaultwarden \
 
 这里有几个对于大部分使用场景来说已经足够的免费服务：
 
-* [MailJet](https://www.mailjet.com)（每天 200 封电子邮件）
-* [SendinBlue](https://www.sendinblue.com/)（每天 300 封电子邮件）
+* [MailJet](https://www.mailjet.com)（每天 200 封电子邮件）（移除品牌标识要求付费方案）
+* [Brevo](https://www.brevo.com/)（每天 300 封电子邮件）（移除品牌标识要求付费方案）
 * [SMTP2GO](https://www.smtp2go.com/)（每月 1000 封电子邮件）
 * [Ahasend](https://ahasend.com/)（每月 1000 封电子邮件）
+* [Resend](https://resend.com/)（每天 100 封电子邮件）
+* [Pharos](https://pharos.email/)（每天 200 封电子邮件）
 
 ## 一些知名服务的默认设置 <a href="#here-some-sane-defaults-for-well-known-services" id="here-some-sane-defaults-for-well-known-services"></a>
 
@@ -170,6 +172,24 @@ FullSSL：
   SMTP_PASSWORD=<full-api-key>
   SMTP_AUTH_MECHANISM="Login"
   SMTP_FROM=user@domain.tld
+```
+
+### Stalwart
+
+端口和安全设置取决于您在 Stalwart 中配置的监听器 (listener)。
+
+用户名应与 Stalwart 中显示的用户名一致（可能包含或不包含「@example.tld」）。
+
+请确保您登录的账户拥有向 `SEND_FROM` 指定的地址发送电子邮件的权限。
+
+```systemd
+SMTP_HOST=smtp.example.tld
+SMTP_FROM=vaulty@example.tld
+SMTP_PORT=587 #check configured listeners in stalwart
+SMTP_SECURITY=starttls
+SMTP_USERNAME=<username>
+SMTP_AUTH_MECHANISM=Xoauth2
+SMTP_PASSWORD=<the-api-key>
 ```
 
 ## 带特殊字符的密码 <a href="#passwords-with-special-characters" id="passwords-with-special-characters"></a>

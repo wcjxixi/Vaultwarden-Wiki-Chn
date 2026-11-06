@@ -27,7 +27,7 @@ openssl genpkey -algorithm RSA -aes128 -out private-ca.key -outform PEM -pkeyopt
 创建 CA 证书：
 
 ```sh
-openssl req -x509 -new -nodes -sha256 -days 3650 -key private-ca.key -out self-signed-ca-cert.crt
+openssl req -x509 -new -nodes -sha256 -days 825 -key private-ca.key -out self-signed-ca-cert.crt
 ```
 
 > `-nodes` 参数用于阻止在测试/安全环境中为私钥（密钥对）设置密码短语，否则每次启动/重启服务器时都必须输入密码短语。

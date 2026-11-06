@@ -160,7 +160,7 @@ Raspberry Pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 
 使用 Terraform 和 Infrastructure-as-Code 在亚马逊 EKS 中部署 Vaultwarden。
 
-### Zenith
+### Zenith Hosting
 
 [![Deploy with Zenith](https://cdn.zenith.hosting/buttons/deploy-with-zenith.svg)](https://zenith.hosting/host/vaultwarden?ref=gh)
 
@@ -170,7 +170,25 @@ Raspberry Pi 上的 Vaultwarden Ansible 部署。要从以前的配置迁移，�
 
 [![Deploy on Sealos](https://raw.githubusercontent.com/labring-actions/templates/main/Deploy-on-Sealos.svg)](https://template.sealos.io/deploy?templateName=vaultwarden)
 
-使用完全免费的插件在 Sealos 上安装 Vaultwarden。安装大约需要 1 分钟。优雅地处理高并发并提供动态可扩展性。
+使用完全免费的插件在 Sealos 上安装 Vaultwarden。安装大约需要 1 分钟。可从容处理高并发并提供动态可扩展性。
+
+### Hostim.dev
+
+[![Deploy on Hostim](https://hostim.dev/img/deploy-button.svg)](https://console.hostim.dev/dashboard?preview=1\&modal=1\&template=vaultwarden)
+
+一键式模板，包含托管 PostgreSQL、持久化 `/data` 卷以及自动 HTTPS。指南：[https://hostim.dev/docs/templates/vaultwarden/](https://hostim.dev/docs/templates/vaultwarden/)
+
+### Pethost
+
+[![Deploy on Pethost](https://pethost.dev/button.svg)](https://console.pethost.dev/?template=vaultwarden)
+
+一键式模板，包含官方镜像、持久化 `/data` 卷、自动 HTTPS 以及每日备份。
+
+### podway
+
+[![Deploy on podway](https://podway.io/img/deploy-on-podway.svg)](https://podway.io/start?app=vaultwarden\&ref=docs-vaultwarden)
+
+代管式托管，包含 AI 管理员，您可以通过您的 Claude 方案对其操控。首个 App 免费，Pod $4/月起。
 
 ### Google Cloud
 

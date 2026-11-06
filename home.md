@@ -51,6 +51,7 @@ Vaultwarden 实现了大多数功能所需的 Bitwarden API，其中包括：
   * [Send 选项](https://help.ppgg.in/admin-console/organization-basics/enterprise-policies#send-options)
   * [禁用支付卡项目类型](https://help.ppgg.in/docs/admin-console/oversight-visibility/enterprise-policies#remove-card-item-type)
   * [默认 URI 匹配检测](https://help.ppgg.in/docs/admin-console/oversight-visibility/enterprise-policies#default-uri-match-detection)
+  * [禁用 PIN 码解锁](https://help.ppgg.in/docs/admin-console/oversight-visibility/enterprise-policies#remove-unlock-with-pin)
 
 ## 缺少的功能 <a href="#missing-features" id="missing-features"></a>
 

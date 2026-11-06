@@ -8,6 +8,12 @@
 ⚠️ 💩 ⚠️尽管 MySQL 数据库工作正常，但请注意，我们的构建基于 MariaDB 客户端库，因为这是 Debian 提供的。⚠️ 💩 ⚠️
 {% endhint %}
 
+{% hint style="warning" %}
+如果 MariaDB 或 MySQL 服务器不支持默认的 SSL/TLS 连接，则在使用最新版本的 MariaDB 客户端（例如基于 Alpine 的镜像）时，客户端可能无法连接。如果您无法将 MariaDB 或 MySQL 服务器升级到最新版本，则需要添加一个额外的环境变量，才能让 Vaultwarden 连接到该数据库。
+
+添加环境变量 `MARIADB_TLS_DISABLE_PEER_VERIFICATION=1`，Vaultwarden 即可连接。
+{% endhint %}
+
 要使用 MySQL 后端，你可以使用[官方 Docker 镜像](https://hub.docker.com/r/bitwardenrs/server-mysql)，也可以构建您自己的[启用了 MySQL](../../development/building-binary.md#mysql-backend) 的二进制。
 
 要运行二进制或容器，请确保已设置 `DATABASE_URL` 环境变量（即 `DATABASE_URL='mysql://<user>:<password>@mysql/vaultwarden[?ssl_mode=(disabled|required|preferred)&ssl_ca=/path/to/cart.(crt|pem)]'`）。
